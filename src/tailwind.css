@@ -2,6 +2,12 @@
 @import "tw-animate-css";
 @custom-variant dark (&:is(.dark *));
 
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -49,7 +55,24 @@
   --chart-5: oklch(0.769 0.188 70.08);
 }
 
-@custom-variant dark (&:is(.dark *));
+:host,html {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    font-family: ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-tap-highlight-color: transparent;
+    transition: all;
+    transition-duration:  0.3s;
+    list-style: none;
+    scroll-behavior: smooth;
+    transition: all;
+    width: 100dvw;
+    height: 100dvh;
+}
 
 a {
   font-weight: 500;

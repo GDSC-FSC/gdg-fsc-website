@@ -2,6 +2,8 @@ import { Code, Menu, Users, Laptop, Calendar, ArrowRight } from "lucide-react";
 import  { Button } from "../components/ui/button";
 import { Link } from "react-router-dom";
 import  { ThemeToggle } from "../components/ThemeToggle";
+import { memo } from 'react'
+import type { FC } from 'react'
 
 const Index = () => {
   return (

@@ -1,0 +1,6 @@
+export * from './About.tsx'
+export * from './Events.tsx'
+export * from './Index.tsx'
+export * from './NotFound.tsx'
+export * from './Projects.tsx'
+export * from './Team.tsx'
