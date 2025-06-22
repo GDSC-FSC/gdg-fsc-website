@@ -1,12 +1,10 @@
-"use client";
-
 import { Code, Laptop, Users } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
 import PageLayout from "../layouts";
 import { memo } from 'react'
 import type { FC } from 'react'
 
-export const Events: FC = memo(() => {
+const Events: FC = memo(() => {
   return (
     <PageLayout>
       {/* Events Section */}

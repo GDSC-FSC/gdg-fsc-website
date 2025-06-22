@@ -1,11 +1,9 @@
-"use client";
-
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
 import PageLayout from "../layouts";
 import { memo } from 'react'
 import type { FC } from 'react'
 
-export const About: FC = memo(() => {
+const About: FC = memo(() => {
   return (
     <PageLayout>
       {/* About Section */}
