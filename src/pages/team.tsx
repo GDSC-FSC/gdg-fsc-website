@@ -29,11 +29,17 @@ export const Team: FC = memo(() => {
               >
                 <CardContent className="pt-8">
                   {leader.image ? (
-                    <img
-                      src={leader.image}
-                      alt={leader.name}
-                      className="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-blue-400 dark:border-blue-600"
-                    />
+                    <picture>
+                      <source
+                        srcSet={leader.image}
+                        type="image/webp"
+                      />
+                      <img
+                        src={leader.image}
+                        alt={leader.name}
+                        className="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-blue-400 dark:border-blue-600 rotate-90"
+                      />
+                    </picture>
                   ) : (
                     <div className="w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-2xl font-bold hover:scale-110 transition-transform duration-300">
                       {leader.name
