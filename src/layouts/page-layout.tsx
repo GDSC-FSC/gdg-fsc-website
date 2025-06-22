@@ -1,6 +1,8 @@
+"use client";
+
 import { Code, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
-import { ThemeToggle } from "../components/ThemeToggle";
+import { ThemeToggle } from "../components";
 import { memo } from "react";
 import type { FC } from 'react';
 

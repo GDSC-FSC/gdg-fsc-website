@@ -9,7 +9,7 @@ import {
   CardFooter,
 } from "../components/ui/card";
 import { useQuery } from "@tanstack/react-query";
-import PageLayout from "../layouts";
+import { PageLayout } from "../layouts";
 import { memo } from 'react'
 import type { FC } from 'react'
 

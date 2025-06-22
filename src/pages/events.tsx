@@ -2,7 +2,7 @@
 
 import { Code, Laptop, Users } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
-import PageLayout from "../layouts";
+import { PageLayout } from "../layouts";
 import { memo } from 'react'
 import type { FC } from 'react'
 

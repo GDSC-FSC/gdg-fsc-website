@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardContent } from "../components/ui/card";
-import PageLayout from "../layouts";
+import { PageLayout } from "../layouts";
 import { memo } from 'react'
 import type { FC } from 'react'
 
