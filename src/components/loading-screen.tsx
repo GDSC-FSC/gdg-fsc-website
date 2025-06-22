@@ -1,7 +1,10 @@
 import { Code } from "lucide-react";
 import { useEffect, useState } from "react";
+import { type FC, memo } from 'react';
 
-const LoadingScreen = ({ onLoadingComplete }: { onLoadingComplete: () => void }) => {
+export const LoadingScreen: FC<{
+  onLoadingComplete: () => void
+}> = memo(({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [, setTheme] = useState<string>('light');
@@ -70,6 +73,7 @@ const LoadingScreen = ({ onLoadingComplete }: { onLoadingComplete: () => void })
       </div>
     </div>
   );
-};
+});
 
+LoadingScreen.displayName = "LoadingScreen";
 export default LoadingScreen;

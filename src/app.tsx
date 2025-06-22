@@ -10,10 +10,11 @@ import {
   Team,
   NotFound
 } from "./pages";
-
-import LoadingScreen from "./components/LoadingScreen";
-import { ThemeProvider } from "./components/ThemeProvider";
-import { TooltipProvider } from "./components/ui/tooltip";
+import { TooltipProvider } from './components/ui/tooltip'
+import {
+  LoadingScreen,
+  ThemeProvider,
+} from './components'
 
 const queryClient = new QueryClient();
 

@@ -2,8 +2,9 @@
 import { Moon, Sun } from "lucide-react";
 import { Button } from "./ui/button";
 import { useTheme } from "next-themes";
+import { type FC } from  'react';
 
-export function ThemeToggle() {
+export const ThemeToggle: FC = () => {
   const { theme, setTheme } = useTheme();
 
   return (
@@ -19,3 +20,6 @@ export function ThemeToggle() {
     </Button>
   );
 }
+
+ThemeToggle.displayName = "ThemeToggle"
+export default ThemeToggle
