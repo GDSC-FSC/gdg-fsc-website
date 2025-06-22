@@ -73,7 +73,11 @@ export const Home: FC = memo(() => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-8 justify-center mb-20">
-              <Button size="lg" className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-12 py-8 text-xl rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 group">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-12 py-8 text-xl rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 group"
+                onClick={() => window.open("https://gdg.community.dev/gdg-on-campus-farmingdale-state-college-farmingdale-united-states/", "_blank", "noreferrer noopener")}
+              >
                 Join Our Community
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
