@@ -37,7 +37,7 @@ export const Team: FC = memo(() => {
                       <img
                         src={leader.image}
                         alt={leader.name}
-                        className="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-blue-400 dark:border-blue-600 rotate-90"
+                        className="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-blue-400 dark:border-blue-600 rotate-[270deg]"
                       />
                     </picture>
                   ) : (
