@@ -1,10 +1,12 @@
+"use client";
+
 import { Code, Laptop, Users } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
 import PageLayout from "../layouts/PageLayout";
 import { memo } from 'react'
 import type { FC } from 'react'
 
-const Events = () => {
+export const Events: FC = memo(() => {
   return (
     <PageLayout>
       {/* Events Section */}
@@ -81,6 +83,6 @@ const Events = () => {
       </section>
     </PageLayout>
   );
-};
-
+});
+Events.displayName = "Events";
 export default Events;

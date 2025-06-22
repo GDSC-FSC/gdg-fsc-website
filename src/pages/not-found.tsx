@@ -1,8 +1,10 @@
+"use client";
+
 import { useLocation } from "react-router-dom";
 import { useEffect, memo } from "react";
 import type { FC } from 'react'
 
-const NotFound = () => {
+export const NotFound: FC = memo(() => {
   const location = useLocation();
 
   useEffect(() => {
@@ -23,6 +25,6 @@ const NotFound = () => {
       </div>
     </div>
   );
-};
-
+});
+NotFound.displayName = "NotFound";
 export default NotFound;

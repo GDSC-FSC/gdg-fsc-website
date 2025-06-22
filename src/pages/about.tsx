@@ -1,9 +1,11 @@
+"use client";
+
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
 import PageLayout from "../layouts/PageLayout";
 import { memo } from 'react'
 import type { FC } from 'react'
 
-const About = () => {
+export const About: FC = memo(() => {
   return (
     <PageLayout>
       {/* About Section */}
@@ -67,6 +69,6 @@ const About = () => {
       </section>
     </PageLayout>
   );
-};
-
+});
+About.displayName = "About";
 export default About;

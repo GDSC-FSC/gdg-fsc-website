@@ -2,12 +2,15 @@ import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster as Sonner } from "sonner";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import About from "./pages/About";
-import Events from "./pages/Events";
-import Projects from "./pages/Projects";
-import Team from "./pages/Team";
-import NotFound from "./pages/NotFound";
+import {
+  Home,
+  About,
+  Events,
+  Projects,
+  Team,
+  NotFound
+} from "./pages";
+
 import LoadingScreen from "./components/LoadingScreen";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { TooltipProvider } from "./components/ui/tooltip";
@@ -33,7 +36,7 @@ const App = () => {
           <Sonner />
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Index />} />
+              <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/events" element={<Events />} />
               <Route path="/projects" element={<Projects />} />

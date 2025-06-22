@@ -1,11 +1,13 @@
+"use client";
+
 import { Code, Menu, Users, Laptop, Calendar, ArrowRight } from "lucide-react";
-import  { Button } from "../components/ui/button";
+import { Button } from "../components/ui/button";
 import { Link } from "react-router-dom";
-import  { ThemeToggle } from "../components/ThemeToggle";
+import { ThemeToggle } from "../components/ThemeToggle";
 import { memo } from 'react'
 import type { FC } from 'react'
 
-const Index = () => {
+export const Home: FC = memo(() => {
   return (
     <div className="min-h-screen bg-background overflow-hidden w-[100dvw]">
       {/* Navigation */}
@@ -174,6 +176,7 @@ const Index = () => {
       </footer>
     </div>
   );
-};
+});
 
-export default Index;
+Home.displayName = "Home";
+export default Home;

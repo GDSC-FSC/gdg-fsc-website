@@ -1,3 +1,5 @@
+"use client";
+
 import { GitFork, Star } from "lucide-react";
 import {
   Card,
@@ -55,7 +57,7 @@ const fetchRepositories = async (): Promise<Repository[]> => {
   return reposWithLanguages;
 };
 
-const Repositories = () => {
+export const Projects: FC = memo(() => {
   const {
     data: repositories,
     error,
@@ -250,6 +252,7 @@ const Repositories = () => {
       </section>
     </PageLayout>
   );
-};
+});
 
-export default Repositories;
+Projects.displayName = "Projects";
+export default Projects;
