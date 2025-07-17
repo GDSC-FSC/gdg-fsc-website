@@ -191,7 +191,7 @@
     "audit-ci": "^7.1.0",
     "autoprefixer": "^10.4.21",
     "axios": "^1.10.0",
-    "bun-types": "1.2.17",
+    "bun-types": "1.2.18",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
