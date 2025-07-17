@@ -1,0 +1,120 @@
+name: 🎭 Playwright Tests
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'tests/pw/**'
+      - 'package.json'
+      - 'bun.lockb'
+      - 'playwright.config.ts'
+      - '.github/workflows/playwright.yml'
+  pull_request:
+    branches: [master]
+    paths:
+      - 'tests/pw/**'
+      - 'package.json'
+      - 'bun.lockb'
+      - 'playwright.config.ts'
+      - '.github/workflows/playwright.yml'
+  workflow_dispatch:
+
+jobs:
+  install:
+    name: Install Dependencies
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.bun/install/cache
+            node_modules
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Increase file descriptor limit
+        run: ulimit -n 65536
+
+      - name: Build application
+        run: bun run build
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/bun.lockb') }}
+
+      - name: Install Playwright browsers
+        run: bunx playwright install --with-deps
+
+      - name: Save build folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-playwright
+          if-no-files-found: error
+          path: .output
+
+  test:
+    name: Playwright Tests - ${{ matrix.project }}
+    runs-on: ubuntu-24.04
+    needs: install
+    strategy:
+      fail-fast: false
+      matrix:
+        project: ['chromium', 'firefox', 'webkit']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Restore Playwright browsers cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/bun.lockb') }}
+
+      - name: Install Playwright browsers
+        run: bunx playwright install --with-deps
+
+      - name: Download the build folder
+        uses: actions/download-artifact@v4
+        with:
+          name: build-playwright
+          path: .output
+
+      - name: Start server for testing (background)
+        run: |
+          bun run start &
+          echo "Started server with PID $!"
+          sleep 10
+
+      - name: Wait for server to be ready
+        run: |
+          echo "Waiting for server to be available..."
+          timeout 120s bash -c 'until curl -s http://localhost:3000 > /dev/null; do sleep 1; done'
+          echo "Server is up and running"
+
+      - name: Run Playwright tests
+        run: bunx playwright test --project=${{ matrix.project }} --skip-server-start
+        env:
+          PLAYWRIGHT_TIMEOUT: 120000
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ matrix.project }}
+          path: playwright-report/
+          retention-days: 30

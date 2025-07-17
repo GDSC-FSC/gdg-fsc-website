@@ -1,10 +1,26 @@
-"use client";
+/**
+ * Copyright 2025 GDG on Campus Farmingdale State College
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import { Code, Laptop, Users } from "lucide-react";
-import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
-import { PageLayout } from "../layouts";
-import { memo } from 'react'
-import type { FC } from 'react'
+'use client';
+
+import { Code, Laptop, Users } from 'lucide-react';
+import type { FC } from 'react';
+import { memo } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { PageLayout } from '../layouts';
 
 export const Events: FC = memo(() => {
   return (
@@ -29,14 +45,17 @@ export const Events: FC = memo(() => {
                     <Laptop className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <CardTitle className="text-blue-700 dark:text-blue-300">Android Development Workshop</CardTitle>
+                    <CardTitle className="text-blue-700 dark:text-blue-300">
+                      Android Development Workshop
+                    </CardTitle>
                     <p className="text-sm text-blue-600 dark:text-blue-400">Every Tuesday</p>
                   </div>
                 </div>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Learn to build Android applications using Kotlin and Android Studio with hands-on projects and real-world examples.
+                  Learn to build Android applications using Kotlin and Android Studio with hands-on
+                  projects and real-world examples.
                 </p>
               </CardContent>
             </Card>
@@ -48,14 +67,17 @@ export const Events: FC = memo(() => {
                     <Code className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <CardTitle className="text-red-700 dark:text-red-300">Web Development Bootcamp</CardTitle>
+                    <CardTitle className="text-red-700 dark:text-red-300">
+                      Web Development Bootcamp
+                    </CardTitle>
                     <p className="text-sm text-red-600 dark:text-red-400">Monthly Sessions</p>
                   </div>
                 </div>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Master modern web technologies including React, Node.js, and Google Cloud Platform through guided projects.
+                  Master modern web technologies including React, Node.js, and Google Cloud Platform
+                  through guided projects.
                 </p>
               </CardContent>
             </Card>
@@ -67,14 +89,17 @@ export const Events: FC = memo(() => {
                     <Users className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <CardTitle className="text-yellow-700 dark:text-yellow-300">Tech Talks & Networking</CardTitle>
+                    <CardTitle className="text-yellow-700 dark:text-yellow-300">
+                      Tech Talks & Networking
+                    </CardTitle>
                     <p className="text-sm text-yellow-600 dark:text-yellow-400">Every Friday</p>
                   </div>
                 </div>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Weekly sessions featuring industry professionals, Google technologies, and networking opportunities with fellow developers.
+                  Weekly sessions featuring industry professionals, Google technologies, and
+                  networking opportunities with fellow developers.
                 </p>
               </CardContent>
             </Card>
@@ -84,5 +109,5 @@ export const Events: FC = memo(() => {
     </PageLayout>
   );
 });
-Events.displayName = "Events";
+Events.displayName = 'Events';
 export default Events;

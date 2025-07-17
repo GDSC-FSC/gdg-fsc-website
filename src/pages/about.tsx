@@ -1,9 +1,27 @@
-"use client";
+/**
+ * Copyright 2025 GDG on Campus Farmingdale State College
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
-import { PageLayout } from "../layouts";
-import { memo } from 'react'
-import type { FC } from 'react'
+'use client';
+
+import type { FC } from 'react';
+import { memo } from 'react';
+import { Text } from '../../interface';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { about } from '../constants';
+import { PageLayout } from '../layouts';
 
 export const About: FC = memo(() => {
   return (
@@ -16,59 +34,37 @@ export const About: FC = memo(() => {
               About GDG on Campus FSC
             </h1>
             <div className="max-w-4xl mx-auto space-y-6 text-lg text-muted-foreground leading-relaxed">
-              <p>
-                GDG on Campus Farmingdale State College - Farmingdale, United States is an independent group where students can gain practical experience in building applications and services, develop their software engineering skills, and explore new areas of technology. This helps them become better prepared for careers in the technology industry and contribute to the development of innovative solutions that can positively impact society.
-              </p>
-              <p>
-                Google Developer Groups (GDG) are community groups for developers interested in learning and practicing development skills. These groups provide a space for developers to learn how to build real-world solutions using various technologies and platforms, offering opportunities for members to connect, learn, and grow together.
-              </p>
-              <p>
-                The purpose of GDG on Campus is to empower students to learn, grow, and connect with other developers through hands-on workshops, mentorship, and collaboration. We offer a platform for students to explore new technologies, work on real-world projects, and build their professional networks.
-              </p>
-              <p className="text-sm italic">
-                GDG on Campus Farmingdale State College is an independent group; our activities and the opinions expressed here should in no way be linked to Google, the corporation.
-              </p>
+              {about.paragraphs.map((text, i) => (
+                <Text
+                  key={i}
+                  className={i === about.paragraphs.length - 1 ? 'text-sm italic' : undefined}
+                >
+                  {text}
+                </Text>
+              ))}
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
-            <Card className="border-l-4 border-l-blue-500 hover:shadow-xl transition-all duration-500 hover:scale-105 animate-fade-in">
-              <CardHeader>
-                <CardTitle className="text-blue-600">Practical Experience</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Gain hands-on experience building applications and services while developing your software engineering skills and exploring new areas of technology.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-l-4 border-l-red-500 hover:shadow-xl transition-all duration-500 hover:scale-105 animate-fade-in">
-              <CardHeader>
-                <CardTitle className="text-red-600">Learn & Grow</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Connect with other developers through hands-on workshops, mentorship, and collaboration opportunities that help you grow your professional network.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-l-4 border-l-green-500 hover:shadow-xl transition-all duration-500 hover:scale-105 animate-fade-in">
-              <CardHeader>
-                <CardTitle className="text-green-600">Career Ready</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Become better prepared for careers in the technology industry and contribute to innovative solutions that can positively impact society.
-                </p>
-              </CardContent>
-            </Card>
+            {about.cards.map((card, i) => (
+              <Card
+                key={card.title}
+                className={`border-l-4 border-l-${card.color}-500 hover:shadow-xl transition-all duration-500 hover:scale-105 animate-fade-in`}
+              >
+                <CardHeader>
+                  <CardTitle className={`text-${card.color}-600`}>{card.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Text className="text-muted-foreground">{card.description}</Text>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
     </PageLayout>
   );
 });
-About.displayName = "About";
+
+About.displayName = 'About';
 export default About;

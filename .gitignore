@@ -1,4 +1,17 @@
-# Logs
+# dependencies (bun install)
+node_modules
+
+# output
+dist
+dist-ssr
+out
+*.tgz
+
+# code coverage
+coverage
+*.lcov
+
+# logs
 logs
 *.log
 npm-debug.log*
@@ -6,20 +19,46 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 
-node_modules
-dist
-dist-ssr
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+.env.sentry-build-plugin
+
+# caches
+.eslintcache
+.cache
+*.tsbuildinfo
 *.local
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Finder (MacOS) folder config
+.DS_Store
+
+# Vercel
 .vercel
+
+# Million cache
+/.million
+
+# Public source maps
+./public/*.js.map
+
+*storybook.log
+storybook-static
+
+/.vite-inspect
+/.unlighthouse

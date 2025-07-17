@@ -1,9 +1,6 @@
 {
   "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ],
+  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
   "compilerOptions": {
     "baseUrl": ".",
     "noImplicitAny": false,
@@ -13,8 +10,10 @@
     "noUnusedLocals": false,
     "strictNullChecks": false,
     "jsx": "react-jsx",
+    "typeRoots": ["./node_modules/@types"],
+    "types": ["vitest/globals"],
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["./src/*"]
     }
   }
 }

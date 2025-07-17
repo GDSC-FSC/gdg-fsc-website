@@ -1,12 +1,65 @@
+/**
+ * Copyright 2025 GDG on Campus Farmingdale State College
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "./styles/fonts.css";
 @custom-variant dark (&:is(.dark *));
-
 
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent;
 }
+::view-transition-old(root) {
+  animation: fade-out 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+::view-transition-new(root) {
+  animation: fade-in 0.2s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Example of a specific element transition */
+/* .my-hero-image {
+  view-transition-name: hero-image;
+} */
+
+/* Custom animation for a specific view transition name */
+/* ::view-transition-old(hero-image) {
+  animation: slide-to-left 0.3s ease-out forwards;
+}
+::view-transition-new(hero-image) {
+  animation: slide-from-right 0.3s ease-out forwards;
+} */
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -55,23 +108,32 @@
   --chart-5: oklch(0.769 0.188 70.08);
 }
 
-:host,html {
-    line-height: 1.5;
-    -webkit-text-size-adjust: 100%;
-    font-family: ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
-    font-feature-settings: normal;
-    font-variation-settings: normal;
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
-    tab-size: 4;
-    -webkit-tap-highlight-color: transparent;
-    transition: all;
-    transition-duration:  0.3s;
-    list-style: none;
-    scroll-behavior: smooth;
-    transition: all;
-    width: 100dvw;
-    height: 100dvh;
+:host,
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  font-family:
+    Palanquin,
+    ui-sans-serif,
+    system-ui,
+    sans-serif,
+    Apple Color Emoji,
+    Segoe UI Emoji,
+    Segoe UI Symbol,
+    Noto Color Emoji;
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-tap-highlight-color: transparent;
+  transition: all;
+  transition-duration: 0.3s;
+  list-style: none;
+  scroll-behavior: smooth;
+  transition: all;
+  width: 100dvw;
+  height: 100dvh;
 }
 
 a {

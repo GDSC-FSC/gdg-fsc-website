@@ -1,9 +1,24 @@
-import { Code } from "lucide-react";
-import { useEffect, useState } from "react";
-import { type FC, memo } from 'react';
+/**
+ * Copyright 2025 GDG on Campus Farmingdale State College
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { Code } from 'lucide-react';
+import { type FC, memo, useEffect, useState } from 'react';
 
 export const LoadingScreen: FC<{
-  onLoadingComplete: () => void
+  onLoadingComplete: () => void;
 }> = memo(({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
@@ -12,7 +27,9 @@ export const LoadingScreen: FC<{
   useEffect(() => {
     // Check theme from localStorage or system preference
     const storedTheme = localStorage.getItem('theme');
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light';
     const currentTheme = storedTheme === 'system' ? systemTheme : storedTheme || systemTheme;
 
     setTheme(currentTheme);
@@ -42,7 +59,9 @@ export const LoadingScreen: FC<{
   }, [onLoadingComplete]);
 
   return (
-    <div className={`fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 transition-opacity duration-500 ${isComplete ? 'opacity-0' : 'opacity-100'}`}>
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 transition-opacity duration-500 ${isComplete ? 'opacity-0' : 'opacity-100'}`}
+    >
       <div className="text-center space-y-8">
         {/* Minimalistic Logo */}
         <div className="flex flex-col items-center space-y-4">
@@ -50,7 +69,7 @@ export const LoadingScreen: FC<{
             <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl flex items-center justify-center shadow-lg">
               <Code className="h-8 w-8 text-white" />
             </div>
-            <div className="absolute inset-0 w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl animate-ping opacity-20"></div>
+            <div className="absolute inset-0 w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl animate-ping opacity-20" />
           </div>
 
           <div>
@@ -75,5 +94,5 @@ export const LoadingScreen: FC<{
   );
 });
 
-LoadingScreen.displayName = "LoadingScreen";
+LoadingScreen.displayName = 'LoadingScreen';
 export default LoadingScreen;

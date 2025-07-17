@@ -1,0 +1,50 @@
+name: Auto Assign Issues & PRs
+
+on:
+  issues:
+    types: [opened, labeled, unlabeled]
+  pull_request:
+    types: [opened, labeled, unlabeled, ready_for_review]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  assign:
+    name: Assign Reviewers and Assignees
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Auto Assign based on Configuration
+        uses: wow-actions/auto-assign@v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          assignees: WomB0ComB0, octocat_user, another_dev
+          reviewers: WomB0ComB0, gemini-code-assist[bot], expert_reviewer_user
+
+          # Keep the number of assignees and reviewers as desired.
+          numberOfAssignees: 1
+          numberOfReviewers: 2
+
+          # Keywords that, if present in the title, will skip auto-assignment.
+          # Make sure these are consistent with your team's practices.
+          skipKeywords: wip, draft, NO_ASSIGN, DO_NOT_ASSIGN
+
+          # Optional: Add specific configuration for assignees and reviewers from your bunfig.toml
+          # Although your bunfig.toml is for Bun itself, if you wanted to centralize
+          # assignment rules, you might consider an action that reads a custom config file.
+          # This action primarily uses its own inputs.
+
+          # Optional: Labels to trigger auto-assignment (if not already covered by 'on: labeled')
+          # assignOnLabels: 'needs-assign, priority'
+          # reviewOnLabels: 'needs-review, feature'
+
+          # Optional: Labels to remove auto-assignment
+          # removeAssigneesOnLabels: 'assigned' # if you have a label that indicates assignment is done
+          # removeReviewersOnLabels: 'reviewed' # if you have a label that indicates review is done
+
+          # Optional: Debugging. Set to 'true' for more verbose logs if troubleshooting.
+          # debug: true

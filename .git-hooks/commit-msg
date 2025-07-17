@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ "$(uname -s)" = "Linux" ]; then
+  NODE_PATH="$(command -v node | xargs dirname)"
+  PATH="$NODE_PATH:$PATH"
+elif [ "$(uname -s | grep -i 'mingw\|cygwin\|msys')" ]; then
+  PATH="/c/Program Files/nodejs:$HOME/AppData/Roaming/npm/:$PATH"
+fi
+
+npx git-conventional-commits commit-msg-hook "$1"

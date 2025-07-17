@@ -1,0 +1,12 @@
+# No PG - Using Remix with Cloudflare
+version: "3.7"
+services:
+  cloudflare_worker:
+    image: node:24-alpine
+    restart: always
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - "5173:5173"
+    command: bun run dev
