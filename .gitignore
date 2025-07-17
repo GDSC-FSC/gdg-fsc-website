@@ -45,6 +45,10 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 *.sln
 *.sw?
 
+# lock
+*.lock
+
+
 # Finder (MacOS) folder config
 .DS_Store
 
