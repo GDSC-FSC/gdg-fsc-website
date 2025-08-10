@@ -157,7 +157,7 @@
     "@radix-ui/react-toggle-group": "^1.1.10",
     "@radix-ui/react-tooltip": "^1.2.7",
     "@raegen/vite-plugin-vitest-cache": "^0.3.7",
-    "@sentry/react": "^9.31.0",
+    "@sentry/react": "^10.3.0",
     "@sentry/vite-plugin": "^4.0.2",
     "@storybook/addon-a11y": "^9.0.13",
     "@storybook/addon-actions": "^9.0.8",
