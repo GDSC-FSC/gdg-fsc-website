@@ -30,7 +30,7 @@ import Inspect from 'vite-plugin-inspect';
 import lqip from 'vite-plugin-lqip';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { logger } from './interface';
+import { logger } from "./shared/utils";
 import { defaultStrategy } from './node_modules/@raegen/vite-plugin-vitest-cache/dist/strategy';
 import { app } from './src/constants';
 
@@ -187,7 +187,7 @@ export default defineConfig(({ mode }) => {
         telemetry: true,
         errorHandler: (err) =>
           Error.isError(err)
-            ? logger.warn('[sentry-vite-plugin]', err)
+            ? logger.warn('[sentry-vite-plugin]', {err})
             : logger.warn('[sentry-vite-plugin]', err),
         bundleSizeOptimizations: {
           excludeDebugStatements: true,
