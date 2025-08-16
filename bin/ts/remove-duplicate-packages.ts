@@ -37,15 +37,18 @@ const picked = {
     ),
 };
 
-if (require.main === module) {
-  (async () => {
-    try {
-      packageJson.dependencies = picked;
-      writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
-    } catch (error) {
-      console.error(`${error instanceof Error ? error.message : error}`);
-    } finally {
-      process.exit(0);
+
+(async () => {
+  try {
+    packageJson.dependencies = picked;
+    writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+  } catch (error) {
+    if (Error.isError(error)) {
+      console.error(error.message);
+    } else {
+      console.error(error);
     }
-  })();
-}
+  } finally {
+    process.exit(0);
+  }
+})();

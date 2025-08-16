@@ -34,7 +34,8 @@ import { elysiaHelmet } from 'elysiajs-helmet';
 import jwt from 'jsonwebtoken';
 import logixlysia from 'logixlysia';
 import { app as application } from './src/constants';
-import { logger, Stringify } from './src/utils';
+import { Stringify } from './src/utils';
+import { logger } from "./shared/utils";
 
 /**
  * Generates a unique identifier for rate limiting based on the request's IP address.
@@ -696,7 +697,7 @@ const root = new Elysia()
   .use(api)
   .listen(3_000);
 
-export type App = typeof api;
+export type API = typeof api;
 
 const shutdown = async (): Promise<void> => {
   logger.info('Shutting down 🦊 Elysia');
@@ -707,6 +708,7 @@ const shutdown = async (): Promise<void> => {
 
 process.on('SIGINT', shutdown);
 process.on('SIGTERM', shutdown);
+process.on('exit', shutdown);
 
 const initializeJaeger = async (): Promise<void> => {
   if (await checkDocker()) {

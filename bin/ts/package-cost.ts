@@ -7,7 +7,7 @@ const packageJsonPath = join(process.cwd(), 'package.json');
 const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8')) as PackageJson;
 const dependencies = Object.keys(packageJson.dependencies || {});
 const devDependencies = Object.keys(packageJson.devDependencies || {});
-const allDependencies = [...dependencies, ...devDependencies];
+const allDependencies = [...dependencies, ...devDependencies] as [string, ...string[]];
 const OUTPUT_DIR = `${process.cwd()}/out`;
 
 const getPackageSize = (packageName: string): { name: string; size: number } | null => {
@@ -21,17 +21,12 @@ const getPackageSize = (packageName: string): { name: string; size: number } | n
       size: size,
     };
   } catch (error) {
-    console.error(
-      `Failed to get size for ${packageName}:`,
-      error instanceof Error ? error.message : error,
-    );
+    if (Error.isError(error)) {
+      console.error(`Failed to get size for ${packageName}:`, error.message);
+    }
     return null;
   }
 };
-
-function isNotNull<Value>(value: Value): value is Exclude<Value, null> {
-  return value !== null;
-}
 
 const packageSizes = allDependencies
   .map((packageName) => getPackageSize(packageName))

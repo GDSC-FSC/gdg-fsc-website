@@ -37,7 +37,7 @@ const options = {
     '.github',
   ],
   skipMissing: false,
-};
+} as const;
 
 if (!fs.existsSync('./node_modules/depcheck')) {
   Bun.$`${(await import(packageJsonPath).then((t) => t.packageManager)).split('@')[0]} install depcheck`;
