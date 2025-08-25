@@ -246,7 +246,7 @@
     "vite-imagetools": "^8.0.0",
     "vite-plugin-comlink": "^5.1.0",
     "vite-plugin-compression2": "^2.2.0",
-    "vite-plugin-csp-guard": "^2.1.1",
+    "vite-plugin-csp-guard": "^3.0.0",
     "vite-plugin-inspect": "^11.2.0",
     "vite-plugin-lqip": "^0.0.5",
     "vite-plugin-pwa": "^1.0.0",
