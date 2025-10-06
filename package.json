@@ -243,7 +243,7 @@
     "vaul": "^1.1.2",
     "vite": "npm:rolldown-vite@latest",
     "vite-bundle-analyzer": "^1.0.0",
-    "vite-imagetools": "^8.0.0",
+    "vite-imagetools": "^9.0.0",
     "vite-plugin-comlink": "^5.1.0",
     "vite-plugin-compression2": "^2.2.0",
     "vite-plugin-csp-guard": "^3.0.0",
