@@ -211,7 +211,7 @@
     "jsonwebtoken": "^9.0.2",
     "logixlysia": "^5.1.0",
     "lovable-tagger": "^1.1.8",
-    "lucide-react": "^0.544.0",
+    "lucide-react": "^0.546.0",
     "madge": "^8.0.0",
     "markdownlint": "^0.38.0",
     "markdownlint-cli": "^0.45.0",
