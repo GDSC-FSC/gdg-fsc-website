@@ -1,0 +1,46 @@
+{
+  "name": "interface",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/interface",
+  "projectType": "library",
+  "tags": ["type:lib", "scope:ui"],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc",
+        "cwd": "packages/interface"
+      },
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bunx biome check --write ./ || true",
+        "cwd": "packages/interface"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo 'No tests configured'",
+        "cwd": "packages/interface"
+      }
+    },
+    "storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "storybook dev -p 6007",
+        "cwd": "packages/interface"
+      }
+    },
+    "build:storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "storybook build",
+        "cwd": "packages/interface"
+      },
+      "outputs": ["{projectRoot}/storybook-static"]
+    }
+  }
+}

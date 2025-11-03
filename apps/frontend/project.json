@@ -1,0 +1,83 @@
+{
+  "name": "frontend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/frontend/src",
+  "projectType": "application",
+  "tags": ["type:app"],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc -b && vite build",
+        "cwd": "apps/frontend"
+      },
+      "outputs": ["{projectRoot}/dist"],
+      "dependsOn": ["^build"]
+    },
+    "build:client": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc -b && vite build --outdir dist/app/client",
+        "cwd": "apps/frontend"
+      },
+      "outputs": ["{projectRoot}/dist/app/client"]
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bun run audit:ts; if [ $? -eq 1 ]; then exit 1; else vite; fi",
+        "cwd": "apps/frontend"
+      }
+    },
+    "preview": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "vite preview",
+        "cwd": "apps/frontend"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bunx biome check --write ./ || true",
+        "cwd": "apps/frontend"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bunx vitest run",
+        "cwd": "apps/frontend"
+      }
+    },
+    "test:cypress": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cypress run",
+        "cwd": "apps/frontend"
+      }
+    },
+    "test:playwright": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "playwright test",
+        "cwd": "apps/frontend"
+      }
+    },
+    "storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "storybook dev -p 6006",
+        "cwd": "apps/frontend"
+      }
+    },
+    "build:storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "storybook build",
+        "cwd": "apps/frontend"
+      },
+      "outputs": ["{workspaceRoot}/storybook-static"]
+    }
+  }
+}

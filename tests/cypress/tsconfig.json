@@ -2,8 +2,8 @@
   "extends": "../../tsconfig.json",
   "exclude": ["../../node_modules/@types/jest", "../../node_modules/@testing-library/jest-dom"],
   "include": [
-    "e2e/**/*",
-    "support/**/*",
+    "src/e2e/**/*",
+    "src/support/**/*",
     "../../node_modules/cypress",
     "../../node_modules/@testing-library/cypress"
   ],

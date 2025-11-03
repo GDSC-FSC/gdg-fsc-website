@@ -13,7 +13,7 @@
     "typeRoots": ["./node_modules/@types"],
     "types": ["vitest/globals"],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["apps/frontend/src/*"]
     }
   }
 }
