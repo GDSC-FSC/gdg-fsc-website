@@ -71,7 +71,7 @@ jobs:
         uses: oven-sh/setup-bun@v2
 
       - name: Download the build folder
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: build
           path: .output
