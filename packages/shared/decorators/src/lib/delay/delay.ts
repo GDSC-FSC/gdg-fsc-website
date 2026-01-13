@@ -1,11 +1,12 @@
+import type { Decorator, Method } from '../types';
 import { delayFn } from './delay.fn.ts';
 
-export function delay<T = any>(delayMs: number): Decorator<T> {
+export function delay<T = unknown>(delayMs: number): Decorator<T> {
   return (
-    target: T,
-    propertyName: keyof T,
-    descriptor: TypedPropertyDescriptor<Method<any>>,
-  ): TypedPropertyDescriptor<Method<any>> => {
+    _target: T,
+    _propertyName: keyof T,
+    descriptor: TypedPropertyDescriptor<Method<unknown>>,
+  ): TypedPropertyDescriptor<Method<unknown>> => {
     if (descriptor.value) {
       descriptor.value = delayFn(descriptor.value, delayMs);
 

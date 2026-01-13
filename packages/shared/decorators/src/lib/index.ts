@@ -1,10 +1,10 @@
-export * from '../../delay';
-export * from '../../exec-time';
 export * from './after';
 export * from './before';
 export * from './bind';
 export * from './debounce';
+export * from './delay';
 export * from './delegate';
+export * from './exec-time';
 export * from './execute';
 export * from './memoize';
 export * from './memoize-async';
@@ -13,4 +13,5 @@ export * from './rate-limit';
 export * from './readonly';
 export * from './throttle';
 export * from './throttle-async';
+export * from './types';
 

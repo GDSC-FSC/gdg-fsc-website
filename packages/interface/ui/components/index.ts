@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
-export * from './button.tsx';
-export * from './picture.tsx';
-export * from './text.tsx';
+export * from './button';
+export * from './picture';
+export * from './text';
+

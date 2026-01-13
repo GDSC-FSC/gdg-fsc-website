@@ -1,2 +1,1 @@
-export * from './debounce';
-export * from './debounce.types';
+export * from './debounce.fn';

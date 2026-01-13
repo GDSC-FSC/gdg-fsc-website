@@ -1,6 +1,6 @@
 {
   "name": "docs-client",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/docs/client",
   "projectType": "application",
   "tags": ["type:app", "scope:docs"],

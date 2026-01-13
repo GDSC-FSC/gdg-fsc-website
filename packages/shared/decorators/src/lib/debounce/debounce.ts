@@ -1,21 +1,25 @@
+import type { Decorator, Method } from '../types';
 import { debounceFn } from './debounce.fn.ts';
 
-export function debounce<T = any>(delayMs: number): Decorator<T> {
+export function debounce<T = unknown>(delayMs: number): Decorator<T> {
   return (
-    target: T,
-    propertyName: keyof T,
-    descriptor: TypedPropertyDescriptor<Method<any>>,
-  ): TypedPropertyDescriptor<Method<any>> => {
+    _target: T,
+    _propertyName: keyof T,
+    descriptor: TypedPropertyDescriptor<Method<unknown>>,
+  ): TypedPropertyDescriptor<Method<unknown>> => {
     if (descriptor.value) {
-      const methodsMap = new WeakMap<any, Method<any>>();
+      const methodsMap = new WeakMap<object, Method<unknown>>();
       const originalMethod = descriptor.value;
 
-      descriptor.value = function (...args: any[]) {
+      descriptor.value = function (this: object, ...args: unknown[]) {
         if (!methodsMap.has(this)) {
           methodsMap.set(this, debounceFn(originalMethod, delayMs).bind(this));
         }
 
-        methodsMap.get(this)(...args);
+        const method = methodsMap.get(this);
+        if (method) {
+          method(...args);
+        }
       };
 
       return descriptor;

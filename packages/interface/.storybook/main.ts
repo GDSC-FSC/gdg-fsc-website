@@ -1,3 +1,5 @@
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
 /**
  * Copyright 2025 GDG on Campus Farmingdale State College
  *
@@ -17,31 +19,19 @@
 export default {
   stories: [
     {
-      directory: '../shared',
+      directory: '../ui/components',
       files: '**/*.stories.@(ts|tsx)',
-      titlePrefix: 'Shared',
+      titlePrefix: 'UI',
     }
   ], 
   addons: [
-    '@chromatic-com/storybook',
-    '@storybook/addon-docs',
-    '@storybook/addon-onboarding',
-    '@storybook/addon-a11y',
-    '@storybook/addon-vitest',
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    '@storybook/react-vite',
-    '@storybook/addon-actions',
-    '@storybook/addon-backgrounds',
-    '@storybook/addon-events',
-    '@storybook/addon-google-analytics',
-    '@storybook/addon-measure',
-    '@storybook/addon-outline',
-    '@storybook/addon-viewport',
+    getAbsolutePath("@storybook/addon-a11y"),
+    getAbsolutePath("@storybook/addon-links"),
+    getAbsolutePath("@storybook/addon-docs"),
+    getAbsolutePath("@chromatic-com/storybook")
   ],
   framework: {
-    name: '@storybook/react-vite',
+    name: getAbsolutePath("@storybook/react-vite"),
     options: {
       strictMode: true
     },
@@ -54,3 +44,7 @@ export default {
     reactDocgen: 'react-docgen-typescript'
   }
 } satisfies import('@storybook/react-vite').StorybookConfig;
+
+function getAbsolutePath(value: string): any {
+  return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
+}

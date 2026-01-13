@@ -16,15 +16,15 @@
 
 import { cva, type VariantProps } from 'class-variance-authority';
 import {
-    type ComponentProps,
-    type ElementType,
-    type ReactNode,
-    type SyntheticEvent,
-    useMemo,
-    useState,
+  type ComponentProps,
+  type ElementType,
+  type ReactNode,
+  type SyntheticEvent,
+  useMemo,
+  useState,
 } from 'react';
 import { useEventCallback } from 'usehooks-ts';
-import { cn } from '../../../../apps/frontend/src/lib';
+import { cn } from '../utils';
 import type { DistributiveOmit, Overwrite } from './types';
 
 const defaultRootElement = 'img' as const;
@@ -78,9 +78,9 @@ const pictureVariants = cva('', {
 
 namespace Picture {
   export interface BaseRootElementProps {
-    className?: undefined | string;
-    onLoad?: undefined | React.ReactEventHandler<HTMLImageElement>;
-    onError?: undefined | React.ReactEventHandler<HTMLImageElement>;
+    className?: string;
+    onLoad?: React.ReactEventHandler<HTMLImageElement>;
+    onError?: React.ReactEventHandler<HTMLImageElement>;
   }
 
   export type BaseRootElementType = ElementType<BaseRootElementProps>;

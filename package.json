@@ -1,0 +1,21 @@
+{
+  "name": "gdg-fsc-workspace",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "nx run-many -t build",
+    "dev": "nx run frontend:dev",
+    "lint": "nx run-many -t lint",
+    "test": "nx run-many -t test",
+    "graph": "nx graph"
+  },
+  "devDependencies": {
+    "nx": "^22.3.3",
+    "@nx/devkit": "^22.3.3"
+  },
+  "packageManager": "bun@1.2.17"
+}

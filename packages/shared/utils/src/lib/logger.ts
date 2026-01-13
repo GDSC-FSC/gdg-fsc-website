@@ -113,25 +113,25 @@ export interface LoggerOptions {
  */
 export class Logger {
   /** The context/category name for this logger instance */
-  private context: string;
+  private readonly context: string;
 
   /** Whether this logger is running in a server environment */
-  private isServerContext: boolean;
+  private readonly isServerContext: boolean;
 
   /** The minimum log level that will be output */
   private minLevel: LogLevel;
 
   /** Whether to include ISO timestamps in log messages */
-  private includeTimestamp: boolean;
+  private readonly includeTimestamp: boolean;
 
   /** Whether to apply ANSI color codes to the output */
-  private shouldColorize: boolean;
+  private readonly shouldColorize: boolean;
 
   /** Registry of logger instances to implement the singleton pattern */
-  private static instances: Map<string, Logger> = new Map();
+  private static readonly instances: Map<string, Logger> = new Map();
 
   /** ANSI color codes for terminal output */
-  private colors: Record<ColorKey, string> = {
+  private readonly colors: Record<ColorKey, string> = {
     reset: '\x1b[0m',
     red: '\x1b[31m',
     green: '\x1b[32m',

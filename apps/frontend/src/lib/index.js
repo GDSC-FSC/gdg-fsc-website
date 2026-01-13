@@ -13,16 +13,5 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import '../../../apps/frontend/src/tailwind.css';
-
-export default {
-  parameters: {
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
-      },
-    },
-  },
-} satisfies import('@storybook/react-vite').Preview;
+export * from './utils.ts';
+//# sourceMappingURL=index.js.map

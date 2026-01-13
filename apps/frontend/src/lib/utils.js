@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import type { Meta, StoryObj } from '@storybook/react';
-import { Text } from '.';
-import '../../../src/tailwind.css';
+import { clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+export function cn(...inputs) {
+    return twMerge(clsx(inputs));
+}
+//# sourceMappingURL=utils.js.map
