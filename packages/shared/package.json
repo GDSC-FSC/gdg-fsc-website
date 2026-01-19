@@ -28,10 +28,10 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@effect/platform": "^0.94.1",
-    "effect": "^3.19.14",
+    "@jsheaven/perf": "^1.1.1",
     "clsx": "^2.1.1",
+    "effect": "^3.19.14",
     "tailwind-merge": "^2.5.2",
-    "@jsheaven/perf": "^1.2.3",
     "tinyqueue": "^3.0.0"
   },
   "devDependencies": {
