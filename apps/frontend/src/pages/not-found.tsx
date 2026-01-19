@@ -89,7 +89,8 @@ export const NotFound: FC = memo(() => {
           <h1
             className="text-[12rem] md:text-[16rem] font-black leading-none select-none"
             style={{
-              background: 'linear-gradient(135deg, #4285F4 0%, #EA4335 25%, #FBBC05 50%, #34A853 75%, #4285F4 100%)',
+              background:
+                'linear-gradient(135deg, #4285F4 0%, #EA4335 25%, #FBBC05 50%, #34A853 75%, #4285F4 100%)',
               backgroundSize: '200% 200%',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -117,10 +118,11 @@ export const NotFound: FC = memo(() => {
         {/* Glassmorphism card */}
         <div className="backdrop-blur-xl bg-white/30 dark:bg-black/30 rounded-3xl p-8 md:p-12 border border-white/20 shadow-2xl">
           <div className="flex items-center justify-center gap-2 mb-6">
-            <Search className="w-6 h-6 text-red-500 animate-bounce" style={{ animationDelay: '0.2s' }} />
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-              Page Not Found
-            </h2>
+            <Search
+              className="w-6 h-6 text-red-500 animate-bounce"
+              style={{ animationDelay: '0.2s' }}
+            />
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">Page Not Found</h2>
           </div>
 
           <p className="text-lg text-muted-foreground mb-4">

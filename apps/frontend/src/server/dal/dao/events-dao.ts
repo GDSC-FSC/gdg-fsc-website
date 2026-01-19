@@ -121,7 +121,8 @@ export const EventsDAOLive = Layer.effect(
       );
     };
 
-    const fetchUpcoming = () => getCachedOrFetch('upcoming', () => fetchEvents(API_ENDPOINTS.upcoming, true));
+    const fetchUpcoming = () =>
+      getCachedOrFetch('upcoming', () => fetchEvents(API_ENDPOINTS.upcoming, true));
     const fetchPast = () => getCachedOrFetch('past', () => fetchEvents(API_ENDPOINTS.past, false));
 
     return EventsDAO.of({

@@ -16,10 +16,19 @@
  * limitations under the License.
  */
 
+import { FetchHttpClient } from '@effect/platform';
+import type { QueryKey } from '@tanstack/react-query';
 import {
-  fetcher,
+  type UseSuspenseQueryOptions,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
+import { Effect, pipe, Schema } from 'effect';
+import React, { Suspense, useCallback, useMemo } from 'react';
+import {
   FetcherError,
   type FetcherOptions,
+  fetcher,
   get,
   logger,
   parseCodePathDetailed,
@@ -27,15 +36,6 @@ import {
   requestQueue,
   ValidationError,
 } from '@/utils';
-import { FetchHttpClient } from '@effect/platform';
-import type { QueryKey } from '@tanstack/react-query';
-import {
-  useQueryClient,
-  useSuspenseQuery,
-  type UseSuspenseQueryOptions,
-} from '@tanstack/react-query';
-import { Effect, pipe, Schema } from 'effect';
-import React, { Suspense, useCallback, useMemo } from 'react';
 import ClientError from './client-error';
 import Loader from './loader';
 /**

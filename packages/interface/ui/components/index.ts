@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 
-export * from './button';
-export * from './picture';
-export * from './text';
+export * from './button.js';
+export * from './picture.js';
+export * from './text.js';

@@ -72,7 +72,6 @@ export class CheckUnusedScript {
     const pkgPath = path.join(rootDir, 'package.json');
 
     logger.info('Project root:', { rootDir });
-    logger.info('Checking:', { pkgPath });
 
     if (!fs.existsSync(pkgPath)) {
       logger.error('package.json not found at', undefined, { pkgPath });
@@ -80,8 +79,39 @@ export class CheckUnusedScript {
     }
 
     const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8')) as PackageJson;
+    const workspaces = pkg.workspaces;
 
-    const OUT_DIR = path.join(rootDir, 'scripts', 'out');
+    const dirsToCheck = [rootDir];
+
+    if (Array.isArray(workspaces)) {
+      const { default: fg } = await import('fast-glob');
+      const workspacePaths = await fg(workspaces, {
+        cwd: rootDir,
+        onlyDirectories: true,
+        absolute: true,
+      });
+      dirsToCheck.push(...workspacePaths);
+    }
+
+    let hasError = false;
+
+    for (const dir of dirsToCheck) {
+      logger.info(`\nChecking: ${path.relative(rootDir, dir) || '.'}`);
+      const success = await this.checkDirectory(dir, rootDir);
+      if (!success) hasError = true;
+    }
+
+    if (hasError) {
+      process.exitCode = 2;
+    }
+  }
+
+  private async checkDirectory(dir: string, rootDir: string): Promise<boolean> {
+    const pkgPath = path.join(dir, 'package.json');
+    if (!fs.existsSync(pkgPath)) return true;
+
+    const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8')) as PackageJson;
+    const OUT_DIR = path.join(rootDir, 'scripts', 'out', path.relative(rootDir, dir) || 'root');
     await fsp.mkdir(OUT_DIR, { recursive: true });
 
     await this.ensureDepcheckInstalled(rootDir);
@@ -95,6 +125,7 @@ export class CheckUnusedScript {
         'autoprefixer',
         'postcss',
         'tailwindcss',
+        '@gdg-fsc/*', // Ignore workspace packages
       ],
       ignorePatterns: [
         'dist',
@@ -109,6 +140,7 @@ export class CheckUnusedScript {
         '.idea',
         '.github',
         'prisma',
+        'storybook-static',
       ],
       skipMissing: false,
       parsers: {
@@ -133,8 +165,8 @@ export class CheckUnusedScript {
     };
 
     const result = await logger.time(
-      'depcheck',
-      async () => (await depcheck(rootDir, options)) as DepcheckResult,
+      `depcheck: ${path.relative(rootDir, dir) || '.'}`,
+      async () => (await depcheck(dir, options)) as DepcheckResult,
     );
 
     const allTopLevel = [
@@ -188,24 +220,7 @@ export class CheckUnusedScript {
     };
 
     await this.writeJsonAtomic(path.join(OUT_DIR, 'dependencies-report.json'), outputs);
-    await this.writeJsonAtomic(
-      path.join(OUT_DIR, 'unused-dependencies.json'),
-      outputs.unusedDependencies,
-    );
-    await this.writeJsonAtomic(
-      path.join(OUT_DIR, 'unused-dev-dependencies.json'),
-      outputs.unusedDevDependencies,
-    );
-    await this.writeJsonAtomic(
-      path.join(OUT_DIR, 'missing-dependencies.json'),
-      outputs.missingDependencies,
-    );
-    await this.writeJsonAtomic(
-      path.join(OUT_DIR, 'unused-sub-dependencies.json'),
-      outputs.potentialUnusedSubDependencies,
-    );
-
-    logger.info('\nDependency check complete. Reports written to:', { OUT_DIR });
+    
     logger.info(JSON.stringify(outputs.summary, null, 2));
 
     if (
@@ -213,8 +228,9 @@ export class CheckUnusedScript {
       outputs.unusedDevDependencies.length ||
       Object.keys(outputs.missingDependencies).length
     ) {
-      process.exitCode = 2;
+      return false;
     }
+    return true;
   }
 
   private async ensureDepcheckInstalled(rootDir: string) {

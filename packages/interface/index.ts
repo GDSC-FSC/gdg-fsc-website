@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export * from './ui';
+export * from './ui/index.js';

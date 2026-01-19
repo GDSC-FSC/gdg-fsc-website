@@ -46,11 +46,7 @@ export const ThemeToggle: FC = () => {
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       className="h-9 w-9"
     >
-      {isDark ? (
-        <Moon className="h-4 w-4" />
-      ) : (
-        <Sun className="h-4 w-4" />
-      )}
+      {isDark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
       <span className="sr-only">Toggle theme to {isDark ? 'light' : 'dark'}</span>
     </Button>
   );
@@ -58,4 +54,3 @@ export const ThemeToggle: FC = () => {
 
 ThemeToggle.displayName = 'ThemeToggle';
 export default ThemeToggle;
-

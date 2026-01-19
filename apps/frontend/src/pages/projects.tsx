@@ -132,9 +132,7 @@ const RepositoryCard: FC<RepositoryCardProps> = memo(({ repo, style, index }) =>
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between gap-2">
-                <h3 className={`text-lg font-semibold ${style.text} truncate`}>
-                  {repo.name}
-                </h3>
+                <h3 className={`text-lg font-semibold ${style.text} truncate`}>{repo.name}</h3>
                 <ExternalLink className="w-4 h-4 text-muted-foreground/60 group-hover:text-muted-foreground transition-colors shrink-0" />
               </div>
               {/* Language inline */}

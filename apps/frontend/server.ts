@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+import { spawn } from 'node:child_process';
+import { generateKeyPairSync } from 'node:crypto';
+import fs from 'node:fs';
 import { bearer } from '@elysiajs/bearer';
 import { cors } from '@elysiajs/cors';
 import { opentelemetry, record } from '@elysiajs/opentelemetry';
@@ -31,9 +34,6 @@ import { DefaultContext, type Generator, rateLimit } from 'elysia-rate-limit';
 import { elysiaHelmet } from 'elysiajs-helmet';
 import jwt from 'jsonwebtoken';
 import logixlysia from 'logixlysia';
-import { spawn } from 'node:child_process';
-import { generateKeyPairSync } from 'node:crypto';
-import fs from 'node:fs';
 import { ensureBaseError } from '../../packages/shared/classes/src/lib/error';
 import { logger } from '../../packages/shared/utils/src';
 import { app as application } from './src/constants';

@@ -58,7 +58,8 @@ const Nav = memo(() => {
     <nav
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-        backgroundColor: scrollY > 50 ? 'rgba(var(--background), 0.8)' : 'rgba(var(--background), 0.6)',
+        backgroundColor:
+          scrollY > 50 ? 'rgba(var(--background), 0.8)' : 'rgba(var(--background), 0.6)',
         backdropFilter: 'blur(20px)',
         borderBottom: scrollY > 50 ? '1px solid rgba(255,255,255,0.1)' : 'none',
       }}
@@ -132,4 +133,3 @@ const Nav = memo(() => {
     </nav>
   );
 });
-

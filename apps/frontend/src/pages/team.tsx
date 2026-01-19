@@ -98,9 +98,7 @@ const TeamCard: FC<TeamCardProps> = memo(({ member, colorScheme, index }) => {
       </div>
 
       {/* Info */}
-      <h3 className="text-base font-semibold text-foreground mb-1">
-        {member.name}
-      </h3>
+      <h3 className="text-base font-semibold text-foreground mb-1">{member.name}</h3>
       <p className={`text-sm font-medium mb-1 ${colorScheme.text}`}>{member.position}</p>
       <p className="text-xs text-muted-foreground">{member.role}</p>
     </div>
@@ -163,7 +161,13 @@ export const Team: FC = memo(() => {
                 We're always looking for passionate students to help lead and grow our community.
               </p>
               <Button
-                onClick={() => globalThis.open('https://gdg.community.dev/gdg-on-campus-farmingdale-state-college-farmingdale-united-states/', '_blank', 'noreferrer noopener')}
+                onClick={() =>
+                  globalThis.open(
+                    'https://gdg.community.dev/gdg-on-campus-farmingdale-state-college-farmingdale-united-states/',
+                    '_blank',
+                    'noreferrer noopener',
+                  )
+                }
               >
                 Get Involved
               </Button>

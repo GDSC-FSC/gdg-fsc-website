@@ -192,7 +192,8 @@ export const Home: FC = memo(() => {
             component="h1"
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight"
             style={{
-              background: 'linear-gradient(135deg, #4285F4 0%, #EA4335 30%, #FBBC05 60%, #34A853 100%)',
+              background:
+                'linear-gradient(135deg, #4285F4 0%, #EA4335 30%, #FBBC05 60%, #34A853 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundSize: '200% 200%',
@@ -295,10 +296,7 @@ export const Home: FC = memo(() => {
                     >
                       {Icon && <Icon className="h-7 w-7 text-white" />}
                     </div>
-                    <Text
-                      component="h3"
-                      className={`font-semibold ${colorScheme.text}`}
-                    >
+                    <Text component="h3" className={`font-semibold ${colorScheme.text}`}>
                       {nav.label}
                     </Text>
                   </div>

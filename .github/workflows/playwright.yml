@@ -81,7 +81,7 @@ jobs:
         with:
           name: build-playwright
           if-no-files-found: error
-          path: .output
+          path: dist
 
   test:
     name: Playwright Tests - ${{ matrix.project }}
@@ -112,18 +112,18 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           name: build-playwright
-          path: .output
+          path: dist
 
       - name: Start server for testing (background)
         run: |
-          bun run start &
+          bun run preview --port 4173 &
           echo "Started server with PID $!"
           sleep 10
 
       - name: Wait for server to be ready
         run: |
           echo "Waiting for server to be available..."
-          timeout 120s bash -c 'until curl -s http://localhost:3000 > /dev/null; do sleep 1; done'
+          timeout 120s bash -c 'until curl -s http://localhost:4173 > /dev/null; do sleep 1; done'
           echo "Server is up and running"
 
       - name: Run Playwright tests

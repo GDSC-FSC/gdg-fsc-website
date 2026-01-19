@@ -92,3 +92,5 @@ storybook-static/
 apps/frontend/stats.html
 .million
 .vite-inspect
+/tests/pw/playwright-report
+/tests/pw/test-results
