@@ -23,7 +23,7 @@ import sharp from 'sharp';
 import { defineConfig, loadEnv } from 'vite';
 import { imagetools } from 'vite-imagetools';
 import { comlink } from 'vite-plugin-comlink';
-import csp from 'vite-plugin-csp-guard';
+// import csp from 'vite-plugin-csp-guard';
 import Inspect from 'vite-plugin-inspect';
 import lqip from 'vite-plugin-lqip';
 // import { VitePWA } from 'vite-plugin-pwa';
@@ -100,35 +100,35 @@ export default defineConfig(({ mode }) => {
         },
       }),
       comlink(),
-      csp({
-        algorithm: 'sha256',
-        dev: {
-          // Disabled in dev - CSP breaks Vite HMR, Million Lint, sonner, next-themes
-          run: false,
-          outlierSupport: ['tailwind'],
-        },
-        build: {
-          sri: true,
-          outlierSupport: [],
-        },
-        policy: {
-          'default-src': ["'self'"],
-          'script-src': ["'self'", 'https://*.sentry.io', 'https://*.google-analytics.com'],
-          'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
-          'img-src': ["'self'", 'data:', 'https:'],
-          'font-src': ["'self'", 'data:', 'https:'],
-          'connect-src': ["'self'", 'https:', 'wss:'],
-          'frame-src': ["'self'"],
-          'worker-src': ["'self'"],
-        },
-        override: false,
-        type: 'SPA',
-        features: {
-          mpa: false,
-          cssInJs: false,
-        },
-        debug: false,
-      }),
+      // csp({
+      //   algorithm: 'sha256',
+      //   dev: {
+      //     // Disabled in dev - CSP breaks Vite HMR, Million Lint, sonner, next-themes
+      //     run: false,
+      //     outlierSupport: ['tailwind'],
+      //   },
+      //   build: {
+      //     sri: true,
+      //     outlierSupport: [],
+      //   },
+      //   policy: {
+      //     'default-src': ["'self'"],
+      //     'script-src': ["'self'", 'https://*.sentry.io', 'https://*.google-analytics.com'],
+      //     'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+      //     'img-src': ["'self'", 'data:', 'https:'],
+      //     'font-src': ["'self'", 'data:', 'https:'],
+      //     'connect-src': ["'self'", 'https:', 'wss:'],
+      //     'frame-src': ["'self'"],
+      //     'worker-src': ["'self'"],
+      //   },
+      //   override: false,
+      //   type: 'SPA',
+      //   features: {
+      //     mpa: false,
+      //     cssInJs: false,
+      //   },
+      //   debug: false,
+      // }),
       /**
        * @see https://www.npmjs.com/package/vite-tsconfig-paths
        */
