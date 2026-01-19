@@ -239,7 +239,7 @@
     "vite-plugin-csp-guard": "^3.0.0",
     "vite-plugin-inspect": "^11.3.3",
     "vite-plugin-lqip": "^0.0.5",
-    "vite-plugin-pwa": "0.19.8",
+    "vite-plugin-pwa": "^1.2.0",
     "vite-plugin-svgr": "^4.5.0",
     "vite-tsconfig-paths": "^6.0.4",
     "web-vitals": "^5.1.0",
