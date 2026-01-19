@@ -65,7 +65,7 @@ export class WorkerThread {
           type: 'ERROR',
           payload: {
             taskId: payload.id,
-            error: Error.isError(error) ? error.message : String(error),
+            error: error instanceof Error ? error.message : String(error),
           },
           timestamp: Date.now(),
         };
