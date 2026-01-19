@@ -139,7 +139,7 @@ export const catchError = async <Args extends Array<unknown>, ReturnType>(
     return success(result);
   } catch (error) {
     log.error('catchError', { error });
-    return failure(Error.isError(error) ? error : new Error(String(error)));
+    return failure(error instanceof Error ? error : new Error(String(error)));
   }
 };
 
