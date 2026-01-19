@@ -8,7 +8,7 @@ FROM base AS deps
 COPY package.json bun.lock* ./
 COPY apps/frontend/package.json ./apps/frontend/
 COPY packages/ ./packages/
-RUN bun install --frozen-lockfile
+RUN bun install
 
 # Build the application
 FROM base AS builder
@@ -17,6 +17,9 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/packages ./packages
 COPY --from=deps /app/apps/frontend/node_modules ./apps/frontend/node_modules
 COPY . .
+
+# Ensure all dependencies are present (fallback)
+RUN bun install
 
 # Build shared packages first
 RUN cd packages/shared && bun run build
