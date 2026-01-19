@@ -14,6 +14,24 @@
  * limitations under the License.
  */
 
-export * from './query-client.ts';
-export * from './react.tsx';
-export * from './server.ts';
+import { QueryClient } from '@tanstack/react-query';
+
+/**
+ * Creates a QueryClient factory for React Query.
+ * Uses curried function pattern for lazy initialization.
+ */
+export const createQueryClient = () => () =>
+  new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 5, // 5 minutes
+        gcTime: 1000 * 60 * 30, // 30 minutes (formerly cacheTime)
+        retry: 3,
+        retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+        refetchOnWindowFocus: false,
+      },
+      mutations: {
+        retry: 1,
+      },
+    },
+  });

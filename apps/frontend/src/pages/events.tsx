@@ -22,6 +22,7 @@ import type { FC } from 'react';
 import { memo } from 'react';
 import { DataLoader } from '../components/data-loader';
 import { PageLayout } from '../layouts';
+import { EVENTS_API, transformEvents } from '../services/api-config';
 
 /**
  * Effect Schema for a single event response.
@@ -196,7 +197,7 @@ const EventsGrid: FC<{
     <>
       {events.data.map((event, index) => (
         <EventCard
-          key={event.id}
+          key={event.id || `event-${index}`}
           event={event}
           colorScheme={colorSchemes[index % colorSchemes.length]}
           index={index}
@@ -244,12 +245,13 @@ export const Events: FC = memo(() => {
 
           {/* Events Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            <DataLoader
-              url="/api/v1/events/upcoming"
-              schema={EventsListResponseSchema}
+            <DataLoader<EventsListResponse>
+              url={EVENTS_API.UPCOMING}
               queryKey={['events', 'upcoming']}
               staleTime={1_000 * 60 * 5}
               refetchInterval={1_000 * 60 * 5}
+              options={{ timeout: 60_000, retries: 2, retryDelay: 5_000 }}
+              transform={(data: unknown) => transformEvents(data as EventResponse[])}
             >
               {(events: EventsListResponse) => (
                 <EventsGrid events={events} colorSchemes={upcomingColorSchemes} />
@@ -292,12 +294,13 @@ export const Events: FC = memo(() => {
 
           {/* Events Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            <DataLoader
-              url="/api/v1/events/past"
-              schema={EventsListResponseSchema}
+            <DataLoader<EventsListResponse>
+              url={EVENTS_API.PAST}
               queryKey={['events', 'past']}
               staleTime={1_000 * 60 * 10}
               refetchInterval={1_000 * 60 * 10}
+              options={{ timeout: 60_000, retries: 2, retryDelay: 5_000 }}
+              transform={(data: unknown) => transformEvents(data as EventResponse[])}
             >
               {(events: EventsListResponse) => (
                 <EventsGrid events={events} colorSchemes={pastColorSchemes} />

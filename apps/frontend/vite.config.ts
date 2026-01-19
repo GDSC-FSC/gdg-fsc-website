@@ -29,7 +29,6 @@ import lqip from 'vite-plugin-lqip';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { logger } from '../../packages/shared/utils/src';
-import { app } from './src/constants';
 
 /**
  * @type {import('vite').UserConfig}
@@ -211,6 +210,8 @@ export default defineConfig(({ mode }) => {
       VitePWA({
         workbox: {
           cleanupOutdatedCaches: true,
+          skipWaiting: true,
+          clientsClaim: true,
           globPatterns: ['**/*'],
           globIgnores: ['**/OFL.txt', '**/*.map'],
           maximumFileSizeToCacheInBytes: (1_024 * 2) ** 2, //
@@ -218,27 +219,28 @@ export default defineConfig(({ mode }) => {
         registerType: 'autoUpdate',
         injectRegister: 'auto',
         includeAssets: ['**/*'],
+        devOptions: {
+          enabled: false,
+        },
       }),
       tailwindcss(),
     ],
     server: {
+      // Proxy external APIs to bypass CORS in development
       proxy: {
-        '/api': {
-          target: isDevelopment ? 'http://localhost:3000' : app.url,
+        // Events API proxy
+        '/api/events': {
+          target: 'https://gdsc-api.onrender.com/api/v1/events',
           changeOrigin: true,
-          // Note: No rewrite needed - backend expects /api/v1 prefix
-          secure: !isDevelopment,
-          // Increase timeout for slow external API cold starts (Render.com)
-          timeout: 60000,
-          configure: (proxy) => {
-            proxy.on('error', (err, _req, res) => {
-              console.error('[Proxy Error]', err.message);
-              if (res && 'writeHead' in res) {
-                res.writeHead(504, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify({ error: 'Proxy timeout', message: err.message }));
-              }
-            });
-          },
+          rewrite: (path) => path.replace(/^\/api\/events/, ''),
+          timeout: 60_000,
+        },
+        // GitHub API proxy
+        '/api/github': {
+          target: 'https://api.github.com',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/github/, ''),
+          timeout: 30_000,
         },
       },
     },

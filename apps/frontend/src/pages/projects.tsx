@@ -22,6 +22,7 @@ import type { FC } from 'react';
 import { memo } from 'react';
 import { DataLoader } from '../components/data-loader';
 import { PageLayout } from '../layouts';
+import { GITHUB_API } from '../services/api-config';
 
 /**
  * Effect Schema for a GitHub repository response.
@@ -37,8 +38,6 @@ const RepositorySchema = Schema.Struct({
   fork: Schema.Boolean,
   languages_url: Schema.String,
 });
-
-const RepositoriesSchema = Schema.Array(RepositorySchema);
 
 type Repository = Schema.Schema.Type<typeof RepositorySchema>;
 
@@ -243,13 +242,12 @@ export const Projects: FC = memo(() => {
 
           {/* Repository Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            <DataLoader
-              url="/api/v1/repos"
-              schema={RepositoriesSchema}
-              params={{ per_page: 100 }}
+            <DataLoader<readonly Repository[]>
+              url={GITHUB_API.ORG_REPOS}
               queryKey={['repositories']}
               staleTime={1_000 * 60 * 10}
               refetchInterval={1_000 * 60 * 10}
+              options={{ timeout: 30_000, retries: 2, retryDelay: 2_000 }}
             >
               {(repositories: readonly Repository[]) => (
                 <RepositoryGrid repositories={repositories} />

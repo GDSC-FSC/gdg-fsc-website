@@ -14,4 +14,6 @@
  * limitations under the License.
  */
 
+export * from './query-client';
 export * from './zustand-provider.tsx';
+
