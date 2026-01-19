@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-import { type AsyncMethod, Method } from '../types.js';
+import type { AsyncMethod } from '../types.js';
 import { memoizeAsyncFn } from './memoize-async.fn.js';
 import type { AsyncMemoizable, AsyncMemoizeConfig } from './memoize-async.types.js';
 

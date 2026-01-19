@@ -143,19 +143,6 @@ export default defineConfig(({ mode }) => {
         build: true,
         outputDir: '.vite-inspect',
       }),
-      // Million Lint disabled - causes TypeError with Hono/Elysia backend proxy
-      // See: https://github.com/aidenybai/million/issues
-      // TODO: Re-enable once Million Lint fixes Hono compatibility
-      // MillionLint.vite({
-      //   react: '19',
-      //   lite: true, // Enable lite mode for faster builds
-      //   filter: {
-      //     // Limit scope to only your app components
-      //     include: '**/components/**/*.{tsx,jsx}',
-      //     exclude: '**/node_modules/**/*',
-      //   },
-      //   optimizeDOM: false, // Disable DOM optimization to reduce complexity
-      // }),
       /**
        * @see https://www.npmjs.com/package/vite-plugin-compression2
        */

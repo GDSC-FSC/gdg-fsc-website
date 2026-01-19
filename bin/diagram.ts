@@ -27,11 +27,11 @@ const { execSync } = await import('node:child_process');
 try {
   logger.info(
     execSync(
-      `bunx madge --extensions js,jsx,ts,tsx . --exclude "/(^|\\/)..+\\/|node_modules\\/|dist\\/|coverage\\/|public\\/|storybook-static\\/|docker\\/|\\.unlighthouse\\/|\\.vite-inspect\\//" -i apps/docs/code/codebase-graph.png`,
+      String.raw`bunx madge --extensions js,jsx,ts,tsx . --exclude "/(^|\\/)..+\\/|node_modules\\/|dist\\/|coverage\\/|public\\/|storybook-static\\/|docker\\/|\\.unlighthouse\\/|\\.vite-inspect\\//" -i apps/docs/code/codebase-graph.png`,
     ).toString(),
   );
 } catch (error: any) {
-  if (error.stdout && error.stdout.toString().includes('Image created')) {
+  if (error.stdout?.toString().includes('Image created')) {
     logger.info(error.stdout.toString());
     process.exit(0);
   }

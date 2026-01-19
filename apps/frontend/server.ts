@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-import { spawn } from 'node:child_process';
-import { generateKeyPairSync } from 'node:crypto';
-import fs from 'node:fs';
 import { bearer } from '@elysiajs/bearer';
 import { cors } from '@elysiajs/cors';
 import { opentelemetry, record } from '@elysiajs/opentelemetry';
@@ -34,6 +31,10 @@ import { DefaultContext, type Generator, rateLimit } from 'elysia-rate-limit';
 import { elysiaHelmet } from 'elysiajs-helmet';
 import jwt from 'jsonwebtoken';
 import logixlysia from 'logixlysia';
+import { spawn } from 'node:child_process';
+import { generateKeyPairSync } from 'node:crypto';
+import fs from 'node:fs';
+import path from 'node:path';
 import { ensureBaseError } from '../../packages/shared/classes/src/lib/error';
 import { logger } from '../../packages/shared/utils/src';
 import { app as application } from './src/constants';
@@ -680,6 +681,7 @@ const api = new Elysia({ prefix: '/api/v1' })
 
 /**
  * Root application instance, includes Swagger documentation and the main API.
+ * In production, also serves the built Vite frontend from dist/.
  */
 const root = new Elysia()
   .use(
@@ -738,7 +740,38 @@ const root = new Elysia()
     }),
   )
   .use(api)
-  .listen(3_000);
+  // Serve static files from dist/ and handle SPA routing
+  .onRequest(({ request }) => {
+    const url = new URL(request.url);
+    const pathname = url.pathname;
+    
+    // Skip API and swagger routes - let them be handled by Elysia routes
+    if (pathname.startsWith('/api') || pathname.startsWith('/swagger')) {
+      return;
+    }
+    
+    // Try to serve static file from dist
+    const distPath = path.join(import.meta.dir, 'dist');
+    const filePath = path.join(distPath, pathname);
+    
+    // Check if file exists and is a regular file (not directory)
+    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+      return new Response(Bun.file(filePath));
+    }
+    
+    // For navigation routes (no extension), serve index.html (SPA fallback)
+    const hasExtension = pathname.includes('.') && !pathname.endsWith('/');
+    if (!hasExtension) {
+      const indexPath = path.join(distPath, 'index.html');
+      if (fs.existsSync(indexPath)) {
+        return new Response(Bun.file(indexPath));
+      }
+    }
+    
+    // File not found - let Elysia handle it (will 404)
+    return;
+  })
+  .listen(Number(process.env.PORT) || 3_000);
 
 export type API = typeof api;
 

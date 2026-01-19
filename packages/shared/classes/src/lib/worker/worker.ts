@@ -19,11 +19,11 @@
 import type { WorkerMessage, WorkerResult } from './worker.types.js';
 
 export class WorkerThread {
-  private taskHandlers: Map<string, (data: any) => Promise<any>> = new Map();
+  private readonly taskHandlers: Map<string, (data: any) => Promise<any>> = new Map();
 
   constructor() {
     // Register message handler
-    self.onmessage = this.handleMessage.bind(this);
+    globalThis.onmessage = this.handleMessage.bind(this);
 
     // Register default task handlers
     this.registerTaskHandler('DEFAULT', async (data) => {

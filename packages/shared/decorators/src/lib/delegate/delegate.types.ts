@@ -1,4 +1,4 @@
-import { type AsyncMethod, Method } from '../types.js';
+import type { AsyncMethod } from '../types.js';
 /**
  * Copyright (c) 2026 GDG on Campus Farmingdale State College
  *

@@ -128,17 +128,14 @@ export class CheckUnusedScript {
         '@gdg-fsc/*', // Ignore workspace packages
       ],
       ignorePatterns: [
+        '.*', // Ignore all dotfiles and dot directories
         'dist',
         'build',
-        '.next',
         'out',
         'coverage',
         'public',
         'node_modules',
         'bin',
-        '.vscode',
-        '.idea',
-        '.github',
         'prisma',
         'storybook-static',
       ],

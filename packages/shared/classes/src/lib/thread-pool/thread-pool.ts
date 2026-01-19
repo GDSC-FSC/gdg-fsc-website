@@ -22,11 +22,11 @@ import type { ActiveWorkers, ThreadPoolCallBacks, ThreadPoolResults } from './th
 export class ThreadPool {
   private workers: Worker[] = [];
   private taskQueue: WorkerTask[] = [];
-  private activeWorkers: ActiveWorkers = new Set();
-  private results: ThreadPoolResults = new Map();
-  private callbacks: ThreadPoolCallBacks = new Map();
-  private workerScript: string;
-  private maxWorkers: number;
+  private readonly activeWorkers: ActiveWorkers = new Set();
+  private readonly results: ThreadPoolResults = new Map();
+  private readonly callbacks: ThreadPoolCallBacks = new Map();
+  private readonly workerScript: string;
+  private readonly maxWorkers: number;
 
   constructor(workerScript: string, maxWorkers = navigator.hardwareConcurrency || 4) {
     this.workerScript = workerScript;

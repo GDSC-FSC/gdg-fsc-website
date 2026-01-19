@@ -26,7 +26,7 @@ import type { AfterConfig, AfterFunc } from './after.types.js';
 export function afterFn<D = any, A extends any[] = any[]>(
   originalMethod: Method<D, A>,
   config: AfterConfig<any, ReturnType<typeof originalMethod>>,
-): (...args: any[]) => void {
+): (...args: any[]) => Promise<D> {
   const resolvedConfig: AfterConfig<any, ReturnType<typeof originalMethod>> = {
     wait: false,
     ...config,

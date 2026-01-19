@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-import { type AsyncMethod, Method } from '../types.js';
+import type { AsyncMethod } from '../types.js';
 import { delegateFn } from './delegate.fn.js';
 import type { Delegatable } from './delegate.types.js';
 

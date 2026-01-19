@@ -34,7 +34,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { PackageJson } from 'type-fest';
-import { logger, Stringify } from '../packages/interface/dist/shared/utils/src/lib';
+import { logger, Stringify } from '../packages/shared/utils/src/lib/index.js';
 
 /**
  * The root directory of the project, determined by navigating up two levels from the current script's directory.

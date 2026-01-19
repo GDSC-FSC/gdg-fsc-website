@@ -87,8 +87,15 @@ export class AuditScript {
   @execTime('Audit')
   async run() {
     const rootDir = process.cwd();
+    const dirsToCheck = await this.getDirectoriesToAudit(rootDir);
+    const hasError = await this.auditAllWorkspaces(dirsToCheck, rootDir);
+
+    process.exit(hasError ? 1 : 0);
+  }
+
+  private async getDirectoriesToAudit(rootDir: string): Promise<string[]> {
     const pkgPath = path.join(rootDir, 'package.json');
-    
+
     if (!fs.existsSync(pkgPath)) {
       logger.error('package.json not found at', undefined, { pkgPath });
       process.exit(1);
@@ -108,60 +115,47 @@ export class AuditScript {
       dirsToCheck.push(...workspacePaths);
     }
 
+    return dirsToCheck;
+  }
+
+  private async auditAllWorkspaces(dirsToCheck: string[], rootDir: string): Promise<boolean> {
     let hasError = false;
 
     for (const dir of dirsToCheck) {
-      const workspacePkgPath = path.join(dir, 'package.json');
-      if (!fs.existsSync(workspacePkgPath)) continue;
-
-      const workspacePkg = JSON.parse(fs.readFileSync(workspacePkgPath, 'utf8'));
-      
-      // Check if audit script exists
-      if (workspacePkg.scripts?.audit) {
-        logger.info(`\nRunning audit in: ${path.relative(rootDir, dir) || '.'}`);
-        
-        try {
-          // Change to workspace directory to run the script
-          process.chdir(dir);
-          const output = await $`bun run audit`.text();
-          
-          // Check output for success/failure
-          // The original script checked for "Passed" in the last line.
-          // We'll maintain similar logic but adapt for potentially different outputs or just check exit code if possible.
-          // However, Bun.$ throws on non-zero exit code unless .nothrow() is used.
-          // Let's use .nothrow() and check exit code or output.
-          
-          // Actually, the original script logic was specific:
-          // split('\n').filter(Boolean).filter(isNotNull).at(-1)?.[0]?.includes('Passed')
-          
-          const lines = output.split('\n').filter(Boolean);
-          const lastLine = lines[lines.length - 1];
-          
-          if (lastLine?.includes('Passed') || output.includes('Passed')) {
-             logger.success(`Audit passed in ${path.relative(rootDir, dir) || '.'}`);
-          } else {
-             logger.error(`Audit failed in ${path.relative(rootDir, dir) || '.'}`);
-             hasError = true;
-          }
-        } catch (e) {
-          logger.error(`Audit failed in ${path.relative(rootDir, dir) || '.'}`, e);
-          hasError = true;
-        } finally {
-          process.chdir(rootDir);
-        }
-      } else {
-        // Optional: Run native bun audit if no script? 
-        // For now, we'll skip to avoid noise, assuming explicit opt-in via script.
-        // logger.info(`Skipping ${path.relative(rootDir, dir) || '.'} (no audit script)`);
-      }
+      const failed = await this.auditWorkspace(dir, rootDir);
+      if (failed) hasError = true;
     }
 
-    if (hasError) {
-      logger.info('1');
-      process.exit(1);
-    } else {
-      logger.info('0');
-      process.exit(0);
+    return hasError;
+  }
+
+  private async auditWorkspace(dir: string, rootDir: string): Promise<boolean> {
+    const workspacePkgPath = path.join(dir, 'package.json');
+    if (!fs.existsSync(workspacePkgPath)) return false;
+
+    const workspacePkg = JSON.parse(fs.readFileSync(workspacePkgPath, 'utf8'));
+    if (!workspacePkg.scripts?.audit) return false;
+
+    const relativePath = path.relative(rootDir, dir) || '.';
+    logger.info(`\nRunning audit in: ${relativePath}`);
+
+    try {
+      process.chdir(dir);
+      const output = await $`bun run audit`.text();
+      const passed = output.includes('Passed');
+
+      if (passed) {
+        logger.success(`Audit passed in ${relativePath}`);
+        return false;
+      }
+
+      logger.error(`Audit failed in ${relativePath}`);
+      return true;
+    } catch (e) {
+      logger.error(`Audit failed in ${relativePath}`, e);
+      return true;
+    } finally {
+      process.chdir(rootDir);
     }
   }
 

@@ -32,5 +32,5 @@ export function bindFn<D = unknown, A extends unknown[] = unknown[]>(
   originalMethod: Method<D, A>,
   context: unknown,
 ): Method<D, A> {
-  return originalMethod.bind(context) as Method<D, A>;
+  return originalMethod.bind(context);
 }

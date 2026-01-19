@@ -34,7 +34,7 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary'],
+      options: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
       description: 'The visual style of the button',
     },
     size: {
@@ -59,7 +59,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    variant: 'primary',
+    variant: 'default',
     children: 'Primary Button',
   },
 };
@@ -115,18 +115,18 @@ export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-6 p-6">
       <div>
-        <p className="text-sm text-muted-foreground mb-3 font-medium">Primary Buttons</p>
+        <p className="text-sm text-muted-foreground mb-3 font-medium">Default Buttons</p>
         <div className="flex gap-3 items-center flex-wrap">
-          <Button variant="primary" size="sm">
+          <Button variant="default" size="sm">
             Small
           </Button>
-          <Button variant="primary" size="default">
+          <Button variant="default" size="default">
             Default
           </Button>
-          <Button variant="primary" size="lg">
+          <Button variant="default" size="lg">
             Large
           </Button>
-          <Button variant="primary" disabled>
+          <Button variant="default" disabled>
             Disabled
           </Button>
         </div>
@@ -157,19 +157,19 @@ export const SizeComparison: Story = {
   render: () => (
     <div className="flex items-end gap-4 p-4">
       <div className="text-center">
-        <Button variant="primary" size="sm">
+        <Button variant="default" size="sm">
           Small
         </Button>
         <p className="text-xs text-muted-foreground mt-2">h-9, px-3</p>
       </div>
       <div className="text-center">
-        <Button variant="primary" size="default">
+        <Button variant="default" size="default">
           Default
         </Button>
         <p className="text-xs text-muted-foreground mt-2">h-10, px-4</p>
       </div>
       <div className="text-center">
-        <Button variant="primary" size="lg">
+        <Button variant="default" size="lg">
           Large
         </Button>
         <p className="text-xs text-muted-foreground mt-2">h-11, px-8</p>
@@ -186,7 +186,7 @@ export const FormActions: Story = {
   render: () => (
     <div className="flex gap-3 p-4 bg-card rounded-lg border border-border">
       <Button variant="secondary">Cancel</Button>
-      <Button variant="primary">Save Changes</Button>
+      <Button variant="default">Save Changes</Button>
     </div>
   ),
 };
@@ -199,7 +199,7 @@ export const CTASection: Story = {
         Join thousands of developers building with our components.
       </p>
       <div className="flex gap-3 justify-center">
-        <Button variant="primary" size="lg">
+        <Button variant="default" size="lg">
           Get Started Free
         </Button>
         <Button variant="secondary" size="lg">
@@ -221,7 +221,7 @@ export const ModalFooter: Story = {
         <Button variant="secondary" size="sm">
           Cancel
         </Button>
-        <Button variant="primary" size="sm" className="bg-destructive hover:bg-destructive/90">
+        <Button variant="destructive" size="sm">
           Delete
         </Button>
       </div>
@@ -248,7 +248,7 @@ export const ButtonGroup: Story = {
 export const LoadingState: Story = {
   render: () => (
     <div className="flex gap-4 p-4">
-      <Button variant="primary" disabled className="relative">
+      <Button variant="default" disabled className="relative">
         <span className="opacity-0">Save Changes</span>
         <span className="absolute inset-0 flex items-center justify-center">
           <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
@@ -278,7 +278,7 @@ export const LoadingState: Story = {
 export const WithIcon: Story = {
   render: () => (
     <div className="flex gap-4 p-4">
-      <Button variant="primary">
+      <Button variant="default">
         <span className="mr-2">+</span>
         {'Add Item'}
       </Button>
@@ -286,7 +286,7 @@ export const WithIcon: Story = {
         {'Settings'}
         <span className="ml-2">⚙</span>
       </Button>
-      <Button variant="primary" size="sm">
+      <Button variant="default" size="sm">
         <span>→</span>
       </Button>
     </div>

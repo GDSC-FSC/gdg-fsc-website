@@ -23,7 +23,7 @@
 import type { TimerEntry, TimerHandle } from './time-manager.types.js';
 
 export class TimerManager {
-  private timers = new Map<TimerHandle, TimerEntry>();
+  private readonly timers = new Map<TimerHandle, TimerEntry>();
   private disposed = false;
 
   /**

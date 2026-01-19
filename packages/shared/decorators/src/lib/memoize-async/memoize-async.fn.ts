@@ -75,45 +75,24 @@ export function memoizeAsyncFn<D = any, A extends any[] = any[]>(
       return promCache.get(key) as Promise<D>;
     }
 
-    const prom = new Promise<any>(async (resolve, reject) => {
-      let inCache: boolean;
-
-      try {
-        inCache = (await resolvedConfig.cache?.has(key)) ?? false;
-      } catch (e) {
-        reject(e);
-
-        return;
-      }
+    const prom = (async (): Promise<D> => {
+      const inCache = (await resolvedConfig.cache?.has(key)) ?? false;
 
       if (inCache) {
-        let data: any;
-        try {
-          data = await resolvedConfig.cache?.get(key);
-        } catch (e) {
-          reject(e);
-
-          return;
-        }
-
-        resolve(data);
-      } else {
-        try {
-          const data = await originalMethod.apply(this, args);
-          await resolvedConfig.cache?.set(key, data);
-
-          if (resolvedConfig.expirationTimeMs !== undefined) {
-            runner.exec(() => {
-              resolvedConfig.cache?.delete(key);
-            }, resolvedConfig.expirationTimeMs);
-          }
-
-          resolve(data);
-        } catch (e) {
-          reject(e);
-        }
+        return (await resolvedConfig.cache?.get(key)) as D;
       }
 
+      const data = await originalMethod.apply(this, args);
+      await resolvedConfig.cache?.set(key, data);
+
+      if (resolvedConfig.expirationTimeMs !== undefined) {
+        runner.exec(() => {
+          resolvedConfig.cache?.delete(key);
+        }, resolvedConfig.expirationTimeMs);
+      }
+
+      return data;
+    })().finally(() => {
       promCache.delete(key);
     });
 

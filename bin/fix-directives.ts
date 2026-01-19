@@ -42,6 +42,235 @@ import { BaseError } from '../packages/shared/classes/src';
 import { execTime, selfExecute } from '../packages/shared/decorators/src';
 import { logger } from '../packages/shared/utils/src';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Types
+// ─────────────────────────────────────────────────────────────────────────────
+
+type Mode = 'auto' | 'client' | 'server';
+type DirectiveType = 'client' | 'server';
+type NodeWithRange = { start?: number; end?: number };
+
+interface ParsedArgs {
+  write: boolean;
+  mode: Mode;
+  include: string;
+}
+
+interface DirectiveInfo {
+  found: Set<DirectiveType>;
+  toRemove: NodeWithRange[];
+}
+
+interface ProcessResult {
+  changed: boolean;
+  skipped: boolean;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Constants
+// ─────────────────────────────────────────────────────────────────────────────
+
+const PARSER_PLUGINS = [
+  'jsx',
+  'typescript',
+  'importMeta',
+  'topLevelAwait',
+  'classProperties',
+  'classPrivateProperties',
+  'decorators-legacy',
+] as const;
+
+const DEFAULT_INCLUDE = '**/*.{ts,tsx,js,jsx,mts,mjs,cts,cjs}';
+const IGNORE_PATTERNS = ['**/node_modules/**', '**/.next/**', '**/dist/**', '**/build/**'];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Helper Functions
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** Parse CLI arguments into a structured object */
+function parseArgs(): ParsedArgs {
+  const argv = new Map<string, string | boolean>();
+  for (const a of process.argv.slice(2)) {
+    const m = /^--([^=]+)(?:=(.*))?$/.exec(a);
+    if (m?.[1]) argv.set(m[1], m[2] ?? true);
+  }
+  return {
+    write: argv.get('write') === true,
+    mode: (argv.get('mode') as Mode) || 'auto',
+    include: (argv.get('include') as string) || DEFAULT_INCLUDE,
+  };
+}
+
+/** Safely parse code into AST, returns null on failure */
+function tryParse(code: string): ReturnType<typeof parse> | null {
+  try {
+    return parse(code, {
+      sourceType: 'module',
+      allowReturnOutsideFunction: true,
+      allowImportExportEverywhere: true,
+      startLine: 1,
+      plugins: [...PARSER_PLUGINS],
+    });
+  } catch {
+    return null;
+  }
+}
+
+/** Extract directive type from a directive value string */
+function extractDirectiveType(value: string): DirectiveType | null {
+  if (value === 'use client') return 'client';
+  if (value === 'use server') return 'server';
+  return null;
+}
+
+/** Find all directive occurrences in the AST */
+function findDirectives(ast: ReturnType<typeof parse>): DirectiveInfo {
+  const found = new Set<DirectiveType>();
+  const toRemove: NodeWithRange[] = [];
+
+  traverse(ast, {
+    Program(p) {
+      for (const d of p.node.directives) {
+        const type = extractDirectiveType(d.value.value);
+        if (type) {
+          found.add(type);
+          toRemove.push(d as unknown as NodeWithRange);
+        }
+      }
+    },
+    ExpressionStatement(p) {
+      if (p.parent.type !== 'Program') return;
+      // @ts-expect-error – different babel versions expose different fields
+      const expr = p.node.expression?.expression ?? p.node.expression;
+      if (!expr) return;
+
+      const value = getExpressionDirectiveValue(expr);
+      if (value) {
+        found.add(value);
+        toRemove.push(p.node as unknown as NodeWithRange);
+      }
+    },
+  });
+
+  return { found, toRemove };
+}
+
+/** Extract directive value from expression (StringLiteral or TemplateLiteral) */
+function getExpressionDirectiveValue(expr: {
+  type: string;
+  value?: string;
+  quasis?: Array<{ value: { cooked: string } }>;
+}): DirectiveType | null {
+  if (expr.type === 'StringLiteral' && expr.value) {
+    return extractDirectiveType(expr.value);
+  }
+  if (expr.type === 'TemplateLiteral' && expr.quasis?.length === 1) {
+    return extractDirectiveType(expr.quasis[0].value.cooked);
+  }
+  return null;
+}
+
+/** Determine which directive to use based on mode and found directives */
+function determineTarget(mode: Mode, found: Set<DirectiveType>): 'use client' | 'use server' {
+  if (mode === 'client') return 'use client';
+  if (mode === 'server') return 'use server';
+  return found.has('client') ? 'use client' : 'use server';
+}
+
+/** Remove nodes from MagicString by their ranges */
+function removeNodes(s: MagicString, nodes: NodeWithRange[]): void {
+  for (const n of nodes) {
+    if (typeof n.start === 'number' && typeof n.end === 'number') {
+      s.remove(n.start, n.end);
+    }
+  }
+}
+
+/** Calculate insertion point for directive (after shebang + whitespace) */
+function getInsertionPoint(code: string, shebangEnd: number): number {
+  const leading = code.slice(shebangEnd);
+  const m = /^\s*/.exec(leading);
+  return m ? shebangEnd + m[0].length : shebangEnd;
+}
+
+/** Insert directive at the correct position if not already present */
+function insertDirective(
+  s: MagicString,
+  target: 'use client' | 'use server',
+  insertAt: number,
+): void {
+  const directiveLine = `'${target}';\n`;
+  const updated = s.toString();
+  const alreadyTop = updated.slice(insertAt, insertAt + directiveLine.length).startsWith(directiveLine);
+  if (!alreadyTop) {
+    s.prependLeft(insertAt, directiveLine);
+  }
+}
+
+/** Process a single file and fix its directives */
+async function processFile(
+  file: string,
+  args: ParsedArgs,
+): Promise<ProcessResult> {
+  const full = path.resolve(file);
+  const code = await fs.readFile(full, 'utf8');
+
+  if (!/use\s+(client|server)/.test(code)) {
+    return { changed: false, skipped: false };
+  }
+
+  const ast = tryParse(code);
+  if (!ast) return { changed: false, skipped: false };
+
+  const { found, toRemove } = findDirectives(ast);
+  if (found.size === 0) return { changed: false, skipped: false };
+
+  if (found.size > 1 && args.mode === 'auto') {
+    return { changed: false, skipped: true };
+  }
+
+  const s = new MagicString(code);
+  const shebangMatch = /^#!.*\n/.exec(code);
+  const shebangEnd = shebangMatch ? shebangMatch[0].length : 0;
+  const target = determineTarget(args.mode, found);
+
+  removeNodes(s, toRemove);
+
+  // Validate the updated code parses correctly
+  if (!tryParse(s.toString())) {
+    return { changed: false, skipped: false };
+  }
+
+  const insertAt = getInsertionPoint(s.toString(), shebangEnd);
+  insertDirective(s, target, insertAt);
+
+  const out = s.toString();
+  if (out === code) return { changed: false, skipped: false };
+
+  if (args.write) {
+    await fs.writeFile(full, out, 'utf8');
+  } else {
+    const rel = path.relative(process.cwd(), full);
+    logger.info(`[dry-run] would fix: ${rel} -> ${target}`);
+  }
+
+  return { changed: true, skipped: false };
+}
+
+/** Log the final summary */
+function logSummary(write: boolean, changedCount: number, skippedCount: number): void {
+  const skippedMsg = skippedCount ? `, skipped (both client/server present): ${skippedCount}` : '';
+  if (write) {
+    logger.info(`\nWrote fixes to ${changedCount} file(s)${skippedMsg}.`);
+  } else {
+    logger.info(`\nDone (dry-run). Files to change: ${changedCount}${skippedMsg}`);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Main Class
+// ─────────────────────────────────────────────────────────────────────────────
+
 /**
  * Fix Directives Script
  * @module scripts/fix-directives
@@ -61,201 +290,23 @@ export class FixDirectivesScript {
 
   @execTime('Fix Directives')
   async run() {
-    type Mode = 'auto' | 'client' | 'server';
+    const args = parseArgs();
 
-    const argv = new Map<string, string | boolean>();
-    for (const a of process.argv.slice(2)) {
-      const m = /^--([^=]+)(?:=(.*))?$/.exec(a);
-      if (m?.[1]) argv.set(m[1], m[2] ?? true);
-    }
-
-    const WRITE = argv.get('write') === true;
-    const MODE = (argv.get('mode') as Mode) || 'auto';
-    const INCLUDE = (argv.get('include') as string) || '**/*.{ts,tsx,js,jsx,mts,mjs,cts,cjs}';
-
-    const files = await fg([INCLUDE], {
+    const files = await fg([args.include], {
       dot: false,
-      ignore: ['**/node_modules/**', '**/.next/**', '**/dist/**', '**/build/**'],
+      ignore: IGNORE_PATTERNS,
     });
 
-    const parserPlugins = [
-      'jsx',
-      'typescript',
-      'importMeta',
-      'topLevelAwait',
-      'classProperties',
-      'classPrivateProperties',
-      'decorators-legacy',
-    ] as const;
-
     let changedCount = 0;
-    let skippedBothDirectives = 0;
+    let skippedCount = 0;
 
     for (const file of files) {
-      const full = path.resolve(file);
-      const code = await fs.readFile(full, 'utf8');
-
-      // Quick exit if nothing interesting inside
-      if (!/use\s+(client|server)/.test(code)) continue;
-
-      const s = new MagicString(code);
-
-      // capture shebang and leading comments (kept as-is)
-      const shebangMatch = /^#!.*\n/.exec(code);
-      const shebangEnd = shebangMatch ? shebangMatch[0].length : 0;
-
-      // Parse once
-      let ast: ReturnType<typeof parse> | null;
-      try {
-        ast = parse(code, {
-          sourceType: 'module',
-          allowReturnOutsideFunction: true,
-          allowImportExportEverywhere: true,
-          startLine: 1,
-          plugins: [...parserPlugins],
-        });
-      } catch {
-        // If parsing fails, skip (don’t corrupt file)
-        continue;
-      }
-
-      // Detect which directive(s) are present
-      const found = new Set<'client' | 'server'>();
-      type NodeWithRange = { start?: number; end?: number };
-
-      const toRemove: NodeWithRange[] = [];
-
-      traverse(ast, {
-        Program(p) {
-          // 1) Proper directives in Program.directives
-          for (const d of p.node.directives) {
-            if (d.value.value === 'use client' || d.value.value === 'use server') {
-              found.add(d.value.value.endsWith('client') ? 'client' : 'server');
-              toRemove.push(d as unknown as NodeWithRange);
-            }
-          }
-        },
-        // 2) Any top-level ExpressionStatement that’s effectively a directive
-        ExpressionStatement(p) {
-          if (p.parent.type !== 'Program') return;
-          // unwrap parentheses: ('use client');
-          // we consider string literals only (no TemplateLiteral)
-          // @ts-expect-error – different babel versions expose different fields
-          const expr = p.node.expression?.expression ?? p.node.expression;
-          if (!expr) return;
-
-          if (expr.type === 'StringLiteral') {
-            const v = expr.value;
-            if (v === 'use client' || v === 'use server') {
-              found.add(v.endsWith('client') ? 'client' : 'server');
-              toRemove.push(p.node as unknown as NodeWithRange);
-            }
-          }
-          // Backtick case: `use client` – not valid; normalize by removing
-          if (expr.type === 'TemplateLiteral' && expr.quasis.length === 1) {
-            const raw = expr.quasis[0].value.cooked;
-            if (raw === 'use client' || raw === 'use server') {
-              found.add(raw.endsWith('client') ? 'client' : 'server');
-              toRemove.push(p.node as unknown as NodeWithRange);
-            }
-          }
-        },
-      });
-
-      if (found.size === 0) continue;
-
-      // If BOTH present, we won’t guess. Default: skip unless user forces a mode.
-      if (found.size > 1 && MODE === 'auto') {
-        skippedBothDirectives++;
-        continue;
-      }
-
-      let target: 'use client' | 'use server';
-      if (MODE === 'client') {
-        target = 'use client';
-      } else if (MODE === 'server') {
-        target = 'use server';
-      } else if (found.has('client')) {
-        target = 'use client';
-      } else {
-        target = 'use server';
-      }
-
-      // Remove all existing directive statements we found
-      for (const n of toRemove) {
-        if (typeof n.start === 'number' && typeof n.end === 'number') {
-          s.remove(n.start, n.end);
-        }
-      }
-
-      // Re-parse after removal to safely find the first import (for insertion point)
-      const updated = s.toString();
-      try {
-        parse(updated, {
-          sourceType: 'module',
-          allowReturnOutsideFunction: true,
-          allowImportExportEverywhere: true,
-          startLine: 1,
-          plugins: [...parserPlugins],
-        });
-      } catch {
-        continue;
-      }
-
-      // Determine insertion index:
-      // After shebang & any leading comments/whitespace, but BEFORE first ImportDeclaration or any statement.
-      let insertAt = shebangEnd;
-
-      // Preserve leading block/line comments
-      // Find first non-whitespace after shebang
-      const leading = updated.slice(shebangEnd);
-      const m = /^\s*/.exec(leading);
-      if (m) insertAt = shebangEnd + m[0].length;
-
-      // However, if the first *code* is an import or any statement, we still insert at (shebang + comments) start.
-      // That satisfies “must be at the very beginning of a file, above any imports or other code”.
-      // We’ll also ensure a trailing newline.
-      const directiveLine = `'${target}';\n`;
-
-      // Avoid adding a duplicate if it’s already exactly correct at the very top
-      const alreadyTop = updated
-        .slice(insertAt, insertAt + directiveLine.length)
-        .startsWith(directiveLine);
-
-      if (!alreadyTop) {
-        s.prependLeft(insertAt, directiveLine);
-      }
-
-      // Final write or preview
-      const out = s.toString();
-      if (out !== code) {
-        changedCount++;
-        if (WRITE) {
-          await fs.writeFile(full, out, 'utf8');
-        } else {
-          const rel = path.relative(process.cwd(), full);
-          logger.info(`[dry-run] would fix: ${rel} -> ${target}`);
-        }
-      }
+      const result = await processFile(file, args);
+      if (result.changed) changedCount++;
+      if (result.skipped) skippedCount++;
     }
 
-    if (WRITE) {
-      logger.info(
-        `\nWrote fixes to ${changedCount} file(s)${
-          skippedBothDirectives
-            ? `, skipped (both client/server present): ${skippedBothDirectives}`
-            : ''
-        }.`,
-      );
-    } else {
-      logger.info(
-        `\nDone (dry-run). Files to change: ${changedCount}${
-          skippedBothDirectives
-            ? `, skipped (both client/server present): ${skippedBothDirectives}`
-            : ''
-        }`,
-      );
-    }
+    logSummary(args.write, changedCount, skippedCount);
   }
 
   private handleError(error: unknown) {

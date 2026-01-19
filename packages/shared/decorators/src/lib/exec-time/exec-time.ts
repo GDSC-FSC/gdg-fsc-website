@@ -25,7 +25,7 @@ import type { ReportFunction } from './exec-time.types.js';
 
 export function execTime<T = any>(arg?: ReportFunction | string): any {
   return (
-    targetOrValue: T | any,
+    targetOrValue: unknown,
     propertyNameOrContext: keyof T | ClassMethodDecoratorContext,
     descriptor?: TypedPropertyDescriptor<any>,
   ): any => {

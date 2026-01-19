@@ -15,7 +15,7 @@
  */
 
 import { configDefaults, defineConfig, mergeConfig } from 'vitest/config';
-import vitestConfig from './vitest.config';
+import vitestConfig from './vitest.config.js';
 
 export default mergeConfig(
   vitestConfig,
