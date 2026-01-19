@@ -23,6 +23,7 @@ RUN bun install
 
 # Build shared packages first
 RUN cd packages/shared && bun run build
+RUN cd packages/interface && bun run build
 
 # Build frontend
 RUN cd apps/frontend && bun run build
