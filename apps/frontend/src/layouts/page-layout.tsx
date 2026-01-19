@@ -69,12 +69,12 @@ const Nav = memo(() => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="relative">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 via-red-500 to-yellow-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl group-hover:shadow-blue-500/25">
+              <div className="w-12 h-12 bg-linear-to-br from-blue-500 via-red-500 to-yellow-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl group-hover:shadow-blue-500/25">
                 <Code className="h-6 w-6 text-white" />
               </div>
-              <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 via-red-500 to-yellow-500 rounded-xl blur opacity-30 group-hover:opacity-50 transition-opacity" />
+              <div className="absolute -inset-1 bg-linear-to-br from-blue-500 via-red-500 to-yellow-500 rounded-xl blur opacity-30 group-hover:opacity-50 transition-opacity" />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-500 via-red-500 to-green-500 bg-clip-text text-transparent">
+            <span className="text-xl font-bold bg-linear-to-r from-blue-500 via-red-500 to-green-500 bg-clip-text text-transparent">
               GDG on Campus FSC
             </span>
           </Link>

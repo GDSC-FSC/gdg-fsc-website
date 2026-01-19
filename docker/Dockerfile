@@ -24,20 +24,14 @@ RUN cd packages/shared && bun run build
 RUN cd apps/frontend && bun run build
 
 # Production image
-FROM base AS runner
-WORKDIR /app
+FROM nginx:alpine AS runner
 
-ENV NODE_ENV=production
+# Copy built assets
+COPY --from=builder /app/apps/frontend/dist /usr/share/nginx/html
 
-# Copy built assets and necessary files
-COPY --from=builder /app/apps/frontend/dist ./apps/frontend/dist
-COPY --from=builder /app/apps/frontend/server.ts ./apps/frontend/server.ts
-COPY --from=builder /app/apps/frontend/src ./apps/frontend/src
-COPY --from=builder /app/apps/frontend/package.json ./apps/frontend/package.json
-COPY --from=builder /app/packages ./packages
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/apps/frontend/node_modules ./apps/frontend/node_modules
+# Copy Nginx configuration if needed (optional, using default for now)
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 3000
+EXPOSE 80
 
-CMD ["bun", "run", "apps/frontend/server.ts"]
+CMD ["nginx", "-g", "daemon off;"]

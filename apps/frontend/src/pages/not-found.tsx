@@ -38,15 +38,15 @@ export const NotFound: FC = memo(() => {
         y: (e.clientY / window.innerHeight - 0.5) * 20,
       });
     };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    globalThis.addEventListener('mousemove', handleMouseMove);
+    return () => globalThis.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   return (
     <div className="min-h-screen w-dvw bg-background overflow-hidden relative flex items-center justify-center">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-red-50/60 to-yellow-50/80 dark:from-blue-950/40 dark:via-red-950/30 dark:to-yellow-950/40" />
+        <div className="absolute inset-0 bg-linear-to-br from-blue-50/80 via-red-50/60 to-yellow-50/80 dark:from-blue-950/40 dark:via-red-950/30 dark:to-yellow-950/40" />
 
         {/* Floating orbs */}
         <div
@@ -140,7 +140,7 @@ export const NotFound: FC = memo(() => {
           {/* Action buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              onClick={() => window.history.back()}
+              onClick={() => globalThis.history.back()}
               variant="outline"
               size="lg"
               className="group border-2 border-blue-500/50 hover:border-blue-500 hover:bg-blue-500/10 transition-all duration-300"
@@ -152,7 +152,7 @@ export const NotFound: FC = memo(() => {
             <Link to="/">
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-gradient-to-r from-blue-500 via-red-500 to-yellow-500 hover:from-blue-600 hover:via-red-600 hover:to-yellow-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="w-full sm:w-auto bg-linear-to-r from-blue-500 via-red-500 to-yellow-500 hover:from-blue-600 hover:via-red-600 hover:to-yellow-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 <Home className="w-4 h-4 mr-2" />
                 Back to Home

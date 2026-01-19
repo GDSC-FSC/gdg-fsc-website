@@ -60,12 +60,12 @@ export const Home: FC = memo(() => {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-3 group">
               <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 via-red-500 to-yellow-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl group-hover:shadow-blue-500/25">
+                <div className="w-12 h-12 bg-linear-to-br from-blue-500 via-red-500 to-yellow-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl group-hover:shadow-blue-500/25">
                   <Code className="h-6 w-6 text-white" />
                 </div>
-                <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 via-red-500 to-yellow-500 rounded-xl blur opacity-30 group-hover:opacity-50 transition-opacity" />
+                <div className="absolute -inset-1 bg-linear-to-br from-blue-500 via-red-500 to-yellow-500 rounded-xl blur opacity-30 group-hover:opacity-50 transition-opacity" />
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-500 via-red-500 to-green-500 bg-clip-text text-transparent">
+              <span className="text-xl font-bold bg-linear-to-r from-blue-500 via-red-500 to-green-500 bg-clip-text text-transparent">
                 GDG on Campus FSC
               </span>
             </Link>
@@ -137,7 +137,7 @@ export const Home: FC = memo(() => {
       <section className="relative min-h-screen flex items-center justify-center pt-20">
         {/* Animated Background */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-yellow-50/60 to-green-50/80 dark:from-blue-950/40 dark:via-red-950/30 dark:to-green-950/40" />
+          <div className="absolute inset-0 bg-linear-to-br from-blue-50/80 via-yellow-50/60 to-green-50/80 dark:from-blue-950/40 dark:via-red-950/30 dark:to-green-950/40" />
 
           {/* Floating orbs with parallax */}
           <div
@@ -182,7 +182,7 @@ export const Home: FC = memo(() => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/50 dark:bg-white/10 backdrop-blur-xl border border-white/20 mb-12 hover:scale-105 transition-all duration-300 shadow-lg">
             <Sparkles className="w-4 h-4 text-yellow-500" />
-            <Text className="text-sm font-medium bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+            <Text className="text-sm font-medium bg-linear-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
               {home.hero.badge}
             </Text>
           </div>
@@ -225,7 +225,7 @@ export const Home: FC = memo(() => {
                   <Button
                     key={btn.label}
                     size="lg"
-                    className="relative overflow-hidden bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-10 py-7 text-lg rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105 group"
+                    className="relative overflow-hidden bg-linear-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-10 py-7 text-lg rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105 group"
                     onClick={() => globalThis.open(btn.href, '_blank', 'noreferrer noopener')}
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
@@ -235,7 +235,7 @@ export const Home: FC = memo(() => {
                         <Icon className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
                       )}
                     </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-linear-to-r from-blue-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </Button>
                 );
               }
@@ -283,16 +283,16 @@ export const Home: FC = memo(() => {
                   text: 'text-green-600 dark:text-green-400',
                 },
               };
-              const colorScheme = colors[nav.color as keyof typeof colors] || colors.blue;
+              const colorScheme = colors[nav.color] || colors.blue;
 
               return (
                 <Link to={nav.to} className="group" key={nav.label}>
                   <div
-                    className={`p-6 rounded-2xl bg-gradient-to-br ${colorScheme.bg} ${colorScheme.hover} backdrop-blur-xl border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl`}
+                    className={`p-6 rounded-2xl bg-linear-to-br ${colorScheme.bg} ${colorScheme.hover} backdrop-blur-xl border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl`}
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
                     <div
-                      className={`w-14 h-14 bg-gradient-to-br ${colorScheme.icon} rounded-xl mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+                      className={`w-14 h-14 bg-linear-to-br ${colorScheme.icon} rounded-xl mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}
                     >
                       {Icon && <Icon className="h-7 w-7 text-white" />}
                     </div>
@@ -309,7 +309,7 @@ export const Home: FC = memo(() => {
 
       {/* Stats Section */}
       <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-yellow-500/5 to-green-500/5" />
+        <div className="absolute inset-0 bg-linear-to-r from-blue-500/5 via-yellow-500/5 to-green-500/5" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {home.stats.map((stat, index) => {
@@ -340,18 +340,18 @@ export const Home: FC = memo(() => {
       </section>
 
       {/* Footer */}
-      <footer className="py-16 border-t bg-gradient-to-r from-blue-50/50 via-red-50/50 to-green-50/50 dark:from-blue-950/20 dark:via-red-950/20 dark:to-green-950/20">
+      <footer className="py-16 border-t bg-linear-to-r from-blue-50/50 via-red-50/50 to-green-50/50 dark:from-blue-950/20 dark:via-red-950/20 dark:to-green-950/20">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <Link to="/" className="inline-flex items-center justify-center space-x-3 mb-8 group">
               <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 via-red-500 to-yellow-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <div className="w-12 h-12 bg-linear-to-br from-blue-500 via-red-500 to-yellow-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <Code className="h-6 w-6 text-white" />
                 </div>
               </div>
               <Text
                 component="span"
-                className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-red-500 to-green-500 bg-clip-text text-transparent"
+                className="text-2xl font-bold bg-linear-to-r from-blue-500 via-red-500 to-green-500 bg-clip-text text-transparent"
               >
                 {home.footer.org}
               </Text>

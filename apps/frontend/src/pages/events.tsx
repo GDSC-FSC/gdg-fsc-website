@@ -86,7 +86,7 @@ const EventCard: FC<EventCardProps> = memo(({ event, colorScheme, index }) => {
               alt={title ?? 'Event thumbnail'}
               className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
             {eventType && (
               <div className="absolute bottom-3 left-3">
                 <span className="px-2 py-1 rounded bg-black/40 backdrop-blur-sm text-white text-xs font-medium">
