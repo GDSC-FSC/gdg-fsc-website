@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-import { QueryClientProvider } from '@tanstack/react-query';
-import { TooltipProvider } from '../components/ui/tooltip';
+import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
+import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { createQueryClient, GlobalStoreProvider, Providers, ThemeProvider } from '.';
+import { TooltipProvider } from '../components/ui/tooltip';
 export const Provider: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <Providers
@@ -32,7 +33,18 @@ export const Provider: React.FC<React.PropsWithChildren> = ({ children }) => {
           },
         ],
         [GlobalStoreProvider, {}],
-        [QueryClientProvider, { client: createQueryClient()() }],
+        [
+          PersistQueryClientProvider,
+          {
+            client: createQueryClient()(),
+            persistOptions: {
+              persister: createSyncStoragePersister({
+                storage: window.localStorage,
+              }),
+              maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+            },
+          },
+        ],
         [TooltipProvider, {}],
       ]}
       node={children}

@@ -80,6 +80,8 @@
     "@gdg-fsc/shared": "workspace:*",
     "@opentelemetry/exporter-trace-otlp-proto": "^0.210.0",
     "@opentelemetry/sdk-trace-node": "^2.4.0",
+    "@tanstack/query-sync-storage-persister": "^5.90.21",
+    "@tanstack/react-query-persist-client": "^5.90.21",
     "effect": "^3.19.14",
     "elysia": "1.4.21",
     "firebase": "^12.7.0",
