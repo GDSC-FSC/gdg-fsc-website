@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/gestures/drag/state/set-active.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { isDragging } from './is-active.mjs';\n\nfunction setDragLock(axis) {\n    if (axis === \"x\" || axis === \"y\") {\n        if (isDragging[axis]) {\n            return null;\n        }\n        else {\n            isDragging[axis] = true;\n            return () => {\n                isDragging[axis] = false;\n            };\n        }\n    }\n    else {\n        if (isDragging.x || isDragging.y) {\n            return null;\n        }\n        else {\n            isDragging.x = isDragging.y = true;\n            return () => {\n                isDragging.x = isDragging.y = false;\n            };\n        }\n    }\n}\n\nexport { setDragLock };\n",
+      "start": 1768772628753,
+      "end": 1768772628753
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628753,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628770,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628789,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628806,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

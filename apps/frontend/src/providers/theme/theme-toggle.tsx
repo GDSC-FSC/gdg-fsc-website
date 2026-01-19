@@ -14,27 +14,48 @@
  * limitations under the License.
  */
 
+import { Button } from '@gdg-fsc/interface';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import type { FC } from 'react';
-import { Button } from '../../components/ui/button';
+import { useEffect, useState } from 'react';
 
 export const ThemeToggle: FC = () => {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <Button variant="ghost" size="icon" className="h-9 w-9">
+        <span className="h-4 w-4" />
+      </Button>
+    );
+  }
+
+  const isDark = resolvedTheme === 'dark';
 
   return (
     <Button
       variant="ghost"
       size="icon"
-      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
       className="h-9 w-9"
     >
-      <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-      <span className="sr-only">Toggle theme</span>
+      {isDark ? (
+        <Moon className="h-4 w-4" />
+      ) : (
+        <Sun className="h-4 w-4" />
+      )}
+      <span className="sr-only">Toggle theme to {isDark ? 'light' : 'dark'}</span>
     </Button>
   );
 };
 
 ThemeToggle.displayName = 'ThemeToggle';
 export default ThemeToggle;
+

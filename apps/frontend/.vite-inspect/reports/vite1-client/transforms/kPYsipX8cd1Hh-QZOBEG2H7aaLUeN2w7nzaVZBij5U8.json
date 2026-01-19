@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/toolbox.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M16 12v4\", key: \"vf1vip\" }],\n  [\n    \"path\",\n    {\n      d: \"M16 6a2 2 0 0 1 1.414.586l4 4A2 2 0 0 1 22 12v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 .586-1.414l4-4A2 2 0 0 1 8 6z\",\n      key: \"1h1rvn\"\n    }\n  ],\n  [\"path\", { d: \"M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2\", key: \"1ksdt3\" }],\n  [\"path\", { d: \"M2 14h20\", key: \"myj16y\" }],\n  [\"path\", { d: \"M8 12v4\", key: \"1w4uao\" }]\n];\nconst Toolbox = createLucideIcon(\"toolbox\", __iconNode);\n\nexport { __iconNode, Toolbox as default };\n//# sourceMappingURL=toolbox.js.map\n",
+      "start": 1768772628552,
+      "end": 1768772628552
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628552,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628579,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628610,
+      "end": 1768772628613,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628636,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

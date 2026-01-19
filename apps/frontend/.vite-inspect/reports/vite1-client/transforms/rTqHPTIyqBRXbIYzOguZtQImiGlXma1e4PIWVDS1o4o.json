@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-utils/dist/es/easing/utils/get-easing-for-segment.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { wrap } from '../../wrap.mjs';\nimport { isEasingArray } from './is-easing-array.mjs';\n\nfunction getEasingForSegment(easing, i) {\n    return isEasingArray(easing) ? easing[wrap(0, easing.length, i)] : easing;\n}\n\nexport { getEasingForSegment };\n",
+      "start": 1768772628753,
+      "end": 1768772628753
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628753,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628770,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628789,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628805,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

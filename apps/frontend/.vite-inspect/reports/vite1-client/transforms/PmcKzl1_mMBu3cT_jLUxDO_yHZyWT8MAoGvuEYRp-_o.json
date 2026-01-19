@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/spotlight.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M15.295 19.562 16 22\", key: \"31jsb7\" }],\n  [\"path\", { d: \"m17 16 3.758 2.098\", key: \"121ar7\" }],\n  [\"path\", { d: \"m19 12.5 3.026-.598\", key: \"19ukd3\" }],\n  [\n    \"path\",\n    {\n      d: \"M7.61 6.3a3 3 0 0 0-3.92 1.3l-1.38 2.79a3 3 0 0 0 1.3 3.91l6.89 3.597a1 1 0 0 0 1.342-.447l3.106-6.211a1 1 0 0 0-.447-1.341z\",\n      key: \"lwb9l9\"\n    }\n  ],\n  [\"path\", { d: \"M8 9V2\", key: \"1xa0v7\" }]\n];\nconst Spotlight = createLucideIcon(\"spotlight\", __iconNode);\n\nexport { __iconNode, Spotlight as default };\n//# sourceMappingURL=spotlight.js.map\n",
+      "start": 1768772628548,
+      "end": 1768772628548
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628548,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628576,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628603,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628636,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

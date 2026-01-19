@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/projection/node/DocumentProjectionNode.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { addDomEvent } from '../../events/add-dom-event.mjs';\nimport { createProjectionNode } from './create-projection-node.mjs';\n\nconst DocumentProjectionNode = createProjectionNode({\n    attachResizeListener: (ref, notify) => addDomEvent(ref, \"resize\", notify),\n    measureScroll: () => ({\n        x: document.documentElement.scrollLeft || document.body.scrollLeft,\n        y: document.documentElement.scrollTop || document.body.scrollTop,\n    }),\n    checkIsScrollRoot: () => true,\n});\n\nexport { DocumentProjectionNode };\n",
+      "start": 1768772628756,
+      "end": 1768772628756
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628756,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628772,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628791,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628807,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

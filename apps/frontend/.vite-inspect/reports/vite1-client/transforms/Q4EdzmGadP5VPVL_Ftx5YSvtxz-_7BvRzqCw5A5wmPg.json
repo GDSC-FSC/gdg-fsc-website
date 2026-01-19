@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/ScheduleInterval.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as internal from \"./internal/schedule/interval.js\";\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const IntervalTypeId = internal.IntervalTypeId;\n/**\n * Constructs a new interval from the two specified endpoints. If the start\n * endpoint greater than the end endpoint, then a zero size interval will be\n * returned.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const make = internal.make;\n/**\n * An `Interval` of zero-width.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const empty = internal.empty;\n/**\n * Returns `true` if this `Interval` is less than `that` interval, `false`\n * otherwise.\n *\n * @since 2.0.0\n * @category ordering\n */\nexport const lessThan = internal.lessThan;\n/**\n * Returns the minimum of two `Interval`s.\n *\n * @since 2.0.0\n * @category ordering\n */\nexport const min = internal.min;\n/**\n * Returns the maximum of two `Interval`s.\n *\n * @since 2.0.0\n * @category ordering\n */\nexport const max = internal.max;\n/**\n * Returns `true` if the specified `Interval` is empty, `false` otherwise.\n *\n * @since 2.0.0\n * @category ordering\n */\nexport const isEmpty = internal.isEmpty;\n/**\n * Returns `true` if the specified `Interval` is non-empty, `false` otherwise.\n *\n * @since 2.0.0\n * @category ordering\n */\nexport const isNonEmpty = internal.isNonEmpty;\n/**\n * Computes a new `Interval` which is the intersection of this `Interval` and\n * that `Interval`.\n *\n * @since 2.0.0\n * @category ordering\n */\nexport const intersect = internal.intersect;\n/**\n * Calculates the size of the `Interval` as the `Duration` from the start of the\n * interval to the end of the interval.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const size = internal.size;\n/**\n * Computes a new `Interval` which is the union of this `Interval` and that\n * `Interval` as a `Some`, otherwise returns `None` if the two intervals cannot\n * form a union.\n *\n * @since 2.0.0\n * @category utils\n */\nexport const union = internal.union;\n/**\n * Construct an `Interval` that includes all time equal to and after the\n * specified start time.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const after = internal.after;\n/**\n * Construct an `Interval` that includes all time equal to and before the\n * specified end time.\n *\n * @category constructors\n * @since 2.0.0\n */\nexport const before = internal.before;\n//# sourceMappingURL=ScheduleInterval.js.map",
+      "start": 1768772628410,
+      "end": 1768772628410
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628410,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628416,
+      "end": 1768772628420,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628432,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628476,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

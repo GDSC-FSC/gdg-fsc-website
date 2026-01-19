@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/stm/tSubscriptionRef.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Effect from \"../../Effect.js\";\nimport { dual, pipe } from \"../../Function.js\";\nimport * as Option from \"../../Option.js\";\nimport { pipeArguments } from \"../../Pipeable.js\";\nimport * as STM from \"../../STM.js\";\nimport * as TPubSub from \"../../TPubSub.js\";\nimport * as TQueue from \"../../TQueue.js\";\nimport * as TRef from \"../../TRef.js\";\nimport * as stream from \"../stream.js\";\nimport { tDequeueVariance } from \"./tQueue.js\";\nimport { tRefVariance } from \"./tRef.js\";\n/** @internal */\nconst TSubscriptionRefSymbolKey = \"effect/TSubscriptionRef\";\n/** @internal */\nexport const TSubscriptionRefTypeId = /*#__PURE__*/Symbol.for(TSubscriptionRefSymbolKey);\nconst TSubscriptionRefVariance = {\n  /* c8 ignore next */\n  _A: _ => _\n};\nclass TDequeueMerge {\n  first;\n  second;\n  [TQueue.TDequeueTypeId] = tDequeueVariance;\n  constructor(first, second) {\n    this.first = first;\n    this.second = second;\n  }\n  peek = /*#__PURE__*/STM.gen(this, function* () {\n    const first = yield* this.peekOption;\n    if (first._tag === \"Some\") {\n      return first.value;\n    }\n    return yield* STM.retry;\n  });\n  peekOption = /*#__PURE__*/STM.gen(this, function* () {\n    const first = yield* this.first.peekOption;\n    if (first._tag === \"Some\") {\n      return first;\n    }\n    const second = yield* this.second.peekOption;\n    if (second._tag === \"Some\") {\n      return second;\n    }\n    return Option.none();\n  });\n  take = /*#__PURE__*/STM.gen(this, function* () {\n    if (!(yield* this.first.isEmpty)) {\n      return yield* this.first.take;\n    }\n    if (!(yield* this.second.isEmpty)) {\n      return yield* this.second.take;\n    }\n    return yield* STM.retry;\n  });\n  takeAll = /*#__PURE__*/STM.gen(this, function* () {\n    return [...(yield* this.first.takeAll), ...(yield* this.second.takeAll)];\n  });\n  takeUpTo(max) {\n    return STM.gen(this, function* () {\n      const first = yield* this.first.takeUpTo(max);\n      if (first.length >= max) {\n        return first;\n      }\n      return [...first, ...(yield* this.second.takeUpTo(max - first.length))];\n    });\n  }\n  capacity() {\n    return this.first.capacity() + this.second.capacity();\n  }\n  size = /*#__PURE__*/STM.gen(this, function* () {\n    return (yield* this.first.size) + (yield* this.second.size);\n  });\n  isFull = /*#__PURE__*/STM.gen(this, function* () {\n    return (yield* this.first.isFull) && (yield* this.second.isFull);\n  });\n  isEmpty = /*#__PURE__*/STM.gen(this, function* () {\n    return (yield* this.first.isEmpty) && (yield* this.second.isEmpty);\n  });\n  shutdown = /*#__PURE__*/STM.gen(this, function* () {\n    yield* this.first.shutdown;\n    yield* this.second.shutdown;\n  });\n  isShutdown = /*#__PURE__*/STM.gen(this, function* () {\n    return (yield* this.first.isShutdown) && (yield* this.second.isShutdown);\n  });\n  awaitShutdown = /*#__PURE__*/STM.gen(this, function* () {\n    yield* this.first.awaitShutdown;\n    yield* this.second.awaitShutdown;\n  });\n}\n/** @internal */\nclass TSubscriptionRefImpl {\n  ref;\n  pubsub;\n  [TSubscriptionRefTypeId] = TSubscriptionRefVariance;\n  [TRef.TRefTypeId] = tRefVariance;\n  constructor(ref, pubsub) {\n    this.ref = ref;\n    this.pubsub = pubsub;\n  }\n  get todos() {\n    return this.ref.todos;\n  }\n  get versioned() {\n    return this.ref.versioned;\n  }\n  pipe() {\n    return pipeArguments(this, arguments);\n  }\n  get changes() {\n    return STM.gen(this, function* () {\n      const first = yield* TQueue.unbounded();\n      yield* TQueue.offer(first, yield* TRef.get(this.ref));\n      return new TDequeueMerge(first, yield* TPubSub.subscribe(this.pubsub));\n    });\n  }\n  modify(f) {\n    return pipe(TRef.get(this.ref), STM.map(f), STM.flatMap(([b, a]) => pipe(TRef.set(this.ref, a), STM.as(b), STM.zipLeft(TPubSub.publish(this.pubsub, a)))));\n  }\n}\n/** @internal */\nexport const make = value => pipe(STM.all([TPubSub.unbounded(), TRef.make(value)]), STM.map(([pubsub, ref]) => new TSubscriptionRefImpl(ref, pubsub)));\n/** @internal */\nexport const get = self => TRef.get(self.ref);\n/** @internal */\nexport const set = /*#__PURE__*/dual(2, (self, value) => self.modify(() => [void 0, value]));\n/** @internal */\nexport const getAndSet = /*#__PURE__*/dual(2, (self, value) => self.modify(a => [a, value]));\n/** @internal */\nexport const getAndUpdate = /*#__PURE__*/dual(2, (self, f) => self.modify(a => [a, f(a)]));\n/** @internal */\nexport const getAndUpdateSome = /*#__PURE__*/dual(2, (self, f) => self.modify(a => Option.match(f(a), {\n  onNone: () => [a, a],\n  onSome: b => [a, b]\n})));\n/** @internal */\nexport const setAndGet = /*#__PURE__*/dual(2, (self, value) => self.modify(() => [value, value]));\n/** @internal */\nexport const modify = /*#__PURE__*/dual(2, (self, f) => self.modify(f));\n/** @internal */\nexport const modifySome = /*#__PURE__*/dual(3, (self, fallback, f) => self.modify(a => Option.match(f(a), {\n  onNone: () => [fallback, a],\n  onSome: b => b\n})));\n/** @internal */\nexport const update = /*#__PURE__*/dual(2, (self, f) => self.modify(a => [void 0, f(a)]));\n/** @internal */\nexport const updateAndGet = /*#__PURE__*/dual(2, (self, f) => self.modify(a => {\n  const b = f(a);\n  return [b, b];\n}));\n/** @internal */\nexport const updateSome = /*#__PURE__*/dual(2, (self, f) => self.modify(a => [void 0, Option.match(f(a), {\n  onNone: () => a,\n  onSome: b => b\n})]));\n/** @internal */\nexport const updateSomeAndGet = /*#__PURE__*/dual(2, (self, f) => self.modify(a => Option.match(f(a), {\n  onNone: () => [a, a],\n  onSome: b => [b, b]\n})));\n/** @internal */\nexport const changesScoped = self => Effect.acquireRelease(self.changes, TQueue.shutdown);\n/** @internal */\nexport const changesStream = self => stream.unwrap(Effect.map(self.changes, stream.fromTQueue));\n//# sourceMappingURL=tSubscriptionRef.js.map",
+      "start": 1768772628585,
+      "end": 1768772628585
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628585,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628618,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628647,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628704,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

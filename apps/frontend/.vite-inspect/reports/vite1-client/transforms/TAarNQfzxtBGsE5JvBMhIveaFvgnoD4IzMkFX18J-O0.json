@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@effect/platform/dist/esm/HttpMiddleware.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as internal from \"./internal/httpMiddleware.js\";\n/**\n * @since 1.0.0\n * @category constructors\n */\nexport const make = internal.make;\n/**\n * @since 1.0.0\n * @category constructors\n */\nexport const logger = internal.logger;\n/**\n * @since 1.0.0\n * @category fiber refs\n */\nexport const loggerDisabled = internal.loggerDisabled;\n/**\n * @since 1.0.0\n * @category fiber refs\n */\nexport const withLoggerDisabled = internal.withLoggerDisabled;\n/**\n * @since 1.0.0\n * @category fiber refs\n */\nexport const currentTracerDisabledWhen = internal.currentTracerDisabledWhen;\n/**\n * @since 1.0.0\n * @category fiber refs\n */\nexport const withTracerDisabledWhen = internal.withTracerDisabledWhen;\n/**\n * @since 1.0.0\n * @category fiber refs\n */\nexport const withTracerDisabledWhenEffect = internal.withTracerDisabledWhenEffect;\n/**\n * @since 1.0.0\n * @category fiber refs\n */\nexport const withTracerDisabledForUrls = internal.withTracerDisabledForUrls;\n/**\n * @since 1.0.0\n * @category constructors\n */\nexport const xForwardedHeaders = internal.xForwardedHeaders;\n/**\n * @since 1.0.0\n * @category constructors\n */\nexport const searchParamsParser = internal.searchParamsParser;\n/**\n * Creates a CORS (Cross-Origin Resource Sharing) middleware for HTTP applications.\n *\n * @param options - CORS configuration options\n * @param options.allowedOrigins - Origins allowed to access the resource. Can be:\n *   - An array of origin strings (e.g., `[\"https://example.com\", \"https://api.example.com\"]`)\n *   - A predicate function to dynamically allow origins\n *   - If empty array (default): allows all origins with `Access-Control-Allow-Origin: *`\n * @param options.allowedMethods - HTTP methods allowed for CORS requests.\n *   Default: `[\"GET\", \"HEAD\", \"PUT\", \"PATCH\", \"POST\", \"DELETE\"]`\n * @param options.allowedHeaders - Headers allowed in CORS requests. **Important behavior**:\n *   - If empty array (default): reflects back the client's `Access-Control-Request-Headers`,\n *     effectively allowing all headers requested by the client\n *   - If non-empty array: only the specified headers are allowed\n *   - This means the default behavior is permissive, not restrictive\n * @param options.exposedHeaders - Headers exposed to the client in the response.\n *   Default: `[]`\n * @param options.maxAge - Maximum time (in seconds) that preflight request results can be cached.\n *   If not specified, no `Access-Control-Max-Age` header is sent\n * @param options.credentials - Whether to allow credentials (cookies, authorization headers, etc.).\n *   Default: `false`\n *\n * @example\n * ```ts\n * import { HttpMiddleware, HttpRouter, HttpServerResponse } from \"@effect/platform\"\n *\n * // Allow all origins and reflect requested headers (default behavior)\n * HttpRouter.empty.pipe(\n *   HttpRouter.get(\"/\", HttpServerResponse.empty()),\n *   HttpMiddleware.cors()\n * )\n *\n * // Restrict to specific origins and headers\n * HttpRouter.empty.pipe(\n *   HttpRouter.get(\"/\", HttpServerResponse.empty()),\n *   HttpMiddleware.cors({\n *     allowedOrigins: [\"https://example.com\"],\n *     allowedHeaders: [\"Content-Type\", \"Authorization\"],\n *     credentials: true\n *   })\n * )\n *\n * // Dynamic origin checking with predicate\n * HttpRouter.empty.pipe(\n *   HttpRouter.get(\"/\", HttpServerResponse.empty()),\n *   HttpMiddleware.cors({\n *     allowedOrigins: (origin) => origin.endsWith(\".example.com\")\n *   })\n * )\n * ```\n *\n * @since 1.0.0\n * @category constructors\n */\nexport const cors = internal.cors;\n/**\n * @since 1.0.0\n * @category Tracing\n */\nexport const SpanNameGenerator = internal.SpanNameGenerator;\n/**\n * Customizes the span name for the http app.\n *\n * ```ts\n * import {\n *   HttpMiddleware,\n *   HttpRouter,\n *   HttpServer,\n *   HttpServerResponse\n * } from \"@effect/platform\"\n * import { NodeHttpServer, NodeRuntime } from \"@effect/platform-node\"\n * import { Layer } from \"effect\"\n * import { createServer } from \"http\"\n *\n * HttpRouter.empty.pipe(\n *   HttpRouter.get(\"/\", HttpServerResponse.empty()),\n *   HttpServer.serve(),\n *   // Customize the span names for this HttpApp\n *   HttpMiddleware.withSpanNameGenerator((request) => `GET ${request.url}`),\n *   Layer.provide(NodeHttpServer.layer(createServer, { port: 3000 })),\n *   Layer.launch,\n *   NodeRuntime.runMain\n * )\n * ```\n *\n * @since 1.0.0\n * @category Tracing\n */\nexport const withSpanNameGenerator = internal.withSpanNameGenerator;\n//# sourceMappingURL=HttpMiddleware.js.map",
+      "start": 1768772628586,
+      "end": 1768772628586
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628586,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628619,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628649,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628704,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

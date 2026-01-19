@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/effects/utils/create-dom-effect.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { resolveElements } from '../../utils/resolve-elements.mjs';\n\nfunction createSelectorEffect(subjectEffect) {\n    return (subject, values) => {\n        const elements = resolveElements(subject);\n        const subscriptions = [];\n        for (const element of elements) {\n            const remove = subjectEffect(element, values);\n            subscriptions.push(remove);\n        }\n        return () => {\n            for (const remove of subscriptions)\n                remove();\n        };\n    };\n}\n\nexport { createSelectorEffect };\n",
+      "start": 1768772628847,
+      "end": 1768772628847
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628847,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628850,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628854,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628857,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

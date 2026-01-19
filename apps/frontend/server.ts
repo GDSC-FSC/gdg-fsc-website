@@ -24,6 +24,7 @@ import { resourceFromAttributes } from '@opentelemetry/resources';
 import { BatchSpanProcessor } from '@opentelemetry/sdk-trace-node';
 import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions';
 import type { SocketAddress } from 'bun';
+import { Effect } from 'effect';
 import { Elysia } from 'elysia';
 import { ip } from 'elysia-ip';
 import { DefaultContext, type Generator, rateLimit } from 'elysia-rate-limit';
@@ -33,8 +34,12 @@ import logixlysia from 'logixlysia';
 import { spawn } from 'node:child_process';
 import { generateKeyPairSync } from 'node:crypto';
 import fs from 'node:fs';
-import { logger } from "../../packages/shared/utils";
+import { ensureBaseError } from '../../packages/shared/classes/src/lib/error';
+import { logger } from '../../packages/shared/utils/src';
 import { app as application } from './src/constants';
+import { eventsController } from './src/server/controller/events-controller';
+import { reposController } from './src/server/controller/repos-controller';
+import { effectPlugin } from './src/server/effect';
 import { Stringify } from './src/utils';
 
 /**
@@ -46,7 +51,7 @@ const ipGenerator: Generator<{ ip: SocketAddress }> = (_r, _s, { ip }) => ip?.ad
  * The current application version, loaded from package.json.
  */
 const version: string =
-  (await import('./package.json').then((t) => t.version).catch(console.error)) || 'N/A';
+  (await import('./package.json').then((t) => t.version).catch(logger.error)) || 'N/A';
 
 /**
  * Checks if Docker is running on the system.
@@ -64,9 +69,10 @@ const checkDocker = async (): Promise<boolean> => {
 /**
  * Starts a Jaeger tracing container using Docker.
  * Logs output to ./logs/jaeger.log.
+ * Jaeger is running at http://localhost:16686
  */
 const runJaeger = (): void => {
-  const [out, err] = Array(2).fill(fs.openSync('./logs/jaeger.log', 'a'));
+  const [out, err] = new Array(2).fill(fs.openSync('./logs/jaeger.log', 'a'));
 
   const jaeger = spawn(
     'docker',
@@ -105,7 +111,9 @@ const runJaeger = (): void => {
  */
 const timingMiddleware = new Elysia()
   .state({ start: 0 })
-  .onBeforeHandle(({ store }) => (store.start = Date.now()))
+  .onBeforeHandle(({ store }) => {
+    store.start = Date.now();
+  })
   .onAfterHandle(({ path, store: { start } }) =>
     logger.info(`[Elysia] ${path} took ${Date.now() - start}ms to execute`),
   );
@@ -138,20 +146,22 @@ const authRoute = new Elysia().post('/auth/register', () => {
 /**
  * Middleware to require JWT Bearer authentication.
  */
-const requireAuth = new Elysia().use(bearer()).derive(({ bearer }) => {
-  if (!bearer) throw new Error('Missing Bearer token');
-  try {
-    const payload = jwt.verify(bearer, JWT_SECRET) as { pub: string };
-    return { publicKey: payload.pub };
-  } catch {
-    throw new Error('Invalid or expired token');
-  }
-});
+const requireAuth = (app: Elysia) =>
+  app.use(bearer()).derive(({ bearer }): { publicKey: string } => {
+    if (!bearer) throw new Error('Missing Bearer token');
+    try {
+      const payload = jwt.verify(bearer, JWT_SECRET) as { pub: string };
+      return { publicKey: payload.pub };
+    } catch {
+      throw new Error('Invalid or expired token');
+    }
+  });
 
 /**
  * Utility routes for root, status, version, info, and health endpoints.
  */
 const utilityRoute = new Elysia()
+  .use(effectPlugin())
   .use(timingMiddleware)
   .get(
     '/',
@@ -175,7 +185,6 @@ const utilityRoute = new Elysia()
     ({ set }) =>
       record('root.head', () => {
         set.status = 200;
-        return;
       }),
     {
       detail: {
@@ -239,7 +248,6 @@ const utilityRoute = new Elysia()
     ({ set }) =>
       record('status.head', () => {
         set.status = 200;
-        return;
       }),
     {
       detail: {
@@ -290,7 +298,6 @@ const utilityRoute = new Elysia()
     ({ set }) =>
       record('version.head', () => {
         set.status = 200;
-        return;
       }),
     {
       detail: {
@@ -344,7 +351,6 @@ const utilityRoute = new Elysia()
     ({ set }) =>
       record('info.head', () => {
         set.status = 200;
-        return;
       }),
     {
       detail: {
@@ -374,9 +380,9 @@ const utilityRoute = new Elysia()
   )
   .get(
     '/health',
-    async () =>
+    async ({ runEffect }) =>
       record('health.get', () => {
-        return Stringify({ message: 'ok', status: 200 });
+        return runEffect(Effect.succeed(Stringify({ message: 'ok', status: 200 })));
       }),
     {
       detail: {
@@ -391,7 +397,6 @@ const utilityRoute = new Elysia()
     ({ set }) =>
       record('health.head', () => {
         set.status = 200;
-        return;
       }),
     {
       detail: {
@@ -427,7 +432,7 @@ const protectedRoute = new Elysia()
   .use(requireAuth)
   .get(
     '/example',
-    (ctx: { publicKey: string }) =>
+    (ctx) =>
       record('protected.example.get', () => {
         return Stringify({
           message: 'You have access!',
@@ -447,7 +452,6 @@ const protectedRoute = new Elysia()
     ({ set }) =>
       record('protected.example.head', () => {
         set.status = 200;
-        return;
       }),
     {
       detail: {
@@ -487,8 +491,17 @@ const otelResource = resourceFromAttributes({
  * OTLP trace exporter for sending traces to Jaeger.
  */
 const otlpExporter = new OTLPTraceExporter({
-  url: 'http://localhost:4318/v1/traces',
-  keepAlive: true,
+  url:
+    process.env.MODE === 'development'
+      ? 'http://localhost:4318/v1/traces'
+      : 'https://api.axiom.co/v1/traces',
+  headers:
+    process.env.MODE === 'development'
+      ? {}
+      : {
+          Authorization: `Bearer ${process.env.AXIOM_TOKEN}`,
+          'X-Axiom-Dataset': process.env.AXIOM_DATASET || '',
+        },
 });
 
 /**
@@ -538,6 +551,7 @@ const api = new Elysia({ prefix: '/api/v1' })
       });
     });
   })
+  .use(effectPlugin())
   .use(
     logixlysia({
       config: {
@@ -598,7 +612,10 @@ const api = new Elysia({ prefix: '/api/v1' })
   )
   .use(
     cors({
-      origin: application.url,
+      origin:
+        process.env.MODE === 'development'
+          ? ['http://localhost:5173', 'http://127.0.0.1:5173', application.url]
+          : application.url,
       methods: ['GET', 'POST', 'OPTIONS', 'HEAD'],
       exposeHeaders: ['Content-Type', 'Authorization'],
       maxAge: 86_400,
@@ -622,15 +639,41 @@ const api = new Elysia({ prefix: '/api/v1' })
       context: new DefaultContext(10_000),
     }),
   )
+  // Public routes (no auth required)
+  .use(eventsController)
+  .use(reposController)
+  // Auth middleware - routes below require Bearer token
   .use(authRoute)
   .use(requireAuth)
   .use(protectedRoute)
   .use(utilityRoute)
-  .onError(({ code, error, set }) => {
-    logger.error(Stringify({ ERROR: error }));
-    set.status = code === 'NOT_FOUND' ? 404 : 500;
+  .onError(({ code, error, set, path, request }) => {
+    // Wrap the error in BaseError for consistent structure
+    const baseError = ensureBaseError(error as Error, `http:${request.method}:${path}`, {
+      code,
+      path,
+      method: request.method,
+    });
+
+    logger.error(baseError.toString());
+
+    // Set appropriate status code
+    if (code === 'NOT_FOUND') {
+      set.status = 404;
+    } else if (code === 'VALIDATION') {
+      set.status = 400;
+    } else {
+      set.status = 500;
+    }
+
+    // Return structured error response
     return Stringify({
-      error: Error.isError?.(error) ? Stringify({ error }) : Stringify({ error }),
+      error: {
+        name: baseError.name,
+        message: baseError.cause.message,
+        command: baseError.command,
+        timestamp: baseError.timestamp,
+      },
       status: set.status,
     });
   });
@@ -710,6 +753,16 @@ process.on('SIGINT', shutdown);
 process.on('SIGTERM', shutdown);
 process.on('exit', shutdown);
 
+process.on('uncaughtException', (error) => {
+  logger.error('Uncaught exception', error);
+  shutdown();
+});
+
+process.on('unhandledRejection', (reason) => {
+  logger.error('Unhandled rejection', reason);
+  shutdown();
+});
+
 const initializeJaeger = async (): Promise<void> => {
   if (await checkDocker()) {
     logger.info('Docker is running. Checking for Jaeger container...');
@@ -721,11 +774,15 @@ const initializeJaeger = async (): Promise<void> => {
       runJaeger();
     }
   } else {
-    logger.error('Docker is not running. Please start Docker to use Jaeger tracing.');
-    process.exit(1);
+    // Don't exit - just warn and continue without Jaeger
+    logger.warn('Docker is not running. Jaeger tracing will be disabled.');
   }
-
-  logger.info(`🦊 Elysia is running at ${root.server?.hostname}:${root.server?.port}`);
 };
 
-process.env.MODE === 'development' && require.main === module && initializeJaeger();
+// Use import.meta.main for ESM/Bun compatibility
+if (import.meta.main) {
+  logger.info(`🦊 Elysia is running at ${root.server?.hostname}:${root.server?.port}`);
+  if (process.env.MODE === 'development') {
+    await initializeJaeger();
+  }
+}

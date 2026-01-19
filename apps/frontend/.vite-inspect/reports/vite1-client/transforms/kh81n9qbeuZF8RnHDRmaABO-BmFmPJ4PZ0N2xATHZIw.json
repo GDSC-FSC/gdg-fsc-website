@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/chess-knight.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\n    \"path\",\n    { d: \"M5 20a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z\", key: \"b89hwq\" }\n  ],\n  [\n    \"path\",\n    {\n      d: \"M16.5 18c1-2 2.5-5 2.5-9a7 7 0 0 0-7-7H6.635a1 1 0 0 0-.768 1.64L7 5l-2.32 5.802a2 2 0 0 0 .95 2.526l2.87 1.456\",\n      key: \"axbnlq\"\n    }\n  ],\n  [\"path\", { d: \"m15 5 1.425-1.425\", key: \"15xz8w\" }],\n  [\"path\", { d: \"m17 8 1.53-1.53\", key: \"15zhqh\" }],\n  [\"path\", { d: \"M9.713 12.185 7 18\", key: \"1ocm0l\" }]\n];\nconst ChessKnight = createLucideIcon(\"chess-knight\", __iconNode);\n\nexport { __iconNode, ChessKnight as default };\n//# sourceMappingURL=chess-knight.js.map\n",
+      "start": 1768772628537,
+      "end": 1768772628537
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628537,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628564,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628594,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628625,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

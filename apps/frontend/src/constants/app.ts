@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-const url: string = 'https://gdg-fsc.web.app',
-  name: string = 'GDG on Campus FSC',
-  email: string = '',
-  description: string = '';
+const url = 'https://gdg-fsc.web.app';
+const name = 'GDG on Campus FSC';
+const email = '';
+const description = '';
 
 export const app: Readonly<{
   name: string;
@@ -27,10 +27,10 @@ export const app: Readonly<{
   url: string;
   logo: string;
 }> = {
-  name: name,
-  email: email,
-  description: description,
+  name,
+  email,
+  description,
   keywords: [''],
-  url: url,
+  url,
   logo: `${url}/`,
 };

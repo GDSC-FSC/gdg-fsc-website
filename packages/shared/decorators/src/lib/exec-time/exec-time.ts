@@ -1,18 +1,53 @@
-import { execTimeFn } from './exec-time.fn.ts';
-import type { ExactTimeReportable, ReportFunction } from './exec-time.types.ts';
+/**
+ * Copyright (c) 2026 GDG on Campus Farmingdale State College
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 
-export function execTime<T = any>(arg?: ReportFunction | string): ExactTimeReportable<T> {
+import { execTimeFn } from './exec-time.fn.js';
+import type { ReportFunction } from './exec-time.types.js';
+
+export function execTime<T = any>(arg?: ReportFunction | string): any {
   return (
-    target: T,
-    propertyName: keyof T,
-    descriptor: TypedPropertyDescriptor<Method<any>>,
-  ): TypedPropertyDescriptor<Method<any>> => {
-    if (descriptor.value) {
-      descriptor.value = execTimeFn(descriptor.value, arg);
-
-      return descriptor;
+    targetOrValue: T | any,
+    propertyNameOrContext: keyof T | ClassMethodDecoratorContext,
+    descriptor?: TypedPropertyDescriptor<any>,
+  ): any => {
+    // Legacy decorator
+    if (descriptor) {
+      if (descriptor.value) {
+        descriptor.value = execTimeFn(descriptor.value, arg);
+        return descriptor;
+      }
+      throw new Error('@execTime is applicable only on methods.');
     }
 
-    throw new Error('@execTime is applicable only on a methods.');
+    // Standard decorator (Stage 3)
+    // targetOrValue is the method itself
+    // propertyNameOrContext is the context
+    const method = targetOrValue as any;
+    const context = propertyNameOrContext as ClassMethodDecoratorContext;
+
+    if (context.kind === 'method') {
+      return execTimeFn(method, arg);
+    }
+
+    throw new Error('@execTime is applicable only on methods.');
   };
 }

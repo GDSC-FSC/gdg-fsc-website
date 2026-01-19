@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/differ/readonlyArrayPatch.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Arr from \"../../Array.js\";\nimport * as Equal from \"../../Equal.js\";\nimport * as Dual from \"../../Function.js\";\nimport * as Data from \"../data.js\";\n/** @internal */\nexport const ReadonlyArrayPatchTypeId = /*#__PURE__*/Symbol.for(\"effect/DifferReadonlyArrayPatch\");\nfunction variance(a) {\n  return a;\n}\nconst PatchProto = {\n  ...Data.Structural.prototype,\n  [ReadonlyArrayPatchTypeId]: {\n    _Value: variance,\n    _Patch: variance\n  }\n};\nconst EmptyProto = /*#__PURE__*/Object.assign(/*#__PURE__*/Object.create(PatchProto), {\n  _tag: \"Empty\"\n});\nconst _empty = /*#__PURE__*/Object.create(EmptyProto);\n/**\n * @internal\n */\nexport const empty = () => _empty;\nconst AndThenProto = /*#__PURE__*/Object.assign(/*#__PURE__*/Object.create(PatchProto), {\n  _tag: \"AndThen\"\n});\nconst makeAndThen = (first, second) => {\n  const o = Object.create(AndThenProto);\n  o.first = first;\n  o.second = second;\n  return o;\n};\nconst AppendProto = /*#__PURE__*/Object.assign(/*#__PURE__*/Object.create(PatchProto), {\n  _tag: \"Append\"\n});\nconst makeAppend = values => {\n  const o = Object.create(AppendProto);\n  o.values = values;\n  return o;\n};\nconst SliceProto = /*#__PURE__*/Object.assign(/*#__PURE__*/Object.create(PatchProto), {\n  _tag: \"Slice\"\n});\nconst makeSlice = (from, until) => {\n  const o = Object.create(SliceProto);\n  o.from = from;\n  o.until = until;\n  return o;\n};\nconst UpdateProto = /*#__PURE__*/Object.assign(/*#__PURE__*/Object.create(PatchProto), {\n  _tag: \"Update\"\n});\nconst makeUpdate = (index, patch) => {\n  const o = Object.create(UpdateProto);\n  o.index = index;\n  o.patch = patch;\n  return o;\n};\n/** @internal */\nexport const diff = options => {\n  let i = 0;\n  let patch = empty();\n  while (i < options.oldValue.length && i < options.newValue.length) {\n    const oldElement = options.oldValue[i];\n    const newElement = options.newValue[i];\n    const valuePatch = options.differ.diff(oldElement, newElement);\n    if (!Equal.equals(valuePatch, options.differ.empty)) {\n      patch = combine(patch, makeUpdate(i, valuePatch));\n    }\n    i = i + 1;\n  }\n  if (i < options.oldValue.length) {\n    patch = combine(patch, makeSlice(0, i));\n  }\n  if (i < options.newValue.length) {\n    patch = combine(patch, makeAppend(Arr.drop(i)(options.newValue)));\n  }\n  return patch;\n};\n/** @internal */\nexport const combine = /*#__PURE__*/Dual.dual(2, (self, that) => makeAndThen(self, that));\n/** @internal */\nexport const patch = /*#__PURE__*/Dual.dual(3, (self, oldValue, differ) => {\n  if (self._tag === \"Empty\") {\n    return oldValue;\n  }\n  let readonlyArray = oldValue.slice();\n  let patches = Arr.of(self);\n  while (Arr.isNonEmptyArray(patches)) {\n    const head = Arr.headNonEmpty(patches);\n    const tail = Arr.tailNonEmpty(patches);\n    switch (head._tag) {\n      case \"Empty\":\n        {\n          patches = tail;\n          break;\n        }\n      case \"AndThen\":\n        {\n          tail.unshift(head.first, head.second);\n          patches = tail;\n          break;\n        }\n      case \"Append\":\n        {\n          for (const value of head.values) {\n            readonlyArray.push(value);\n          }\n          patches = tail;\n          break;\n        }\n      case \"Slice\":\n        {\n          readonlyArray = readonlyArray.slice(head.from, head.until);\n          patches = tail;\n          break;\n        }\n      case \"Update\":\n        {\n          readonlyArray[head.index] = differ.patch(head.patch, readonlyArray[head.index]);\n          patches = tail;\n          break;\n        }\n    }\n  }\n  return readonlyArray;\n});\n//# sourceMappingURL=readonlyArrayPatch.js.map",
+      "start": 1768772628587,
+      "end": 1768772628587
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628587,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628621,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628650,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

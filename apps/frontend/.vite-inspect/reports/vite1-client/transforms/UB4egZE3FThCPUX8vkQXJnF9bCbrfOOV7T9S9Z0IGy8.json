@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/TestLive.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @since 2.0.0\n */\nimport * as Context from \"./Context.js\";\nimport * as core from \"./internal/core.js\";\nimport * as defaultServices from \"./internal/defaultServices.js\";\n/**\n * @since 2.0.0\n */\nexport const TestLiveTypeId = /*#__PURE__*/Symbol.for(\"effect/TestLive\");\n/**\n * @since 2.0.0\n */\nexport const TestLive = /*#__PURE__*/Context.GenericTag(\"effect/TestLive\");\n/** @internal */\nclass LiveImpl {\n  services;\n  [TestLiveTypeId] = TestLiveTypeId;\n  constructor(services) {\n    this.services = services;\n  }\n  provide(effect) {\n    return core.fiberRefLocallyWith(defaultServices.currentServices, Context.merge(this.services))(effect);\n  }\n}\n/**\n * @since 2.0.0\n */\nexport const make = services => new LiveImpl(services);\n//# sourceMappingURL=TestLive.js.map",
+      "start": 1768772628414,
+      "end": 1768772628414
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628414,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628418,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628433,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628478,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

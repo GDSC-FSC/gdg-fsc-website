@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/message-circle-reply.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\n    \"path\",\n    {\n      d: \"M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719\",\n      key: \"1sd12s\"\n    }\n  ],\n  [\"path\", { d: \"m10 15-3-3 3-3\", key: \"1pgupc\" }],\n  [\"path\", { d: \"M7 12h8a2 2 0 0 1 2 2v1\", key: \"89sh1g\" }]\n];\nconst MessageCircleReply = createLucideIcon(\"message-circle-reply\", __iconNode);\n\nexport { __iconNode, MessageCircleReply as default };\n//# sourceMappingURL=message-circle-reply.js.map\n",
+      "start": 1768772628550,
+      "end": 1768772628550
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628550,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628577,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628608,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628634,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

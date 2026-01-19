@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 
-import { test } from '../../../test-fixtures';
+import { test } from './test-fixtures';
 
 test.describe('About page', () => {});

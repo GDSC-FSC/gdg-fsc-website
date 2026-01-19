@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/database-zap.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"ellipse\", { cx: \"12\", cy: \"5\", rx: \"9\", ry: \"3\", key: \"msslwz\" }],\n  [\"path\", { d: \"M3 5V19A9 3 0 0 0 15 21.84\", key: \"14ibmq\" }],\n  [\"path\", { d: \"M21 5V8\", key: \"1marbg\" }],\n  [\"path\", { d: \"M21 12L18 17H22L19 22\", key: \"zafso\" }],\n  [\"path\", { d: \"M3 12A9 3 0 0 0 14.59 14.87\", key: \"1y4wr8\" }]\n];\nconst DatabaseZap = createLucideIcon(\"database-zap\", __iconNode);\n\nexport { __iconNode, DatabaseZap as default };\n//# sourceMappingURL=database-zap.js.map\n",
+      "start": 1768772628544,
+      "end": 1768772628544
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628544,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628573,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628601,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628630,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

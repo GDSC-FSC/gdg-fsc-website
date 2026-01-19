@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/scooter.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M21 4h-3.5l2 11.05\", key: \"1gktiw\" }],\n  [\n    \"path\",\n    { d: \"M6.95 17h5.142c.523 0 .95-.406 1.063-.916a6.5 6.5 0 0 1 5.345-5.009\", key: \"1bq3u3\" }\n  ],\n  [\"circle\", { cx: \"19.5\", cy: \"17.5\", r: \"2.5\", key: \"e4zhv9\" }],\n  [\"circle\", { cx: \"4.5\", cy: \"17.5\", r: \"2.5\", key: \"50vk4p\" }]\n];\nconst Scooter = createLucideIcon(\"scooter\", __iconNode);\n\nexport { __iconNode, Scooter as default };\n//# sourceMappingURL=scooter.js.map\n",
+      "start": 1768772628549,
+      "end": 1768772628549
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628549,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628577,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628606,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628633,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

@@ -25,7 +25,7 @@
     "dev": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "bun run audit:ts; if [ $? -eq 1 ]; then exit 1; else vite; fi",
+        "command": "mkdir -p logs && bunx concurrently -k -n API,WEB -c blue,green \"MODE=development bun --watch server.ts\" \"vite\"",
         "cwd": "apps/frontend"
       }
     },

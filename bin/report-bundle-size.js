@@ -1,152 +1,123 @@
 #!/usr/bin/env node
-/* eslint-disable no-console */
+/**
+ * Copyright 2025 2026 GDG on Campus Farmingdale State College
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 /**
  * Copyright (c) HashiCorp, Inc.
  * SPDX-License-Identifier: MPL-2.0
  */
 
-// Adapted for standard Vite React TypeScript applications
+// edited to work with the appdir by @raphaelbadia
 
-import { accessSync, constants, readFileSync, writeFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { gzipSize } from 'gzip-size';
+import fs from 'node:fs';
+import path from 'node:path';
+// import { fileURLToPath } from 'node:url';
+// @ts-check
+import { gzipSizeSync } from 'gzip-size';
 import { mkdirp } from 'mkdirp';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// ESM compatibility - currently unused but may be needed for future changes
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
-/**
- * @typedef {{ raw: number, gzip: number }} ScriptSizes
- * @typedef {Record<string, ScriptSizes>} BundleSizes
- * @typedef {{
+/** @typedef {{ raw: number, gzip: number }} ScriptSizes */
+/** @typedef {Record<string, ScriptSizes>} PageSizes */
+/** @typedef {Record<string, string[]>} BuildManifestPages */
+
+/** @typedef {{
+ *   pages: BuildManifestPages,
+ *   rootMainFiles: string[]
+ * }} BuildManifest */
+
+/** @typedef {{
+ *   pages: BuildManifestPages
+ * }} AppDirManifest */
+
+/** @typedef {{
  *   buildOutputDirectory?: string,
  *   name: string
- * }} Options
- */
+ * }} Options */
 
 // Pull options from `package.json`
 /** @type {Options} */
 const options = getOptions();
 const BUILD_OUTPUT_DIRECTORY = getBuildOutputDirectory(options);
 
-// Check if build output directory exists
-const buildRoot = join(process.cwd(), BUILD_OUTPUT_DIRECTORY);
+// first we check to make sure that the build output directory exists
+const nextMetaRoot = path.join(process.cwd(), BUILD_OUTPUT_DIRECTORY);
 try {
-  accessSync(buildRoot, constants.R_OK);
-} catch (err) {
-  if (Error.isError(err)) {
-    console.error(
-      `No build output found at "${buildRoot}" - you may not have your working directory set correctly, or not have run "vite build".`,
-    );
-  }
-  console.error('Unknown error');
+  fs.accessSync(nextMetaRoot, fs.constants.R_OK);
+} catch {
+  console.error(
+    `No build output found at "${nextMetaRoot}" - you may not have your working directory set correctly, or not have run "next build".`,
+  );
   process.exit(1);
 }
+
+// if so, we can import the build manifest
+/** @type {BuildManifest} */
+const buildMeta = JSON.parse(
+  fs.readFileSync(path.join(nextMetaRoot, 'build-manifest.json'), 'utf8'),
+);
+/** @type {AppDirManifest} */
+const appDirMeta = JSON.parse(
+  fs.readFileSync(path.join(nextMetaRoot, 'app-build-manifest.json'), 'utf8'),
+);
 
 /** @type {Record<string, [number, number]>} */
 const memoryCache = {};
 
-let bundleSizes = {};
+// Legacy pages bundle calculation (currently unused as we're focusing on App Dir)
+// const globalBundle = buildMeta.pages['/_app'] || [];
+// const globalBundleSizes = getScriptSizes(globalBundle);
+// const allPageSizes = Object.entries(buildMeta.pages).reduce(
+//   (acc, [pagePath, scriptPaths]) => {
+//     const scriptSizes = getScriptSizes(
+//       scriptPaths.filter((scriptPath) => !globalBundle.includes(scriptPath)),
+//     );
+//     acc[pagePath] = scriptSizes;
+//     return acc;
+//   },
+//   /** @type {PageSizes} */ ({}),
+// );
 
-// For standard Vite React TypeScript apps, analyze the "assets" directory in the build output
-const assetsDir = join(buildRoot, 'assets');
-if (existsSync(assetsDir)) {
-  console.log('Found "assets" directory in Vite build output, analyzing...');
-  bundleSizes = await analyzeViteAssetsDirectory(assetsDir, buildRoot);
-} else {
-  // Fallback: analyze build directory directly
-  console.log('No "assets" directory found, analyzing build directory directly...');
-  bundleSizes = await analyzeBuildDirectory(buildRoot);
-}
+const globalAppDirBundle = buildMeta.rootMainFiles || [];
+const globalAppDirBundleSizes = getScriptSizes(globalAppDirBundle);
 
-// Format and write the output
-const rawData = JSON.stringify(bundleSizes, null, 2);
+/** @type {PageSizes} */
+const allAppDirSizes = Object.entries(appDirMeta.pages).reduce((acc, [pagePath, scriptPaths]) => {
+  const scriptSizes = getScriptSizes(
+    scriptPaths.filter((scriptPath) => !globalAppDirBundle.includes(scriptPath)),
+  );
+  acc[pagePath] = scriptSizes;
+  return acc;
+}, /** @type {PageSizes} */ ({}));
 
-// Log outputs to the gh actions panel
+// format and write the output
+const rawData = JSON.stringify({
+  ...allAppDirSizes,
+  __global: globalAppDirBundleSizes,
+});
+
+// log outputs to the gh actions panel
 console.log(rawData);
 
-// Write analysis file
-await mkdirp(join(buildRoot, 'analyze/'));
-writeFileSync(join(buildRoot, 'analyze/__bundle_analysis.json'), rawData);
-
-// --------------
-// Analysis Functions
-// --------------
-
-/**
- * Analyze Vite "assets" directory for JS/TS bundles
- * @param {string} assetsDir
- * @param {string} buildRoot
- * @returns {Promise<BundleSizes>}
- */
-async function analyzeViteAssetsDirectory(assetsDir, buildRoot) {
-  /** @type {BundleSizes} */
-  const sizes = {};
-
-  const jsFiles = getAllJSFiles(assetsDir);
-  sizes.assets = await getScriptSizes(jsFiles.map((f) => relative(buildRoot, f)));
-
-  // Add individual files
-  for (const file of jsFiles) {
-    const relativePath = relative(buildRoot, file);
-    sizes[relativePath] = await getScriptSize(relativePath);
-  }
-
-  return sizes;
-}
-
-/**
- * Fallback: analyze build directory directly
- * @param {string} buildRoot
- * @returns {Promise<BundleSizes>}
- */
-async function analyzeBuildDirectory(buildRoot) {
-  /** @type {BundleSizes} */
-  const sizes = {};
-
-  // Look for JS files in the build root
-  const jsFiles = getAllJSFiles(buildRoot);
-  if (jsFiles.length > 0) {
-    sizes.root = await getScriptSizes(jsFiles.map((f) => relative(buildRoot, f)));
-
-    // Add individual files
-    for (const file of jsFiles) {
-      const relativePath = relative(buildRoot, file);
-      sizes[relativePath] = await getScriptSize(relativePath);
-    }
-  }
-
-  return sizes;
-}
-
-/**
- * Get all JavaScript files recursively
- * @param {string} dir
- * @returns {string[]}
- */
-function getAllJSFiles(dir) {
-  const files = [];
-
-  function traverse(currentDir) {
-    try {
-      const entries = readdirSync(currentDir, { withFileTypes: true });
-      for (const entry of entries) {
-        const fullPath = join(currentDir, entry.name);
-        if (entry.isDirectory()) {
-          traverse(fullPath);
-        } else if (entry.isFile() && (entry.name.endsWith('.js') || entry.name.endsWith('.mjs'))) {
-          files.push(fullPath);
-        }
-      }
-    } catch (error) {
-      // Ignore permission errors
-    }
-  }
-
-  traverse(dir);
-  return files;
-}
+// Changed this line to use mkdirp directly
+await mkdirp(path.join(nextMetaRoot, 'analyze/'));
+fs.writeFileSync(path.join(nextMetaRoot, 'analyze/__bundle_analysis.json'), rawData);
 
 // --------------
 // Util Functions
@@ -154,43 +125,41 @@ function getAllJSFiles(dir) {
 
 /**
  * @param {string[]} scriptPaths
- * @returns {Promise<ScriptSizes>}
+ * @returns {ScriptSizes}
  */
-async function getScriptSizes(scriptPaths) {
-  const sizes = { raw: 0, gzip: 0 };
-  for (const scriptPath of scriptPaths) {
-    const [rawSize, gzSize] = await getScriptSize(scriptPath);
-    sizes.raw += rawSize;
-    sizes.gzip += gzSize;
-  }
-  return sizes;
+function getScriptSizes(scriptPaths) {
+  return scriptPaths.reduce(
+    (acc, scriptPath) => {
+      const [rawSize, gzSize] = getScriptSize(scriptPath);
+      acc.raw += rawSize;
+      acc.gzip += gzSize;
+      return acc;
+    },
+    { raw: 0, gzip: 0 },
+  );
 }
 
 /**
  * @param {string} scriptPath
- * @returns {Promise<[number, number]>}
+ * @returns {[number, number]}
  */
-async function getScriptSize(scriptPath) {
+function getScriptSize(scriptPath) {
   const encoding = 'utf8';
-  const p = isAbsolute(scriptPath)
-    ? scriptPath
-    : join(process.cwd(), BUILD_OUTPUT_DIRECTORY, scriptPath);
+  const p = path.join(nextMetaRoot, scriptPath);
 
   if (p in memoryCache) {
     return memoryCache[p] || [0, 0];
   }
 
   try {
-    const textContent = readFileSync(p, encoding);
+    const textContent = fs.readFileSync(p, encoding);
     const rawSize = Buffer.byteLength(textContent, encoding);
-    const gzSize = await gzipSize(textContent);
+    const gzSize = gzipSizeSync(textContent);
     memoryCache[p] = [rawSize, gzSize];
     return [rawSize, gzSize];
   } catch (error) {
-    if (Error.isError(error)) {
-      console.error(`Error reading file: ${p}`, error);
-      return [0, 0];
-    }
+    console.error(`Error reading file: ${p}`, error);
+    return [0, 0];
   }
 }
 
@@ -200,21 +169,12 @@ async function getScriptSize(scriptPath) {
  */
 function getOptions(pathPrefix = process.cwd()) {
   try {
-    /** @type {{viteBundleAnalysis?: Partial<Options>, name: string}} */
-    // @ts-ignore
-    const pkg = JSON.parse(
-      /** @type {string} */ (readFileSync(join(pathPrefix, 'package.json'), 'utf8')),
-    );
-    if (typeof pkg !== 'object' || pkg === null) {
-      throw new Error('Invalid package.json format');
-    }
-    // Optionally support viteBundleAnalysis config in package.json
-    return { ...pkg.viteBundleAnalysis, name: pkg.name };
+    /** @type {{nextBundleAnalysis?: Partial<Options>, name: string}} */
+    const pkg = JSON.parse(fs.readFileSync(path.join(pathPrefix, 'package.json'), 'utf8'));
+    return { ...pkg.nextBundleAnalysis, name: pkg.name };
   } catch (error) {
-    if (Error.isError(error)) {
-      console.error('Error reading package.json', error);
-      return { name: 'unknown' };
-    }
+    console.error('Error reading package.json', error);
+    return { name: 'unknown' };
   }
 }
 
@@ -223,6 +183,5 @@ function getOptions(pathPrefix = process.cwd()) {
  * @returns {string}
  */
 function getBuildOutputDirectory(options) {
-  // Vite default output is "dist"
-  return options.buildOutputDirectory || 'dist';
+  return options.buildOutputDirectory || '.next';
 }

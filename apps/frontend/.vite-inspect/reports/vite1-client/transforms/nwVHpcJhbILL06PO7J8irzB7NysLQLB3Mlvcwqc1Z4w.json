@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/nat.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { IntegerArbitrary } from './_internals/IntegerArbitrary.js';\nconst safeNumberIsInteger = Number.isInteger;\nfunction nat(arg) {\n    const max = typeof arg === 'number' ? arg : arg && arg.max !== undefined ? arg.max : 0x7fffffff;\n    if (max < 0) {\n        throw new Error('fc.nat value should be greater than or equal to 0');\n    }\n    if (!safeNumberIsInteger(max)) {\n        throw new Error('fc.nat maximum value should be an integer');\n    }\n    return new IntegerArbitrary(0, max);\n}\nexport { nat };\n",
+      "start": 1768772628847,
+      "end": 1768772628847
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628847,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628850,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628853,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628858,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

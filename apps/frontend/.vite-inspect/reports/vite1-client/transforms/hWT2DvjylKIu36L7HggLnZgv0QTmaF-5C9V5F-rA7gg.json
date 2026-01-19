@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/superjson/dist/double-indexed-kv.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "export class DoubleIndexedKV {\n    constructor() {\n        this.keyToValue = new Map();\n        this.valueToKey = new Map();\n    }\n    set(key, value) {\n        this.keyToValue.set(key, value);\n        this.valueToKey.set(value, key);\n    }\n    getByKey(key) {\n        return this.keyToValue.get(key);\n    }\n    getByValue(value) {\n        return this.valueToKey.get(value);\n    }\n    clear() {\n        this.keyToValue.clear();\n        this.valueToKey.clear();\n    }\n}\n//# sourceMappingURL=double-indexed-kv.js.map",
+      "start": 1768772628742,
+      "end": 1768772628742
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628742,
+      "end": 1768772628742,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628744,
+      "end": 1768772628744,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628769,
+      "end": 1768772628769,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628788,
+      "end": 1768772628788,
+      "order": "post-post"
+    }
+  ]
+}

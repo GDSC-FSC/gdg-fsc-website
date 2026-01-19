@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/construction.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"rect\", { x: \"2\", y: \"6\", width: \"20\", height: \"8\", rx: \"1\", key: \"1estib\" }],\n  [\"path\", { d: \"M17 14v7\", key: \"7m2elx\" }],\n  [\"path\", { d: \"M7 14v7\", key: \"1cm7wv\" }],\n  [\"path\", { d: \"M17 3v3\", key: \"1v4jwn\" }],\n  [\"path\", { d: \"M7 3v3\", key: \"7o6guu\" }],\n  [\"path\", { d: \"M10 14 2.3 6.3\", key: \"1023jk\" }],\n  [\"path\", { d: \"m14 6 7.7 7.7\", key: \"1s8pl2\" }],\n  [\"path\", { d: \"m8 6 8 8\", key: \"hl96qh\" }]\n];\nconst Construction = createLucideIcon(\"construction\", __iconNode);\n\nexport { __iconNode, Construction as default };\n//# sourceMappingURL=construction.js.map\n",
+      "start": 1768772628535,
+      "end": 1768772628535
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628535,
+      "end": 1768772628552,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628566,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628596,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628626,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

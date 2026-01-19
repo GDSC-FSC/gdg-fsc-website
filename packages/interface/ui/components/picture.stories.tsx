@@ -16,6 +16,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { Picture } from './picture';
+import { Text } from './text';
 
 const meta: Meta<typeof Picture> = {
   title: 'UI/Picture',
@@ -58,20 +59,18 @@ type Story = StoryObj<typeof meta>;
 
 const sampleImage = 'https://picsum.photos/400/300';
 const avatarImage = 'https://picsum.photos/100/100';
+const landscapeImage = 'https://picsum.photos/800/400';
+
+// ============================================================================
+// Basic Variants
+// ============================================================================
 
 export const Default: Story = {
   args: {
     src: sampleImage,
     alt: 'Sample image',
     variant: 'responsive',
-  },
-};
-
-export const Thumbnail: Story = {
-  args: {
-    src: avatarImage,
-    alt: 'Thumbnail image',
-    variant: 'thumbnail',
+    className: 'max-w-md',
   },
 };
 
@@ -83,66 +82,249 @@ export const Avatar: Story = {
   },
 };
 
-export const Card: Story = {
+export const Thumbnail: Story = {
+  args: {
+    src: avatarImage,
+    alt: 'Thumbnail image',
+    variant: 'thumbnail',
+  },
+};
+
+export const CardImage: Story = {
   args: {
     src: sampleImage,
     alt: 'Card image',
     variant: 'card',
+    className: 'max-w-sm',
   },
 };
 
-export const Rounded: Story = {
-  args: {
-    src: sampleImage,
-    alt: 'Rounded image',
-    rounded: 'lg',
-  },
-};
+// ============================================================================
+// Styling Options
+// ============================================================================
 
-export const WithShadow: Story = {
-  args: {
-    src: sampleImage,
-    alt: 'Image with shadow',
-    shadow: 'lg',
-    rounded: 'md',
-  },
-};
-
-export const WithHoverEffect: Story = {
-  args: {
-    src: sampleImage,
-    alt: 'Image with hover effect',
-    transition: 'zoom',
-    rounded: 'md',
-  },
-};
-
-export const AllVariants: Story = {
+export const RoundedCorners: Story = {
   render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', maxWidth: '800px' }}>
-      <div>
-        <p style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>Thumbnail</p>
-        <Picture src={avatarImage} alt="Thumbnail" variant="thumbnail" />
+    <div className="flex gap-4 items-center">
+      <div className="text-center">
+        <Picture
+          src={avatarImage}
+          alt="Small Radius"
+          rounded="sm"
+          className="w-24 h-24 object-cover"
+        />
+        <Text size="xs" color="muted" className="mt-2">
+          Small (sm)
+        </Text>
       </div>
-      <div>
-        <p style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>Avatar</p>
-        <Picture src={avatarImage} alt="Avatar" variant="avatar" />
+      <div className="text-center">
+        <Picture
+          src={avatarImage}
+          alt="Medium Radius"
+          rounded="md"
+          className="w-24 h-24 object-cover"
+        />
+        <Text size="xs" color="muted" className="mt-2">
+          Medium (md)
+        </Text>
       </div>
-      <div>
-        <p style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>Card</p>
-        <Picture src={sampleImage} alt="Card" variant="card" />
+      <div className="text-center">
+        <Picture
+          src={avatarImage}
+          alt="Large Radius"
+          rounded="lg"
+          className="w-24 h-24 object-cover"
+        />
+        <Text size="xs" color="muted" className="mt-2">
+          Large (lg)
+        </Text>
       </div>
-      <div>
-        <p style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>Rounded LG</p>
-        <Picture src={sampleImage} alt="Rounded" rounded="lg" />
+      <div className="text-center">
+        <Picture
+          src={avatarImage}
+          alt="Full Radius"
+          rounded="full"
+          className="w-24 h-24 object-cover"
+        />
+        <Text size="xs" color="muted" className="mt-2">
+          Full
+        </Text>
       </div>
-      <div>
-        <p style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>With Shadow</p>
-        <Picture src={sampleImage} alt="Shadow" shadow="lg" rounded="md" />
+    </div>
+  ),
+};
+
+export const Shadows: Story = {
+  render: () => (
+    <div className="flex gap-6 items-center p-4">
+      <div className="text-center">
+        <Picture
+          src={avatarImage}
+          alt="No Shadow"
+          shadow="none"
+          rounded="md"
+          className="w-24 h-24 object-cover"
+        />
+        <Text size="xs" color="muted" className="mt-2">
+          None
+        </Text>
       </div>
+      <div className="text-center">
+        <Picture
+          src={avatarImage}
+          alt="Small Shadow"
+          shadow="sm"
+          rounded="md"
+          className="w-24 h-24 object-cover"
+        />
+        <Text size="xs" color="muted" className="mt-2">
+          Small
+        </Text>
+      </div>
+      <div className="text-center">
+        <Picture
+          src={avatarImage}
+          alt="Medium Shadow"
+          shadow="md"
+          rounded="md"
+          className="w-24 h-24 object-cover"
+        />
+        <Text size="xs" color="muted" className="mt-2">
+          Medium
+        </Text>
+      </div>
+      <div className="text-center">
+        <Picture
+          src={avatarImage}
+          alt="Large Shadow"
+          shadow="lg"
+          rounded="md"
+          className="w-24 h-24 object-cover"
+        />
+        <Text size="xs" color="muted" className="mt-2">
+          Large
+        </Text>
+      </div>
+    </div>
+  ),
+};
+
+export const Transitions: Story = {
+  render: () => (
+    <div className="flex gap-6 items-center p-4">
+      <div className="text-center">
+        <div className="overflow-hidden rounded-lg">
+          <Picture
+            src={sampleImage}
+            alt="Hover Scale"
+            transition="hover"
+            className="w-48 h-32 object-cover"
+          />
+        </div>
+        <Text size="xs" color="muted" className="mt-2">
+          Hover Scale
+        </Text>
+      </div>
+      <div className="text-center">
+        <div className="overflow-hidden rounded-lg">
+          <Picture
+            src={sampleImage}
+            alt="Zoom Effect"
+            transition="zoom"
+            className="w-48 h-32 object-cover"
+          />
+        </div>
+        <Text size="xs" color="muted" className="mt-2">
+          Zoom Effect
+        </Text>
+      </div>
+      <div className="text-center">
+        <div className="overflow-hidden rounded-lg">
+          <Picture
+            src={sampleImage}
+            alt="Fade Effect"
+            transition="fade"
+            className="w-48 h-32 object-cover"
+          />
+        </div>
+        <Text size="xs" color="muted" className="mt-2">
+          Fade Opacity
+        </Text>
+      </div>
+    </div>
+  ),
+};
+
+// ============================================================================
+// Real-World Examples
+// ============================================================================
+
+export const ProfileCard: Story = {
+  render: () => (
+    <div className="flex items-center gap-4 p-4 bg-card rounded-xl shadow-sm border border-border max-w-sm">
+      <Picture
+        src={avatarImage}
+        alt="Profile"
+        variant="avatar"
+        className="border-2 border-background shadow-sm"
+      />
       <div>
-        <p style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>Zoom Hover</p>
-        <Picture src={sampleImage} alt="Hover" transition="zoom" rounded="md" />
+        <Text weight="semibold">Sarah Connor</Text>
+        <Text size="sm" color="muted">
+          Software Engineer
+        </Text>
+      </div>
+    </div>
+  ),
+};
+
+export const ArticleCard: Story = {
+  render: () => (
+    <div className="max-w-sm bg-card rounded-xl shadow-md border border-border overflow-hidden">
+      <Picture src={sampleImage} alt="Article Cover" variant="card" transition="zoom" />
+      <div className="p-4">
+        <Text variant="small" color="primary" weight="semibold" className="mb-2 block">
+          TECHNOLOGY
+        </Text>
+        <Text variant="heading" size="lg" className="mb-2">
+          The Future of Web Development
+        </Text>
+        <Text variant="body" size="sm" color="muted">
+          Explore the latest trends and technologies shaping the digital landscape in 2025.
+        </Text>
+      </div>
+    </div>
+  ),
+};
+
+export const ImageGallery: Story = {
+  render: () => (
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl">
+      {[1, 2, 3, 4, 5, 6].map((i) => (
+        <div key={i} className="overflow-hidden rounded-lg shadow-sm">
+          <Picture
+            src={`https://picsum.photos/300/300?random=${i}`}
+            alt={`Gallery image ${i}`}
+            className="w-full h-full object-cover aspect-square"
+            transition="zoom"
+          />
+        </div>
+      ))}
+    </div>
+  ),
+};
+
+export const HeroSection: Story = {
+  render: () => (
+    <div className="relative w-full max-w-3xl rounded-xl overflow-hidden">
+      <Picture src={landscapeImage} alt="Hero Background" variant="hero" className="h-64 md:h-80" />
+      <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center p-6">
+        <Text variant="heading" size="3xl" className="text-white mb-2">
+          Welcome to GDG
+        </Text>
+        <Text variant="body" size="lg" className="text-white/90 max-w-lg">
+          Building the future of technology together with our community.
+        </Text>
       </div>
     </div>
   ),

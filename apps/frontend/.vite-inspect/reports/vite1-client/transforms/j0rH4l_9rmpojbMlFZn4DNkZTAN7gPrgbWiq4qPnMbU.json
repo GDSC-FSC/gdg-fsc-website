@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/superjson/dist/registry.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { DoubleIndexedKV } from './double-indexed-kv.js';\nexport class Registry {\n    constructor(generateIdentifier) {\n        this.generateIdentifier = generateIdentifier;\n        this.kv = new DoubleIndexedKV();\n    }\n    register(value, identifier) {\n        if (this.kv.getByValue(value)) {\n            return;\n        }\n        if (!identifier) {\n            identifier = this.generateIdentifier(value);\n        }\n        this.kv.set(identifier, value);\n    }\n    clear() {\n        this.kv.clear();\n    }\n    getIdentifier(value) {\n        return this.kv.getByValue(value);\n    }\n    getValue(identifier) {\n        return this.kv.getByKey(identifier);\n    }\n}\n//# sourceMappingURL=registry.js.map",
+      "start": 1768772628549,
+      "end": 1768772628549
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628549,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628577,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628606,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628633,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

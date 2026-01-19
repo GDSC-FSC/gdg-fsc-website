@@ -1,0 +1,86 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - region "Notifications alt+T"
+  - generic [ref=e3]:
+    - navigation [ref=e4]:
+      - generic [ref=e6]:
+        - link "GDG on Campus FSC" [ref=e7] [cursor=pointer]:
+          - /url: /
+          - img [ref=e10]
+          - generic [ref=e14]: GDG on Campus FSC
+        - generic [ref=e15]:
+          - link "About" [ref=e16] [cursor=pointer]:
+            - /url: /about
+            - text: About
+          - link "Events" [ref=e17] [cursor=pointer]:
+            - /url: /events
+            - text: Events
+          - link "Projects" [ref=e18] [cursor=pointer]:
+            - /url: /projects
+            - text: Projects
+          - link "Team" [ref=e19] [cursor=pointer]:
+            - /url: /team
+            - text: Team
+          - button "Toggle theme to dark" [ref=e21] [cursor=pointer]:
+            - generic [ref=e27]: Toggle theme to dark
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - img [ref=e37]
+        - paragraph [ref=e40]: Google Developer Groups on Campus
+      - heading "GDG on Campus" [level=1] [ref=e41]
+      - heading "Farmingdale State College" [level=2] [ref=e42]
+      - paragraph [ref=e43]: An independent student group empowering developers to learn, grow, and connect through hands-on workshops, mentorship, and collaboration.
+      - generic [ref=e44]:
+        - button "Join Our Community" [ref=e45] [cursor=pointer]:
+          - generic [ref=e46]:
+            - text: Join Our Community
+            - img [ref=e47]
+        - link "Explore Projects" [ref=e50] [cursor=pointer]:
+          - /url: /projects
+          - button "Explore Projects" [ref=e51]
+      - generic [ref=e52]:
+        - link "About Us" [ref=e53] [cursor=pointer]:
+          - /url: /about
+          - generic [ref=e54]:
+            - img [ref=e56]
+            - heading "About Us" [level=3] [ref=e61]
+        - link "Events" [ref=e62] [cursor=pointer]:
+          - /url: /events
+          - generic [ref=e63]:
+            - img [ref=e65]
+            - heading "Events" [level=3] [ref=e67]
+        - link "Projects" [ref=e68] [cursor=pointer]:
+          - /url: /projects
+          - generic [ref=e69]:
+            - img [ref=e71]
+            - heading "Projects" [level=3] [ref=e73]
+        - link "Team" [ref=e74] [cursor=pointer]:
+          - /url: /team
+          - generic [ref=e75]:
+            - img [ref=e77]
+            - heading "Team" [level=3] [ref=e82]
+    - generic [ref=e86]:
+      - generic [ref=e87]:
+        - generic [ref=e88]: 150+
+        - paragraph [ref=e89]: Active Members
+      - generic [ref=e90]:
+        - generic [ref=e91]: 30+
+        - paragraph [ref=e92]: Projects Built
+      - generic [ref=e93]:
+        - generic [ref=e94]: 40+
+        - paragraph [ref=e95]: Workshops
+      - generic [ref=e96]:
+        - generic [ref=e97]: 3+
+        - paragraph [ref=e98]: Years Active
+    - contentinfo [ref=e99]:
+      - generic [ref=e101]:
+        - link "GDG on Campus FSC" [ref=e102] [cursor=pointer]:
+          - /url: /
+          - img [ref=e105]
+          - generic [ref=e108]: GDG on Campus FSC
+        - paragraph [ref=e109]: Empowering students to learn, grow, and connect through technology.
+        - paragraph [ref=e110]: Google Developer Groups on Campus - Farmingdale State College
+        - paragraph [ref=e111]: An independent student organization. Not affiliated with Google, the corporation.
+```

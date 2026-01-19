@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/instagram.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"rect\", { width: \"20\", height: \"20\", x: \"2\", y: \"2\", rx: \"5\", ry: \"5\", key: \"2e1cvw\" }],\n  [\"path\", { d: \"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z\", key: \"9exkf1\" }],\n  [\"line\", { x1: \"17.5\", x2: \"17.51\", y1: \"6.5\", y2: \"6.5\", key: \"r4j83e\" }]\n];\nconst Instagram = createLucideIcon(\"instagram\", __iconNode);\n\nexport { __iconNode, Instagram as default };\n//# sourceMappingURL=instagram.js.map\n",
+      "start": 1768772628535,
+      "end": 1768772628535
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628535,
+      "end": 1768772628552,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628563,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628591,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628624,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

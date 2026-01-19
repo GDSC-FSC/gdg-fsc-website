@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/bigUint.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { BigInt } from '../utils/globals.js';\nimport { BigIntArbitrary } from './_internals/BigIntArbitrary.js';\nfunction computeDefaultMax() {\n    return (BigInt(1) << BigInt(256)) - BigInt(1);\n}\nfunction bigUint(constraints) {\n    const requestedMax = typeof constraints === 'object' ? constraints.max : constraints;\n    const max = requestedMax !== undefined ? requestedMax : computeDefaultMax();\n    if (max < 0) {\n        throw new Error('fc.bigUint expects max to be greater than or equal to zero');\n    }\n    return new BigIntArbitrary(BigInt(0), max);\n}\nexport { bigUint };\n",
+      "start": 1768772628848,
+      "end": 1768772628848
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628848,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628851,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628854,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628858,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

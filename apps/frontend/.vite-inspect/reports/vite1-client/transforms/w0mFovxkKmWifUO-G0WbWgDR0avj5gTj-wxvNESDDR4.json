@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/check/runner/Sampler.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { stream } from '../../stream/Stream.js';\nimport { Property } from '../property/Property.generic.js';\nimport { UnbiasedProperty } from '../property/UnbiasedProperty.js';\nimport { readConfigureGlobal } from './configuration/GlobalParameters.js';\nimport { QualifiedParameters } from './configuration/QualifiedParameters.js';\nimport { lazyToss, toss } from './Tosser.js';\nimport { pathWalk } from './utils/PathWalker.js';\nfunction toProperty(generator, qParams) {\n    const prop = !Object.prototype.hasOwnProperty.call(generator, 'isAsync')\n        ? new Property(generator, () => true)\n        : generator;\n    return qParams.unbiased === true ? new UnbiasedProperty(prop) : prop;\n}\nfunction streamSample(generator, params) {\n    const extendedParams = typeof params === 'number'\n        ? Object.assign(Object.assign({}, readConfigureGlobal()), { numRuns: params }) : Object.assign(Object.assign({}, readConfigureGlobal()), params);\n    const qParams = QualifiedParameters.read(extendedParams);\n    const nextProperty = toProperty(generator, qParams);\n    const shrink = nextProperty.shrink.bind(nextProperty);\n    const tossedValues = qParams.path.length === 0\n        ? stream(toss(nextProperty, qParams.seed, qParams.randomType, qParams.examples))\n        : pathWalk(qParams.path, stream(lazyToss(nextProperty, qParams.seed, qParams.randomType, qParams.examples)), shrink);\n    return tossedValues.take(qParams.numRuns).map((s) => s.value_);\n}\nfunction sample(generator, params) {\n    return [...streamSample(generator, params)];\n}\nfunction round2(n) {\n    return (Math.round(n * 100) / 100).toFixed(2);\n}\nfunction statistics(generator, classify, params) {\n    const extendedParams = typeof params === 'number'\n        ? Object.assign(Object.assign({}, readConfigureGlobal()), { numRuns: params }) : Object.assign(Object.assign({}, readConfigureGlobal()), params);\n    const qParams = QualifiedParameters.read(extendedParams);\n    const recorded = {};\n    for (const g of streamSample(generator, params)) {\n        const out = classify(g);\n        const categories = Array.isArray(out) ? out : [out];\n        for (const c of categories) {\n            recorded[c] = (recorded[c] || 0) + 1;\n        }\n    }\n    const data = Object.entries(recorded)\n        .sort((a, b) => b[1] - a[1])\n        .map((i) => [i[0], `${round2((i[1] * 100.0) / qParams.numRuns)}%`]);\n    const longestName = data.map((i) => i[0].length).reduce((p, c) => Math.max(p, c), 0);\n    const longestPercent = data.map((i) => i[1].length).reduce((p, c) => Math.max(p, c), 0);\n    for (const item of data) {\n        qParams.logger(`${item[0].padEnd(longestName, '.')}..${item[1].padStart(longestPercent, '.')}`);\n    }\n}\nexport { sample, statistics };\n",
+      "start": 1768772628847,
+      "end": 1768772628847
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628847,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628850,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628854,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628857,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

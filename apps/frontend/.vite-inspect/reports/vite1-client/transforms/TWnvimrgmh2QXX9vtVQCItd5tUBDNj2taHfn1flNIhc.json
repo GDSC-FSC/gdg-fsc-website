@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/stream/Stream.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { filterHelper, flatMapHelper, joinHelper, mapHelper, nilHelper, takeNHelper, takeWhileHelper, } from './StreamHelpers.js';\nconst safeSymbolIterator = Symbol.iterator;\nexport class Stream {\n    static nil() {\n        return new Stream(nilHelper());\n    }\n    static of(...elements) {\n        return new Stream(elements[safeSymbolIterator]());\n    }\n    constructor(g) {\n        this.g = g;\n    }\n    next() {\n        return this.g.next();\n    }\n    [Symbol.iterator]() {\n        return this.g;\n    }\n    map(f) {\n        return new Stream(mapHelper(this.g, f));\n    }\n    flatMap(f) {\n        return new Stream(flatMapHelper(this.g, f));\n    }\n    dropWhile(f) {\n        let foundEligible = false;\n        function* helper(v) {\n            if (foundEligible || !f(v)) {\n                foundEligible = true;\n                yield v;\n            }\n        }\n        return this.flatMap(helper);\n    }\n    drop(n) {\n        if (n <= 0) {\n            return this;\n        }\n        let idx = 0;\n        function helper() {\n            return idx++ < n;\n        }\n        return this.dropWhile(helper);\n    }\n    takeWhile(f) {\n        return new Stream(takeWhileHelper(this.g, f));\n    }\n    take(n) {\n        return new Stream(takeNHelper(this.g, n));\n    }\n    filter(f) {\n        return new Stream(filterHelper(this.g, f));\n    }\n    every(f) {\n        for (const v of this.g) {\n            if (!f(v)) {\n                return false;\n            }\n        }\n        return true;\n    }\n    has(f) {\n        for (const v of this.g) {\n            if (f(v)) {\n                return [true, v];\n            }\n        }\n        return [false, null];\n    }\n    join(...others) {\n        return new Stream(joinHelper(this.g, others));\n    }\n    getNthOrLast(nth) {\n        let remaining = nth;\n        let last = null;\n        for (const v of this.g) {\n            if (remaining-- === 0)\n                return v;\n            last = v;\n        }\n        return last;\n    }\n}\nexport function stream(g) {\n    return new Stream(g);\n}\n",
+      "start": 1768772628848,
+      "end": 1768772628848
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628848,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628850,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628853,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628857,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

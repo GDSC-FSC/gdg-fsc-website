@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/utils/is-html-element.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { isObject } from 'motion-utils';\n\n/**\n * Checks if an element is an HTML element in a way\n * that works across iframes\n */\nfunction isHTMLElement(element) {\n    return isObject(element) && \"offsetHeight\" in element;\n}\n\nexport { isHTMLElement };\n",
+      "start": 1768772628755,
+      "end": 1768772628755
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628755,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628771,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628790,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628807,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

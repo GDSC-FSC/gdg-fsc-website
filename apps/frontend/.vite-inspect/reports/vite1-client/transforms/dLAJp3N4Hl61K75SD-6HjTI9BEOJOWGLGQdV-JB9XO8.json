@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/float.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { integer } from './integer.js';\nimport { floatToIndex, indexToFloat, MAX_VALUE_32 } from './_internals/helpers/FloatHelpers.js';\nimport { floatOnlyMapper, floatOnlyUnmapper, refineConstraintsForFloatOnly, } from './_internals/helpers/FloatOnlyHelpers.js';\nconst safeNumberIsInteger = Number.isInteger;\nconst safeNumberIsNaN = Number.isNaN;\nconst safeMathFround = Math.fround;\nconst safeNegativeInfinity = Number.NEGATIVE_INFINITY;\nconst safePositiveInfinity = Number.POSITIVE_INFINITY;\nconst safeNaN = Number.NaN;\nfunction safeFloatToIndex(f, constraintsLabel) {\n    const conversionTrick = 'you can convert any double to a 32-bit float by using `Math.fround(myDouble)`';\n    const errorMessage = 'fc.float constraints.' + constraintsLabel + ' must be a 32-bit float - ' + conversionTrick;\n    if (safeNumberIsNaN(f) || safeMathFround(f) !== f) {\n        throw new Error(errorMessage);\n    }\n    return floatToIndex(f);\n}\nfunction unmapperFloatToIndex(value) {\n    if (typeof value !== 'number')\n        throw new Error('Unsupported type');\n    return floatToIndex(value);\n}\nfunction numberIsNotInteger(value) {\n    return !safeNumberIsInteger(value);\n}\nfunction anyFloat(constraints) {\n    const { noDefaultInfinity = false, noNaN = false, minExcluded = false, maxExcluded = false, min = noDefaultInfinity ? -MAX_VALUE_32 : safeNegativeInfinity, max = noDefaultInfinity ? MAX_VALUE_32 : safePositiveInfinity, } = constraints;\n    const minIndexRaw = safeFloatToIndex(min, 'min');\n    const minIndex = minExcluded ? minIndexRaw + 1 : minIndexRaw;\n    const maxIndexRaw = safeFloatToIndex(max, 'max');\n    const maxIndex = maxExcluded ? maxIndexRaw - 1 : maxIndexRaw;\n    if (minIndex > maxIndex) {\n        throw new Error('fc.float constraints.min must be smaller or equal to constraints.max');\n    }\n    if (noNaN) {\n        return integer({ min: minIndex, max: maxIndex }).map(indexToFloat, unmapperFloatToIndex);\n    }\n    const minIndexWithNaN = maxIndex > 0 ? minIndex : minIndex - 1;\n    const maxIndexWithNaN = maxIndex > 0 ? maxIndex + 1 : maxIndex;\n    return integer({ min: minIndexWithNaN, max: maxIndexWithNaN }).map((index) => {\n        if (index > maxIndex || index < minIndex)\n            return safeNaN;\n        else\n            return indexToFloat(index);\n    }, (value) => {\n        if (typeof value !== 'number')\n            throw new Error('Unsupported type');\n        if (safeNumberIsNaN(value))\n            return maxIndex !== maxIndexWithNaN ? maxIndexWithNaN : minIndexWithNaN;\n        return floatToIndex(value);\n    });\n}\nexport function float(constraints = {}) {\n    if (!constraints.noInteger) {\n        return anyFloat(constraints);\n    }\n    return anyFloat(refineConstraintsForFloatOnly(constraints))\n        .map(floatOnlyMapper, floatOnlyUnmapper)\n        .filter(numberIsNotInteger);\n}\n",
+      "start": 1768772628847,
+      "end": 1768772628847
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628847,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628850,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628853,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628857,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

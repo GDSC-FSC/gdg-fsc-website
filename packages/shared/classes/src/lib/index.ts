@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-export * from './queue';
-export * from './redacted';
-export * from './thread-pool';
-export * from './time-manager';
-export * from './worker';
-
+export * from './error/index.js';
+export * from './queue/index.js';
+export * from './redacted/index.js';
+export * from './thread-pool/index.js';
+export * from './time-manager/index.js';
+export * from './worker/index.js';

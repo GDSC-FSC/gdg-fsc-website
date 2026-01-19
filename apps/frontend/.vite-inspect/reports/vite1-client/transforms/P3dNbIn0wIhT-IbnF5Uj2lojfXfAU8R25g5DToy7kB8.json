@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@radix-ui/react-use-size/dist/index.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "// packages/react/use-size/src/use-size.tsx\nimport * as React from \"react\";\nimport { useLayoutEffect } from \"@radix-ui/react-use-layout-effect\";\nfunction useSize(element) {\n  const [size, setSize] = React.useState(void 0);\n  useLayoutEffect(() => {\n    if (element) {\n      setSize({ width: element.offsetWidth, height: element.offsetHeight });\n      const resizeObserver = new ResizeObserver((entries) => {\n        if (!Array.isArray(entries)) {\n          return;\n        }\n        if (!entries.length) {\n          return;\n        }\n        const entry = entries[0];\n        let width;\n        let height;\n        if (\"borderBoxSize\" in entry) {\n          const borderSizeEntry = entry[\"borderBoxSize\"];\n          const borderSize = Array.isArray(borderSizeEntry) ? borderSizeEntry[0] : borderSizeEntry;\n          width = borderSize[\"inlineSize\"];\n          height = borderSize[\"blockSize\"];\n        } else {\n          width = element.offsetWidth;\n          height = element.offsetHeight;\n        }\n        setSize({ width, height });\n      });\n      resizeObserver.observe(element, { box: \"border-box\" });\n      return () => resizeObserver.unobserve(element);\n    } else {\n      setSize(void 0);\n    }\n  }, [element]);\n  return size;\n}\nexport {\n  useSize\n};\n//# sourceMappingURL=index.mjs.map\n",
+      "start": 1768772628586,
+      "end": 1768772628586
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628586,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628619,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628648,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628704,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

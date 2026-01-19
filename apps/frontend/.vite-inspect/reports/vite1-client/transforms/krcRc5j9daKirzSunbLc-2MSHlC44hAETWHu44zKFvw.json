@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/redacted.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Equal from \"../Equal.js\";\nimport { pipe } from \"../Function.js\";\nimport { globalValue } from \"../GlobalValue.js\";\nimport * as Hash from \"../Hash.js\";\nimport { NodeInspectSymbol } from \"../Inspectable.js\";\nimport { pipeArguments } from \"../Pipeable.js\";\nimport { hasProperty } from \"../Predicate.js\";\n/** @internal */\nconst RedactedSymbolKey = \"effect/Redacted\";\n/** @internal */\nexport const redactedRegistry = /*#__PURE__*/globalValue(\"effect/Redacted/redactedRegistry\", () => new WeakMap());\n/** @internal */\nexport const RedactedTypeId = /*#__PURE__*/Symbol.for(RedactedSymbolKey);\n/** @internal */\nexport const proto = {\n  [RedactedTypeId]: {\n    _A: _ => _\n  },\n  pipe() {\n    return pipeArguments(this, arguments);\n  },\n  toString() {\n    return \"<redacted>\";\n  },\n  toJSON() {\n    return \"<redacted>\";\n  },\n  [NodeInspectSymbol]() {\n    return \"<redacted>\";\n  },\n  [Hash.symbol]() {\n    return pipe(Hash.hash(RedactedSymbolKey), Hash.combine(Hash.hash(redactedRegistry.get(this))), Hash.cached(this));\n  },\n  [Equal.symbol](that) {\n    return isRedacted(that) && Equal.equals(redactedRegistry.get(this), redactedRegistry.get(that));\n  }\n};\n/** @internal */\nexport const isRedacted = u => hasProperty(u, RedactedTypeId);\n/** @internal */\nexport const make = value => {\n  const redacted = Object.create(proto);\n  redactedRegistry.set(redacted, value);\n  return redacted;\n};\n/** @internal */\nexport const value = self => {\n  if (redactedRegistry.has(self)) {\n    return redactedRegistry.get(self);\n  } else {\n    throw new Error(\"Unable to get redacted value\");\n  }\n};\n/** @internal */\nexport const unsafeWipe = self => redactedRegistry.delete(self);\n//# sourceMappingURL=redacted.js.map",
+      "start": 1768772628585,
+      "end": 1768772628585
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628585,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628620,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628649,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

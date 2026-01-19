@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/table-columns-split.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M14 14v2\", key: \"w2a1xv\" }],\n  [\"path\", { d: \"M14 20v2\", key: \"1lq872\" }],\n  [\"path\", { d: \"M14 2v2\", key: \"6buw04\" }],\n  [\"path\", { d: \"M14 8v2\", key: \"i67w9a\" }],\n  [\"path\", { d: \"M2 15h8\", key: \"82wtch\" }],\n  [\"path\", { d: \"M2 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H2\", key: \"up0l64\" }],\n  [\"path\", { d: \"M2 9h8\", key: \"yelfik\" }],\n  [\"path\", { d: \"M22 15h-4\", key: \"1es58f\" }],\n  [\"path\", { d: \"M22 3h-2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h2\", key: \"pdjoqf\" }],\n  [\"path\", { d: \"M22 9h-4\", key: \"1luja7\" }],\n  [\"path\", { d: \"M5 3v18\", key: \"14hmio\" }]\n];\nconst TableColumnsSplit = createLucideIcon(\"table-columns-split\", __iconNode);\n\nexport { __iconNode, TableColumnsSplit as default };\n//# sourceMappingURL=table-columns-split.js.map\n",
+      "start": 1768772628542,
+      "end": 1768772628542
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628542,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628572,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628599,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628629,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

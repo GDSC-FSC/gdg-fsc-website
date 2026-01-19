@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/wind-arrow-down.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M10 2v8\", key: \"d4bbey\" }],\n  [\"path\", { d: \"M12.8 21.6A2 2 0 1 0 14 18H2\", key: \"19kp1d\" }],\n  [\"path\", { d: \"M17.5 10a2.5 2.5 0 1 1 2 4H2\", key: \"19kpjc\" }],\n  [\"path\", { d: \"m6 6 4 4 4-4\", key: \"k13n16\" }]\n];\nconst WindArrowDown = createLucideIcon(\"wind-arrow-down\", __iconNode);\n\nexport { __iconNode, WindArrowDown as default };\n//# sourceMappingURL=wind-arrow-down.js.map\n",
+      "start": 1768772628548,
+      "end": 1768772628548
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628548,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628576,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628603,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628636,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

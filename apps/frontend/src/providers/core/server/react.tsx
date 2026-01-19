@@ -1,5 +1,7 @@
+'use client';
+
 /**
- * Copyright 2025 GDG on Campus Farmingdale State College
+ * Copyright 2025 Mike Odnis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,79 +17,96 @@
  */
 
 import { edenFetch } from '@elysiajs/eden';
-import { type QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import type { QueryClient } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import type { API } from 'server';
+import { getURL } from '@/utils';
 import { createQueryClient } from '.';
-import type { App } from '../../../../server';
-import { getURL } from '../../../utils';
 
 /**
- * Client API instance created using Elysia's treaty.
- * This provides type-safe API endpoints based on the ElysiaRouter type.
+ * Instantiates a type-safe, client-side Elysia treaty API instance for all endpoints.
  *
+ * @readonly
+ * @type {import('@elysiajs/eden').EdenFetch<API>}
+ * @public
+ * @web
+ * @author Mike Odnis <WomB0ComB0>
+ * @see {@link https://elysiajs.com/eden/treaty.html Eden Treaty Documentation}
+ * @version 1.0.0
  * @remarks
- * The API instance is initialized with different base URLs depending on the environment:
- * - In server-side context (window undefined): Uses getURL()
- * - In client-side context: Uses the current window.location.origin
- *
- * @type {App} - The typed API router instance
+ * Sets the API base URL based on the execution context:
+ *   - Server-side: Uses getURL()
+ *   - Client-side: Uses window.location.origin
+ * Provides type-safe access to all API endpoints.
+ * @example
+ * * const users = await elysia_api.exampleRoute.get();
+ * ```
  */
-export const elysia_api = edenFetch<App>(getURL());
+export const elysia_api = edenFetch<API>(
+  globalThis.window === undefined ? getURL() : globalThis.window.location.origin,
+);
 
 /**
- * Singleton instance of QueryClient to ensure consistent caching across the application.
- * This is only initialized on the client side to prevent shared state between requests.
+ * Singleton instance container for QueryClient on the client side.
  *
- * @type {QueryClient | undefined} - The singleton QueryClient instance
+ * @type {QueryClient | undefined}
  * @private
+ * @readonly
+ * @author Mike Odnis <WomB0ComB0>
+ * @version 1.0.0
+ * @remarks
+ * Used to preserve React Query cache across client renders.
  */
 let clientQueryClientSingleton: QueryClient | undefined;
 
 /**
- * Get or create a QueryClient instance based on the execution context.
+ * Resolves a QueryClient instance appropriate for the execution context.
  *
+ * @function
+ * @returns {QueryClient} QueryClient instance (per-request for SSR, singleton for client)
+ * @throws {Error} Throws if QueryClient creation fails unexpectedly
+ * @public
+ * @readonly
+ * @author Mike Odnis <WomB0ComB0>
+ * @version 1.0.0
+ * @see {@link https://tanstack.com/query/v4/docs/framework/react/overview React Query Overview}
  * @remarks
- * This function handles two scenarios:
- * 1. Server-side: Creates a new QueryClient instance for each request to prevent shared state
- * 2. Client-side: Returns or initializes a singleton QueryClient instance
- *
- * The singleton pattern on the client side ensures that:
- * - Cache is preserved between re-renders
- * - Prevents memory leaks from multiple instances
- * - Maintains consistent query state across the application
- *
- * @returns {QueryClient} A QueryClient instance appropriate for the current context
+ * - On the server: always returns a new QueryClient to avoid shared state.
+ * - On the client: creates/persists a singleton for consistent cache and state.
+ * @example
+ * ```ts
+ * const queryClient = getQueryClient();
+ * ```
  */
-const getQueryClient = (): QueryClient => {
-  if (typeof window === 'undefined') {
-    return createQueryClient();
+const getQueryClient = () => {
+  if (globalThis.window === undefined) {
+    return createQueryClient()();
   }
-  return (clientQueryClientSingleton ??= createQueryClient());
+  clientQueryClientSingleton ??= createQueryClient()();
+  return clientQueryClientSingleton;
 };
 
 /**
- * React component that provides QueryClient context to the application.
+ * Provides the React Query QueryClient context and devtools to its children.
  *
- * @remarks
- * This component wraps the application with necessary React Query infrastructure:
- * - QueryClientProvider: Provides the QueryClient instance to all child components
- * - ReactQueryDevtools: Development tools for debugging queries (disabled by default)
- *
- * The QueryClient is managed through getQueryClient() which handles:
- * - Server-side rendering considerations
- * - Client-side singleton management
- * - Proper cache isolation between requests
- *
+ * @component
+ * @param {React.PropsWithChildren} props - Component props
+ * @param {React.ReactNode} props.children - Elements to render within the QueryClientProvider context
+ * @returns {JSX.Element} Provider context for React Query with devtools enabled (disabled by default)
+ * @public
+ * @readonly
+ * @web
+ * @throws {Error} May throw if QueryClient instantiation fails
+ * @author Mike Odnis <WomB0ComB0>
+ * @version 1.0.0
+ * @see {@link https://tanstack.com/query/v4/ React Query Documentation}
  * @example
  * ```tsx
  * <QueryProvider>
  *   <App />
  * </QueryProvider>
  * ```
- *
- * @param {Object} props - Component props
- * @param {React.ReactNode} props.children - Child components to be wrapped with the QueryClient context
- * @returns {React.JSX.Element} A QueryClientProvider component with configured QueryClient and dev tools
  */
 export const QueryProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const queryClient = getQueryClient();

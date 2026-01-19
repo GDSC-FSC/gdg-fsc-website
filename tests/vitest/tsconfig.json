@@ -40,5 +40,11 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@gdg-fsc/interface": ["../../packages/interface/index.ts"],
+      "@gdg-fsc/utils": ["../../packages/shared/index.ts"],
+      "@/*": ["../../apps/frontend/src/*"]
+    }
   }
 }

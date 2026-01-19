@@ -1,0 +1,80 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/apps/frontend/src/main.tsx",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * Copyright 2025 GDG on Campus Farmingdale State College\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\nimport React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport App from './app.tsx';\nimport { Provider } from './providers/index.ts';\nimport './tailwind.css';\n\nReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(\n  <React.StrictMode>\n    <Provider>\n      <App />\n    </Provider>\n  </React.StrictMode>,\n);\n",
+      "start": 1768772628040,
+      "end": 1768772628040,
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "React",
+          "ReactDOM",
+          "App",
+          "Provider",
+          "createRoot",
+          "document",
+          "getElementById",
+          "HTMLElement",
+          "render"
+        ],
+        "sources": [
+          "/home/wombocombo/github/wrk/gdg-fsc-website/apps/frontend/src/main.tsx"
+        ],
+        "sourcesContent": [
+          "/**\n * Copyright 2025 GDG on Campus Farmingdale State College\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\nimport React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport App from './app.tsx';\nimport { Provider } from './providers/index.ts';\nimport './tailwind.css';\n\nReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(\n  <React.StrictMode>\n    <Provider>\n      <App />\n    </Provider>\n  </React.StrictMode>,\n);\n"
+        ],
+        "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA,OAAOA,KAAK,MAAM,OAAO;AACzB,OAAOC,QAAQ,MAAM,kBAAkB;AACvC,OAAOC,GAAG,MAAM,WAAW;AAC3B,SAASC,QAAQ,QAAQ,sBAAsB;AAC/C,OAAO,gBAAgB;AAEvBF,QAAQ,CAACG,UAAU,CAACC,QAAQ,CAACC,cAAc,CAAC,MAAM,CAAC,IAAIC,WAAW,CAAC,CAACC,MAAM,CACxE,CAAC,KAAK,CAAC,UAAU;AACnB,IAAI,CAAC,QAAQ;AACb,MAAM,CAAC,GAAG;AACV,IAAI,EAAE,QAAQ;AACd,EAAE,EAAE,KAAK,CAAC,UAAU,CACpB,CAAC",
+        "ignoreList": []
+      }
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "result": "/**\n * Copyright 2025 GDG on Campus Farmingdale State College\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\nimport React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport App from './app.tsx';\nimport { Provider } from './providers/index.ts';\nimport './tailwind.css';\nReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(<React.StrictMode>\n    <Provider>\n      <App />\n    </Provider>\n  </React.StrictMode>);",
+      "start": 1768772628040,
+      "end": 1768772628103,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "React",
+          "ReactDOM",
+          "App",
+          "Provider",
+          "createRoot",
+          "document",
+          "getElementById",
+          "HTMLElement",
+          "render"
+        ],
+        "sources": [
+          "/home/wombocombo/github/wrk/gdg-fsc-website/apps/frontend/src/main.tsx"
+        ],
+        "sourcesContent": [
+          "/**\n * Copyright 2025 GDG on Campus Farmingdale State College\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\nimport React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport App from './app.tsx';\nimport { Provider } from './providers/index.ts';\nimport './tailwind.css';\n\nReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(\n  <React.StrictMode>\n    <Provider>\n      <App />\n    </Provider>\n  </React.StrictMode>,\n);\n"
+        ],
+        "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA,OAAOA,KAAK,MAAM,OAAO;AACzB,OAAOC,QAAQ,MAAM,kBAAkB;AACvC,OAAOC,GAAG,MAAM,WAAW;AAC3B,SAASC,QAAQ,QAAQ,sBAAsB;AAC/C,OAAO,gBAAgB;AAEvBF,QAAQ,CAACG,UAAU,CAACC,QAAQ,CAACC,cAAc,CAAC,MAAM,CAAC,IAAIC,WAAW,CAAC,CAACC,MAAM,CACxE,CAAC,KAAK,CAAC,UAAU;AACnB,IAAI,CAAC,QAAQ;AACb,MAAM,CAAC,GAAG;AACV,IAAI,EAAE,QAAQ;AACd,EAAE,EAAE,KAAK,CAAC,UAAU,CACpB,CAAC",
+        "ignoreList": []
+      }
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628104,
+      "end": 1768772628104,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628108,
+      "end": 1768772628108,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628108,
+      "end": 1768772628108,
+      "order": "post-post"
+    }
+  ]
+}

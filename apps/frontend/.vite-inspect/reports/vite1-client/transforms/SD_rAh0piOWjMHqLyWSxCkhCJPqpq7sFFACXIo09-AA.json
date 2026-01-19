@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/balloon.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M12 16v1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v1\", key: \"2nz4b\" }],\n  [\"path\", { d: \"M12 6a2 2 0 0 1 2 2\", key: \"7y7d82\" }],\n  [\"path\", { d: \"M18 8c0 4-3.5 8-6 8s-6-4-6-8a6 6 0 0 1 12 0\", key: \"vqb5s3\" }]\n];\nconst Balloon = createLucideIcon(\"balloon\", __iconNode);\n\nexport { __iconNode, Balloon as default };\n//# sourceMappingURL=balloon.js.map\n",
+      "start": 1768772628537,
+      "end": 1768772628537
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628537,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628564,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628593,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628625,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@effect/platform/dist/esm/internal/etag.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Context from \"effect/Context\";\nimport * as Effect from \"effect/Effect\";\nimport * as Layer from \"effect/Layer\";\n/** @internal */\nexport const GeneratorTypeId = /*#__PURE__*/Symbol.for(\"@effect/platform/Etag/Generator\");\n/** @internal */\nexport const tag = /*#__PURE__*/Context.GenericTag(\"@effect/platform/Etag/Generator\");\n/** @internal */\nexport const toString = self => {\n  switch (self._tag) {\n    case \"Weak\":\n      return `W/\"${self.value}\"`;\n    case \"Strong\":\n      return `\"${self.value}\"`;\n  }\n};\nconst fromFileInfo = info => {\n  const mtime = info.mtime._tag === \"Some\" ? info.mtime.value.getTime().toString(16) : \"0\";\n  return `${info.size.toString(16)}-${mtime}`;\n};\nconst fromFileWeb = file => {\n  return `${file.size.toString(16)}-${file.lastModified.toString(16)}`;\n};\n/** @internal */\nexport const layer = /*#__PURE__*/Layer.succeed(tag, /*#__PURE__*/tag.of({\n  [GeneratorTypeId]: GeneratorTypeId,\n  fromFileInfo(info) {\n    return Effect.sync(() => ({\n      _tag: \"Strong\",\n      value: fromFileInfo(info)\n    }));\n  },\n  fromFileWeb(file) {\n    return Effect.sync(() => ({\n      _tag: \"Strong\",\n      value: fromFileWeb(file)\n    }));\n  }\n}));\n/** @internal */\nexport const layerWeak = /*#__PURE__*/Layer.succeed(tag, /*#__PURE__*/tag.of({\n  [GeneratorTypeId]: GeneratorTypeId,\n  fromFileInfo(info) {\n    return Effect.sync(() => ({\n      _tag: \"Weak\",\n      value: fromFileInfo(info)\n    }));\n  },\n  fromFileWeb(file) {\n    return Effect.sync(() => ({\n      _tag: \"Weak\",\n      value: fromFileWeb(file)\n    }));\n  }\n}));\n//# sourceMappingURL=etag.js.map",
+      "start": 1768772628755,
+      "end": 1768772628755
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628755,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628771,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628790,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628807,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

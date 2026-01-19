@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/tablets.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"circle\", { cx: \"7\", cy: \"7\", r: \"5\", key: \"x29byf\" }],\n  [\"circle\", { cx: \"17\", cy: \"17\", r: \"5\", key: \"1op1d2\" }],\n  [\"path\", { d: \"M12 17h10\", key: \"ls21zv\" }],\n  [\"path\", { d: \"m3.46 10.54 7.08-7.08\", key: \"1rehiu\" }]\n];\nconst Tablets = createLucideIcon(\"tablets\", __iconNode);\n\nexport { __iconNode, Tablets as default };\n//# sourceMappingURL=tablets.js.map\n",
+      "start": 1768772628542,
+      "end": 1768772628542
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628542,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628572,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628599,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628629,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

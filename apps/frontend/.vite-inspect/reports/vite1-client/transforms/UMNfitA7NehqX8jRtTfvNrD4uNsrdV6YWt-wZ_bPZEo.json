@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@tanstack/query-core/build/modern/streamedQuery.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "// src/streamedQuery.ts\nimport { addConsumeAwareSignal, addToEnd } from \"./utils.js\";\nfunction streamedQuery({\n  streamFn,\n  refetchMode = \"reset\",\n  reducer = (items, chunk) => addToEnd(items, chunk),\n  initialValue = []\n}) {\n  return async (context) => {\n    const query = context.client.getQueryCache().find({ queryKey: context.queryKey, exact: true });\n    const isRefetch = !!query && query.state.data !== void 0;\n    if (isRefetch && refetchMode === \"reset\") {\n      query.setState({\n        status: \"pending\",\n        data: void 0,\n        error: null,\n        fetchStatus: \"fetching\"\n      });\n    }\n    let result = initialValue;\n    let cancelled = false;\n    const streamFnContext = addConsumeAwareSignal(\n      {\n        client: context.client,\n        meta: context.meta,\n        queryKey: context.queryKey,\n        pageParam: context.pageParam,\n        direction: context.direction\n      },\n      () => context.signal,\n      () => cancelled = true\n    );\n    const stream = await streamFn(streamFnContext);\n    const isReplaceRefetch = isRefetch && refetchMode === \"replace\";\n    for await (const chunk of stream) {\n      if (cancelled) {\n        break;\n      }\n      if (isReplaceRefetch) {\n        result = reducer(result, chunk);\n      } else {\n        context.client.setQueryData(\n          context.queryKey,\n          (prev) => reducer(prev === void 0 ? initialValue : prev, chunk)\n        );\n      }\n    }\n    if (isReplaceRefetch && !cancelled) {\n      context.client.setQueryData(context.queryKey, result);\n    }\n    return context.client.getQueryData(context.queryKey) ?? initialValue;\n  };\n}\nexport {\n  streamedQuery\n};\n//# sourceMappingURL=streamedQuery.js.map",
+      "start": 1768772628386,
+      "end": 1768772628386
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628386,
+      "end": 1768772628386,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628388,
+      "end": 1768772628388,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628394,
+      "end": 1768772628394,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628409,
+      "end": 1768772628409,
+      "order": "post-post"
+    }
+  ]
+}

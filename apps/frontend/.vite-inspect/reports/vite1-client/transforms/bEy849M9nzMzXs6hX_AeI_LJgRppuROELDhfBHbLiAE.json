@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/PubSub.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as internal from \"./internal/pubsub.js\";\n/**\n * Creates a bounded `PubSub` with the back pressure strategy. The `PubSub` will retain\n * messages until they have been taken by all subscribers, applying back\n * pressure to publishers if the `PubSub` is at capacity.\n *\n * For best performance use capacities that are powers of two.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const bounded = internal.bounded;\n/**\n * Creates a bounded `PubSub` with the dropping strategy. The `PubSub` will drop new\n * messages if the `PubSub` is at capacity.\n *\n * For best performance use capacities that are powers of two.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const dropping = internal.dropping;\n/**\n * Creates a bounded `PubSub` with the sliding strategy. The `PubSub` will add new\n * messages and drop old messages if the `PubSub` is at capacity.\n *\n * For best performance use capacities that are powers of two.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const sliding = internal.sliding;\n/**\n * Creates an unbounded `PubSub`.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const unbounded = internal.unbounded;\n/**\n *  Returns the number of elements the queue can hold.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const capacity = internal.capacity;\n/**\n * Retrieves the size of the queue, which is equal to the number of elements\n * in the queue. This may be negative if fibers are suspended waiting for\n * elements to be added to the queue.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const size = internal.size;\n/**\n * Returns `true` if the `Queue` contains at least one element, `false`\n * otherwise.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const isFull = internal.isFull;\n/**\n * Returns `true` if the `Queue` contains zero elements, `false` otherwise.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const isEmpty = internal.isEmpty;\n/**\n * Interrupts any fibers that are suspended on `offer` or `take`. Future calls\n * to `offer*` and `take*` will be interrupted immediately.\n *\n * @since 2.0.0\n * @category utils\n */\nexport const shutdown = internal.shutdown;\n/**\n * Returns `true` if `shutdown` has been called, otherwise returns `false`.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const isShutdown = internal.isShutdown;\n/**\n * Waits until the queue is shutdown. The `Effect` returned by this method will\n * not resume until the queue has been shutdown. If the queue is already\n * shutdown, the `Effect` will resume right away.\n *\n * @since 2.0.0\n * @category utils\n */\nexport const awaitShutdown = internal.awaitShutdown;\n/**\n * Publishes a message to the `PubSub`, returning whether the message was published\n * to the `PubSub`.\n *\n * @since 2.0.0\n * @category utils\n */\nexport const publish = internal.publish;\n/**\n * Publishes all of the specified messages to the `PubSub`, returning whether they\n * were published to the `PubSub`.\n *\n * @since 2.0.0\n * @category utils\n */\nexport const publishAll = internal.publishAll;\n/**\n * Subscribes to receive messages from the `PubSub`. The resulting subscription can\n * be evaluated multiple times within the scope to take a message from the `PubSub`\n * each time.\n *\n * @since 2.0.0\n * @category utils\n */\nexport const subscribe = internal.subscribe;\n//# sourceMappingURL=PubSub.js.map",
+      "start": 1768772628414,
+      "end": 1768772628414
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628414,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628417,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628435,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628478,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

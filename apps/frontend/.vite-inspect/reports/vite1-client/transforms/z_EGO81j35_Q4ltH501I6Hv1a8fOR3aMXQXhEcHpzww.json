@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@tanstack/react-query/build/modern/useBaseQuery.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "\"use client\";\n\n// src/useBaseQuery.ts\nimport * as React from \"react\";\nimport { isServer, noop, notifyManager } from \"@tanstack/query-core\";\nimport { useQueryClient } from \"./QueryClientProvider.js\";\nimport { useQueryErrorResetBoundary } from \"./QueryErrorResetBoundary.js\";\nimport {\n  ensurePreventErrorBoundaryRetry,\n  getHasError,\n  useClearResetErrorBoundary\n} from \"./errorBoundaryUtils.js\";\nimport { useIsRestoring } from \"./IsRestoringProvider.js\";\nimport {\n  ensureSuspenseTimers,\n  fetchOptimistic,\n  shouldSuspend,\n  willFetch\n} from \"./suspense.js\";\nfunction useBaseQuery(options, Observer, queryClient) {\n  if (process.env.NODE_ENV !== \"production\") {\n    if (typeof options !== \"object\" || Array.isArray(options)) {\n      throw new Error(\n        'Bad argument type. Starting with v5, only the \"Object\" form is allowed when calling query related functions. Please use the error stack to find the culprit call. More info here: https://tanstack.com/query/latest/docs/react/guides/migrating-to-v5#supports-a-single-signature-one-object'\n      );\n    }\n  }\n  const isRestoring = useIsRestoring();\n  const errorResetBoundary = useQueryErrorResetBoundary();\n  const client = useQueryClient(queryClient);\n  const defaultedOptions = client.defaultQueryOptions(options);\n  client.getDefaultOptions().queries?._experimental_beforeQuery?.(\n    defaultedOptions\n  );\n  const query = client.getQueryCache().get(defaultedOptions.queryHash);\n  if (process.env.NODE_ENV !== \"production\") {\n    if (!defaultedOptions.queryFn) {\n      console.error(\n        `[${defaultedOptions.queryHash}]: No queryFn was passed as an option, and no default queryFn was found. The queryFn parameter is only optional when using a default queryFn. More info here: https://tanstack.com/query/latest/docs/framework/react/guides/default-query-function`\n      );\n    }\n  }\n  defaultedOptions._optimisticResults = isRestoring ? \"isRestoring\" : \"optimistic\";\n  ensureSuspenseTimers(defaultedOptions);\n  ensurePreventErrorBoundaryRetry(defaultedOptions, errorResetBoundary, query);\n  useClearResetErrorBoundary(errorResetBoundary);\n  const isNewCacheEntry = !client.getQueryCache().get(defaultedOptions.queryHash);\n  const [observer] = React.useState(\n    () => new Observer(\n      client,\n      defaultedOptions\n    )\n  );\n  const result = observer.getOptimisticResult(defaultedOptions);\n  const shouldSubscribe = !isRestoring && options.subscribed !== false;\n  React.useSyncExternalStore(\n    React.useCallback(\n      (onStoreChange) => {\n        const unsubscribe = shouldSubscribe ? observer.subscribe(notifyManager.batchCalls(onStoreChange)) : noop;\n        observer.updateResult();\n        return unsubscribe;\n      },\n      [observer, shouldSubscribe]\n    ),\n    () => observer.getCurrentResult(),\n    () => observer.getCurrentResult()\n  );\n  React.useEffect(() => {\n    observer.setOptions(defaultedOptions);\n  }, [defaultedOptions, observer]);\n  if (shouldSuspend(defaultedOptions, result)) {\n    throw fetchOptimistic(defaultedOptions, observer, errorResetBoundary);\n  }\n  if (getHasError({\n    result,\n    errorResetBoundary,\n    throwOnError: defaultedOptions.throwOnError,\n    query,\n    suspense: defaultedOptions.suspense\n  })) {\n    throw result.error;\n  }\n  ;\n  client.getDefaultOptions().queries?._experimental_afterQuery?.(\n    defaultedOptions,\n    result\n  );\n  if (defaultedOptions.experimental_prefetchInRender && !isServer && willFetch(result, isRestoring)) {\n    const promise = isNewCacheEntry ? (\n      // Fetch immediately on render in order to ensure `.promise` is resolved even if the component is unmounted\n      fetchOptimistic(defaultedOptions, observer, errorResetBoundary)\n    ) : (\n      // subscribe to the \"cache promise\" so that we can finalize the currentThenable once data comes in\n      query?.promise\n    );\n    promise?.catch(noop).finally(() => {\n      observer.updateResult();\n    });\n  }\n  return !defaultedOptions.notifyOnChangeProps ? observer.trackResult(result) : result;\n}\nexport {\n  useBaseQuery\n};\n//# sourceMappingURL=useBaseQuery.js.map",
+      "start": 1768772628386,
+      "end": 1768772628386
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628386,
+      "end": 1768772628386,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628388,
+      "end": 1768772628388,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628394,
+      "end": 1768772628394,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628409,
+      "end": 1768772628409,
+      "order": "post-post"
+    }
+  ]
+}

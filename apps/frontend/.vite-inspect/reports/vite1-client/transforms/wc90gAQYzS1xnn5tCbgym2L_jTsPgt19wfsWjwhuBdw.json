@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/split.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M16 3h5v5\", key: \"1806ms\" }],\n  [\"path\", { d: \"M8 3H3v5\", key: \"15dfkv\" }],\n  [\"path\", { d: \"M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3\", key: \"1qrqzj\" }],\n  [\"path\", { d: \"m15 9 6-6\", key: \"ko1vev\" }]\n];\nconst Split = createLucideIcon(\"split\", __iconNode);\n\nexport { __iconNode, Split as default };\n//# sourceMappingURL=split.js.map\n",
+      "start": 1768772628548,
+      "end": 1768772628548
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628548,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628576,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628607,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628633,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

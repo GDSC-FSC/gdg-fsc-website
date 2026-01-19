@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/resize/handle-element.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { isSVGElement } from '../utils/is-svg-element.mjs';\nimport { resolveElements } from '../utils/resolve-elements.mjs';\n\nconst resizeHandlers = new WeakMap();\nlet observer;\nconst getSize = (borderBoxAxis, svgAxis, htmlAxis) => (target, borderBoxSize) => {\n    if (borderBoxSize && borderBoxSize[0]) {\n        return borderBoxSize[0][(borderBoxAxis + \"Size\")];\n    }\n    else if (isSVGElement(target) && \"getBBox\" in target) {\n        return target.getBBox()[svgAxis];\n    }\n    else {\n        return target[htmlAxis];\n    }\n};\nconst getWidth = /*@__PURE__*/ getSize(\"inline\", \"width\", \"offsetWidth\");\nconst getHeight = /*@__PURE__*/ getSize(\"block\", \"height\", \"offsetHeight\");\nfunction notifyTarget({ target, borderBoxSize }) {\n    resizeHandlers.get(target)?.forEach((handler) => {\n        handler(target, {\n            get width() {\n                return getWidth(target, borderBoxSize);\n            },\n            get height() {\n                return getHeight(target, borderBoxSize);\n            },\n        });\n    });\n}\nfunction notifyAll(entries) {\n    entries.forEach(notifyTarget);\n}\nfunction createResizeObserver() {\n    if (typeof ResizeObserver === \"undefined\")\n        return;\n    observer = new ResizeObserver(notifyAll);\n}\nfunction resizeElement(target, handler) {\n    if (!observer)\n        createResizeObserver();\n    const elements = resolveElements(target);\n    elements.forEach((element) => {\n        let elementHandlers = resizeHandlers.get(element);\n        if (!elementHandlers) {\n            elementHandlers = new Set();\n            resizeHandlers.set(element, elementHandlers);\n        }\n        elementHandlers.add(handler);\n        observer?.observe(element);\n    });\n    return () => {\n        elements.forEach((element) => {\n            const elementHandlers = resizeHandlers.get(element);\n            elementHandlers?.delete(handler);\n            if (!elementHandlers?.size) {\n                observer?.unobserve(element);\n            }\n        });\n    };\n}\n\nexport { resizeElement };\n",
+      "start": 1768772628848,
+      "end": 1768772628848
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628848,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628852,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628855,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628858,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/uuid.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { tuple } from './tuple.js';\nimport { buildPaddedNumberArbitrary } from './_internals/builders/PaddedNumberArbitraryBuilder.js';\nimport { paddedEightsToUuidMapper, paddedEightsToUuidUnmapper } from './_internals/mappers/PaddedEightsToUuid.js';\nimport { Error } from '../utils/globals.js';\nimport { buildVersionsAppliersForUuid } from './_internals/mappers/VersionsApplierForUuid.js';\nfunction assertValidVersions(versions) {\n    const found = {};\n    for (const version of versions) {\n        if (found[version]) {\n            throw new Error(`Version ${version} has been requested at least twice for uuid`);\n        }\n        found[version] = true;\n        if (version < 1 || version > 15) {\n            throw new Error(`Version must be a value in [1-15] for uuid, but received ${version}`);\n        }\n        if (~~version !== version) {\n            throw new Error(`Version must be an integer value for uuid, but received ${version}`);\n        }\n    }\n    if (versions.length === 0) {\n        throw new Error(`Must provide at least one version for uuid`);\n    }\n}\nexport function uuid(constraints = {}) {\n    const padded = buildPaddedNumberArbitrary(0, 0xffffffff);\n    const version = constraints.version !== undefined\n        ? typeof constraints.version === 'number'\n            ? [constraints.version]\n            : constraints.version\n        : [1, 2, 3, 4, 5];\n    assertValidVersions(version);\n    const { versionsApplierMapper, versionsApplierUnmapper } = buildVersionsAppliersForUuid(version);\n    const secondPadded = buildPaddedNumberArbitrary(0, 0x10000000 * version.length - 1).map(versionsApplierMapper, versionsApplierUnmapper);\n    const thirdPadded = buildPaddedNumberArbitrary(0x80000000, 0xbfffffff);\n    return tuple(padded, secondPadded, thirdPadded, padded).map(paddedEightsToUuidMapper, paddedEightsToUuidUnmapper);\n}\n",
+      "start": 1768772628849,
+      "end": 1768772628849
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628849,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628852,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628855,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628858,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

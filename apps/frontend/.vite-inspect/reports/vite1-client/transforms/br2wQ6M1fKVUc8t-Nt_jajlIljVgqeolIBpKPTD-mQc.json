@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/motion/utils/valid-prop.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * A list of all valid MotionProps.\n *\n * @privateRemarks\n * This doesn't throw if a `MotionProp` name is missing - it should.\n */\nconst validMotionProps = new Set([\n    \"animate\",\n    \"exit\",\n    \"variants\",\n    \"initial\",\n    \"style\",\n    \"values\",\n    \"variants\",\n    \"transition\",\n    \"transformTemplate\",\n    \"custom\",\n    \"inherit\",\n    \"onBeforeLayoutMeasure\",\n    \"onAnimationStart\",\n    \"onAnimationComplete\",\n    \"onUpdate\",\n    \"onDragStart\",\n    \"onDrag\",\n    \"onDragEnd\",\n    \"onMeasureDragConstraints\",\n    \"onDirectionLock\",\n    \"onDragTransitionEnd\",\n    \"_dragX\",\n    \"_dragY\",\n    \"onHoverStart\",\n    \"onHoverEnd\",\n    \"onViewportEnter\",\n    \"onViewportLeave\",\n    \"globalTapTarget\",\n    \"ignoreStrict\",\n    \"viewport\",\n]);\n/**\n * Check whether a prop name is a valid `MotionProp` key.\n *\n * @param key - Name of the property to check\n * @returns `true` is key is a valid `MotionProp`.\n *\n * @public\n */\nfunction isValidMotionProp(key) {\n    return (key.startsWith(\"while\") ||\n        (key.startsWith(\"drag\") && key !== \"draggable\") ||\n        key.startsWith(\"layout\") ||\n        key.startsWith(\"onTap\") ||\n        key.startsWith(\"onPan\") ||\n        key.startsWith(\"onLayout\") ||\n        validMotionProps.has(key));\n}\n\nexport { isValidMotionProp };\n//# sourceMappingURL=valid-prop.mjs.map\n",
+      "start": 1768772628584,
+      "end": 1768772628584
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628584,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628621,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628650,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

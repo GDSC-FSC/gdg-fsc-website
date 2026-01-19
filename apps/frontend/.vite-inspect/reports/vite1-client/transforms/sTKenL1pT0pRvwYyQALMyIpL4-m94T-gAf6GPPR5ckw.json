@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/animation/generators/utils/create-generator-easing.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { millisecondsToSeconds } from 'motion-utils';\nimport { calcGeneratorDuration, maxGeneratorDuration } from './calc-duration.mjs';\n\n/**\n * Create a progress => progress easing function from a generator.\n */\nfunction createGeneratorEasing(options, scale = 100, createGenerator) {\n    const generator = createGenerator({ ...options, keyframes: [0, scale] });\n    const duration = Math.min(calcGeneratorDuration(generator), maxGeneratorDuration);\n    return {\n        type: \"keyframes\",\n        ease: (progress) => {\n            return generator.next(duration * progress).value / scale;\n        },\n        duration: millisecondsToSeconds(duration),\n    };\n}\n\nexport { createGeneratorEasing };\n",
+      "start": 1768772628754,
+      "end": 1768772628754
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628754,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628771,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628789,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628806,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

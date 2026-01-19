@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@effect/platform/dist/esm/HttpRouter.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as internal from \"./internal/httpRouter.js\";\n/**\n * @since 1.0.0\n * @category type ids\n */\nexport const TypeId = internal.TypeId;\n/**\n * @since 1.0.0\n * @category type ids\n */\nexport const RouteTypeId = internal.RouteTypeId;\n/**\n * @since 1.0.0\n * @category type ids\n */\nexport const RouteContextTypeId = internal.RouteContextTypeId;\n/**\n * @since 1.0.0\n * @category route context\n */\nexport const RouteContext = internal.RouteContext;\n/**\n * @since 1.0.0\n * @category route context\n */\nexport const params = internal.params;\n/**\n * @since 1.0.0\n * @category route context\n */\nexport const schemaJson = internal.schemaJson;\n/**\n * @since 1.0.0\n * @category route context\n */\nexport const schemaNoBody = internal.schemaNoBody;\n/**\n * @since 1.0.0\n * @category route context\n */\nexport const schemaParams = internal.schemaParams;\n/**\n * @since 1.0.0\n * @category route context\n */\nexport const schemaPathParams = internal.schemaPathParams;\n/**\n * @since 1.0.0\n * @category router config\n */\nexport const currentRouterConfig = internal.currentRouterConfig;\n/**\n * @since 1.0.0\n * @category router config\n */\nexport const withRouterConfig = internal.withRouterConfig;\n/**\n * @since 1.0.0\n * @category router config\n */\nexport const setRouterConfig = internal.setRouterConfig;\n/**\n * @since 1.0.0\n * @category constructors\n */\nexport const empty = internal.empty;\n/**\n * @since 1.0.0\n * @category constructors\n */\nexport const fromIterable = internal.fromIterable;\n/**\n * @since 1.0.0\n * @category constructors\n */\nexport const makeRoute = internal.makeRoute;\n/**\n * @since 1.0.0\n * @category utils\n */\nexport const prefixPath = internal.prefixPath;\n/**\n * @since 1.0.0\n * @category combinators\n */\nexport const prefixAll = internal.prefixAll;\n/**\n * @since 1.0.0\n * @category combinators\n */\nexport const append = internal.append;\n/**\n * @since 1.0.0\n * @category combinators\n */\nexport const concat = internal.concat;\n/**\n * @since 1.0.0\n * @category combinators\n */\nexport const concatAll = internal.concatAll;\n/**\n * @since 1.0.0\n * @category routing\n */\nexport const mount = internal.mount;\n/**\n * @since 1.0.0\n * @category routing\n */\nexport const mountApp = internal.mountApp;\n/**\n * @since 1.0.0\n * @category routing\n */\nexport const route = internal.route;\n/**\n * @since 1.0.0\n * @category routing\n */\nexport const all = internal.all;\n/**\n * @since 1.0.0\n * @category routing\n */\nexport const get = internal.get;\n/**\n * @since 1.0.0\n * @category routing\n */\nexport const post = internal.post;\n/**\n * @since 1.0.0\n * @category routing\n */\nexport const patch = internal.patch;\n/**\n * @since 1.0.0\n * @category routing\n */\nexport const put = internal.put;\n/**\n * @since 1.0.0\n * @category routing\n */\nexport const del = internal.del;\n/**\n * @since 1.0.0\n * @category routing\n */\nexport const head = internal.head;\n/**\n * @since 1.0.0\n * @category routing\n */\nexport const options = internal.options;\n/**\n * @since 1.0.0\n * @category combinators\n */\nexport const use = internal.use;\n/**\n * @since 1.0.0\n * @category combinators\n */\nexport const transform = internal.transform;\n/**\n * @since 1.0.0\n * @category combinators\n */\nexport const catchAll = internal.catchAll;\n/**\n * @since 1.0.0\n * @category combinators\n */\nexport const catchAllCause = internal.catchAllCause;\n/**\n * @since 1.0.0\n * @category combinators\n */\nexport const catchTag = internal.catchTag;\n/**\n * @since 1.0.0\n * @category combinators\n */\nexport const catchTags = internal.catchTags;\n/**\n * @since 1.0.0\n * @category combinators\n */\nexport const provideService = internal.provideService;\n/**\n * @since 1.0.0\n * @category combinators\n */\nexport const provideServiceEffect = internal.provideServiceEffect;\n/**\n * @since 1.0.0\n * @category tags\n */\nexport const Tag = internal.Tag;\n/**\n * @since 1.0.0\n * @category tags\n */\nexport class Default extends /*#__PURE__*/Tag(\"@effect/platform/HttpRouter/Default\")() {}\n/**\n * @since 1.0.0\n * @category utils\n */\nexport const toHttpApp = internal.toHttpApp;\n//# sourceMappingURL=HttpRouter.js.map",
+      "start": 1768772628587,
+      "end": 1768772628587
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628587,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628619,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628648,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628704,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

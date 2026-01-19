@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/microchip.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M10 12h4\", key: \"a56b0p\" }],\n  [\"path\", { d: \"M10 17h4\", key: \"pvmtpo\" }],\n  [\"path\", { d: \"M10 7h4\", key: \"1vgcok\" }],\n  [\"path\", { d: \"M18 12h2\", key: \"quuxs7\" }],\n  [\"path\", { d: \"M18 18h2\", key: \"4scel\" }],\n  [\"path\", { d: \"M18 6h2\", key: \"1ptzki\" }],\n  [\"path\", { d: \"M4 12h2\", key: \"1ltxp0\" }],\n  [\"path\", { d: \"M4 18h2\", key: \"1xrofg\" }],\n  [\"path\", { d: \"M4 6h2\", key: \"1cx33n\" }],\n  [\"rect\", { x: \"6\", y: \"2\", width: \"12\", height: \"20\", rx: \"2\", key: \"749fme\" }]\n];\nconst Microchip = createLucideIcon(\"microchip\", __iconNode);\n\nexport { __iconNode, Microchip as default };\n//# sourceMappingURL=microchip.js.map\n",
+      "start": 1768772628536,
+      "end": 1768772628536
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628536,
+      "end": 1768772628552,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628564,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628593,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628624,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

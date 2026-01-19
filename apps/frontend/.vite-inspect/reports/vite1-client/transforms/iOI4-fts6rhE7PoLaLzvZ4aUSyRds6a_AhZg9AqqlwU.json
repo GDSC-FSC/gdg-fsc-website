@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@effect/platform/dist/esm/HttpApiScalar.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @since 1.0.0\n */\nimport * as Effect from \"effect/Effect\";\nimport * as Layer from \"effect/Layer\";\nimport { Api } from \"./HttpApi.js\";\nimport { Router } from \"./HttpApiBuilder.js\";\nimport * as HttpLayerRouter from \"./HttpLayerRouter.js\";\nimport * as HttpServerResponse from \"./HttpServerResponse.js\";\nimport * as Html from \"./internal/html.js\";\nimport * as internal from \"./internal/httpApiScalar.js\";\nimport * as OpenApi from \"./OpenApi.js\";\nconst makeHandler = options => {\n  const spec = OpenApi.fromApi(options.api);\n  const source = options?.source;\n  const scalarConfig = {\n    _integration: \"html\",\n    ...options?.scalar\n  };\n  const response = HttpServerResponse.html(`<!doctype html>\n<html>\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>${Html.escape(spec.info.title)}</title>\n    ${!spec.info.description ? \"\" : `<meta name=\"description\" content=\"${Html.escape(spec.info.description)}\"/>`}\n    ${!spec.info.description ? \"\" : `<meta name=\"og:description\" content=\"${Html.escape(spec.info.description)}\"/>`}\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1\" />\n  </head>\n  <body>\n    <script id=\"api-reference\" type=\"application/json\">\n      ${Html.escapeJson(spec)}\n    </script>\n    <script>\n      document.getElementById('api-reference').dataset.configuration = JSON.stringify(${Html.escapeJson(scalarConfig)})\n    </script>\n    ${source._tag === \"Cdn\" ? `<script src=\"${`https://cdn.jsdelivr.net/npm/@scalar/api-reference@${source.version ?? \"latest\"}/dist/browser/standalone.min.js`}\" crossorigin></script>` : `<script>${source.source}</script>`}\n  </body>\n</html>`);\n  return Effect.succeed(response);\n};\n/**\n * @since 1.0.0\n * @category layers\n */\nexport const layer = options => Router.use(Effect.fnUntraced(function* (router) {\n  const {\n    api\n  } = yield* Api;\n  const handler = makeHandler({\n    ...options,\n    api,\n    source: {\n      _tag: \"Inline\",\n      source: internal.javascript\n    }\n  });\n  yield* router.get(options?.path ?? \"/docs\", handler);\n}));\n/**\n * @since 1.0.0\n * @category layers\n */\nexport const layerCdn = options => Router.use(Effect.fnUntraced(function* (router) {\n  const {\n    api\n  } = yield* Api;\n  const handler = makeHandler({\n    ...options,\n    api,\n    source: {\n      _tag: \"Cdn\",\n      version: options?.version\n    }\n  });\n  yield* router.get(options?.path ?? \"/docs\", handler);\n}));\n/**\n * @since 1.0.0\n * @category layers\n */\nexport const layerHttpLayerRouter = /*#__PURE__*/Effect.fnUntraced(function* (options) {\n  const router = yield* HttpLayerRouter.HttpRouter;\n  const handler = makeHandler({\n    ...options,\n    source: {\n      _tag: \"Inline\",\n      source: internal.javascript\n    }\n  });\n  yield* router.add(\"GET\", options.path, handler);\n}, Layer.effectDiscard);\n/**\n * @since 1.0.0\n * @category layers\n */\nexport const layerHttpLayerRouterCdn = /*#__PURE__*/Effect.fnUntraced(function* (options) {\n  const router = yield* HttpLayerRouter.HttpRouter;\n  const handler = makeHandler({\n    ...options,\n    source: {\n      _tag: \"Cdn\",\n      version: options?.version\n    }\n  });\n  yield* router.add(\"GET\", options.path, handler);\n}, Layer.effectDiscard);\n//# sourceMappingURL=HttpApiScalar.js.map",
+      "start": 1768772628586,
+      "end": 1768772628586
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628586,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628619,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628647,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628703,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

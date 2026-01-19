@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/render/dom/scroll/offsets/inset.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { isHTMLElement } from 'motion-dom';\n\nfunction calcInset(element, container) {\n    const inset = { x: 0, y: 0 };\n    let current = element;\n    while (current && current !== container) {\n        if (isHTMLElement(current)) {\n            inset.x += current.offsetLeft;\n            inset.y += current.offsetTop;\n            current = current.offsetParent;\n        }\n        else if (current.tagName === \"svg\") {\n            /**\n             * This isn't an ideal approach to measuring the offset of <svg /> tags.\n             * It would be preferable, given they behave like HTMLElements in most ways\n             * to use offsetLeft/Top. But these don't exist on <svg />. Likewise we\n             * can't use .getBBox() like most SVG elements as these provide the offset\n             * relative to the SVG itself, which for <svg /> is usually 0x0.\n             */\n            const svgBoundingBox = current.getBoundingClientRect();\n            current = current.parentElement;\n            const parentBoundingBox = current.getBoundingClientRect();\n            inset.x += svgBoundingBox.left - parentBoundingBox.left;\n            inset.y += svgBoundingBox.top - parentBoundingBox.top;\n        }\n        else if (current instanceof SVGGraphicsElement) {\n            const { x, y } = current.getBBox();\n            inset.x += x;\n            inset.y += y;\n            let svg = null;\n            let parent = current.parentNode;\n            while (!svg) {\n                if (parent.tagName === \"svg\") {\n                    svg = parent;\n                }\n                parent = current.parentNode;\n            }\n            current = svg;\n        }\n        else {\n            break;\n        }\n    }\n    return inset;\n}\n\nexport { calcInset };\n//# sourceMappingURL=inset.mjs.map\n",
+      "start": 1768772628893,
+      "end": 1768772628893
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628893,
+      "end": 1768772628894,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628895,
+      "end": 1768772628896,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628897,
+      "end": 1768772628897,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628898,
+      "end": 1768772628899,
+      "order": "post-post"
+    }
+  ]
+}

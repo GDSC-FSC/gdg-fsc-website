@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/commands.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { CommandsArbitrary } from './_internals/CommandsArbitrary.js';\nimport { maxGeneratedLengthFromSizeForArbitrary, MaxLengthUpperBound, } from './_internals/helpers/MaxLengthFromMinLength.js';\nfunction commands(commandArbs, constraints = {}) {\n    const { size, maxCommands = MaxLengthUpperBound, disableReplayLog = false, replayPath = null } = constraints;\n    const specifiedMaxCommands = constraints.maxCommands !== undefined;\n    const maxGeneratedCommands = maxGeneratedLengthFromSizeForArbitrary(size, 0, maxCommands, specifiedMaxCommands);\n    return new CommandsArbitrary(commandArbs, maxGeneratedCommands, maxCommands, replayPath, disableReplayLog);\n}\nexport { commands };\n",
+      "start": 1768772628848,
+      "end": 1768772628848
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628848,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628851,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628854,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628857,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

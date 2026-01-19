@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-export * from './fetcher.ts';
-export * from './helpers.ts';
-export * from './logger.ts';
+export * from '@gdg-fsc/utils';
+export * from './request-queue';
+export * from './request-queue.types';
 export * from './singletons.ts';
+

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/smartphone-charging.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"rect\", { width: \"14\", height: \"20\", x: \"5\", y: \"2\", rx: \"2\", ry: \"2\", key: \"1yt0o3\" }],\n  [\"path\", { d: \"M12.667 8 10 12h4l-2.667 4\", key: \"h9lk2d\" }]\n];\nconst SmartphoneCharging = createLucideIcon(\"smartphone-charging\", __iconNode);\n\nexport { __iconNode, SmartphoneCharging as default };\n//# sourceMappingURL=smartphone-charging.js.map\n",
+      "start": 1768772628549,
+      "end": 1768772628549
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628549,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628577,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628604,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628632,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

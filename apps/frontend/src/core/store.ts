@@ -20,8 +20,8 @@ import { createStore } from 'zustand';
  * Interface representing the global store state.
  * @interface StoreState
  */
-type StoreState = {};
+type StoreState = Record<string, unknown>;
 
-const createGlobalStore = () => createStore<StoreState>((set) => ({}));
+const createGlobalStore = () => createStore<StoreState>((_set) => ({}));
 
 export { createGlobalStore, type StoreState };

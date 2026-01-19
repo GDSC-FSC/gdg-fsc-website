@@ -16,8 +16,8 @@
  * limitations under the License.
  */
 
-import type { WorkerMessage, WorkerResult, WorkerTask } from '../worker/worker.types';
-import type { ActiveWorkers, ThreadPoolCallBacks, ThreadPoolResults } from './thread-pool.types';
+import type { WorkerMessage, WorkerResult, WorkerTask } from '../worker/worker.types.js';
+import type { ActiveWorkers, ThreadPoolCallBacks, ThreadPoolResults } from './thread-pool.types.js';
 
 export class ThreadPool {
   private workers: Worker[] = [];

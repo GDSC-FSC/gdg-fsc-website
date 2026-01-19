@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/projection/geometry/utils.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { calcLength } from './delta-calc.mjs';\n\nfunction isAxisDeltaZero(delta) {\n    return delta.translate === 0 && delta.scale === 1;\n}\nfunction isDeltaZero(delta) {\n    return isAxisDeltaZero(delta.x) && isAxisDeltaZero(delta.y);\n}\nfunction axisEquals(a, b) {\n    return a.min === b.min && a.max === b.max;\n}\nfunction boxEquals(a, b) {\n    return axisEquals(a.x, b.x) && axisEquals(a.y, b.y);\n}\nfunction axisEqualsRounded(a, b) {\n    return (Math.round(a.min) === Math.round(b.min) &&\n        Math.round(a.max) === Math.round(b.max));\n}\nfunction boxEqualsRounded(a, b) {\n    return axisEqualsRounded(a.x, b.x) && axisEqualsRounded(a.y, b.y);\n}\nfunction aspectRatio(box) {\n    return calcLength(box.x) / calcLength(box.y);\n}\nfunction axisDeltaEquals(a, b) {\n    return (a.translate === b.translate &&\n        a.scale === b.scale &&\n        a.originPoint === b.originPoint);\n}\n\nexport { aspectRatio, axisDeltaEquals, axisEquals, axisEqualsRounded, boxEquals, boxEqualsRounded, isDeltaZero };\n",
+      "start": 1768772628755,
+      "end": 1768772628755
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628755,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628771,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628790,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628807,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

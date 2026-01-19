@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@tanstack/query-core/build/modern/queryCache.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "// src/queryCache.ts\nimport { hashQueryKeyByOptions, matchQuery } from \"./utils.js\";\nimport { Query } from \"./query.js\";\nimport { notifyManager } from \"./notifyManager.js\";\nimport { Subscribable } from \"./subscribable.js\";\nvar QueryCache = class extends Subscribable {\n  constructor(config = {}) {\n    super();\n    this.config = config;\n    this.#queries = /* @__PURE__ */ new Map();\n  }\n  #queries;\n  build(client, options, state) {\n    const queryKey = options.queryKey;\n    const queryHash = options.queryHash ?? hashQueryKeyByOptions(queryKey, options);\n    let query = this.get(queryHash);\n    if (!query) {\n      query = new Query({\n        client,\n        queryKey,\n        queryHash,\n        options: client.defaultQueryOptions(options),\n        state,\n        defaultOptions: client.getQueryDefaults(queryKey)\n      });\n      this.add(query);\n    }\n    return query;\n  }\n  add(query) {\n    if (!this.#queries.has(query.queryHash)) {\n      this.#queries.set(query.queryHash, query);\n      this.notify({\n        type: \"added\",\n        query\n      });\n    }\n  }\n  remove(query) {\n    const queryInMap = this.#queries.get(query.queryHash);\n    if (queryInMap) {\n      query.destroy();\n      if (queryInMap === query) {\n        this.#queries.delete(query.queryHash);\n      }\n      this.notify({ type: \"removed\", query });\n    }\n  }\n  clear() {\n    notifyManager.batch(() => {\n      this.getAll().forEach((query) => {\n        this.remove(query);\n      });\n    });\n  }\n  get(queryHash) {\n    return this.#queries.get(queryHash);\n  }\n  getAll() {\n    return [...this.#queries.values()];\n  }\n  find(filters) {\n    const defaultedFilters = { exact: true, ...filters };\n    return this.getAll().find(\n      (query) => matchQuery(defaultedFilters, query)\n    );\n  }\n  findAll(filters = {}) {\n    const queries = this.getAll();\n    return Object.keys(filters).length > 0 ? queries.filter((query) => matchQuery(filters, query)) : queries;\n  }\n  notify(event) {\n    notifyManager.batch(() => {\n      this.listeners.forEach((listener) => {\n        listener(event);\n      });\n    });\n  }\n  onFocus() {\n    notifyManager.batch(() => {\n      this.getAll().forEach((query) => {\n        query.onFocus();\n      });\n    });\n  }\n  onOnline() {\n    notifyManager.batch(() => {\n      this.getAll().forEach((query) => {\n        query.onOnline();\n      });\n    });\n  }\n};\nexport {\n  QueryCache\n};\n//# sourceMappingURL=queryCache.js.map",
+      "start": 1768772628386,
+      "end": 1768772628386
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628386,
+      "end": 1768772628386,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628388,
+      "end": 1768772628388,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628394,
+      "end": 1768772628394,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628409,
+      "end": 1768772628409,
+      "order": "post-post"
+    }
+  ]
+}

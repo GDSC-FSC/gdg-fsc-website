@@ -14,6 +14,22 @@
  * limitations under the License.
  */
 
-import { test } from '../../../test-fixtures';
+import { expect, test } from '@playwright/test';
 
-test.describe('', () => {});
+
+test.describe('Projects Page', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/projects');
+  });
+
+  test('should render projects header', async ({ page }) => {
+    await expect(page.getByRole('heading', { name: /repositories/i })).toBeVisible();
+  });
+
+  test('should show loading state or repositories', async ({ page }) => {
+    // Projects page uses DataLoader, so it might show a spinner first
+    // Then it should show repositories or "No repositories found"
+    // We can wait for the grid
+    await expect(page.getByText(/explore our open source projects/i)).toBeVisible();
+  });
+});

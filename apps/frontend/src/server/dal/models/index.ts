@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export * from './event-entity.ts';
+export * from './event-entity';

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/tinyqueue/index.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "\nexport default class TinyQueue {\n    constructor(data = [], compare = (a, b) => (a < b ? -1 : a > b ? 1 : 0)) {\n        this.data = data;\n        this.length = this.data.length;\n        this.compare = compare;\n\n        if (this.length > 0) {\n            for (let i = (this.length >> 1) - 1; i >= 0; i--) this._down(i);\n        }\n    }\n\n    push(item) {\n        this.data.push(item);\n        this._up(this.length++);\n    }\n\n    pop() {\n        if (this.length === 0) return undefined;\n\n        const top = this.data[0];\n        const bottom = this.data.pop();\n\n        if (--this.length > 0) {\n            this.data[0] = bottom;\n            this._down(0);\n        }\n\n        return top;\n    }\n\n    peek() {\n        return this.data[0];\n    }\n\n    _up(pos) {\n        const {data, compare} = this;\n        const item = data[pos];\n\n        while (pos > 0) {\n            const parent = (pos - 1) >> 1;\n            const current = data[parent];\n            if (compare(item, current) >= 0) break;\n            data[pos] = current;\n            pos = parent;\n        }\n\n        data[pos] = item;\n    }\n\n    _down(pos) {\n        const {data, compare} = this;\n        const halfLength = this.length >> 1;\n        const item = data[pos];\n\n        while (pos < halfLength) {\n            let bestChild = (pos << 1) + 1; // initially it is the left child\n            const right = bestChild + 1;\n\n            if (right < this.length && compare(data[right], data[bestChild]) < 0) {\n                bestChild = right;\n            }\n            if (compare(data[bestChild], item) >= 0) break;\n\n            data[pos] = data[bestChild];\n            pos = bestChild;\n        }\n\n        data[pos] = item;\n    }\n}\n",
+      "start": 1768772628584,
+      "end": 1768772628584
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628584,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628618,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628647,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628703,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

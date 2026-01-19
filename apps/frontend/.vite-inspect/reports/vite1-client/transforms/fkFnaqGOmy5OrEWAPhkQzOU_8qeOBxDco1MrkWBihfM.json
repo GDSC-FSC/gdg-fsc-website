@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/SynchronizedRef.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as circular from \"./internal/effect/circular.js\";\nimport * as ref from \"./internal/ref.js\";\nimport * as internal from \"./internal/synchronizedRef.js\";\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const SynchronizedRefTypeId = circular.SynchronizedTypeId;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const make = circular.makeSynchronized;\n/**\n * @since 2.0.0\n * @category getters\n */\nexport const get = ref.get;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const getAndSet = ref.getAndSet;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const getAndUpdate = ref.getAndUpdate;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const getAndUpdateEffect = internal.getAndUpdateEffect;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const getAndUpdateSome = ref.getAndUpdateSome;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const getAndUpdateSomeEffect = internal.getAndUpdateSomeEffect;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const modify = internal.modify;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const modifyEffect = internal.modifyEffect;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const modifySome = ref.modifySome;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const modifySomeEffect = internal.modifySomeEffect;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const set = ref.set;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const setAndGet = ref.setAndGet;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const update = ref.update;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const updateEffect = internal.updateEffect;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const updateAndGet = ref.updateAndGet;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const updateAndGetEffect = internal.updateAndGetEffect;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const updateSome = ref.updateSome;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const updateSomeEffect = internal.updateSomeEffect;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const updateSomeAndGet = ref.updateSomeAndGet;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const updateSomeAndGetEffect = circular.updateSomeAndGetEffectSynchronized;\n/**\n * @since 2.0.0\n * @category unsafe\n */\nexport const unsafeMake = circular.unsafeMakeSynchronized;\n//# sourceMappingURL=SynchronizedRef.js.map",
+      "start": 1768772628411,
+      "end": 1768772628411
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628411,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628417,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628433,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628477,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

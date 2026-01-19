@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/view/utils/get-layer-info.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "function getViewAnimationLayerInfo(pseudoElement) {\n    const match = pseudoElement.match(/::view-transition-(old|new|group|image-pair)\\((.*?)\\)/);\n    if (!match)\n        return null;\n    return { layer: match[2], type: match[1] };\n}\n\nexport { getViewAnimationLayerInfo };\n",
+      "start": 1768772628755,
+      "end": 1768772628755
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628755,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628771,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628790,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628807,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

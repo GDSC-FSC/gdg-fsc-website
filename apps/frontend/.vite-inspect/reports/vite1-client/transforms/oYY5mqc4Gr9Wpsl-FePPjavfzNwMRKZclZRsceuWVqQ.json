@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/value/use-time.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "\"use client\";\nimport { useAnimationFrame } from '../utils/use-animation-frame.mjs';\nimport { useMotionValue } from './use-motion-value.mjs';\n\nfunction useTime() {\n    const time = useMotionValue(0);\n    useAnimationFrame((t) => time.set(t));\n    return time;\n}\n\nexport { useTime };\n//# sourceMappingURL=use-time.mjs.map\n",
+      "start": 1768772628585,
+      "end": 1768772628585
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628585,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628621,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628651,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

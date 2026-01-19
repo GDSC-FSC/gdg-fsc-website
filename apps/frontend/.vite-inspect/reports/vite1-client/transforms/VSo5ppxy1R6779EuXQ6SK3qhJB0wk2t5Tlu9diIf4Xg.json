@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/utils/apply.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "const untouchedApply = Function.prototype.apply;\nconst ApplySymbol = Symbol('apply');\nfunction safeExtractApply(f) {\n    try {\n        return f.apply;\n    }\n    catch (err) {\n        return undefined;\n    }\n}\nfunction safeApplyHacky(f, instance, args) {\n    const ff = f;\n    ff[ApplySymbol] = untouchedApply;\n    const out = ff[ApplySymbol](instance, args);\n    delete ff[ApplySymbol];\n    return out;\n}\nexport function safeApply(f, instance, args) {\n    if (safeExtractApply(f) === untouchedApply) {\n        return f.apply(instance, args);\n    }\n    return safeApplyHacky(f, instance, args);\n}\n",
+      "start": 1768772628908,
+      "end": 1768772628908
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628908,
+      "end": 1768772628908,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628909,
+      "end": 1768772628909,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628909,
+      "end": 1768772628909,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628910,
+      "end": 1768772628910,
+      "order": "post-post"
+    }
+  ]
+}

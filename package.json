@@ -7,15 +7,43 @@
     "packages/*"
   ],
   "scripts": {
+    "audit:ts": "bun run ./bin/audit.ts",
     "build": "nx run-many -t build",
+    "check:unused": "bun run ./bin/check-unused.ts",
+    "cleanup": "bun run ./bin/cleanup.ts",
+    "copyright:ts": "bun run ./bin/copyright.ts",
+    "css:hsl-hex": "bun run ./bin/css-hsl-hex.ts",
     "dev": "nx run frontend:dev",
+    "diagram": "bun run ./bin/diagram.ts",
+    "doc": "bun run ./bin/doc.ts",
+    "docs:types": "bunx typedoc",
+    "docker:setup": "bash ./scripts/docker",
+    "find:unused": "bun run ./bin/find-unused-exports.ts",
+    "fix:directives": "bun run ./bin/fix-directives.ts",
+    "graph": "nx graph",
+    "hash:gen": "bun run ./bin/img-to-b64.ts",
+    "jsdoc": "bun run ./bin/jsdoc.ts",
+    "kill": "bash ./scripts/killports",
+    "lighthouse": "bun run ./bin/light-house.ts",
     "lint": "nx run-many -t lint",
+    "package:cost": "bun run ./bin/package-cost.ts",
+    "refactor:types": "bun run ./bin/refactor-types.ts",
+    "report:bundle": "bun run ./bin/report-bundle-size.js",
+    "rm:dupes": "bun run ./bin/remove-duplicate-packages.ts",
     "test": "nx run-many -t test",
-    "graph": "nx graph"
+    "tree:shake": "bun run ./bin/unused-tree-shake.ts",
+    "uninstall": "bun run ./bin/uninstall.ts \"$@\""
   },
   "devDependencies": {
+    "@nx/devkit": "^22.3.3",
     "nx": "^22.3.3",
-    "@nx/devkit": "^22.3.3"
+    "typedoc": "^0.28.16",
+    "typedoc-github-wiki-theme": "^2.1.0",
+    "typedoc-plugin-markdown": "^4.9.0",
+    "typescript": "^5.9.3"
   },
-  "packageManager": "bun@1.2.17"
+  "packageManager": "bun@1.2.17",
+  "dependencies": {
+    "ts-morph": "^27.0.2"
+  }
 }

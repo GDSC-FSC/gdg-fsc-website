@@ -16,3 +16,4 @@
 
 export * from './query-client.ts';
 export * from './react.tsx';
+export * from './server.ts';

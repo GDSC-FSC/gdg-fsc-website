@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/Cache.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as internal from \"./internal/cache.js\";\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const CacheTypeId = internal.CacheTypeId;\n/**\n * @since 3.6.4\n * @category symbols\n */\nexport const ConsumerCacheTypeId = internal.ConsumerCacheTypeId;\n/**\n * Constructs a new cache with the specified capacity, time to live, and\n * lookup function.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const make = internal.make;\n/**\n * Constructs a new cache with the specified capacity, time to live, and\n * lookup function, where the time to live can depend on the `Exit` value\n * returned by the lookup function.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const makeWith = internal.makeWith;\n/**\n * Constructs a new `CacheStats` from the specified values.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const makeCacheStats = internal.makeCacheStats;\n/**\n * Constructs a new `EntryStats` from the specified values.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const makeEntryStats = internal.makeEntryStats;\n//# sourceMappingURL=Cache.js.map",
+      "start": 1768772628415,
+      "end": 1768772628415
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628415,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628418,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628434,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628477,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

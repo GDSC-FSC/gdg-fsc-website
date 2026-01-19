@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@effect/platform/dist/esm/internal/httpServerError.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Cause from \"effect/Cause\";\nimport * as Effect from \"effect/Effect\";\nimport * as FiberId from \"effect/FiberId\";\nimport { globalValue } from \"effect/GlobalValue\";\nimport * as Option from \"effect/Option\";\nimport * as Predicate from \"effect/Predicate\";\nimport * as Respondable from \"../HttpServerRespondable.js\";\nimport * as internalServerResponse from \"./httpServerResponse.js\";\n/** @internal */\nexport const TypeId = /*#__PURE__*/Symbol.for(\"@effect/platform/HttpServerError\");\n/** @internal */\nexport const isServerError = u => Predicate.hasProperty(u, TypeId);\n/** @internal */\nexport const clientAbortFiberId = /*#__PURE__*/globalValue(\"@effect/platform/HttpServerError/clientAbortFiberId\", () => FiberId.runtime(-499, 0));\n/** @internal */\nexport const causeResponse = cause => {\n  const [effect, stripped] = Cause.reduce(cause, [Effect.succeed(internalServerError), Cause.empty], (acc, cause) => {\n    const withoutInterrupt = Cause.isInterruptType(acc[1]) ? Cause.empty : acc[1];\n    switch (cause._tag) {\n      case \"Fail\":\n        {\n          return Option.some([Respondable.toResponseOrElse(cause.error, internalServerError), combineCauses(withoutInterrupt, cause)]);\n        }\n      case \"Die\":\n        {\n          const isResponse = internalServerResponse.isServerResponse(cause.defect);\n          return Option.some([Respondable.toResponseOrElseDefect(cause.defect, internalServerError), isResponse ? withoutInterrupt : combineCauses(withoutInterrupt, cause)]);\n        }\n      case \"Interrupt\":\n        {\n          if (acc[1]._tag !== \"Empty\") {\n            return Option.none();\n          }\n          const response = cause.fiberId === clientAbortFiberId ? clientAbortError : serverAbortError;\n          return Option.some([Effect.succeed(response), cause]);\n        }\n      default:\n        {\n          return Option.none();\n        }\n    }\n  });\n  return Effect.map(effect, response => {\n    if (Cause.isEmptyType(stripped)) {\n      return [response, Cause.empty];\n    }\n    return [response, Cause.sequential(stripped, Cause.die(response))];\n  });\n};\nconst combineCauses = (left, right) => {\n  if (Cause.isEmptyType(left)) {\n    return right;\n  } else if (Cause.isEmptyType(right)) {\n    return left;\n  }\n  return Cause.sequential(left, right);\n};\n/** @internal */\nexport const causeResponseStripped = cause => {\n  let response;\n  const stripped = Cause.stripSomeDefects(cause, defect => {\n    if (internalServerResponse.isServerResponse(defect)) {\n      response = defect;\n      return Option.some(Cause.empty);\n    }\n    return Option.none();\n  });\n  return [response ?? internalServerError, stripped];\n};\nconst internalServerError = /*#__PURE__*/internalServerResponse.empty({\n  status: 500\n});\nconst clientAbortError = /*#__PURE__*/internalServerResponse.empty({\n  status: 499\n});\nconst serverAbortError = /*#__PURE__*/internalServerResponse.empty({\n  status: 503\n});\n/** @internal */\nexport const exitResponse = exit => {\n  if (exit._tag === \"Success\") {\n    return exit.value;\n  }\n  return causeResponseStripped(exit.cause)[0];\n};\n//# sourceMappingURL=httpServerError.js.map",
+      "start": 1768772628752,
+      "end": 1768772628752
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628752,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628769,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628789,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628806,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

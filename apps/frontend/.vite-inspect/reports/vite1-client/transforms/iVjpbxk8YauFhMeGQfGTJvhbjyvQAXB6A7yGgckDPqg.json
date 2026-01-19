@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/_internals/mappers/NatToStringifiedNat.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { safeNumberToString, safeSubstring } from '../../../utils/globals.js';\nconst safeNumberParseInt = Number.parseInt;\nexport function natToStringifiedNatMapper(options) {\n    const [style, v] = options;\n    switch (style) {\n        case 'oct':\n            return `0${safeNumberToString(v, 8)}`;\n        case 'hex':\n            return `0x${safeNumberToString(v, 16)}`;\n        case 'dec':\n        default:\n            return `${v}`;\n    }\n}\nexport function tryParseStringifiedNat(stringValue, radix) {\n    const parsedNat = safeNumberParseInt(stringValue, radix);\n    if (safeNumberToString(parsedNat, radix) !== stringValue) {\n        throw new Error('Invalid value');\n    }\n    return parsedNat;\n}\nexport function natToStringifiedNatUnmapper(value) {\n    if (typeof value !== 'string') {\n        throw new Error('Invalid type');\n    }\n    if (value.length >= 2 && value[0] === '0') {\n        if (value[1] === 'x') {\n            return ['hex', tryParseStringifiedNat(safeSubstring(value, 2), 16)];\n        }\n        return ['oct', tryParseStringifiedNat(safeSubstring(value, 1), 8)];\n    }\n    return ['dec', tryParseStringifiedNat(value, 10)];\n}\n",
+      "start": 1768772628893,
+      "end": 1768772628893
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628893,
+      "end": 1768772628894,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628895,
+      "end": 1768772628896,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628896,
+      "end": 1768772628897,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628899,
+      "end": 1768772628899,
+      "order": "post-post"
+    }
+  ]
+}

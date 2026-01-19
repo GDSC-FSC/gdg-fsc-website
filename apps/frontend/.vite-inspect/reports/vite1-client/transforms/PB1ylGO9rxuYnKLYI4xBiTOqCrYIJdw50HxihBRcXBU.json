@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/_internals/CommandsArbitrary.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { Arbitrary } from '../../check/arbitrary/definition/Arbitrary.js';\nimport { Value } from '../../check/arbitrary/definition/Value.js';\nimport { CommandsIterable } from '../../check/model/commands/CommandsIterable.js';\nimport { CommandWrapper } from '../../check/model/commands/CommandWrapper.js';\nimport { ReplayPath } from '../../check/model/ReplayPath.js';\nimport { makeLazy } from '../../stream/LazyIterableIterator.js';\nimport { Stream } from '../../stream/Stream.js';\nimport { oneof } from '../oneof.js';\nimport { restrictedIntegerArbitraryBuilder } from './builders/RestrictedIntegerArbitraryBuilder.js';\nexport class CommandsArbitrary extends Arbitrary {\n    constructor(commandArbs, maxGeneratedCommands, maxCommands, sourceReplayPath, disableReplayLog) {\n        super();\n        this.sourceReplayPath = sourceReplayPath;\n        this.disableReplayLog = disableReplayLog;\n        this.oneCommandArb = oneof(...commandArbs).map((c) => new CommandWrapper(c));\n        this.lengthArb = restrictedIntegerArbitraryBuilder(0, maxGeneratedCommands, maxCommands);\n        this.replayPath = [];\n        this.replayPathPosition = 0;\n    }\n    metadataForReplay() {\n        return this.disableReplayLog ? '' : `replayPath=${JSON.stringify(ReplayPath.stringify(this.replayPath))}`;\n    }\n    buildValueFor(items, shrunkOnce) {\n        const commands = items.map((item) => item.value_);\n        const context = { shrunkOnce, items };\n        return new Value(new CommandsIterable(commands, () => this.metadataForReplay()), context);\n    }\n    generate(mrng) {\n        const size = this.lengthArb.generate(mrng, undefined);\n        const sizeValue = size.value;\n        const items = Array(sizeValue);\n        for (let idx = 0; idx !== sizeValue; ++idx) {\n            const item = this.oneCommandArb.generate(mrng, undefined);\n            items[idx] = item;\n        }\n        this.replayPathPosition = 0;\n        return this.buildValueFor(items, false);\n    }\n    canShrinkWithoutContext(value) {\n        return false;\n    }\n    filterOnExecution(itemsRaw) {\n        const items = [];\n        for (const c of itemsRaw) {\n            if (c.value_.hasRan) {\n                this.replayPath.push(true);\n                items.push(c);\n            }\n            else\n                this.replayPath.push(false);\n        }\n        return items;\n    }\n    filterOnReplay(itemsRaw) {\n        return itemsRaw.filter((c, idx) => {\n            const state = this.replayPath[this.replayPathPosition + idx];\n            if (state === undefined)\n                throw new Error(`Too short replayPath`);\n            if (!state && c.value_.hasRan)\n                throw new Error(`Mismatch between replayPath and real execution`);\n            return state;\n        });\n    }\n    filterForShrinkImpl(itemsRaw) {\n        if (this.replayPathPosition === 0) {\n            this.replayPath = this.sourceReplayPath !== null ? ReplayPath.parse(this.sourceReplayPath) : [];\n        }\n        const items = this.replayPathPosition < this.replayPath.length\n            ? this.filterOnReplay(itemsRaw)\n            : this.filterOnExecution(itemsRaw);\n        this.replayPathPosition += itemsRaw.length;\n        return items;\n    }\n    shrink(_value, context) {\n        if (context === undefined) {\n            return Stream.nil();\n        }\n        const safeContext = context;\n        const shrunkOnce = safeContext.shrunkOnce;\n        const itemsRaw = safeContext.items;\n        const items = this.filterForShrinkImpl(itemsRaw);\n        if (items.length === 0) {\n            return Stream.nil();\n        }\n        const rootShrink = shrunkOnce\n            ? Stream.nil()\n            : new Stream([[]][Symbol.iterator]());\n        const nextShrinks = [];\n        for (let numToKeep = 0; numToKeep !== items.length; ++numToKeep) {\n            nextShrinks.push(makeLazy(() => {\n                const fixedStart = items.slice(0, numToKeep);\n                return this.lengthArb\n                    .shrink(items.length - 1 - numToKeep, undefined)\n                    .map((l) => fixedStart.concat(items.slice(items.length - (l.value + 1))));\n            }));\n        }\n        for (let itemAt = 0; itemAt !== items.length; ++itemAt) {\n            nextShrinks.push(makeLazy(() => this.oneCommandArb\n                .shrink(items[itemAt].value_, items[itemAt].context)\n                .map((v) => items.slice(0, itemAt).concat([v], items.slice(itemAt + 1)))));\n        }\n        return rootShrink.join(...nextShrinks).map((shrinkables) => {\n            return this.buildValueFor(shrinkables.map((c) => new Value(c.value_.clone(), c.context)), true);\n        });\n    }\n}\n",
+      "start": 1768772628893,
+      "end": 1768772628893
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628893,
+      "end": 1768772628894,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628895,
+      "end": 1768772628896,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628897,
+      "end": 1768772628897,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628898,
+      "end": 1768772628899,
+      "order": "post-post"
+    }
+  ]
+}

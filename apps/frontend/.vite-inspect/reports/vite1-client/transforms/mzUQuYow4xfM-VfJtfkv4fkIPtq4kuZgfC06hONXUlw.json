@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/Pipeable.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @since 2.0.0\n */\n/**\n * @since 2.0.0\n */\nexport const pipeArguments = (self, args) => {\n  switch (args.length) {\n    case 0:\n      return self;\n    case 1:\n      return args[0](self);\n    case 2:\n      return args[1](args[0](self));\n    case 3:\n      return args[2](args[1](args[0](self)));\n    case 4:\n      return args[3](args[2](args[1](args[0](self))));\n    case 5:\n      return args[4](args[3](args[2](args[1](args[0](self)))));\n    case 6:\n      return args[5](args[4](args[3](args[2](args[1](args[0](self))))));\n    case 7:\n      return args[6](args[5](args[4](args[3](args[2](args[1](args[0](self)))))));\n    case 8:\n      return args[7](args[6](args[5](args[4](args[3](args[2](args[1](args[0](self))))))));\n    case 9:\n      return args[8](args[7](args[6](args[5](args[4](args[3](args[2](args[1](args[0](self)))))))));\n    default:\n      {\n        let ret = self;\n        for (let i = 0, len = args.length; i < len; i++) {\n          ret = args[i](ret);\n        }\n        return ret;\n      }\n  }\n};\n/**\n * @since 3.15.0\n * @category Prototypes\n */\nexport const Prototype = {\n  pipe() {\n    return pipeArguments(this, arguments);\n  }\n};\nconst Base = /*#__PURE__*/function () {\n  function PipeableBase() {}\n  PipeableBase.prototype = Prototype;\n  return PipeableBase;\n}();\n/**\n * @since 3.15.0\n * @category Constructors\n */\nexport const Class = klass => klass ? class extends klass {\n  pipe() {\n    return pipeArguments(this, arguments);\n  }\n} : Base;\n//# sourceMappingURL=Pipeable.js.map",
+      "start": 1768772628414,
+      "end": 1768772628414
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628414,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628418,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628434,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628477,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

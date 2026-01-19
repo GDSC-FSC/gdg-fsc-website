@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/stm/tRandom.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Context from \"../../Context.js\";\nimport { pipe } from \"../../Function.js\";\nimport * as Layer from \"../../Layer.js\";\nimport * as Random from \"../../Utils.js\";\nimport * as core from \"./core.js\";\nimport * as stm from \"./stm.js\";\nimport * as tArray from \"./tArray.js\";\nimport * as tRef from \"./tRef.js\";\nconst TRandomSymbolKey = \"effect/TRandom\";\n/** @internal */\nexport const TRandomTypeId = /*#__PURE__*/Symbol.for(TRandomSymbolKey);\nconst randomInteger = state => {\n  const prng = new Random.PCGRandom();\n  prng.setState(state);\n  return [prng.integer(0), prng.getState()];\n};\nconst randomIntegerBetween = (low, high) => {\n  return state => {\n    const prng = new Random.PCGRandom();\n    prng.setState(state);\n    return [prng.integer(high - low) + low, prng.getState()];\n  };\n};\nconst randomNumber = state => {\n  const prng = new Random.PCGRandom();\n  prng.setState(state);\n  return [prng.number(), prng.getState()];\n};\nconst withState = (state, f) => {\n  return pipe(state, tRef.modify(f));\n};\nconst shuffleWith = (iterable, nextIntBounded) => {\n  const swap = (buffer, index1, index2) => pipe(buffer, tArray.get(index1), core.flatMap(tmp => pipe(buffer, tArray.updateSTM(index1, () => pipe(buffer, tArray.get(index2))), core.zipRight(pipe(buffer, tArray.update(index2, () => tmp))))));\n  return pipe(tArray.fromIterable(iterable), core.flatMap(buffer => {\n    const array = [];\n    for (let i = array.length; i >= 2; i = i - 1) {\n      array.push(i);\n    }\n    return pipe(array, stm.forEach(n => pipe(nextIntBounded(n), core.flatMap(k => swap(buffer, n - 1, k))), {\n      discard: true\n    }), core.zipRight(tArray.toArray(buffer)));\n  }));\n};\n/** @internal */\nexport const Tag = /*#__PURE__*/Context.GenericTag(\"effect/TRandom\");\nclass TRandomImpl {\n  state;\n  [TRandomTypeId] = TRandomTypeId;\n  constructor(state) {\n    this.state = state;\n    this.next = withState(this.state, randomNumber);\n    this.nextBoolean = core.flatMap(this.next, n => core.succeed(n > 0.5));\n    this.nextInt = withState(this.state, randomInteger);\n  }\n  next;\n  nextBoolean;\n  nextInt;\n  nextRange(min, max) {\n    return core.flatMap(this.next, n => core.succeed((max - min) * n + min));\n  }\n  nextIntBetween(low, high) {\n    return withState(this.state, randomIntegerBetween(low, high));\n  }\n  shuffle(elements) {\n    return shuffleWith(elements, n => this.nextIntBetween(0, n));\n  }\n}\n/** @internal */\nexport const live = /*#__PURE__*/Layer.effect(Tag, /*#__PURE__*/pipe(/*#__PURE__*/tRef.make(/*#__PURE__*/new Random.PCGRandom(Math.random() * 4294967296 >>> 0).getState()), /*#__PURE__*/core.map(seed => new TRandomImpl(seed)), core.commit));\n/** @internal */\nexport const next = /*#__PURE__*/core.flatMap(Tag, random => random.next);\n/** @internal */\nexport const nextBoolean = /*#__PURE__*/core.flatMap(Tag, random => random.nextBoolean);\n/** @internal */\nexport const nextInt = /*#__PURE__*/core.flatMap(Tag, random => random.nextInt);\n/** @internal */\nexport const nextIntBetween = (low, high) => core.flatMap(Tag, random => random.nextIntBetween(low, high));\n/** @internal */\nexport const nextRange = (min, max) => core.flatMap(Tag, random => random.nextRange(min, max));\n/** @internal */\nexport const shuffle = elements => core.flatMap(Tag, random => random.shuffle(elements));\n//# sourceMappingURL=tRandom.js.map",
+      "start": 1768772628587,
+      "end": 1768772628587
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628587,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628620,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628649,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

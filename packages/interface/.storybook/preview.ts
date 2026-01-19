@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import '../../../apps/frontend/src/tailwind.css';
+import '../tailwind.css';
 
 export default {
   parameters: {

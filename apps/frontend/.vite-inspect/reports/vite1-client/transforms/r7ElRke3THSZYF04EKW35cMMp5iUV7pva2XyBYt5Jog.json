@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/ice-cream-bowl.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\n    \"path\",\n    {\n      d: \"M12 17c5 0 8-2.69 8-6H4c0 3.31 3 6 8 6m-4 4h8m-4-3v3M5.14 11a3.5 3.5 0 1 1 6.71 0\",\n      key: \"1uxfcu\"\n    }\n  ],\n  [\"path\", { d: \"M12.14 11a3.5 3.5 0 1 1 6.71 0\", key: \"4k3m1s\" }],\n  [\"path\", { d: \"M15.5 6.5a3.5 3.5 0 1 0-7 0\", key: \"zmuahr\" }]\n];\nconst IceCreamBowl = createLucideIcon(\"ice-cream-bowl\", __iconNode);\n\nexport { __iconNode, IceCreamBowl as default };\n//# sourceMappingURL=ice-cream-bowl.js.map\n",
+      "start": 1768772628533,
+      "end": 1768772628533
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628533,
+      "end": 1768772628552,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628562,
+      "end": 1768772628579,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628589,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628623,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

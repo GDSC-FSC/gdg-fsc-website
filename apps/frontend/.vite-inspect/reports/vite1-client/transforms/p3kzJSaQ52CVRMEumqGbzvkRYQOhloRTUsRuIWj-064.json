@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/file-x-corner.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\n    \"path\",\n    {\n      d: \"M11 22H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v5\",\n      key: \"1jo35a\"\n    }\n  ],\n  [\"path\", { d: \"M14 2v5a1 1 0 0 0 1 1h5\", key: \"wfsgrz\" }],\n  [\"path\", { d: \"m15 17 5 5\", key: \"36xl1x\" }],\n  [\"path\", { d: \"m20 17-5 5\", key: \"vdz27y\" }]\n];\nconst FileXCorner = createLucideIcon(\"file-x-corner\", __iconNode);\n\nexport { __iconNode, FileXCorner as default };\n//# sourceMappingURL=file-x-corner.js.map\n",
+      "start": 1768772628542,
+      "end": 1768772628542
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628542,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628571,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628598,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628629,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/MetricState.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as internal from \"./internal/metric/state.js\";\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const MetricStateTypeId = internal.MetricStateTypeId;\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const CounterStateTypeId = internal.CounterStateTypeId;\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const FrequencyStateTypeId = internal.FrequencyStateTypeId;\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const GaugeStateTypeId = internal.GaugeStateTypeId;\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const HistogramStateTypeId = internal.HistogramStateTypeId;\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const SummaryStateTypeId = internal.SummaryStateTypeId;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const counter = internal.counter;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const frequency = internal.frequency;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const gauge = internal.gauge;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const histogram = internal.histogram;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const summary = internal.summary;\n/**\n * @since 2.0.0\n * @category refinements\n */\nexport const isMetricState = internal.isMetricState;\n/**\n * @since 2.0.0\n * @category refinements\n */\nexport const isCounterState = internal.isCounterState;\n/**\n * @since 2.0.0\n * @category refinements\n */\nexport const isFrequencyState = internal.isFrequencyState;\n/**\n * @since 2.0.0\n * @category refinements\n */\nexport const isGaugeState = internal.isGaugeState;\n/**\n * @since 2.0.0\n * @category refinements\n */\nexport const isHistogramState = internal.isHistogramState;\n/**\n * @since 2.0.0\n * @category refinements\n */\nexport const isSummaryState = internal.isSummaryState;\n//# sourceMappingURL=MetricState.js.map",
+      "start": 1768772628415,
+      "end": 1768772628415
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628415,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628418,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628433,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628477,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

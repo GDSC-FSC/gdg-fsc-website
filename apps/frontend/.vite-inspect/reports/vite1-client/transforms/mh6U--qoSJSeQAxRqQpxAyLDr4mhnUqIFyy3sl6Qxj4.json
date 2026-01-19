@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/channel/subexecutor.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Effect from \"../../Effect.js\";\nimport * as Exit from \"../../Exit.js\";\nimport { pipe } from \"../../Function.js\";\n/** @internal */\nexport const OP_PULL_FROM_CHILD = \"PullFromChild\";\n/** @internal */\nexport const OP_PULL_FROM_UPSTREAM = \"PullFromUpstream\";\n/** @internal */\nexport const OP_DRAIN_CHILD_EXECUTORS = \"DrainChildExecutors\";\n/** @internal */\nexport const OP_EMIT = \"Emit\";\n/**\n * Execute the `childExecutor` and on each emitted value, decide what to do by\n * `onEmit`.\n *\n * @internal\n */\nexport class PullFromChild {\n  childExecutor;\n  parentSubexecutor;\n  onEmit;\n  _tag = OP_PULL_FROM_CHILD;\n  constructor(childExecutor, parentSubexecutor, onEmit) {\n    this.childExecutor = childExecutor;\n    this.parentSubexecutor = parentSubexecutor;\n    this.onEmit = onEmit;\n  }\n  close(exit) {\n    const fin1 = this.childExecutor.close(exit);\n    const fin2 = this.parentSubexecutor.close(exit);\n    if (fin1 !== undefined && fin2 !== undefined) {\n      return Effect.zipWith(Effect.exit(fin1), Effect.exit(fin2), (exit1, exit2) => pipe(exit1, Exit.zipRight(exit2)));\n    } else if (fin1 !== undefined) {\n      return fin1;\n    } else if (fin2 !== undefined) {\n      return fin2;\n    } else {\n      return undefined;\n    }\n  }\n  enqueuePullFromChild(_child) {\n    return this;\n  }\n}\n/**\n * Execute `upstreamExecutor` and for each emitted element, spawn a child\n * channel and continue with processing it by `PullFromChild`.\n *\n * @internal\n */\nexport class PullFromUpstream {\n  upstreamExecutor;\n  createChild;\n  lastDone;\n  activeChildExecutors;\n  combineChildResults;\n  combineWithChildResult;\n  onPull;\n  onEmit;\n  _tag = OP_PULL_FROM_UPSTREAM;\n  constructor(upstreamExecutor, createChild, lastDone, activeChildExecutors, combineChildResults, combineWithChildResult, onPull, onEmit) {\n    this.upstreamExecutor = upstreamExecutor;\n    this.createChild = createChild;\n    this.lastDone = lastDone;\n    this.activeChildExecutors = activeChildExecutors;\n    this.combineChildResults = combineChildResults;\n    this.combineWithChildResult = combineWithChildResult;\n    this.onPull = onPull;\n    this.onEmit = onEmit;\n  }\n  close(exit) {\n    const fin1 = this.upstreamExecutor.close(exit);\n    const fins = [...this.activeChildExecutors.map(child => child !== undefined ? child.childExecutor.close(exit) : undefined), fin1];\n    const result = fins.reduce((acc, next) => {\n      if (acc !== undefined && next !== undefined) {\n        return Effect.zipWith(acc, Effect.exit(next), (exit1, exit2) => Exit.zipRight(exit1, exit2));\n      } else if (acc !== undefined) {\n        return acc;\n      } else if (next !== undefined) {\n        return Effect.exit(next);\n      } else {\n        return undefined;\n      }\n    }, undefined);\n    return result === undefined ? result : result;\n  }\n  enqueuePullFromChild(child) {\n    return new PullFromUpstream(this.upstreamExecutor, this.createChild, this.lastDone, [...this.activeChildExecutors, child], this.combineChildResults, this.combineWithChildResult, this.onPull, this.onEmit);\n  }\n}\n/**\n * Transformed from `PullFromUpstream` when upstream has finished but there\n * are still active child executors.\n *\n * @internal\n */\nexport class DrainChildExecutors {\n  upstreamExecutor;\n  lastDone;\n  activeChildExecutors;\n  upstreamDone;\n  combineChildResults;\n  combineWithChildResult;\n  onPull;\n  _tag = OP_DRAIN_CHILD_EXECUTORS;\n  constructor(upstreamExecutor, lastDone, activeChildExecutors, upstreamDone, combineChildResults, combineWithChildResult, onPull) {\n    this.upstreamExecutor = upstreamExecutor;\n    this.lastDone = lastDone;\n    this.activeChildExecutors = activeChildExecutors;\n    this.upstreamDone = upstreamDone;\n    this.combineChildResults = combineChildResults;\n    this.combineWithChildResult = combineWithChildResult;\n    this.onPull = onPull;\n  }\n  close(exit) {\n    const fin1 = this.upstreamExecutor.close(exit);\n    const fins = [...this.activeChildExecutors.map(child => child !== undefined ? child.childExecutor.close(exit) : undefined), fin1];\n    const result = fins.reduce((acc, next) => {\n      if (acc !== undefined && next !== undefined) {\n        return Effect.zipWith(acc, Effect.exit(next), (exit1, exit2) => Exit.zipRight(exit1, exit2));\n      } else if (acc !== undefined) {\n        return acc;\n      } else if (next !== undefined) {\n        return Effect.exit(next);\n      } else {\n        return undefined;\n      }\n    }, undefined);\n    return result === undefined ? result : result;\n  }\n  enqueuePullFromChild(child) {\n    return new DrainChildExecutors(this.upstreamExecutor, this.lastDone, [...this.activeChildExecutors, child], this.upstreamDone, this.combineChildResults, this.combineWithChildResult, this.onPull);\n  }\n}\n/** @internal */\nexport class Emit {\n  value;\n  next;\n  _tag = OP_EMIT;\n  constructor(value, next) {\n    this.value = value;\n    this.next = next;\n  }\n  close(exit) {\n    const result = this.next.close(exit);\n    return result === undefined ? result : result;\n  }\n  enqueuePullFromChild(_child) {\n    return this;\n  }\n}\n//# sourceMappingURL=subexecutor.js.map",
+      "start": 1768772628847,
+      "end": 1768772628847
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628847,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628851,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628854,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628857,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

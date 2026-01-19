@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@effect/platform/dist/esm/Ndjson.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Channel from \"effect/Channel\";\nimport * as Chunk from \"effect/Chunk\";\nimport * as Effect from \"effect/Effect\";\nimport { dual, identity } from \"effect/Function\";\nimport * as ChannelSchema from \"./ChannelSchema.js\";\nimport { TypeIdError } from \"./Error.js\";\n/**\n * @since 1.0.0\n * @category type ids\n */\nexport const ErrorTypeId = /*#__PURE__*/Symbol.for(\"@effect/platform/Ndjson/NdjsonError\");\nconst encoder = /*#__PURE__*/new TextEncoder();\n/**\n * @since 1.0.0\n * @category errors\n */\nexport class NdjsonError extends /*#__PURE__*/TypeIdError(ErrorTypeId, \"NdjsonError\") {\n  get message() {\n    return this.reason;\n  }\n}\n/**\n * @since 1.0.0\n * @category constructors\n */\nexport const packString = () => {\n  const loop = Channel.readWithCause({\n    onInput: input => Channel.zipRight(Channel.flatMap(Effect.try({\n      try: () => Chunk.of(Chunk.toReadonlyArray(input).map(_ => JSON.stringify(_)).join(\"\\n\") + \"\\n\"),\n      catch: cause => new NdjsonError({\n        reason: \"Pack\",\n        cause\n      })\n    }), Channel.write), loop),\n    onFailure: Channel.failCause,\n    onDone: Channel.succeed\n  });\n  return loop;\n};\n/**\n * @since 1.0.0\n * @category constructors\n */\nexport const pack = () => Channel.mapOut(packString(), Chunk.map(_ => encoder.encode(_)));\n/**\n * @since 1.0.0\n * @category constructors\n */\nexport const packSchema = schema => () => Channel.pipeTo(ChannelSchema.encode(schema)(), pack());\n/**\n * @since 1.0.0\n * @category constructors\n */\nexport const packSchemaString = schema => () => Channel.pipeTo(ChannelSchema.encode(schema)(), packString());\nconst filterEmpty = /*#__PURE__*/Chunk.filter(line => line.length > 0);\nconst filterEmptyChannel = () => {\n  const loop = Channel.readWithCause({\n    onInput(input) {\n      const filtered = filterEmpty(input);\n      return Channel.zipRight(Chunk.isEmpty(filtered) ? Channel.void : Channel.write(filtered), loop);\n    },\n    onFailure(cause) {\n      return Channel.failCause(cause);\n    },\n    onDone(done) {\n      return Channel.succeed(done);\n    }\n  });\n  return loop;\n};\n/**\n * @since 1.0.0\n * @category constructors\n */\nexport const unpackString = options => {\n  const lines = Channel.splitLines().pipe(options?.ignoreEmptyLines === true ? Channel.pipeTo(filterEmptyChannel()) : identity);\n  return Channel.mapOutEffect(lines, chunk => Effect.try({\n    try: () => Chunk.map(chunk, _ => JSON.parse(_)),\n    catch: cause => new NdjsonError({\n      reason: \"Unpack\",\n      cause\n    })\n  }));\n};\nconst decodeString = () => {\n  const decoder = new TextDecoder();\n  const loop = Channel.readWithCause({\n    onInput: input => Channel.zipRight(Channel.write(Chunk.map(input, _ => decoder.decode(_))), loop),\n    onFailure: Channel.failCause,\n    onDone: Channel.succeed\n  });\n  return loop;\n};\n/**\n * @since 1.0.0\n * @category constructors\n */\nexport const unpack = options => {\n  return Channel.pipeTo(decodeString(), unpackString(options));\n};\n/**\n * @since 1.0.0\n * @category constructors\n */\nexport const unpackSchema = schema => options => Channel.pipeTo(unpack(options), ChannelSchema.decodeUnknown(schema)());\n/**\n * @since 1.0.0\n * @category constructors\n */\nexport const unpackSchemaString = schema => options => Channel.pipeTo(unpackString(options), ChannelSchema.decodeUnknown(schema)());\n/**\n * @since 1.0.0\n * @category combinators\n */\nexport const duplex = /*#__PURE__*/dual(args => Channel.isChannel(args[0]), (self, options) => Channel.pipeTo(Channel.pipeTo(pack(), self), unpack(options)));\n/**\n * @since 1.0.0\n * @category combinators\n */\nexport const duplexString = /*#__PURE__*/dual(args => Channel.isChannel(args[0]), (self, options) => Channel.pipeTo(Channel.pipeTo(packString(), self), unpackString(options)));\n/**\n * @since 1.0.0\n * @category combinators\n */\nexport const duplexSchema = /*#__PURE__*/dual(2, (self, options) => ChannelSchema.duplexUnknown(duplex(self, options), options));\n/**\n * @since 1.0.0\n * @category combinators\n */\nexport const duplexSchemaString = /*#__PURE__*/dual(2, (self, options) => ChannelSchema.duplexUnknown(duplexString(self, options), options));\n//# sourceMappingURL=Ndjson.js.map",
+      "start": 1768772628586,
+      "end": 1768772628586
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628586,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628620,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628650,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

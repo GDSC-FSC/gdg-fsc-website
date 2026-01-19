@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/_internals/StringUnitArbitrary.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { safeNormalize, safePush } from '../../utils/globals.js';\nimport { mapToConstant } from '../mapToConstant.js';\nimport { asciiAlphabetRanges, autonomousDecomposableGraphemeRanges, autonomousGraphemeRanges, fullAlphabetRanges, } from './data/GraphemeRanges.js';\nimport { convertGraphemeRangeToMapToConstantEntry, intersectGraphemeRanges } from './helpers/GraphemeRangesHelpers.js';\nconst registeredStringUnitInstancesMap = Object.create(null);\nfunction getAlphabetRanges(alphabet) {\n    switch (alphabet) {\n        case 'full':\n            return fullAlphabetRanges;\n        case 'ascii':\n            return asciiAlphabetRanges;\n    }\n}\nfunction getOrCreateStringUnitInstance(type, alphabet) {\n    const key = `${type}:${alphabet}`;\n    const registered = registeredStringUnitInstancesMap[key];\n    if (registered !== undefined) {\n        return registered;\n    }\n    const alphabetRanges = getAlphabetRanges(alphabet);\n    const ranges = type === 'binary' ? alphabetRanges : intersectGraphemeRanges(alphabetRanges, autonomousGraphemeRanges);\n    const entries = [];\n    for (const range of ranges) {\n        safePush(entries, convertGraphemeRangeToMapToConstantEntry(range));\n    }\n    if (type === 'grapheme') {\n        const decomposedRanges = intersectGraphemeRanges(alphabetRanges, autonomousDecomposableGraphemeRanges);\n        for (const range of decomposedRanges) {\n            const rawEntry = convertGraphemeRangeToMapToConstantEntry(range);\n            safePush(entries, {\n                num: rawEntry.num,\n                build: (idInGroup) => safeNormalize(rawEntry.build(idInGroup), 'NFD'),\n            });\n        }\n    }\n    const stringUnitInstance = mapToConstant(...entries);\n    registeredStringUnitInstancesMap[key] = stringUnitInstance;\n    return stringUnitInstance;\n}\nexport function stringUnit(type, alphabet) {\n    return getOrCreateStringUnitInstance(type, alphabet);\n}\n",
+      "start": 1768772628893,
+      "end": 1768772628893
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628893,
+      "end": 1768772628894,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628895,
+      "end": 1768772628896,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628896,
+      "end": 1768772628897,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628898,
+      "end": 1768772628899,
+      "order": "post-post"
+    }
+  ]
+}

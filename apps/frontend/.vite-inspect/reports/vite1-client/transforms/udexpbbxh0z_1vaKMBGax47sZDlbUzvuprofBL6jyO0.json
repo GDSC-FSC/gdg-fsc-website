@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/stm/tDeferred.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Either from \"../../Either.js\";\nimport { dual } from \"../../Function.js\";\nimport * as Option from \"../../Option.js\";\nimport * as core from \"./core.js\";\nimport * as stm from \"./stm.js\";\nimport * as tRef from \"./tRef.js\";\n/** @internal */\nconst TDeferredSymbolKey = \"effect/TDeferred\";\n/** @internal */\nexport const TDeferredTypeId = /*#__PURE__*/Symbol.for(TDeferredSymbolKey);\n/** @internal */\nconst tDeferredVariance = {\n  /* c8 ignore next */\n  _A: _ => _,\n  /* c8 ignore next */\n  _E: _ => _\n};\n/** @internal */\nclass TDeferredImpl {\n  ref;\n  [TDeferredTypeId] = tDeferredVariance;\n  constructor(ref) {\n    this.ref = ref;\n  }\n}\n/** @internal */\nexport const _await = self => stm.flatten(stm.collect(tRef.get(self.ref), option => Option.isSome(option) ? Option.some(stm.fromEither(option.value)) : Option.none()));\n/** @internal */\nexport const done = /*#__PURE__*/dual(2, (self, either) => core.flatMap(tRef.get(self.ref), Option.match({\n  onNone: () => core.zipRight(tRef.set(self.ref, Option.some(either)), core.succeed(true)),\n  onSome: () => core.succeed(false)\n})));\n/** @internal */\nexport const fail = /*#__PURE__*/dual(2, (self, error) => done(self, Either.left(error)));\n/** @internal */\nexport const make = () => core.map(tRef.make(Option.none()), ref => new TDeferredImpl(ref));\n/** @internal */\nexport const poll = self => tRef.get(self.ref);\n/** @internal */\nexport const succeed = /*#__PURE__*/dual(2, (self, value) => done(self, Either.right(value)));\n//# sourceMappingURL=tDeferred.js.map",
+      "start": 1768772628585,
+      "end": 1768772628585
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628585,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628619,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628647,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628704,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

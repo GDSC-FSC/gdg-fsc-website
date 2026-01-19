@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/ModuleVersion.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @since 2.0.0\n *\n * Enables low level framework authors to run on their own isolated effect version\n */\nimport * as internal from \"./internal/version.js\";\n/**\n * @since 2.0.0\n * @category version\n */\nexport const getCurrentVersion = internal.getCurrentVersion;\n/**\n * @since 2.0.0\n * @category version\n */\nexport const setCurrentVersion = internal.setCurrentVersion;\n//# sourceMappingURL=ModuleVersion.js.map",
+      "start": 1768772628414,
+      "end": 1768772628414
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628414,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628418,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628435,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628477,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/animation/NativeAnimation.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { invariant, millisecondsToSeconds, secondsToMilliseconds, noop } from 'motion-utils';\nimport { setStyle } from '../render/dom/style-set.mjs';\nimport { supportsScrollTimeline } from '../utils/supports/scroll-timeline.mjs';\nimport { getFinalKeyframe } from './keyframes/get-final.mjs';\nimport { WithPromise } from './utils/WithPromise.mjs';\nimport { startWaapiAnimation } from './waapi/start-waapi-animation.mjs';\nimport { applyGeneratorOptions } from './waapi/utils/apply-generator.mjs';\n\n/**\n * NativeAnimation implements AnimationPlaybackControls for the browser's Web Animations API.\n */\nclass NativeAnimation extends WithPromise {\n    constructor(options) {\n        super();\n        this.finishedTime = null;\n        this.isStopped = false;\n        /**\n         * Tracks a manually-set start time that takes precedence over WAAPI's\n         * dynamic startTime. This is cleared when play() or time setter is called,\n         * allowing WAAPI to take over timing.\n         */\n        this.manualStartTime = null;\n        if (!options)\n            return;\n        const { element, name, keyframes, pseudoElement, allowFlatten = false, finalKeyframe, onComplete, } = options;\n        this.isPseudoElement = Boolean(pseudoElement);\n        this.allowFlatten = allowFlatten;\n        this.options = options;\n        invariant(typeof options.type !== \"string\", `Mini animate() doesn't support \"type\" as a string.`, \"mini-spring\");\n        const transition = applyGeneratorOptions(options);\n        this.animation = startWaapiAnimation(element, name, keyframes, transition, pseudoElement);\n        if (transition.autoplay === false) {\n            this.animation.pause();\n        }\n        this.animation.onfinish = () => {\n            this.finishedTime = this.time;\n            if (!pseudoElement) {\n                const keyframe = getFinalKeyframe(keyframes, this.options, finalKeyframe, this.speed);\n                if (this.updateMotionValue) {\n                    this.updateMotionValue(keyframe);\n                }\n                else {\n                    /**\n                     * If we can, we want to commit the final style as set by the user,\n                     * rather than the computed keyframe value supplied by the animation.\n                     */\n                    setStyle(element, name, keyframe);\n                }\n                this.animation.cancel();\n            }\n            onComplete?.();\n            this.notifyFinished();\n        };\n    }\n    play() {\n        if (this.isStopped)\n            return;\n        this.manualStartTime = null;\n        this.animation.play();\n        if (this.state === \"finished\") {\n            this.updateFinished();\n        }\n    }\n    pause() {\n        this.animation.pause();\n    }\n    complete() {\n        this.animation.finish?.();\n    }\n    cancel() {\n        try {\n            this.animation.cancel();\n        }\n        catch (e) { }\n    }\n    stop() {\n        if (this.isStopped)\n            return;\n        this.isStopped = true;\n        const { state } = this;\n        if (state === \"idle\" || state === \"finished\") {\n            return;\n        }\n        if (this.updateMotionValue) {\n            this.updateMotionValue();\n        }\n        else {\n            this.commitStyles();\n        }\n        if (!this.isPseudoElement)\n            this.cancel();\n    }\n    /**\n     * WAAPI doesn't natively have any interruption capabilities.\n     *\n     * In this method, we commit styles back to the DOM before cancelling\n     * the animation.\n     *\n     * This is designed to be overridden by NativeAnimationExtended, which\n     * will create a renderless JS animation and sample it twice to calculate\n     * its current value, \"previous\" value, and therefore allow\n     * Motion to also correctly calculate velocity for any subsequent animation\n     * while deferring the commit until the next animation frame.\n     */\n    commitStyles() {\n        if (!this.isPseudoElement) {\n            this.animation.commitStyles?.();\n        }\n    }\n    get duration() {\n        const duration = this.animation.effect?.getComputedTiming?.().duration || 0;\n        return millisecondsToSeconds(Number(duration));\n    }\n    get iterationDuration() {\n        const { delay = 0 } = this.options || {};\n        return this.duration + millisecondsToSeconds(delay);\n    }\n    get time() {\n        return millisecondsToSeconds(Number(this.animation.currentTime) || 0);\n    }\n    set time(newTime) {\n        this.manualStartTime = null;\n        this.finishedTime = null;\n        this.animation.currentTime = secondsToMilliseconds(newTime);\n    }\n    /**\n     * The playback speed of the animation.\n     * 1 = normal speed, 2 = double speed, 0.5 = half speed.\n     */\n    get speed() {\n        return this.animation.playbackRate;\n    }\n    set speed(newSpeed) {\n        // Allow backwards playback after finishing\n        if (newSpeed < 0)\n            this.finishedTime = null;\n        this.animation.playbackRate = newSpeed;\n    }\n    get state() {\n        return this.finishedTime !== null\n            ? \"finished\"\n            : this.animation.playState;\n    }\n    get startTime() {\n        return this.manualStartTime ?? Number(this.animation.startTime);\n    }\n    set startTime(newStartTime) {\n        this.manualStartTime = this.animation.startTime = newStartTime;\n    }\n    /**\n     * Attaches a timeline to the animation, for instance the `ScrollTimeline`.\n     */\n    attachTimeline({ timeline, observe }) {\n        if (this.allowFlatten) {\n            this.animation.effect?.updateTiming({ easing: \"linear\" });\n        }\n        this.animation.onfinish = null;\n        if (timeline && supportsScrollTimeline()) {\n            this.animation.timeline = timeline;\n            return noop;\n        }\n        else {\n            return observe(this);\n        }\n    }\n}\n\nexport { NativeAnimation };\n",
+      "start": 1768772628753,
+      "end": 1768772628753
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628753,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628770,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628788,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628806,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

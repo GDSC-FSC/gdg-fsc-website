@@ -14,4 +14,7 @@
  * limitations under the License.
  */
 
-export * from './scripts.tsx';
+export * from './schema';
+export * from './scripts';
+export * from './speculation-rules.types';
+

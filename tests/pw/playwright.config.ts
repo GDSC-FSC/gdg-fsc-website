@@ -15,10 +15,12 @@
  */
 
 import 'dotenv/config';
-const PORT = `${process.env.PORT}` || '5173';
+const PORT = process.env.PORT || '5173';
 
-export default (await import('@playwright/test')).defineConfig({
-  testDir: './tests/pw',
+import { defineConfig, devices } from '@playwright/test';
+
+export default defineConfig({
+  testDir: './src',
   timeout: 40 * 1000,
   expect: {
     timeout: 5 * 1000,
@@ -38,8 +40,7 @@ export default (await import('@playwright/test')).defineConfig({
   },
 
   projects: [
-    ...(await Promise.all(
-      [
+    ...[
         {
           name: 'chromium',
           use: 'Desktop Chrome',
@@ -70,8 +71,7 @@ export default (await import('@playwright/test')).defineConfig({
           use: 'Desktop Chrome',
           channel: 'chrome',
         },
-      ].map(async ({ name, use, channel }) => {
-        const { devices } = await import('@playwright/test');
+      ].map(({ name, use, channel }) => {
         return {
           name,
           use: {
@@ -80,7 +80,6 @@ export default (await import('@playwright/test')).defineConfig({
           },
         };
       }),
-    )),
   ],
 
   /**
@@ -97,8 +96,8 @@ export default (await import('@playwright/test')).defineConfig({
   ...(!process.argv.includes('--skip-server-start')
     ? {
         webServer: {
-          command: 'bun run dev',
-          url: 'http://127.0.0.1:3000',
+          command: 'cd ../.. && bun run dev',
+          url: 'http://localhost:5173',
           reuseExistingServer: !process.env.CI,
           timeout: Number(process.env.PLAYWRIGHT_WEBSERVER_TIMEOUT) || 120000, // 2 minutes to start the server
           stdout: 'pipe',

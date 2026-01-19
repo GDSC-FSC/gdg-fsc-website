@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@tanstack/query-core/build/modern/index.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "// src/index.ts\nimport { focusManager } from \"./focusManager.js\";\nimport {\n  defaultShouldDehydrateMutation,\n  defaultShouldDehydrateQuery,\n  dehydrate,\n  hydrate\n} from \"./hydration.js\";\nimport { InfiniteQueryObserver } from \"./infiniteQueryObserver.js\";\nimport { MutationCache } from \"./mutationCache.js\";\nimport { MutationObserver } from \"./mutationObserver.js\";\nimport { defaultScheduler, notifyManager } from \"./notifyManager.js\";\nimport { onlineManager } from \"./onlineManager.js\";\nimport { QueriesObserver } from \"./queriesObserver.js\";\nimport { QueryCache } from \"./queryCache.js\";\nimport { QueryClient } from \"./queryClient.js\";\nimport { QueryObserver } from \"./queryObserver.js\";\nimport { CancelledError, isCancelledError } from \"./retryer.js\";\nimport {\n  timeoutManager\n} from \"./timeoutManager.js\";\nimport {\n  hashKey,\n  isServer,\n  keepPreviousData,\n  matchMutation,\n  matchQuery,\n  noop,\n  partialMatchKey,\n  replaceEqualDeep,\n  shouldThrowError,\n  skipToken\n} from \"./utils.js\";\nimport { streamedQuery } from \"./streamedQuery.js\";\nimport { Mutation } from \"./mutation.js\";\nimport { Query } from \"./query.js\";\nexport * from \"./types.js\";\nexport {\n  CancelledError,\n  InfiniteQueryObserver,\n  Mutation,\n  MutationCache,\n  MutationObserver,\n  QueriesObserver,\n  Query,\n  QueryCache,\n  QueryClient,\n  QueryObserver,\n  defaultScheduler,\n  defaultShouldDehydrateMutation,\n  defaultShouldDehydrateQuery,\n  dehydrate,\n  streamedQuery as experimental_streamedQuery,\n  focusManager,\n  hashKey,\n  hydrate,\n  isCancelledError,\n  isServer,\n  keepPreviousData,\n  matchMutation,\n  matchQuery,\n  noop,\n  notifyManager,\n  onlineManager,\n  partialMatchKey,\n  replaceEqualDeep,\n  shouldThrowError,\n  skipToken,\n  timeoutManager\n};\n//# sourceMappingURL=index.js.map",
+      "start": 1768772628338,
+      "end": 1768772628338
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628338,
+      "end": 1768772628338,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628339,
+      "end": 1768772628339,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628356,
+      "end": 1768772628357,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628358,
+      "end": 1768772628358,
+      "order": "post-post"
+    }
+  ]
+}

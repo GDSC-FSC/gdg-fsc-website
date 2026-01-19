@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/schedule/interval.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Duration from \"../../Duration.js\";\nimport { dual } from \"../../Function.js\";\nimport * as Option from \"../../Option.js\";\n/** @internal */\nconst IntervalSymbolKey = \"effect/ScheduleInterval\";\n/** @internal */\nexport const IntervalTypeId = /*#__PURE__*/Symbol.for(IntervalSymbolKey);\n/** @internal */\nexport const empty = {\n  [IntervalTypeId]: IntervalTypeId,\n  startMillis: 0,\n  endMillis: 0\n};\n/** @internal */\nexport const make = (startMillis, endMillis) => {\n  if (startMillis > endMillis) {\n    return empty;\n  }\n  return {\n    [IntervalTypeId]: IntervalTypeId,\n    startMillis,\n    endMillis\n  };\n};\n/** @internal */\nexport const lessThan = /*#__PURE__*/dual(2, (self, that) => min(self, that) === self);\n/** @internal */\nexport const min = /*#__PURE__*/dual(2, (self, that) => {\n  if (self.endMillis <= that.startMillis) return self;\n  if (that.endMillis <= self.startMillis) return that;\n  if (self.startMillis < that.startMillis) return self;\n  if (that.startMillis < self.startMillis) return that;\n  if (self.endMillis <= that.endMillis) return self;\n  return that;\n});\n/** @internal */\nexport const max = /*#__PURE__*/dual(2, (self, that) => min(self, that) === self ? that : self);\n/** @internal */\nexport const isEmpty = self => {\n  return self.startMillis >= self.endMillis;\n};\n/** @internal */\nexport const isNonEmpty = self => {\n  return !isEmpty(self);\n};\n/** @internal */\nexport const intersect = /*#__PURE__*/dual(2, (self, that) => {\n  const start = Math.max(self.startMillis, that.startMillis);\n  const end = Math.min(self.endMillis, that.endMillis);\n  return make(start, end);\n});\n/** @internal */\nexport const size = self => {\n  return Duration.millis(self.endMillis - self.startMillis);\n};\n/** @internal */\nexport const union = /*#__PURE__*/dual(2, (self, that) => {\n  const start = Math.max(self.startMillis, that.startMillis);\n  const end = Math.min(self.endMillis, that.endMillis);\n  return start < end ? Option.none() : Option.some(make(start, end));\n});\n/** @internal */\nexport const after = startMilliseconds => {\n  return make(startMilliseconds, Number.POSITIVE_INFINITY);\n};\n/** @internal */\nexport const before = endMilliseconds => {\n  return make(Number.NEGATIVE_INFINITY, endMilliseconds);\n};\n//# sourceMappingURL=interval.js.map",
+      "start": 1768772628585,
+      "end": 1768772628585
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628585,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628619,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628648,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628704,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/Readable.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { dual } from \"./Function.js\";\nimport * as core from \"./internal/core.js\";\nimport { pipeArguments } from \"./Pipeable.js\";\nimport { hasProperty } from \"./Predicate.js\";\n/**\n * @since 2.0.0\n * @category type ids\n */\nexport const TypeId = /*#__PURE__*/Symbol.for(\"effect/Readable\");\n/**\n * @since 2.0.0\n * @category refinements\n */\nexport const isReadable = u => hasProperty(u, TypeId);\nconst Proto = {\n  [TypeId]: TypeId,\n  pipe() {\n    return pipeArguments(this, arguments);\n  }\n};\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const make = get => {\n  const self = Object.create(Proto);\n  self.get = get;\n  return self;\n};\n/**\n * @since 2.0.0\n * @category combinators\n */\nexport const map = /*#__PURE__*/dual(2, (self, f) => make(core.map(self.get, f)));\n/**\n * @since 2.0.0\n * @category combinators\n */\nexport const mapEffect = /*#__PURE__*/dual(2, (self, f) => make(core.flatMap(self.get, f)));\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const unwrap = effect => make(core.flatMap(effect, s => s.get));\n//# sourceMappingURL=Readable.js.map",
+      "start": 1768772628410,
+      "end": 1768772628410
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628410,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628417,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628433,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628477,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

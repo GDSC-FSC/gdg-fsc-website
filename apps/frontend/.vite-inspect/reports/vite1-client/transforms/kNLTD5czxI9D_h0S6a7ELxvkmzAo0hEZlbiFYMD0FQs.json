@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/render/utils/reduced-motion/index.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { hasReducedMotionListener, prefersReducedMotion } from './state.mjs';\n\nconst isBrowser = typeof window !== \"undefined\";\nfunction initPrefersReducedMotion() {\n    hasReducedMotionListener.current = true;\n    if (!isBrowser)\n        return;\n    if (window.matchMedia) {\n        const motionMediaQuery = window.matchMedia(\"(prefers-reduced-motion)\");\n        const setReducedMotionPreferences = () => (prefersReducedMotion.current = motionMediaQuery.matches);\n        motionMediaQuery.addEventListener(\"change\", setReducedMotionPreferences);\n        setReducedMotionPreferences();\n    }\n    else {\n        prefersReducedMotion.current = false;\n    }\n}\n\nexport { hasReducedMotionListener, initPrefersReducedMotion, prefersReducedMotion };\n",
+      "start": 1768772628755,
+      "end": 1768772628755
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628755,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628771,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628790,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628807,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

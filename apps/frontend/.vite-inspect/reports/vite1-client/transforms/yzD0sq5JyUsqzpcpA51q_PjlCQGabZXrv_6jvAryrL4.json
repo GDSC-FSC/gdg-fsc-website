@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/date.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { safeGetTime } from '../utils/globals.js';\nimport { integer } from './integer.js';\nimport { timeToDateMapper, timeToDateMapperWithNaN, timeToDateUnmapper, timeToDateUnmapperWithNaN, } from './_internals/mappers/TimeToDate.js';\nconst safeNumberIsNaN = Number.isNaN;\nexport function date(constraints = {}) {\n    const intMin = constraints.min !== undefined ? safeGetTime(constraints.min) : -8640000000000000;\n    const intMax = constraints.max !== undefined ? safeGetTime(constraints.max) : 8640000000000000;\n    const noInvalidDate = constraints.noInvalidDate === undefined || constraints.noInvalidDate;\n    if (safeNumberIsNaN(intMin))\n        throw new Error('fc.date min must be valid instance of Date');\n    if (safeNumberIsNaN(intMax))\n        throw new Error('fc.date max must be valid instance of Date');\n    if (intMin > intMax)\n        throw new Error('fc.date max must be greater or equal to min');\n    if (noInvalidDate) {\n        return integer({ min: intMin, max: intMax }).map(timeToDateMapper, timeToDateUnmapper);\n    }\n    const valueForNaN = intMax + 1;\n    return integer({ min: intMin, max: intMax + 1 }).map(timeToDateMapperWithNaN(valueForNaN), timeToDateUnmapperWithNaN(valueForNaN));\n}\n",
+      "start": 1768772628848,
+      "end": 1768772628848
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628848,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628851,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628854,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628858,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

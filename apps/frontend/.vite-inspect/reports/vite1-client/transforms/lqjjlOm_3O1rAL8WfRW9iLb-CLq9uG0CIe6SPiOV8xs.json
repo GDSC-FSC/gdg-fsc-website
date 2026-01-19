@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/MutableList.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @since 2.0.0\n */\nimport * as Dual from \"./Function.js\";\nimport { format, NodeInspectSymbol, toJSON } from \"./Inspectable.js\";\nimport { pipeArguments } from \"./Pipeable.js\";\nconst TypeId = /*#__PURE__*/Symbol.for(\"effect/MutableList\");\nconst MutableListProto = {\n  [TypeId]: TypeId,\n  [Symbol.iterator]() {\n    let done = false;\n    let head = this.head;\n    return {\n      next() {\n        if (done) {\n          return this.return();\n        }\n        if (head == null) {\n          done = true;\n          return this.return();\n        }\n        const value = head.value;\n        head = head.next;\n        return {\n          done,\n          value\n        };\n      },\n      return(value) {\n        if (!done) {\n          done = true;\n        }\n        return {\n          done: true,\n          value\n        };\n      }\n    };\n  },\n  toString() {\n    return format(this.toJSON());\n  },\n  toJSON() {\n    return {\n      _id: \"MutableList\",\n      values: Array.from(this).map(toJSON)\n    };\n  },\n  [NodeInspectSymbol]() {\n    return this.toJSON();\n  },\n  pipe() {\n    return pipeArguments(this, arguments);\n  }\n};\n/** @internal */\nconst makeNode = value => ({\n  value,\n  removed: false,\n  prev: undefined,\n  next: undefined\n});\n/**\n * Creates an empty `MutableList`.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const empty = () => {\n  const list = Object.create(MutableListProto);\n  list.head = undefined;\n  list.tail = undefined;\n  list._length = 0;\n  return list;\n};\n/**\n * Creates a new `MutableList` from an iterable collection of values.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const fromIterable = iterable => {\n  const list = empty();\n  for (const element of iterable) {\n    append(list, element);\n  }\n  return list;\n};\n/**\n * Creates a new `MutableList` from the specified elements.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const make = (...elements) => fromIterable(elements);\n/**\n * Returns `true` if the list contains zero elements, `false`, otherwise.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const isEmpty = self => length(self) === 0;\n/**\n * Returns the length of the list.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const length = self => self._length;\n/**\n * Returns the last element of the list, if it exists.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const tail = self => self.tail === undefined ? undefined : self.tail.value;\n/**\n * Returns the first element of the list, if it exists.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const head = self => self.head === undefined ? undefined : self.head.value;\n/**\n * Executes the specified function `f` for each element in the list.\n *\n * @since 2.0.0\n * @category traversing\n */\nexport const forEach = /*#__PURE__*/Dual.dual(2, (self, f) => {\n  let current = self.head;\n  while (current !== undefined) {\n    f(current.value);\n    current = current.next;\n  }\n});\n/**\n * Removes all elements from the doubly-linked list.\n *\n * @since 2.0.0\n */\nexport const reset = self => {\n  ;\n  self._length = 0;\n  self.head = undefined;\n  self.tail = undefined;\n  return self;\n};\n/**\n * Appends the specified element to the end of the `MutableList`.\n *\n * @category concatenating\n * @since 2.0.0\n */\nexport const append = /*#__PURE__*/Dual.dual(2, (self, value) => {\n  const node = makeNode(value);\n  if (self.head === undefined) {\n    self.head = node;\n  }\n  if (self.tail === undefined) {\n    self.tail = node;\n  } else {\n    self.tail.next = node;\n    node.prev = self.tail;\n    self.tail = node;\n  }\n  ;\n  self._length += 1;\n  return self;\n});\n/**\n * Removes the first value from the list and returns it, if it exists.\n *\n * @since 0.0.1\n */\nexport const shift = self => {\n  const head = self.head;\n  if (head !== undefined) {\n    remove(self, head);\n    return head.value;\n  }\n  return undefined;\n};\n/**\n * Removes the last value from the list and returns it, if it exists.\n *\n * @since 0.0.1\n */\nexport const pop = self => {\n  const tail = self.tail;\n  if (tail !== undefined) {\n    remove(self, tail);\n    return tail.value;\n  }\n  return undefined;\n};\n/**\n * Prepends the specified value to the beginning of the list.\n *\n * @category concatenating\n * @since 2.0.0\n */\nexport const prepend = /*#__PURE__*/Dual.dual(2, (self, value) => {\n  const node = makeNode(value);\n  node.next = self.head;\n  if (self.head !== undefined) {\n    self.head.prev = node;\n  }\n  self.head = node;\n  if (self.tail === undefined) {\n    self.tail = node;\n  }\n  ;\n  self._length += 1;\n  return self;\n});\nconst remove = (self, node) => {\n  if (node.removed) {\n    return;\n  }\n  node.removed = true;\n  if (node.prev !== undefined && node.next !== undefined) {\n    node.prev.next = node.next;\n    node.next.prev = node.prev;\n  } else if (node.prev !== undefined) {\n    self.tail = node.prev;\n    node.prev.next = undefined;\n  } else if (node.next !== undefined) {\n    self.head = node.next;\n    node.next.prev = undefined;\n  } else {\n    self.tail = undefined;\n    self.head = undefined;\n  }\n  if (self._length > 0) {\n    ;\n    self._length -= 1;\n  }\n};\n//# sourceMappingURL=MutableList.js.map",
+      "start": 1768772628411,
+      "end": 1768772628411
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628411,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628417,
+      "end": 1768772628420,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628433,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628477,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

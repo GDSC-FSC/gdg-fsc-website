@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/projection/utils/has-transform.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "function isIdentityScale(scale) {\n    return scale === undefined || scale === 1;\n}\nfunction hasScale({ scale, scaleX, scaleY }) {\n    return (!isIdentityScale(scale) ||\n        !isIdentityScale(scaleX) ||\n        !isIdentityScale(scaleY));\n}\nfunction hasTransform(values) {\n    return (hasScale(values) ||\n        has2DTranslate(values) ||\n        values.z ||\n        values.rotate ||\n        values.rotateX ||\n        values.rotateY ||\n        values.skewX ||\n        values.skewY);\n}\nfunction has2DTranslate(values) {\n    return is2DTranslate(values.x) || is2DTranslate(values.y);\n}\nfunction is2DTranslate(value) {\n    return value && value !== \"0%\";\n}\n\nexport { has2DTranslate, hasScale, hasTransform };\n",
+      "start": 1768772628756,
+      "end": 1768772628756
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628756,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628772,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628791,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628808,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

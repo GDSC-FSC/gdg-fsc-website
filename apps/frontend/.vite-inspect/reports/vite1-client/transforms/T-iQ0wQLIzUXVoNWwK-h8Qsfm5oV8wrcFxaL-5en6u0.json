@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/render/dom/viewport/index.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { resolveElements } from 'motion-dom';\n\nconst thresholds = {\n    some: 0,\n    all: 1,\n};\nfunction inView(elementOrSelector, onStart, { root, margin: rootMargin, amount = \"some\" } = {}) {\n    const elements = resolveElements(elementOrSelector);\n    const activeIntersections = new WeakMap();\n    const onIntersectionChange = (entries) => {\n        entries.forEach((entry) => {\n            const onEnd = activeIntersections.get(entry.target);\n            /**\n             * If there's no change to the intersection, we don't need to\n             * do anything here.\n             */\n            if (entry.isIntersecting === Boolean(onEnd))\n                return;\n            if (entry.isIntersecting) {\n                const newOnEnd = onStart(entry.target, entry);\n                if (typeof newOnEnd === \"function\") {\n                    activeIntersections.set(entry.target, newOnEnd);\n                }\n                else {\n                    observer.unobserve(entry.target);\n                }\n            }\n            else if (typeof onEnd === \"function\") {\n                onEnd(entry);\n                activeIntersections.delete(entry.target);\n            }\n        });\n    };\n    const observer = new IntersectionObserver(onIntersectionChange, {\n        root,\n        rootMargin,\n        threshold: typeof amount === \"number\" ? amount : thresholds[amount],\n    });\n    elements.forEach((element) => observer.observe(element));\n    return () => observer.disconnect();\n}\n\nexport { inView };\n//# sourceMappingURL=index.mjs.map\n",
+      "start": 1768772628584,
+      "end": 1768772628584
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628584,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628621,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628650,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

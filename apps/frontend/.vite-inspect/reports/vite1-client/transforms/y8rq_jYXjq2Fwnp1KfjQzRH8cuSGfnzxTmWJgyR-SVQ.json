@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/option.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { constant } from './constant.js';\nimport { FrequencyArbitrary } from './_internals/FrequencyArbitrary.js';\nimport { safeHasOwnProperty } from '../utils/globals.js';\nexport function option(arb, constraints = {}) {\n    const freq = constraints.freq == null ? 5 : constraints.freq;\n    const nilValue = safeHasOwnProperty(constraints, 'nil') ? constraints.nil : null;\n    const nilArb = constant(nilValue);\n    const weightedArbs = [\n        { arbitrary: nilArb, weight: 1, fallbackValue: { default: nilValue } },\n        { arbitrary: arb, weight: freq },\n    ];\n    const frequencyConstraints = {\n        withCrossShrink: true,\n        depthSize: constraints.depthSize,\n        maxDepth: constraints.maxDepth,\n        depthIdentifier: constraints.depthIdentifier,\n    };\n    return FrequencyArbitrary.from(weightedArbs, frequencyConstraints, 'fc.option');\n}\n",
+      "start": 1768772628848,
+      "end": 1768772628848
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628848,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628851,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628855,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628858,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

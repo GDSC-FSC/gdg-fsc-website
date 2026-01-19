@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/value/types/maps/transform.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { scale, alpha } from '../numbers/index.mjs';\nimport { degrees, px, progressPercentage } from '../numbers/units.mjs';\n\nconst transformValueTypes = {\n    rotate: degrees,\n    rotateX: degrees,\n    rotateY: degrees,\n    rotateZ: degrees,\n    scale,\n    scaleX: scale,\n    scaleY: scale,\n    scaleZ: scale,\n    skew: degrees,\n    skewX: degrees,\n    skewY: degrees,\n    distance: px,\n    translateX: px,\n    translateY: px,\n    translateZ: px,\n    x: px,\n    y: px,\n    z: px,\n    perspective: px,\n    transformPerspective: px,\n    opacity: alpha,\n    originX: progressPercentage,\n    originY: progressPercentage,\n    originZ: px,\n};\n\nexport { transformValueTypes };\n",
+      "start": 1768772628756,
+      "end": 1768772628756
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628756,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628772,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628791,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628808,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

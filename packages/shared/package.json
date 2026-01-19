@@ -1,13 +1,37 @@
 {
-  "name": "shared",
+  "name": "@gdg-fsc/shared",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "Shared utilities for GDG FSC projects",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs"
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "bunx biome check --write ./",
+    "test": "echo \"No tests configured\""
+  },
+  "keywords": ["gdg-fsc", "shared", "utilities"],
+  "author": "GDG on Campus Farmingdale State College",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@effect/platform": "^0.94.1",
+    "effect": "^3.19.14"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "@types/node": "^22.10.7"
+  }
 }

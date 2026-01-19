@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/opCodes/effect.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/** @internal */\nexport const OP_ASYNC = \"Async\";\n/** @internal */\nexport const OP_COMMIT = \"Commit\";\n/** @internal */\nexport const OP_FAILURE = \"Failure\";\n/** @internal */\nexport const OP_ON_FAILURE = \"OnFailure\";\n/** @internal */\nexport const OP_ON_SUCCESS = \"OnSuccess\";\n/** @internal */\nexport const OP_ON_SUCCESS_AND_FAILURE = \"OnSuccessAndFailure\";\n/** @internal */\nexport const OP_SUCCESS = \"Success\";\n/** @internal */\nexport const OP_SYNC = \"Sync\";\n/** @internal */\nexport const OP_TAG = \"Tag\";\n/** @internal */\nexport const OP_UPDATE_RUNTIME_FLAGS = \"UpdateRuntimeFlags\";\n/** @internal */\nexport const OP_WHILE = \"While\";\n/** @internal */\nexport const OP_ITERATOR = \"Iterator\";\n/** @internal */\nexport const OP_WITH_RUNTIME = \"WithRuntime\";\n/** @internal */\nexport const OP_YIELD = \"Yield\";\n/** @internal */\nexport const OP_REVERT_FLAGS = \"RevertFlags\";\n//# sourceMappingURL=effect.js.map",
+      "start": 1768772628752,
+      "end": 1768772628752
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628752,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628770,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628789,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628806,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/_internals/implementations/NoopSlicedGenerator.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "export class NoopSlicedGenerator {\n    constructor(arb, mrng, biasFactor) {\n        this.arb = arb;\n        this.mrng = mrng;\n        this.biasFactor = biasFactor;\n    }\n    attemptExact() {\n        return;\n    }\n    next() {\n        return this.arb.generate(this.mrng, this.biasFactor);\n    }\n}\n",
+      "start": 1768772628913,
+      "end": 1768772628913
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628913,
+      "end": 1768772628913,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628913,
+      "end": 1768772628913,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628913,
+      "end": 1768772628913,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628913,
+      "end": 1768772628914,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 // @ts-check
 /**
- * Copyright 2025 Mike Odnis
+ * Copyright 2026 GDG on Campus Farmingdale State College
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,8 +30,6 @@
  * @readonly
  * @author Mike Odnis
  * @author WomB0ComB0
- * @project portfolio
- * @see https://github.com/WomB0ComB0/portfolio
  * @example
  * // Create a redacted value
  * const secret = Redacted.make('mypassword');

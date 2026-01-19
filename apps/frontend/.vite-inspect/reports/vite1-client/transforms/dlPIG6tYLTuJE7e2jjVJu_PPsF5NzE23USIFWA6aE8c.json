@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/FiberRefs.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as internal from \"./internal/fiberRefs.js\";\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const FiberRefsSym = internal.FiberRefsSym;\nconst delete_ = internal.delete_;\nexport {\n/**\n * Deletes the specified `FiberRef` from the `FibterRefs`.\n *\n * @since 2.0.0\n * @category utils\n */\ndelete_ as delete };\n/**\n * Returns a set of each `FiberRef` in this collection.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const fiberRefs = internal.fiberRefs;\n/**\n * Forks this collection of fiber refs as the specified child fiber id. This\n * will potentially modify the value of the fiber refs, as determined by the\n * individual fiber refs that make up the collection.\n *\n * @since 2.0.0\n * @category utils\n */\nexport const forkAs = internal.forkAs;\n/**\n * Gets the value of the specified `FiberRef` in this collection of `FiberRef`\n * values if it exists or `None` otherwise.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const get = internal.get;\n/**\n * Gets the value of the specified `FiberRef` in this collection of `FiberRef`\n * values if it exists or the `initial` value of the `FiberRef` otherwise.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const getOrDefault = internal.getOrDefault;\n/**\n * Joins this collection of fiber refs to the specified collection, as the\n * specified fiber id. This will perform diffing and merging to ensure\n * preservation of maximum information from both child and parent refs.\n *\n * @since 2.0.0\n * @category utils\n */\nexport const joinAs = internal.joinAs;\n/**\n * Set each ref to either its value or its default.\n *\n * @since 2.0.0\n * @category utils\n */\nexport const setAll = internal.setAll;\n/**\n * Updates the value of the specified `FiberRef` using the provided `FiberId`\n *\n * @since 2.0.0\n * @category utils\n */\nexport const updateAs = internal.updateAs;\n/**\n * Updates the values of the specified `FiberRef` & value pairs using the provided `FiberId`\n *\n * @since 2.0.0\n * @category utils\n */\nexport const updateManyAs = internal.updateManyAs;\n/**\n * Note: it will not copy the provided Map, make sure to provide a fresh one.\n *\n * @since 2.0.0\n * @category unsafe\n */\nexport const unsafeMake = internal.unsafeMake;\n/**\n * The empty collection of `FiberRef` values.\n *\n * @category constructors\n * @since 2.0.0\n */\nexport const empty = internal.empty;\n//# sourceMappingURL=FiberRefs.js.map",
+      "start": 1768772628410,
+      "end": 1768772628410
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628410,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628416,
+      "end": 1768772628420,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628432,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628476,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

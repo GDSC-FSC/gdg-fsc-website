@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
-export * from './classes/src/lib';
-export * from './decorators/src/lib';
-
+export * from './classes/src/lib/index.js';
+export * from './decorators/src/lib/index.js';
+export { bind } from './decorators/src/lib/index.js';
+export * from './utils/src/index.js';

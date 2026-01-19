@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/_internals/helpers/BiasNumericRange.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { BigInt, String } from '../../../utils/globals.js';\nconst safeMathFloor = Math.floor;\nconst safeMathLog = Math.log;\nexport function integerLogLike(v) {\n    return safeMathFloor(safeMathLog(v) / safeMathLog(2));\n}\nexport function bigIntLogLike(v) {\n    if (v === BigInt(0))\n        return BigInt(0);\n    return BigInt(String(v).length);\n}\nfunction biasNumericRange(min, max, logLike) {\n    if (min === max) {\n        return [{ min: min, max: max }];\n    }\n    if (min < 0 && max > 0) {\n        const logMin = logLike(-min);\n        const logMax = logLike(max);\n        return [\n            { min: -logMin, max: logMax },\n            { min: (max - logMax), max: max },\n            { min: min, max: min + logMin },\n        ];\n    }\n    const logGap = logLike((max - min));\n    const arbCloseToMin = { min: min, max: min + logGap };\n    const arbCloseToMax = { min: (max - logGap), max: max };\n    return min < 0\n        ? [arbCloseToMax, arbCloseToMin]\n        : [arbCloseToMin, arbCloseToMax];\n}\nexport { biasNumericRange };\n",
+      "start": 1768772628908,
+      "end": 1768772628908
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628908,
+      "end": 1768772628908,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628909,
+      "end": 1768772628909,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628909,
+      "end": 1768772628909,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628910,
+      "end": 1768772628910,
+      "order": "post-post"
+    }
+  ]
+}

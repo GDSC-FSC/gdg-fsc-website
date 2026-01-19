@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/defaultServices.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Array from \"../Array.js\";\nimport * as Context from \"../Context.js\";\nimport * as Duration from \"../Duration.js\";\nimport { dual, pipe } from \"../Function.js\";\nimport { globalValue } from \"../GlobalValue.js\";\nimport * as clock from \"./clock.js\";\nimport * as configProvider from \"./configProvider.js\";\nimport * as core from \"./core.js\";\nimport * as console_ from \"./defaultServices/console.js\";\nimport * as random from \"./random.js\";\nimport * as tracer from \"./tracer.js\";\n/** @internal */\nexport const liveServices = /*#__PURE__*/pipe(/*#__PURE__*/Context.empty(), /*#__PURE__*/Context.add(clock.clockTag, /*#__PURE__*/clock.make()), /*#__PURE__*/Context.add(console_.consoleTag, console_.defaultConsole), /*#__PURE__*/Context.add(random.randomTag, /*#__PURE__*/random.make(/*#__PURE__*/Math.random())), /*#__PURE__*/Context.add(configProvider.configProviderTag, /*#__PURE__*/configProvider.fromEnv()), /*#__PURE__*/Context.add(tracer.tracerTag, tracer.nativeTracer));\n/**\n * The `FiberRef` holding the default `Effect` services.\n *\n * @since 2.0.0\n * @category fiberRefs\n */\nexport const currentServices = /*#__PURE__*/globalValue(/*#__PURE__*/Symbol.for(\"effect/DefaultServices/currentServices\"), () => core.fiberRefUnsafeMakeContext(liveServices));\n// circular with Clock\n/** @internal */\nexport const sleep = duration => {\n  const decodedDuration = Duration.decode(duration);\n  return clockWith(clock => clock.sleep(decodedDuration));\n};\n/** @internal */\nexport const defaultServicesWith = f => core.withFiberRuntime(fiber => f(fiber.currentDefaultServices));\n/** @internal */\nexport const clockWith = f => defaultServicesWith(services => f(services.unsafeMap.get(clock.clockTag.key)));\n/** @internal */\nexport const currentTimeMillis = /*#__PURE__*/clockWith(clock => clock.currentTimeMillis);\n/** @internal */\nexport const currentTimeNanos = /*#__PURE__*/clockWith(clock => clock.currentTimeNanos);\n/** @internal */\nexport const withClock = /*#__PURE__*/dual(2, (effect, c) => core.fiberRefLocallyWith(currentServices, Context.add(clock.clockTag, c))(effect));\n// circular with ConfigProvider\n/** @internal */\nexport const withConfigProvider = /*#__PURE__*/dual(2, (self, provider) => core.fiberRefLocallyWith(currentServices, Context.add(configProvider.configProviderTag, provider))(self));\n/** @internal */\nexport const configProviderWith = f => defaultServicesWith(services => f(services.unsafeMap.get(configProvider.configProviderTag.key)));\n/** @internal */\nexport const config = config => configProviderWith(_ => _.load(config));\n/** @internal */\nexport const configOrDie = config => core.orDie(configProviderWith(_ => _.load(config)));\n// circular with Random\n/** @internal */\nexport const randomWith = f => defaultServicesWith(services => f(services.unsafeMap.get(random.randomTag.key)));\n/** @internal */\nexport const withRandom = /*#__PURE__*/dual(2, (effect, value) => core.fiberRefLocallyWith(currentServices, Context.add(random.randomTag, value))(effect));\n/** @internal */\nexport const next = /*#__PURE__*/randomWith(random => random.next);\n/** @internal */\nexport const nextInt = /*#__PURE__*/randomWith(random => random.nextInt);\n/** @internal */\nexport const nextBoolean = /*#__PURE__*/randomWith(random => random.nextBoolean);\n/** @internal */\nexport const nextRange = (min, max) => randomWith(random => random.nextRange(min, max));\n/** @internal */\nexport const nextIntBetween = (min, max) => randomWith(random => random.nextIntBetween(min, max));\n/** @internal */\nexport const shuffle = elements => randomWith(random => random.shuffle(elements));\n/** @internal */\nexport const choice = elements => {\n  const array = Array.fromIterable(elements);\n  return core.map(array.length === 0 ? core.fail(new core.NoSuchElementException(\"Cannot select a random element from an empty array\")) : randomWith(random => random.nextIntBetween(0, array.length)), i => array[i]);\n};\n// circular with Tracer\n/** @internal */\nexport const tracerWith = f => defaultServicesWith(services => f(services.unsafeMap.get(tracer.tracerTag.key)));\n/** @internal */\nexport const withTracer = /*#__PURE__*/dual(2, (effect, value) => core.fiberRefLocallyWith(currentServices, Context.add(tracer.tracerTag, value))(effect));\n//# sourceMappingURL=defaultServices.js.map",
+      "start": 1768772628584,
+      "end": 1768772628584
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628584,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628618,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628647,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628704,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

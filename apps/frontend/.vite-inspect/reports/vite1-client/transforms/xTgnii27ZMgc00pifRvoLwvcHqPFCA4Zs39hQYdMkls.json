@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/value/subscribe-value.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { cancelFrame, frame } from '../frameloop/frame.mjs';\n\nfunction subscribeValue(inputValues, outputValue, getLatest) {\n    const update = () => outputValue.set(getLatest());\n    const scheduleUpdate = () => frame.preRender(update, false, true);\n    const subscriptions = inputValues.map((v) => v.on(\"change\", scheduleUpdate));\n    outputValue.on(\"destroy\", () => {\n        subscriptions.forEach((unsubscribe) => unsubscribe());\n        cancelFrame(update);\n    });\n}\n\nexport { subscribeValue };\n",
+      "start": 1768772628849,
+      "end": 1768772628849
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628849,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628852,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628855,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628858,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

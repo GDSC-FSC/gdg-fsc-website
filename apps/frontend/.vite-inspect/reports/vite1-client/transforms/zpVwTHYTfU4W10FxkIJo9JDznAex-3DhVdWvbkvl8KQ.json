@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/animation/utils/is-css-variable.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "const checkStringStartsWith = (token) => (key) => typeof key === \"string\" && key.startsWith(token);\nconst isCSSVariableName = \n/*@__PURE__*/ checkStringStartsWith(\"--\");\nconst startsAsVariableToken = \n/*@__PURE__*/ checkStringStartsWith(\"var(--\");\nconst isCSSVariableToken = (value) => {\n    const startsWithToken = startsAsVariableToken(value);\n    if (!startsWithToken)\n        return false;\n    // Ensure any comments are stripped from the value as this can harm performance of the regex.\n    return singleCssVariableRegex.test(value.split(\"/*\")[0].trim());\n};\nconst singleCssVariableRegex = /var\\(--(?:[\\w-]+\\s*|[\\w-]+\\s*,(?:\\s*[^)(\\s]|\\s*\\((?:[^)(]|\\([^)(]*\\))*\\))+\\s*)\\)$/iu;\n/**\n * Check if a value contains a CSS variable anywhere (e.g. inside calc()).\n * Unlike isCSSVariableToken which checks if the value IS a var() token,\n * this checks if the value CONTAINS var() somewhere in the string.\n */\nfunction containsCSSVariable(value) {\n    if (typeof value !== \"string\")\n        return false;\n    // Strip comments to avoid false positives\n    return value.split(\"/*\")[0].includes(\"var(--\");\n}\n\nexport { containsCSSVariable, isCSSVariableName, isCSSVariableToken };\n",
+      "start": 1768772628753,
+      "end": 1768772628753
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628753,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628770,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628789,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628806,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

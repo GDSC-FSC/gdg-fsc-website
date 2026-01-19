@@ -27,7 +27,8 @@
     "dev": "tsc --watch",
     "lint": "bunx biome check --write ./",
     "storybook": "storybook dev -p 6007",
-    "build:storybook": "storybook build"
+    "build:storybook": "storybook build",
+    "chromatic": "bun run build:storybook && bunx chromatic --storybook-build-dir=storybook-static --exit-zero-on-chromatic-error --auto-accept-changes"
   },
   "keywords": [
     "react",
@@ -42,21 +43,25 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "dependencies": {
+    "@gdg-fsc/shared": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "tailwind-merge": "^3.3.1",
+    "tailwind-merge": "^3.4.0",
     "usehooks-ts": "^3.1.1"
   },
   "devDependencies": {
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "@chromatic-com/storybook": "^5.0.0",
     "@storybook/addon-a11y": "^10.1.11",
     "@storybook/addon-docs": "^10.1.11",
     "@storybook/addon-links": "^10.1.11",
     "@storybook/react-vite": "^10.1.11",
-    "@chromatic-com/storybook": "^5.0.0",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
+    "@tailwindcss/vite": "^4.1.18",
+    "@types/react": "^19.2.8",
+    "@types/react-dom": "^19.2.3",
     "storybook": "^10.1.11",
-    "tailwindcss": "^4.1.10",
-    "typescript": "^5.8.3"
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3"
   }
 }

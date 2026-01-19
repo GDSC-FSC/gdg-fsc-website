@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/UpstreamPullStrategy.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @since 2.0.0\n */\nimport * as internal from \"./internal/channel/upstreamPullStrategy.js\";\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const UpstreamPullStrategyTypeId = internal.UpstreamPullStrategyTypeId;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const PullAfterNext = internal.PullAfterNext;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const PullAfterAllEnqueued = internal.PullAfterAllEnqueued;\n/**\n * Returns `true` if the specified value is an `UpstreamPullStrategy`, `false`\n * otherwise.\n *\n * @since 2.0.0\n * @category refinements\n */\nexport const isUpstreamPullStrategy = internal.isUpstreamPullStrategy;\n/**\n * Returns `true` if the specified `UpstreamPullStrategy` is a `PullAfterNext`,\n * `false` otherwise.\n *\n * @since 2.0.0\n * @category refinements\n */\nexport const isPullAfterNext = internal.isPullAfterNext;\n/**\n * Returns `true` if the specified `UpstreamPullStrategy` is a\n * `PullAfterAllEnqueued`, `false` otherwise.\n *\n * @since 2.0.0\n * @category refinements\n */\nexport const isPullAfterAllEnqueued = internal.isPullAfterAllEnqueued;\n/**\n * Folds an `UpstreamPullStrategy<A>` into a value of type `Z`.\n *\n * @since 2.0.0\n * @category folding\n */\nexport const match = internal.match;\n//# sourceMappingURL=UpstreamPullStrategy.js.map",
+      "start": 1768772628415,
+      "end": 1768772628415
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628415,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628418,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628433,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628477,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

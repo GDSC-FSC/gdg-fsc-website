@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/option.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @since 2.0.0\n */\nimport * as Equal from \"../Equal.js\";\nimport * as Hash from \"../Hash.js\";\nimport { format, NodeInspectSymbol, toJSON } from \"../Inspectable.js\";\nimport { hasProperty } from \"../Predicate.js\";\nimport { EffectPrototype } from \"./effectable.js\";\nconst TypeId = /*#__PURE__*/Symbol.for(\"effect/Option\");\nconst CommonProto = {\n  ...EffectPrototype,\n  [TypeId]: {\n    _A: _ => _\n  },\n  [NodeInspectSymbol]() {\n    return this.toJSON();\n  },\n  toString() {\n    return format(this.toJSON());\n  }\n};\nconst SomeProto = /*#__PURE__*/Object.assign(/*#__PURE__*/Object.create(CommonProto), {\n  _tag: \"Some\",\n  _op: \"Some\",\n  [Equal.symbol](that) {\n    return isOption(that) && isSome(that) && Equal.equals(this.value, that.value);\n  },\n  [Hash.symbol]() {\n    return Hash.cached(this, Hash.combine(Hash.hash(this._tag))(Hash.hash(this.value)));\n  },\n  toJSON() {\n    return {\n      _id: \"Option\",\n      _tag: this._tag,\n      value: toJSON(this.value)\n    };\n  }\n});\nconst NoneHash = /*#__PURE__*/Hash.hash(\"None\");\nconst NoneProto = /*#__PURE__*/Object.assign(/*#__PURE__*/Object.create(CommonProto), {\n  _tag: \"None\",\n  _op: \"None\",\n  [Equal.symbol](that) {\n    return isOption(that) && isNone(that);\n  },\n  [Hash.symbol]() {\n    return NoneHash;\n  },\n  toJSON() {\n    return {\n      _id: \"Option\",\n      _tag: this._tag\n    };\n  }\n});\n/** @internal */\nexport const isOption = input => hasProperty(input, TypeId);\n/** @internal */\nexport const isNone = fa => fa._tag === \"None\";\n/** @internal */\nexport const isSome = fa => fa._tag === \"Some\";\n/** @internal */\nexport const none = /*#__PURE__*/Object.create(NoneProto);\n/** @internal */\nexport const some = value => {\n  const a = Object.create(SomeProto);\n  a.value = value;\n  return a;\n};\n//# sourceMappingURL=option.js.map",
+      "start": 1768772628585,
+      "end": 1768772628585
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628585,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628619,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628648,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628704,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

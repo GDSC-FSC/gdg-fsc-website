@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/Struct.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * This module provides utility functions for working with structs in TypeScript.\n *\n * @since 2.0.0\n */\nimport * as Equivalence from \"./Equivalence.js\";\nimport { dual } from \"./Function.js\";\nimport * as order from \"./Order.js\";\nimport * as Predicate from \"./Predicate.js\";\n/**\n * Create a new object by picking properties of an existing object.\n *\n * @example\n * ```ts\n * import * as assert from \"node:assert\"\n * import { pipe, Struct } from \"effect\"\n *\n * assert.deepStrictEqual(pipe({ a: \"a\", b: 1, c: true }, Struct.pick(\"a\", \"b\")), { a: \"a\", b: 1 })\n * assert.deepStrictEqual(Struct.pick({ a: \"a\", b: 1, c: true }, \"a\", \"b\"), { a: \"a\", b: 1 })\n * ```\n *\n * @since 2.0.0\n */\nexport const pick = /*#__PURE__*/dual(args => Predicate.isObject(args[0]), (s, ...keys) => {\n  const out = {};\n  for (const k of keys) {\n    if (k in s) {\n      out[k] = s[k];\n    }\n  }\n  return out;\n});\n/**\n * Create a new object by omitting properties of an existing object.\n *\n * @example\n * ```ts\n * import * as assert from \"node:assert\"\n * import { pipe, Struct } from \"effect\"\n *\n * assert.deepStrictEqual(pipe({ a: \"a\", b: 1, c: true }, Struct.omit(\"c\")), { a: \"a\", b: 1 })\n * assert.deepStrictEqual(Struct.omit({ a: \"a\", b: 1, c: true }, \"c\"), { a: \"a\", b: 1 })\n * ```\n *\n * @since 2.0.0\n */\nexport const omit = /*#__PURE__*/dual(args => Predicate.isObject(args[0]), (s, ...keys) => {\n  const out = {\n    ...s\n  };\n  for (const k of keys) {\n    delete out[k];\n  }\n  return out;\n});\n/**\n * Given a struct of `Equivalence`s returns a new `Equivalence` that compares values of a struct\n * by applying each `Equivalence` to the corresponding property of the struct.\n *\n * Alias of {@link Equivalence.struct}.\n *\n * @example\n * ```ts\n * import * as assert from \"node:assert\"\n * import { Struct, String, Number } from \"effect\"\n *\n * const PersonEquivalence = Struct.getEquivalence({\n *   name: String.Equivalence,\n *   age: Number.Equivalence\n * })\n *\n * assert.deepStrictEqual(\n *   PersonEquivalence({ name: \"John\", age: 25 }, { name: \"John\", age: 25 }),\n *   true\n * )\n * assert.deepStrictEqual(\n *   PersonEquivalence({ name: \"John\", age: 25 }, { name: \"John\", age: 40 }),\n *   false\n * )\n * ```\n *\n * @category combinators\n * @since 2.0.0\n */\nexport const getEquivalence = Equivalence.struct;\n/**\n * This function creates and returns a new `Order` for a struct of values based on the given `Order`s\n * for each property in the struct.\n *\n * Alias of {@link order.struct}.\n *\n * @category combinators\n * @since 2.0.0\n */\nexport const getOrder = order.struct;\n/**\n * Transforms the values of a Struct provided a transformation function for each key.\n * If no transformation function is provided for a key, it will return the original value for that key.\n *\n * @example\n * ```ts\n * import * as assert from \"node:assert\"\n * import { pipe, Struct } from \"effect\"\n *\n * assert.deepStrictEqual(\n *   pipe(\n *     { a: 'a', b: 1, c: 3 },\n *     Struct.evolve({\n *       a: (a) => a.length,\n *       b: (b) => b * 2\n *     })\n *   ),\n *   { a: 1, b: 2, c: 3 }\n * )\n * ```\n *\n * @since 2.0.0\n */\nexport const evolve = /*#__PURE__*/dual(2, (obj, t) => {\n  const out = {\n    ...obj\n  };\n  for (const k in t) {\n    if (Object.prototype.hasOwnProperty.call(obj, k)) {\n      // @ts-expect-error\n      out[k] = t[k](obj[k]);\n    }\n  }\n  return out;\n});\n/**\n * Retrieves the value associated with the specified key from a struct.\n *\n * @example\n * ```ts\n * import * as assert from \"node:assert\"\n * import { pipe, Struct } from \"effect\"\n *\n * const value = pipe({ a: 1, b: 2 }, Struct.get(\"a\"))\n *\n * assert.deepStrictEqual(value, 1)\n * ```\n *\n * @since 2.0.0\n */\nexport const get = key => s => s[key];\n/**\n * Retrieves the object keys that are strings in a typed manner\n *\n * @example\n * ```ts\n * import * as assert from \"node:assert\"\n * import { Struct } from \"effect\"\n *\n * const symbol: unique symbol = Symbol()\n *\n * const value = {\n *   a: 1,\n *   b: 2,\n *   [symbol]: 3\n * }\n *\n * const keys: Array<\"a\" | \"b\"> = Struct.keys(value)\n *\n * assert.deepStrictEqual(keys, [\"a\", \"b\"])\n * ```\n *\n * @since 3.6.0\n */\nexport const keys = o => Object.keys(o);\n/**\n * Retrieves the entries (key-value pairs) of an object, where keys are strings,\n * in a type-safe manner. Symbol keys are excluded from the result.\n *\n * @example\n * ```ts\n * import * as assert from \"node:assert\"\n * import { Struct } from \"effect\"\n *\n * const c = Symbol(\"c\")\n * const value = { a: \"foo\", b: 1, [c]: true }\n *\n * const entries: Array<[\"a\" | \"b\", string | number]> = Struct.entries(value)\n *\n * assert.deepStrictEqual(entries, [[\"a\", \"foo\"], [\"b\", 1]])\n * ```\n *\n * @since 3.17.0\n */\nexport const entries = obj => Object.entries(obj);\n//# sourceMappingURL=Struct.js.map",
+      "start": 1768772628415,
+      "end": 1768772628415
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628415,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628418,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628434,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628477,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/MetricKeyType.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as internal from \"./internal/metric/keyType.js\";\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const MetricKeyTypeTypeId = internal.MetricKeyTypeTypeId;\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const CounterKeyTypeTypeId = internal.CounterKeyTypeTypeId;\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const FrequencyKeyTypeTypeId = internal.FrequencyKeyTypeTypeId;\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const GaugeKeyTypeTypeId = internal.GaugeKeyTypeTypeId;\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const HistogramKeyTypeTypeId = internal.HistogramKeyTypeTypeId;\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const SummaryKeyTypeTypeId = internal.SummaryKeyTypeTypeId;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const counter = internal.counter;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const frequency = internal.frequency;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const gauge = internal.gauge;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const histogram = internal.histogram;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const summary = internal.summary;\n/**\n * @since 2.0.0\n * @category refinements\n */\nexport const isMetricKeyType = internal.isMetricKeyType;\n/**\n * @since 2.0.0\n * @category refinements\n */\nexport const isCounterKey = internal.isCounterKey;\n/**\n * @since 2.0.0\n * @category refinements\n */\nexport const isFrequencyKey = internal.isFrequencyKey;\n/**\n * @since 2.0.0\n * @category refinements\n */\nexport const isGaugeKey = internal.isGaugeKey;\n/**\n * @since 2.0.0\n * @category refinements\n */\nexport const isHistogramKey = internal.isHistogramKey;\n/**\n * @since 2.0.0\n * @category refinements\n */\nexport const isSummaryKey = internal.isSummaryKey;\n//# sourceMappingURL=MetricKeyType.js.map",
+      "start": 1768772628410,
+      "end": 1768772628410
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628410,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628417,
+      "end": 1768772628420,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628433,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628477,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

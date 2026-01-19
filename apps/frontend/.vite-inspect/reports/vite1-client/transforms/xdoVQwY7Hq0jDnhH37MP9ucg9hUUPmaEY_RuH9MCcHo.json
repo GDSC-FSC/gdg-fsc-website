@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/ear.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M6 8.5a6.5 6.5 0 1 1 13 0c0 6-6 6-6 10a3.5 3.5 0 1 1-7 0\", key: \"1dfaln\" }],\n  [\"path\", { d: \"M15 8.5a2.5 2.5 0 0 0-5 0v1a2 2 0 1 1 0 4\", key: \"1qnva7\" }]\n];\nconst Ear = createLucideIcon(\"ear\", __iconNode);\n\nexport { __iconNode, Ear as default };\n//# sourceMappingURL=ear.js.map\n",
+      "start": 1768772628541,
+      "end": 1768772628541
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628541,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628571,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628599,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628629,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

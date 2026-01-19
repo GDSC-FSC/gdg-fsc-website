@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Console } from 'effect';
+import { Effect, Logger as EffectLogger, LogLevel as EffectLogLevel } from 'effect';
 
 /**
  * @fileoverview A comprehensive logging utility for both client and server environments.
@@ -25,7 +25,6 @@ import { Console } from 'effect';
 /**
  * Determines if the code is running in a server environment
  */
-const isServer = typeof window === 'undefined';
 
 /**
  * Enum representing different logging levels with their priority values.
@@ -115,45 +114,11 @@ export class Logger {
   /** The context/category name for this logger instance */
   private readonly context: string;
 
-  /** Whether this logger is running in a server environment */
-  private readonly isServerContext: boolean;
-
   /** The minimum log level that will be output */
   private minLevel: LogLevel;
 
-  /** Whether to include ISO timestamps in log messages */
-  private readonly includeTimestamp: boolean;
-
-  /** Whether to apply ANSI color codes to the output */
-  private readonly shouldColorize: boolean;
-
   /** Registry of logger instances to implement the singleton pattern */
   private static readonly instances: Map<string, Logger> = new Map();
-
-  /** ANSI color codes for terminal output */
-  private readonly colors: Record<ColorKey, string> = {
-    reset: '\x1b[0m',
-    red: '\x1b[31m',
-    green: '\x1b[32m',
-    yellow: '\x1b[33m',
-    blue: '\x1b[34m',
-    magenta: '\x1b[35m',
-    cyan: '\x1b[36m',
-    white: '\x1b[37m',
-    gray: '\x1b[90m',
-    bold: '\x1b[1m',
-  };
-
-  /** Mapping of log levels to their display colors */
-  private levelColors: Record<string, ColorKey> = {
-    error: 'red',
-    warn: 'yellow',
-    info: 'blue',
-    debug: 'gray',
-    trace: 'cyan',
-    action: 'magenta',
-    success: 'green',
-  };
 
   /**
    * Create a new Logger instance or return an existing one for the given context
@@ -162,11 +127,9 @@ export class Logger {
    */
   constructor(context: string, options: LoggerOptions = {}) {
     this.context = context;
-    this.isServerContext = isServer;
+
     this.minLevel =
       options.minLevel ?? (process.env.NODE_ENV === 'production' ? LogLevel.ERROR : LogLevel.ALL);
-    this.includeTimestamp = options.includeTimestamp ?? true;
-    this.shouldColorize = options.colorize ?? this.isServerContext;
   }
 
   /**
@@ -178,10 +141,14 @@ export class Logger {
    * @returns {Logger} A logger instance for the specified context
    */
   public static getLogger(context: string, options?: LoggerOptions): Logger {
-    if (!Logger.instances.has(context)) {
-      Logger.instances.set(context, new Logger(context, options));
+    let instance = Logger.instances.get(context);
+
+    if (!instance) {
+      instance = new Logger(context, options);
+      Logger.instances.set(context, instance);
     }
-    return Logger.instances.get(context)!;
+
+    return instance;
   }
 
   /**
@@ -196,107 +163,61 @@ export class Logger {
   }
 
   /**
-   * Determine if the current environment should log messages at the specified level
-   *
-   * @param {LogLevel} level - The log level to check
-   * @returns {boolean} Whether logging should occur for this level
-   * @private
+   * Maps internal LogLevel to Effect's LogLevel
    */
-  private shouldLog(level: LogLevel): boolean {
-    // Check if level meets minimum threshold
-    if (level > this.minLevel) return false;
-
-    // Always log server-side actions
-    if (this.isServerContext) return true;
-
-    // Only log client-side in development or if explicitly enabled
-    return process.env.NODE_ENV === 'development' || process.env.ENABLE_CLIENT_LOGS === 'true';
-  }
-
-  /**
-   * Format a log message with metadata
-   *
-   * @param {string} level - The log level
-   * @param {string} message - The message to log
-   * @param {LogData} [data] - Optional data to include
-   * @returns {Object} Formatted message with prefix and data
-   * @private
-   */
-  private formatMessage(level: string, message: string, data?: LogData) {
-    const timestamp = this.includeTimestamp ? new Date().toISOString() : '';
-    const environment = this.isServerContext ? '[SERVER]' : '[CLIENT]';
-    const prefix = `${timestamp} ${environment} ${this.context}:`;
-    return { level, prefix, message, ...(data && { data }) };
-  }
-
-  /**
-   * Apply color to text if colorization is enabled
-   *
-   * @param {ColorKey} color - The color to apply
-   * @param {string} text - The text to colorize
-   * @returns {string} Colorized text (if enabled) or original text
-   * @private
-   */
-  private colorize(color: ColorKey, text: string): string {
-    // Only apply colors if enabled
-    if (!this.shouldColorize) return text;
-    return `${this.colors[color]}${text}${this.colors.reset}`;
-  }
-
-  /**
-   * Format a log level indicator with brackets
-   *
-   * @param {string} level - The log level string
-   * @returns {string} Formatted log level indicator
-   * @private
-   */
-  private formatLogLevel(level: string): string {
-    return `[${level.toUpperCase()}]`;
-  }
-
-  /**
-   * Format the final log output combining all components
-   *
-   * @param {Object} params - The formatted log data
-   * @param {string} params.prefix - The log prefix with context information
-   * @param {string} params.message - The main log message
-   * @param {LogData} [params.data] - Optional structured data to include
-   * @returns {string} The complete formatted log message
-   * @private
-   */
-  private formatOutput({
-    prefix,
-    message,
-    data,
-  }: {
-    prefix: string;
-    message: string;
-    data?: LogData;
-  }): string {
-    const logParts = [prefix, message];
-
-    if (data) {
-      // Handle special cases like Error objects better
-      if (data.error instanceof Error) {
-        logParts.push('\nError Details:');
-        logParts.push(`  Name: ${data.error.name}`);
-        logParts.push(`  Message: ${data.error.message}`);
-        if (data.error.stack) {
-          logParts.push(`  Stack: ${data.error.stack}`);
-        }
-
-        // Remove error from data to avoid duplication
-        const { error, ...restData } = data;
-        if (Object.keys(restData).length > 0) {
-          logParts.push('\nAdditional Data:');
-          logParts.push(JSON.stringify(restData, null, 2));
-        }
-      } else {
-        logParts.push('\n' + JSON.stringify(data, null, 2));
-      }
+  private getEffectLogLevel(level: LogLevel): EffectLogLevel.LogLevel {
+    switch (level) {
+      case LogLevel.NONE:
+        return EffectLogLevel.None;
+      case LogLevel.ERROR:
+        return EffectLogLevel.Error;
+      case LogLevel.WARN:
+        return EffectLogLevel.Warning;
+      case LogLevel.INFO:
+        return EffectLogLevel.Info;
+      case LogLevel.DEBUG:
+        return EffectLogLevel.Debug;
+      case LogLevel.TRACE:
+        return EffectLogLevel.Debug; // Effect doesn't have Trace, mapping to Debug
+      case LogLevel.ALL:
+        return EffectLogLevel.All;
+      default:
+        return EffectLogLevel.Info;
     }
+  }
 
-    return logParts.join(' ');
+  /**
+   * Run an effect with the logger's context and configuration
+   */
+  private run(effect: Effect.Effect<void>) {
+    // Determine the minimum log level for this execution
+    const minEffectLevel = this.getEffectLogLevel(this.minLevel);
+
+    // Apply context and log level configuration
+    const program = effect.pipe(
+      Effect.annotateLogs({ context: this.context }),
+      EffectLogger.withMinimumLogLevel(minEffectLevel),
+    );
+
+    // If the configured minLevel is higher (less verbose) than what we want to log,
+    // Effect's default logger might still show it if we don't configure it.
+    // But since we are just wrapping Effect.log*, we can just run it.
+    // To strictly enforce minLevel per instance, we would need a custom logger layer.
+    // For now, we'll assume the global configuration or default is acceptable,
+    // or we can manually check before running.
+
+    // Manual check to match previous behavior's strictness
+    // (This is a bit redundant with Effect's own level handling but ensures backward compat)
+    // We'll skip the manual check here and let Effect handle it, assuming standard usage.
+    // If we strictly need to suppress, we can do:
+    // if (this.getEffectLogLevel(this.minLevel).ordinal > ... ) return;
+
+    try {
+      Effect.runSync(Effect.scoped(program));
+    } catch (error) {
+      // Fallback if Effect fails (shouldn't happen for standard logging)
+      console.error('Logger failed:', error);
+    }
   }
 
   /**
@@ -306,13 +227,8 @@ export class Logger {
    * @param {LogData} [data] - Optional data to include
    */
   info(message: string, data?: LogData): void {
-    if (!this.shouldLog(LogLevel.INFO)) return;
-    const formattedData = this.formatMessage('info', message, data);
-    Console.log(
-      this.colorize(this.levelColors.info, this.formatLogLevel('info')) +
-        ' ' +
-        this.formatOutput(formattedData),
-    );
+    if (this.minLevel < LogLevel.INFO) return;
+    this.run(Effect.logInfo(message).pipe(Effect.annotateLogs(data || {})));
   }
 
   /**
@@ -322,23 +238,15 @@ export class Logger {
    * @param {Error|unknown} [error] - Optional Error object or unknown error
    * @param {LogData} [data] - Optional additional data
    */
-  error(message: string, error?: Error | unknown, data?: LogData): void {
-    if (!this.shouldLog(LogLevel.ERROR)) return;
-    const errorData =
-      error instanceof Error
-        ? { name: error.name, message: error.message, stack: error.stack }
-        : error;
+  error(message: string, error?: unknown, data?: LogData): void {
+    if (this.minLevel < LogLevel.ERROR) return;
 
-    const formattedData = this.formatMessage('error', message, {
-      ...data,
-      error: errorData,
-    });
+    let errorObj: unknown = error;
+    if (error instanceof Error) {
+      errorObj = { name: error.name, message: error.message, stack: error.stack };
+    }
 
-    Console.error(
-      this.colorize('bold', this.colorize(this.levelColors.error, this.formatLogLevel('error'))) +
-        ' ' +
-        this.formatOutput(formattedData),
-    );
+    this.run(Effect.logError(message).pipe(Effect.annotateLogs({ ...data, error: errorObj })));
   }
 
   /**
@@ -348,13 +256,8 @@ export class Logger {
    * @param {LogData} [data] - Optional data to include
    */
   warn(message: string, data?: LogData): void {
-    if (!this.shouldLog(LogLevel.WARN)) return;
-    const formattedData = this.formatMessage('warn', message, data);
-    Console.warn(
-      this.colorize(this.levelColors.warn, this.formatLogLevel('warn')) +
-        ' ' +
-        this.formatOutput(formattedData),
-    );
+    if (this.minLevel < LogLevel.WARN) return;
+    this.run(Effect.logWarning(message).pipe(Effect.annotateLogs(data || {})));
   }
 
   /**
@@ -364,13 +267,8 @@ export class Logger {
    * @param {LogData} [data] - Optional data to include
    */
   debug(message: string, data?: LogData): void {
-    if (!this.shouldLog(LogLevel.DEBUG)) return;
-    const formattedData = this.formatMessage('debug', message, data);
-    Console.debug(
-      this.colorize(this.levelColors.debug, this.formatLogLevel('debug')) +
-        ' ' +
-        this.formatOutput(formattedData),
-    );
+    if (this.minLevel < LogLevel.DEBUG) return;
+    this.run(Effect.logDebug(message).pipe(Effect.annotateLogs(data || {})));
   }
 
   /**
@@ -380,13 +278,9 @@ export class Logger {
    * @param {LogData} [data] - Optional data to include
    */
   trace(message: string, data?: LogData): void {
-    if (!this.shouldLog(LogLevel.TRACE)) return;
-    const formattedData = this.formatMessage('trace', message, data);
-    Console.debug(
-      this.colorize(this.levelColors.trace, this.formatLogLevel('trace')) +
-        ' ' +
-        this.formatOutput(formattedData),
-    );
+    if (this.minLevel < LogLevel.TRACE) return;
+    // Mapping trace to debug as Effect doesn't have a distinct trace level exposed easily
+    this.run(Effect.logDebug(message).pipe(Effect.annotateLogs({ ...data, level: 'TRACE' })));
   }
 
   /**
@@ -396,13 +290,9 @@ export class Logger {
    * @param {LogData} [data] - Optional data to include
    */
   action(message: string, data?: LogData): void {
-    if (!this.shouldLog(LogLevel.INFO)) return;
-    const formattedData = this.formatMessage('action', message, data);
-    Console.log(
-      this.colorize(this.levelColors.action, this.formatLogLevel('action')) +
-        ' ' +
-        this.formatOutput(formattedData),
-    );
+    if (this.minLevel < LogLevel.INFO) return;
+    // Action is effectively Info but we tag it
+    this.run(Effect.logInfo(message).pipe(Effect.annotateLogs({ ...data, type: 'ACTION' })));
   }
 
   /**
@@ -412,13 +302,9 @@ export class Logger {
    * @param {LogData} [data] - Optional data to include
    */
   success(message: string, data?: LogData): void {
-    if (!this.shouldLog(LogLevel.INFO)) return;
-    const formattedData = this.formatMessage('success', message, data);
-    Console.log(
-      this.colorize(this.levelColors.success, this.formatLogLevel('success')) +
-        ' ' +
-        this.formatOutput(formattedData),
-    );
+    if (this.minLevel < LogLevel.INFO) return;
+    // Success is effectively Info but we tag it
+    this.run(Effect.logInfo(message).pipe(Effect.annotateLogs({ ...data, type: 'SUCCESS' })));
   }
 
   /**
@@ -427,15 +313,20 @@ export class Logger {
    * @param {string} label - The group label
    */
   group(label: string): void {
-    if (!this.shouldLog(LogLevel.INFO)) return;
-    Console.group({ label: this.colorize('bold', label) });
+    if (this.minLevel < LogLevel.INFO) return;
+    // Effect doesn't have a direct equivalent for console.group in its Logger
+    // We can use Console.group directly as it's a wrapper around console.group
+    // but we should be careful about mixing Effect logs and direct console logs.
+    // For now, we'll use the direct Console import from effect which wraps console.
+    // Note: This might not respect Effect's structured logging output format for the group header itself.
+    console.group(label);
   }
 
   /**
    * End a log group (Console.groupEnd wrapper)
    */
   groupEnd(): void {
-    if (!this.shouldLog(LogLevel.INFO)) return;
+    if (this.minLevel < LogLevel.INFO) return;
     console.groupEnd();
   }
 
@@ -448,17 +339,23 @@ export class Logger {
    * @returns {Promise<T>} The result of the function execution
    */
   async time<T>(label: string, fn: () => Promise<T> | T): Promise<T> {
-    if (!this.shouldLog(LogLevel.DEBUG)) return fn();
+    if (this.minLevel < LogLevel.DEBUG) return fn();
+
+    // We can use Effect.timed if we wrap the function in an Effect,
+    // but since fn returns a Promise or value, we might just want to measure it manually
+    // to avoid wrapping everything in Effect if the consumer isn't using Effect.
 
     const startTime = performance.now();
     try {
       const result = await fn();
       const endTime = performance.now();
-      this.info(`${label} completed in ${(endTime - startTime).toFixed(2)}ms`);
+      const duration = (endTime - startTime).toFixed(2);
+      this.info(`${label} completed`, { duration: `${duration}ms` });
       return result;
     } catch (error) {
       const endTime = performance.now();
-      this.error(`${label} failed after ${(endTime - startTime).toFixed(2)}ms`, error);
+      const duration = (endTime - startTime).toFixed(2);
+      this.error(`${label} failed`, error, { duration: `${duration}ms` });
       throw error;
     }
   }
@@ -468,32 +365,3 @@ export const logger = new Logger('[LOGGER]', {
   includeTimestamp: true,
   colorize: true,
 });
-
-// Usage examples:
-/*
-// Basic usage
-const logger = new Logger("UserService");
-logger.info("User logged in", { userId: "123" });
-
-// With options
-const detailedLogger = new Logger("AuthService", { 
-  minLevel: LogLevel.DEBUG,
-  includeTimestamp: true,
-  colorize: true
-});
-
-// Singleton pattern
-const logger1 = Logger.getLogger("ApiClient");
-const logger2 = Logger.getLogger("ApiClient"); // Returns the same instance
-
-// Set global log level
-Logger.setGlobalLogLevel(LogLevel.WARN); // Only show warnings and errors
-
-// Time operations
-async function fetchData() {
-  return await logger.time("API Request", async () => {
-    const response = await fetch("https://api.example.com/data");
-    return response.json();
-  });
-}
-*/

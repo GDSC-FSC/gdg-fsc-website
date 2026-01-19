@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/calendar-arrow-down.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"m14 18 4 4 4-4\", key: \"1waygx\" }],\n  [\"path\", { d: \"M16 2v4\", key: \"4m81vk\" }],\n  [\"path\", { d: \"M18 14v8\", key: \"irew45\" }],\n  [\n    \"path\",\n    { d: \"M21 11.354V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7.343\", key: \"bse4f3\" }\n  ],\n  [\"path\", { d: \"M3 10h18\", key: \"8toen8\" }],\n  [\"path\", { d: \"M8 2v4\", key: \"1cmpym\" }]\n];\nconst CalendarArrowDown = createLucideIcon(\"calendar-arrow-down\", __iconNode);\n\nexport { __iconNode, CalendarArrowDown as default };\n//# sourceMappingURL=calendar-arrow-down.js.map\n",
+      "start": 1768772628549,
+      "end": 1768772628549
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628549,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628577,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628603,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628632,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

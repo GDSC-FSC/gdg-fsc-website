@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/chess-pawn.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\n    \"path\",\n    { d: \"M5 20a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z\", key: \"b89hwq\" }\n  ],\n  [\"path\", { d: \"m14.5 10 1.5 8\", key: \"cim3qy\" }],\n  [\"path\", { d: \"M7 10h10\", key: \"1101jm\" }],\n  [\"path\", { d: \"m8 18 1.5-8\", key: \"ja3yjd\" }],\n  [\"circle\", { cx: \"12\", cy: \"6\", r: \"4\", key: \"1frrej\" }]\n];\nconst ChessPawn = createLucideIcon(\"chess-pawn\", __iconNode);\n\nexport { __iconNode, ChessPawn as default };\n//# sourceMappingURL=chess-pawn.js.map\n",
+      "start": 1768772628536,
+      "end": 1768772628536
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628536,
+      "end": 1768772628552,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628564,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628593,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628625,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

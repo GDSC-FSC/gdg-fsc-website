@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/ScheduleIntervals.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as internal from \"./internal/schedule/intervals.js\";\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const IntervalsTypeId = internal.IntervalsTypeId;\n/**\n * Creates a new `Intervals` from a `List` of `Interval`s.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const make = internal.make;\n/**\n * Constructs an empty list of `Interval`s.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const empty = internal.empty;\n/**\n * Creates `Intervals` from the specified `Iterable<Interval>`.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const fromIterable = internal.fromIterable;\n/**\n * Computes the union of this `Intervals` and  that `Intervals`\n *\n * @since 2.0.0\n * @category utils\n */\nexport const union = internal.union;\n/**\n * Produces the intersection of this `Intervals` and that `Intervals`.\n *\n * @since 2.0.0\n * @category utils\n */\nexport const intersect = internal.intersect;\n/**\n * The start of the earliest interval in the specified `Intervals`.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const start = internal.start;\n/**\n * The end of the latest interval in the specified `Intervals`.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const end = internal.end;\n/**\n * Returns `true` if the start of this `Intervals` is before the start of that\n * `Intervals`, `false` otherwise.\n *\n * @since 2.0.0\n * @category ordering\n */\nexport const lessThan = internal.lessThan;\n/**\n * Returns `true` if this `Intervals` is non-empty, `false` otherwise.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const isNonEmpty = internal.isNonEmpty;\n/**\n * Returns the maximum of the two `Intervals` (i.e. which has the latest start).\n *\n * @since 2.0.0\n * @category ordering\n */\nexport const max = internal.max;\n//# sourceMappingURL=ScheduleIntervals.js.map",
+      "start": 1768772628415,
+      "end": 1768772628415
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628415,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628419,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628434,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628477,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/Request.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as RequestBlock_ from \"./internal/blockedRequests.js\";\nimport * as cache from \"./internal/cache.js\";\nimport * as core from \"./internal/core.js\";\nimport * as fiberRuntime from \"./internal/fiberRuntime.js\";\nimport * as internal from \"./internal/request.js\";\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const RequestTypeId = internal.RequestTypeId;\n/**\n * Returns `true` if the specified value is a `Request`, `false` otherwise.\n *\n * @since 2.0.0\n * @category refinements\n */\nexport const isRequest = internal.isRequest;\n/**\n * Constructs a new `Request`.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const of = internal.of;\n/**\n * Constructs a new `Request`.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const tagged = internal.tagged;\n/**\n * Provides a constructor for a Request Class.\n *\n * @example\n * ```ts\n * import { Request } from \"effect\"\n *\n * type Success = string\n * type Error = never\n *\n * class MyRequest extends Request.Class<Success, Error, {\n *   readonly id: string\n * }> {}\n * ```\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const Class = internal.Class;\n/**\n * Provides a Tagged constructor for a Request Class.\n *\n * @example\n * ```ts\n * import { Request } from \"effect\"\n *\n * type Success = string\n * type Error = never\n *\n * class MyRequest extends Request.TaggedClass(\"MyRequest\")<Success, Error, {\n *   readonly name: string\n * }> {}\n * ```\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const TaggedClass = internal.TaggedClass;\n/**\n * Complete a `Request` with the specified result.\n *\n * @since 2.0.0\n * @category request completion\n */\nexport const complete = internal.complete;\n/**\n * Interrupts the child effect when requests are no longer needed\n *\n * @since 2.0.0\n * @category request completion\n */\nexport const interruptWhenPossible = fiberRuntime.interruptWhenPossible;\n/**\n * Complete a `Request` with the specified effectful computation, failing the\n * request with the error from the effect workflow if it fails, and completing\n * the request with the value of the effect workflow if it succeeds.\n *\n * @since 2.0.0\n * @category request completion\n */\nexport const completeEffect = internal.completeEffect;\n/**\n * Complete a `Request` with the specified error.\n *\n * @since 2.0.0\n * @category request completion\n */\nexport const fail = internal.fail;\n/**\n * Complete a `Request` with the specified cause.\n *\n * @since 2.0.0\n * @category request completion\n */\nexport const failCause = internal.failCause;\n/**\n * Complete a `Request` with the specified value.\n *\n * @since 2.0.0\n * @category request completion\n */\nexport const succeed = internal.succeed;\n/**\n * @since 2.0.0\n * @category models\n */\nexport const makeCache = options => cache.make({\n  ...options,\n  lookup: () => core.map(core.deferredMake(), handle => ({\n    listeners: new internal.Listeners(),\n    handle\n  }))\n});\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const EntryTypeId = /*#__PURE__*/Symbol.for(\"effect/RequestBlock.Entry\");\n/**\n * @since 2.0.0\n * @category guards\n */\nexport const isEntry = RequestBlock_.isEntry;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const makeEntry = RequestBlock_.makeEntry;\n//# sourceMappingURL=Request.js.map",
+      "start": 1768772628413,
+      "end": 1768772628413
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628413,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628417,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628432,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628476,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

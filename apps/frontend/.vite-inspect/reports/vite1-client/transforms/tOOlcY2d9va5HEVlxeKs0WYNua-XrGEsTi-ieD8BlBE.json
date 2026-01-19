@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/MutableRef.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @since 2.0.0\n */\nimport * as Equal from \"./Equal.js\";\nimport * as Dual from \"./Function.js\";\nimport { format, NodeInspectSymbol, toJSON } from \"./Inspectable.js\";\nimport { pipeArguments } from \"./Pipeable.js\";\nconst TypeId = /*#__PURE__*/Symbol.for(\"effect/MutableRef\");\nconst MutableRefProto = {\n  [TypeId]: TypeId,\n  toString() {\n    return format(this.toJSON());\n  },\n  toJSON() {\n    return {\n      _id: \"MutableRef\",\n      current: toJSON(this.current)\n    };\n  },\n  [NodeInspectSymbol]() {\n    return this.toJSON();\n  },\n  pipe() {\n    return pipeArguments(this, arguments);\n  }\n};\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const make = value => {\n  const ref = Object.create(MutableRefProto);\n  ref.current = value;\n  return ref;\n};\n/**\n * @since 2.0.0\n * @category general\n */\nexport const compareAndSet = /*#__PURE__*/Dual.dual(3, (self, oldValue, newValue) => {\n  if (Equal.equals(oldValue, self.current)) {\n    self.current = newValue;\n    return true;\n  }\n  return false;\n});\n/**\n * @since 2.0.0\n * @category numeric\n */\nexport const decrement = self => update(self, n => n - 1);\n/**\n * @since 2.0.0\n * @category numeric\n */\nexport const decrementAndGet = self => updateAndGet(self, n => n - 1);\n/**\n * @since 2.0.0\n * @category general\n */\nexport const get = self => self.current;\n/**\n * @since 2.0.0\n * @category numeric\n */\nexport const getAndDecrement = self => getAndUpdate(self, n => n - 1);\n/**\n * @since 2.0.0\n * @category numeric\n */\nexport const getAndIncrement = self => getAndUpdate(self, n => n + 1);\n/**\n * @since 2.0.0\n * @category general\n */\nexport const getAndSet = /*#__PURE__*/Dual.dual(2, (self, value) => {\n  const ret = self.current;\n  self.current = value;\n  return ret;\n});\n/**\n * @since 2.0.0\n * @category general\n */\nexport const getAndUpdate = /*#__PURE__*/Dual.dual(2, (self, f) => getAndSet(self, f(get(self))));\n/**\n * @since 2.0.0\n * @category numeric\n */\nexport const increment = self => update(self, n => n + 1);\n/**\n * @since 2.0.0\n * @category numeric\n */\nexport const incrementAndGet = self => updateAndGet(self, n => n + 1);\n/**\n * @since 2.0.0\n * @category general\n */\nexport const set = /*#__PURE__*/Dual.dual(2, (self, value) => {\n  self.current = value;\n  return self;\n});\n/**\n * @since 2.0.0\n * @category general\n */\nexport const setAndGet = /*#__PURE__*/Dual.dual(2, (self, value) => {\n  self.current = value;\n  return self.current;\n});\n/**\n * @since 2.0.0\n * @category general\n */\nexport const update = /*#__PURE__*/Dual.dual(2, (self, f) => set(self, f(get(self))));\n/**\n * @since 2.0.0\n * @category general\n */\nexport const updateAndGet = /*#__PURE__*/Dual.dual(2, (self, f) => setAndGet(self, f(get(self))));\n/**\n * @since 2.0.0\n * @category boolean\n */\nexport const toggle = self => update(self, _ => !_);\n//# sourceMappingURL=MutableRef.js.map",
+      "start": 1768772628413,
+      "end": 1768772628413
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628413,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628417,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628433,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628476,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

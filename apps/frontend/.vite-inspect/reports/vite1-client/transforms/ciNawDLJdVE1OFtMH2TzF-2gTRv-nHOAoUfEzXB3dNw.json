@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/check/model/ModelRunner.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { scheduleCommands } from './commands/ScheduledCommand.js';\nconst genericModelRun = (s, cmds, initialValue, runCmd, then) => {\n    return s.then((o) => {\n        const { model, real } = o;\n        let state = initialValue;\n        for (const c of cmds) {\n            state = then(state, () => {\n                return runCmd(c, model, real);\n            });\n        }\n        return state;\n    });\n};\nconst internalModelRun = (s, cmds) => {\n    const then = (_p, c) => c();\n    const setupProducer = {\n        then: (fun) => {\n            fun(s());\n            return undefined;\n        },\n    };\n    const runSync = (cmd, m, r) => {\n        if (cmd.check(m))\n            cmd.run(m, r);\n        return undefined;\n    };\n    return genericModelRun(setupProducer, cmds, undefined, runSync, then);\n};\nconst isAsyncSetup = (s) => {\n    return typeof s.then === 'function';\n};\nconst internalAsyncModelRun = async (s, cmds, defaultPromise = Promise.resolve()) => {\n    const then = (p, c) => p.then(c);\n    const setupProducer = {\n        then: (fun) => {\n            const out = s();\n            if (isAsyncSetup(out))\n                return out.then(fun);\n            else\n                return fun(out);\n        },\n    };\n    const runAsync = async (cmd, m, r) => {\n        if (await cmd.check(m))\n            await cmd.run(m, r);\n    };\n    return await genericModelRun(setupProducer, cmds, defaultPromise, runAsync, then);\n};\nexport function modelRun(s, cmds) {\n    internalModelRun(s, cmds);\n}\nexport async function asyncModelRun(s, cmds) {\n    await internalAsyncModelRun(s, cmds);\n}\nexport async function scheduledModelRun(scheduler, s, cmds) {\n    const scheduledCommands = scheduleCommands(scheduler, cmds);\n    const out = internalAsyncModelRun(s, scheduledCommands, scheduler.schedule(Promise.resolve(), 'startModel'));\n    await scheduler.waitFor(out);\n    await scheduler.waitAll();\n}\n",
+      "start": 1768772628848,
+      "end": 1768772628848
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628848,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628851,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628855,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628858,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

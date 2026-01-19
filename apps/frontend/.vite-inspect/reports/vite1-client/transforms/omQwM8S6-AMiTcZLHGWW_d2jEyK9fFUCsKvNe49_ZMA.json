@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/arrow-up-right.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M7 7h10v10\", key: \"1tivn9\" }],\n  [\"path\", { d: \"M7 17 17 7\", key: \"1vkiza\" }]\n];\nconst ArrowUpRight = createLucideIcon(\"arrow-up-right\", __iconNode);\n\nexport { __iconNode, ArrowUpRight as default };\n//# sourceMappingURL=arrow-up-right.js.map\n",
+      "start": 1768772628546,
+      "end": 1768772628546
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628546,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628574,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628603,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628631,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

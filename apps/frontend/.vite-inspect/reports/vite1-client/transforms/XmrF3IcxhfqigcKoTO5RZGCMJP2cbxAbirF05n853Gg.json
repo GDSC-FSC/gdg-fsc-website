@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/render/svg/lowercase-elements.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * We keep these listed separately as we use the lowercase tag names as part\n * of the runtime bundle to detect SVG components\n */\nconst lowercaseSVGElements = [\n    \"animate\",\n    \"circle\",\n    \"defs\",\n    \"desc\",\n    \"ellipse\",\n    \"g\",\n    \"image\",\n    \"line\",\n    \"filter\",\n    \"marker\",\n    \"mask\",\n    \"metadata\",\n    \"path\",\n    \"pattern\",\n    \"polygon\",\n    \"polyline\",\n    \"rect\",\n    \"stop\",\n    \"switch\",\n    \"symbol\",\n    \"svg\",\n    \"text\",\n    \"tspan\",\n    \"use\",\n    \"view\",\n];\n\nexport { lowercaseSVGElements };\n//# sourceMappingURL=lowercase-elements.mjs.map\n",
+      "start": 1768772628893,
+      "end": 1768772628893
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628893,
+      "end": 1768772628894,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628894,
+      "end": 1768772628896,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628896,
+      "end": 1768772628897,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628898,
+      "end": 1768772628899,
+      "order": "post-post"
+    }
+  ]
+}

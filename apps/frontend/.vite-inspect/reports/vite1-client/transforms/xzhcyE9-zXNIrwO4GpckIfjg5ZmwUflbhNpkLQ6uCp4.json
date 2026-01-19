@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/keyedPool.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Duration from \"../Duration.js\";\nimport * as Equal from \"../Equal.js\";\nimport { dual, pipe } from \"../Function.js\";\nimport * as Hash from \"../Hash.js\";\nimport * as HashMap from \"../HashMap.js\";\nimport * as MutableRef from \"../MutableRef.js\";\nimport * as Option from \"../Option.js\";\nimport { pipeArguments } from \"../Pipeable.js\";\nimport * as Predicate from \"../Predicate.js\";\nimport * as core from \"./core.js\";\nimport * as fiberRuntime from \"./fiberRuntime.js\";\nimport * as pool from \"./pool.js\";\n/** @internal */\nconst KeyedPoolSymbolKey = \"effect/KeyedPool\";\n/** @internal */\nexport const KeyedPoolTypeId = /*#__PURE__*/Symbol.for(KeyedPoolSymbolKey);\nconst KeyedPoolMapValueSymbol = /*#__PURE__*/Symbol.for(\"effect/KeyedPool/MapValue\");\nconst keyedPoolVariance = {\n  /* c8 ignore next */\n  _K: _ => _,\n  /* c8 ignore next */\n  _E: _ => _,\n  /* c8 ignore next */\n  _A: _ => _\n};\nclass KeyedPoolImpl {\n  getOrCreatePool;\n  activePools;\n  [KeyedPoolTypeId] = keyedPoolVariance;\n  constructor(getOrCreatePool, activePools) {\n    this.getOrCreatePool = getOrCreatePool;\n    this.activePools = activePools;\n  }\n  get(key) {\n    return core.flatMap(this.getOrCreatePool(key), pool.get);\n  }\n  invalidate(item) {\n    return core.flatMap(this.activePools, core.forEachSequentialDiscard(pool => pool.invalidate(item)));\n  }\n  pipe() {\n    return pipeArguments(this, arguments);\n  }\n}\nclass Complete {\n  pool;\n  _tag = \"Complete\";\n  [KeyedPoolMapValueSymbol] = KeyedPoolMapValueSymbol;\n  constructor(pool) {\n    this.pool = pool;\n  }\n  [Hash.symbol]() {\n    return pipe(Hash.string(\"effect/KeyedPool/Complete\"), Hash.combine(Hash.hash(this.pool)), Hash.cached(this));\n  }\n  [Equal.symbol](u) {\n    return isComplete(u) && Equal.equals(this.pool, u.pool);\n  }\n}\nconst isComplete = u => Predicate.isTagged(u, \"Complete\") && KeyedPoolMapValueSymbol in u;\nclass Pending {\n  deferred;\n  _tag = \"Pending\";\n  [KeyedPoolMapValueSymbol] = KeyedPoolMapValueSymbol;\n  constructor(deferred) {\n    this.deferred = deferred;\n  }\n  [Hash.symbol]() {\n    return pipe(Hash.string(\"effect/KeyedPool/Pending\"), Hash.combine(Hash.hash(this.deferred)), Hash.cached(this));\n  }\n  [Equal.symbol](u) {\n    return isPending(u) && Equal.equals(this.deferred, u.deferred);\n  }\n}\nconst isPending = u => Predicate.isTagged(u, \"Pending\") && KeyedPoolMapValueSymbol in u;\nconst makeImpl = (get, min, max, timeToLive) => pipe(fiberRuntime.all([core.context(), core.fiberId, core.sync(() => MutableRef.make(HashMap.empty())), fiberRuntime.scopeMake()]), core.map(([context, fiberId, map, scope]) => {\n  const getOrCreatePool = key => core.suspend(() => {\n    let value = Option.getOrUndefined(HashMap.get(MutableRef.get(map), key));\n    if (value === undefined) {\n      return core.uninterruptibleMask(restore => {\n        const deferred = core.deferredUnsafeMake(fiberId);\n        value = new Pending(deferred);\n        let previous = undefined;\n        if (HashMap.has(MutableRef.get(map), key)) {\n          previous = Option.getOrUndefined(HashMap.get(MutableRef.get(map), key));\n        } else {\n          MutableRef.update(map, HashMap.set(key, value));\n        }\n        if (previous === undefined) {\n          return pipe(restore(fiberRuntime.scopeExtend(pool.makeWithTTL({\n            acquire: core.provideContext(get(key), context),\n            min: min(key),\n            max: max(key),\n            timeToLive: Option.getOrElse(timeToLive(key), () => Duration.infinity)\n          }), scope)), core.matchCauseEffect({\n            onFailure: cause => {\n              const current = Option.getOrUndefined(HashMap.get(MutableRef.get(map), key));\n              if (Equal.equals(current, value)) {\n                MutableRef.update(map, HashMap.remove(key));\n              }\n              return core.zipRight(core.deferredFailCause(deferred, cause), core.failCause(cause));\n            },\n            onSuccess: pool => {\n              MutableRef.update(map, HashMap.set(key, new Complete(pool)));\n              return core.as(core.deferredSucceed(deferred, pool), pool);\n            }\n          }));\n        }\n        switch (previous._tag) {\n          case \"Complete\":\n            {\n              return core.succeed(previous.pool);\n            }\n          case \"Pending\":\n            {\n              return restore(core.deferredAwait(previous.deferred));\n            }\n        }\n      });\n    }\n    switch (value._tag) {\n      case \"Complete\":\n        {\n          return core.succeed(value.pool);\n        }\n      case \"Pending\":\n        {\n          return core.deferredAwait(value.deferred);\n        }\n    }\n  });\n  const activePools = core.suspend(() => core.forEachSequential(HashMap.toValues(MutableRef.get(map)), value => {\n    switch (value._tag) {\n      case \"Complete\":\n        {\n          return core.succeed(value.pool);\n        }\n      case \"Pending\":\n        {\n          return core.deferredAwait(value.deferred);\n        }\n    }\n  }));\n  return new KeyedPoolImpl(getOrCreatePool, activePools);\n}));\n/** @internal */\nexport const make = options => makeImpl(options.acquire, () => options.size, () => options.size, () => Option.none());\n/** @internal */\nexport const makeWith = options => makeImpl(options.acquire, options.size, options.size, () => Option.none());\n/** @internal */\nexport const makeWithTTL = options => {\n  const timeToLive = Duration.decode(options.timeToLive);\n  return makeImpl(options.acquire, options.min, options.max, () => Option.some(timeToLive));\n};\n/** @internal */\nexport const makeWithTTLBy = options => makeImpl(options.acquire, options.min, options.max, key => Option.some(Duration.decode(options.timeToLive(key))));\n/** @internal */\nexport const get = /*#__PURE__*/dual(2, (self, key) => self.get(key));\n/** @internal */\nexport const invalidate = /*#__PURE__*/dual(2, (self, item) => self.invalidate(item));\n//# sourceMappingURL=keyedPool.js.map",
+      "start": 1768772628588,
+      "end": 1768772628588
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628588,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628621,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628650,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

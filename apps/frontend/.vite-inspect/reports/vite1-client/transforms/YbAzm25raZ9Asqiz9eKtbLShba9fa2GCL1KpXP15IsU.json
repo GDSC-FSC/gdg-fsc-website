@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/render/svg/utils/create-render-state.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { createHtmlRenderState } from '../../html/utils/create-render-state.mjs';\n\nconst createSvgRenderState = () => ({\n    ...createHtmlRenderState(),\n    attrs: {},\n});\n\nexport { createSvgRenderState };\n//# sourceMappingURL=create-render-state.mjs.map\n",
+      "start": 1768772628908,
+      "end": 1768772628908
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628908,
+      "end": 1768772628908,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628909,
+      "end": 1768772628909,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628909,
+      "end": 1768772628909,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628910,
+      "end": 1768772628910,
+      "order": "post-post"
+    }
+  ]
+}

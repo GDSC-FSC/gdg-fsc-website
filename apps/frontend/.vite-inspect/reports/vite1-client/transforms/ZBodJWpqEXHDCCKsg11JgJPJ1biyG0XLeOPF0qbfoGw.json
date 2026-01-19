@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/ligature.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M14 12h2v8\", key: \"c1fccl\" }],\n  [\"path\", { d: \"M14 20h4\", key: \"lzx1xo\" }],\n  [\"path\", { d: \"M6 12h4\", key: \"a4o3ry\" }],\n  [\"path\", { d: \"M6 20h4\", key: \"1i6q5t\" }],\n  [\"path\", { d: \"M8 20V8a4 4 0 0 1 7.464-2\", key: \"wk9t6r\" }]\n];\nconst Ligature = createLucideIcon(\"ligature\", __iconNode);\n\nexport { __iconNode, Ligature as default };\n//# sourceMappingURL=ligature.js.map\n",
+      "start": 1768772628540,
+      "end": 1768772628540
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628540,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628566,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628596,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628631,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

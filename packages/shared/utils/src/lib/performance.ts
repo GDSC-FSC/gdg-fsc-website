@@ -1,5 +1,5 @@
 /**
- * Copyright 2025 Mike Odnis
+ * Copyright 2026 GDG on Campus Farmingdale State College
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 import { perf } from '@jsheaven/perf';
-import type { Algorithm, PerformanceResult } from './performance.types';
+import type { Algorithm, PerformanceResult } from './performance.types.js';
 
 /**
  * Measures the performance characteristics of one or more algorithms
@@ -42,13 +42,13 @@ export const measurePerformance = async (
       chunkSize,
     );
     return Object.entries(results).reduce(
-      (acc, [name, data]) => ({
-        ...acc,
-        [name]: {
+      (acc, [name, data]) => {
+        acc[name] = {
           duration: data.duration,
           estimatedDomains: data.estimatedDomains,
-        },
-      }),
+        };
+        return acc;
+      },
       {} as Record<string, PerformanceResult>,
     );
   } catch (error) {

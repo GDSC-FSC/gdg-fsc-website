@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/stats/index.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { activeAnimations } from './animation-count.mjs';\nimport { statsBuffer } from './buffer.mjs';\nimport { frame, cancelFrame, frameData } from '../frameloop/frame.mjs';\n\nfunction record() {\n    const { value } = statsBuffer;\n    if (value === null) {\n        cancelFrame(record);\n        return;\n    }\n    value.frameloop.rate.push(frameData.delta);\n    value.animations.mainThread.push(activeAnimations.mainThread);\n    value.animations.waapi.push(activeAnimations.waapi);\n    value.animations.layout.push(activeAnimations.layout);\n}\nfunction mean(values) {\n    return values.reduce((acc, value) => acc + value, 0) / values.length;\n}\nfunction summarise(values, calcAverage = mean) {\n    if (values.length === 0) {\n        return {\n            min: 0,\n            max: 0,\n            avg: 0,\n        };\n    }\n    return {\n        min: Math.min(...values),\n        max: Math.max(...values),\n        avg: calcAverage(values),\n    };\n}\nconst msToFps = (ms) => Math.round(1000 / ms);\nfunction clearStatsBuffer() {\n    statsBuffer.value = null;\n    statsBuffer.addProjectionMetrics = null;\n}\nfunction reportStats() {\n    const { value } = statsBuffer;\n    if (!value) {\n        throw new Error(\"Stats are not being measured\");\n    }\n    clearStatsBuffer();\n    cancelFrame(record);\n    const summary = {\n        frameloop: {\n            setup: summarise(value.frameloop.setup),\n            rate: summarise(value.frameloop.rate),\n            read: summarise(value.frameloop.read),\n            resolveKeyframes: summarise(value.frameloop.resolveKeyframes),\n            preUpdate: summarise(value.frameloop.preUpdate),\n            update: summarise(value.frameloop.update),\n            preRender: summarise(value.frameloop.preRender),\n            render: summarise(value.frameloop.render),\n            postRender: summarise(value.frameloop.postRender),\n        },\n        animations: {\n            mainThread: summarise(value.animations.mainThread),\n            waapi: summarise(value.animations.waapi),\n            layout: summarise(value.animations.layout),\n        },\n        layoutProjection: {\n            nodes: summarise(value.layoutProjection.nodes),\n            calculatedTargetDeltas: summarise(value.layoutProjection.calculatedTargetDeltas),\n            calculatedProjections: summarise(value.layoutProjection.calculatedProjections),\n        },\n    };\n    /**\n     * Convert the rate to FPS\n     */\n    const { rate } = summary.frameloop;\n    rate.min = msToFps(rate.min);\n    rate.max = msToFps(rate.max);\n    rate.avg = msToFps(rate.avg);\n    [rate.min, rate.max] = [rate.max, rate.min];\n    return summary;\n}\nfunction recordStats() {\n    if (statsBuffer.value) {\n        clearStatsBuffer();\n        throw new Error(\"Stats are already being measured\");\n    }\n    const newStatsBuffer = statsBuffer;\n    newStatsBuffer.value = {\n        frameloop: {\n            setup: [],\n            rate: [],\n            read: [],\n            resolveKeyframes: [],\n            preUpdate: [],\n            update: [],\n            preRender: [],\n            render: [],\n            postRender: [],\n        },\n        animations: {\n            mainThread: [],\n            waapi: [],\n            layout: [],\n        },\n        layoutProjection: {\n            nodes: [],\n            calculatedTargetDeltas: [],\n            calculatedProjections: [],\n        },\n    };\n    newStatsBuffer.addProjectionMetrics = (metrics) => {\n        const { layoutProjection } = newStatsBuffer.value;\n        layoutProjection.nodes.push(metrics.nodes);\n        layoutProjection.calculatedTargetDeltas.push(metrics.calculatedTargetDeltas);\n        layoutProjection.calculatedProjections.push(metrics.calculatedProjections);\n    };\n    frame.postRender(record, true);\n    return reportStats;\n}\n\nexport { recordStats };\n",
+      "start": 1768772628755,
+      "end": 1768772628755
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628755,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628771,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628790,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628807,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

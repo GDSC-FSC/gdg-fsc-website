@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/chart-bar-big.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M3 3v16a2 2 0 0 0 2 2h16\", key: \"c24i48\" }],\n  [\"rect\", { x: \"7\", y: \"13\", width: \"9\", height: \"4\", rx: \"1\", key: \"1iip1u\" }],\n  [\"rect\", { x: \"7\", y: \"5\", width: \"12\", height: \"4\", rx: \"1\", key: \"1anskk\" }]\n];\nconst ChartBarBig = createLucideIcon(\"chart-bar-big\", __iconNode);\n\nexport { __iconNode, ChartBarBig as default };\n//# sourceMappingURL=chart-bar-big.js.map\n",
+      "start": 1768772628534,
+      "end": 1768772628534
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628534,
+      "end": 1768772628552,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628563,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628591,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628624,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/log-in.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"m10 17 5-5-5-5\", key: \"1bsop3\" }],\n  [\"path\", { d: \"M15 12H3\", key: \"6jk70r\" }],\n  [\"path\", { d: \"M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4\", key: \"u53s6r\" }]\n];\nconst LogIn = createLucideIcon(\"log-in\", __iconNode);\n\nexport { __iconNode, LogIn as default };\n//# sourceMappingURL=log-in.js.map\n",
+      "start": 1768772628539,
+      "end": 1768772628539
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628539,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628566,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628596,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628627,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

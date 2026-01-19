@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/FastCheck.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @since 3.10.0\n */\n/**\n * @category re-exports\n * @since 3.10.0\n */\nexport * from \"fast-check\";\n//# sourceMappingURL=FastCheck.js.map",
+      "start": 1768772628414,
+      "end": 1768772628414
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628414,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628418,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628433,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628476,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/Symbol.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @since 2.0.0\n */\nimport * as equivalence from \"./Equivalence.js\";\nimport * as predicate from \"./Predicate.js\";\n/**\n * Tests if a value is a `symbol`.\n *\n * @example\n * ```ts\n * import * as assert from \"node:assert\"\n * import { Predicate } from \"effect\"\n *\n * assert.deepStrictEqual(Predicate.isSymbol(Symbol.for(\"a\")), true)\n * assert.deepStrictEqual(Predicate.isSymbol(\"a\"), false)\n * ```\n *\n * @category guards\n * @since 2.0.0\n */\nexport const isSymbol = predicate.isSymbol;\n/**\n * @category instances\n * @since 2.0.0\n */\nexport const Equivalence = equivalence.symbol;\n//# sourceMappingURL=Symbol.js.map",
+      "start": 1768772628415,
+      "end": 1768772628415
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628415,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628418,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628433,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628476,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { PreconditionFailure } from '../precondition/PreconditionFailure.js';\nimport { runIdToFrequency } from './IRawProperty.js';\nimport { readConfigureGlobal } from '../runner/configuration/GlobalParameters.js';\nimport { Stream } from '../../stream/Stream.js';\nimport { noUndefinedAsContext, UndefinedContextPlaceholder, } from '../../arbitrary/_internals/helpers/NoUndefinedAsContext.js';\nimport { Error, String } from '../../utils/globals.js';\nexport class AsyncProperty {\n    constructor(arb, predicate) {\n        this.arb = arb;\n        this.predicate = predicate;\n        const { asyncBeforeEach, asyncAfterEach, beforeEach, afterEach } = readConfigureGlobal() || {};\n        if (asyncBeforeEach !== undefined && beforeEach !== undefined) {\n            throw Error('Global \"asyncBeforeEach\" and \"beforeEach\" parameters can\\'t be set at the same time when running async properties');\n        }\n        if (asyncAfterEach !== undefined && afterEach !== undefined) {\n            throw Error('Global \"asyncAfterEach\" and \"afterEach\" parameters can\\'t be set at the same time when running async properties');\n        }\n        this.beforeEachHook = asyncBeforeEach || beforeEach || AsyncProperty.dummyHook;\n        this.afterEachHook = asyncAfterEach || afterEach || AsyncProperty.dummyHook;\n    }\n    isAsync() {\n        return true;\n    }\n    generate(mrng, runId) {\n        const value = this.arb.generate(mrng, runId != null ? runIdToFrequency(runId) : undefined);\n        return noUndefinedAsContext(value);\n    }\n    shrink(value) {\n        if (value.context === undefined && !this.arb.canShrinkWithoutContext(value.value_)) {\n            return Stream.nil();\n        }\n        const safeContext = value.context !== UndefinedContextPlaceholder ? value.context : undefined;\n        return this.arb.shrink(value.value_, safeContext).map(noUndefinedAsContext);\n    }\n    async runBeforeEach() {\n        await this.beforeEachHook();\n    }\n    async runAfterEach() {\n        await this.afterEachHook();\n    }\n    async run(v, dontRunHook) {\n        if (!dontRunHook) {\n            await this.beforeEachHook();\n        }\n        try {\n            const output = await this.predicate(v);\n            return output == null || output === true\n                ? null\n                : {\n                    error: new Error('Property failed by returning false'),\n                    errorMessage: 'Error: Property failed by returning false',\n                };\n        }\n        catch (err) {\n            if (PreconditionFailure.isFailure(err))\n                return err;\n            if (err instanceof Error && err.stack) {\n                return { error: err, errorMessage: err.stack };\n            }\n            return { error: err, errorMessage: String(err) };\n        }\n        finally {\n            if (!dontRunHook) {\n                await this.afterEachHook();\n            }\n        }\n    }\n    beforeEach(hookFunction) {\n        const previousBeforeEachHook = this.beforeEachHook;\n        this.beforeEachHook = () => hookFunction(previousBeforeEachHook);\n        return this;\n    }\n    afterEach(hookFunction) {\n        const previousAfterEachHook = this.afterEachHook;\n        this.afterEachHook = () => hookFunction(previousAfterEachHook);\n        return this;\n    }\n}\nAsyncProperty.dummyHook = () => { };\n",
+      "start": 1768772628893,
+      "end": 1768772628893
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628893,
+      "end": 1768772628894,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628895,
+      "end": 1768772628896,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628897,
+      "end": 1768772628897,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628898,
+      "end": 1768772628899,
+      "order": "post-post"
+    }
+  ]
+}

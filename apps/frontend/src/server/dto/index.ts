@@ -14,5 +14,5 @@
  * limitations under the License.
  */
 
-export * from './events-request-dto.ts';
-export * from './events-response-dto.ts';
+export * from './events-request-dto';
+export * from './events-response-dto';

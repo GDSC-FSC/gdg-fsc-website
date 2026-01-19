@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/string.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { array } from './array.js';\nimport { createSlicesForString } from './_internals/helpers/SlicesForStringBuilder.js';\nimport { stringUnit } from './_internals/StringUnitArbitrary.js';\nimport { patternsToStringMapper, patternsToStringUnmapperFor } from './_internals/mappers/PatternsToString.js';\nconst safeObjectAssign = Object.assign;\nfunction extractUnitArbitrary(constraints) {\n    if (typeof constraints.unit === 'object') {\n        return constraints.unit;\n    }\n    switch (constraints.unit) {\n        case 'grapheme':\n            return stringUnit('grapheme', 'full');\n        case 'grapheme-composite':\n            return stringUnit('composite', 'full');\n        case 'grapheme-ascii':\n        case undefined:\n            return stringUnit('grapheme', 'ascii');\n        case 'binary':\n            return stringUnit('binary', 'full');\n        case 'binary-ascii':\n            return stringUnit('binary', 'ascii');\n    }\n}\nexport function string(constraints = {}) {\n    const charArbitrary = extractUnitArbitrary(constraints);\n    const unmapper = patternsToStringUnmapperFor(charArbitrary, constraints);\n    const experimentalCustomSlices = createSlicesForString(charArbitrary, constraints);\n    const enrichedConstraints = safeObjectAssign(safeObjectAssign({}, constraints), {\n        experimentalCustomSlices,\n    });\n    return array(charArbitrary, enrichedConstraints).map(patternsToStringMapper, unmapper);\n}\n",
+      "start": 1768772628849,
+      "end": 1768772628849
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628849,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628852,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628855,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628858,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

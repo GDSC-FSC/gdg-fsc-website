@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@effect/platform/dist/esm/HttpServerRespondable.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @since 1.0.0\n */\nimport * as Cause from \"effect/Cause\";\nimport * as Effect from \"effect/Effect\";\nimport * as ParseResult from \"effect/ParseResult\";\nimport { hasProperty } from \"effect/Predicate\";\nimport * as ServerResponse from \"./HttpServerResponse.js\";\n/**\n * @since 1.0.0\n * @category symbols\n */\nexport const symbol = /*#__PURE__*/Symbol.for(\"@effect/platform/HttpServerRespondable\");\n/**\n * @since 1.0.0\n * @category guards\n */\nexport const isRespondable = u => hasProperty(u, symbol);\nconst badRequest = /*#__PURE__*/ServerResponse.empty({\n  status: 400\n});\nconst notFound = /*#__PURE__*/ServerResponse.empty({\n  status: 404\n});\n/**\n * @since 1.0.0\n * @category accessors\n */\nexport const toResponse = self => {\n  if (ServerResponse.isServerResponse(self)) {\n    return Effect.succeed(self);\n  }\n  return Effect.orDie(self[symbol]());\n};\n/**\n * @since 1.0.0\n * @category accessors\n */\nexport const toResponseOrElse = (u, orElse) => {\n  if (ServerResponse.isServerResponse(u)) {\n    return Effect.succeed(u);\n  } else if (isRespondable(u)) {\n    return Effect.catchAllCause(u[symbol](), () => Effect.succeed(orElse));\n    // add support for some commmon types\n  } else if (ParseResult.isParseError(u)) {\n    return Effect.succeed(badRequest);\n  } else if (Cause.isNoSuchElementException(u)) {\n    return Effect.succeed(notFound);\n  }\n  return Effect.succeed(orElse);\n};\n/**\n * @since 1.0.0\n * @category accessors\n */\nexport const toResponseOrElseDefect = (u, orElse) => {\n  if (ServerResponse.isServerResponse(u)) {\n    return Effect.succeed(u);\n  } else if (isRespondable(u)) {\n    return Effect.catchAllCause(u[symbol](), () => Effect.succeed(orElse));\n  }\n  return Effect.succeed(orElse);\n};\n//# sourceMappingURL=HttpServerRespondable.js.map",
+      "start": 1768772628587,
+      "end": 1768772628587
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628587,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628620,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628649,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

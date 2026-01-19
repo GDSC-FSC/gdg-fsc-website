@@ -1,55 +1,36 @@
 {
-    "$schema": "./node_modules/nx/schemas/nx-schema.json",
-    "npmScope": "workspace",
-    "tasksRunnerOptions": {
-        "default": {}
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "production": [
+      "default",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/vitest.config.[jt]s",
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)"
+    ],
+    "sharedGlobals": []
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"],
+      "cache": true
     },
-    "targetDefaults": {
-        "build": {
-            "dependsOn": ["^build"],
-            "inputs": ["production", "^production"]
-        },
-        "test": {
-            "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
-        },
-        "e2e": {
-            "inputs": ["default", "^production"]
-        },
-        "lint": {
-            "inputs": ["default", "{workspaceRoot}/.eslintrc.json", "{workspaceRoot}/.eslintignore"]
-        }
+    "lint": {
+      "inputs": ["default"],
+      "cache": true
     },
-    "namedInputs": {
-        "default": ["{projectRoot}/**/*", "sharedGlobals"],
-        "production": [
-            "default",
-            "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
-            "!{projectRoot}/tsconfig.spec.json",
-            "!{projectRoot}/jest.config.[jt]s",
-            "!{projectRoot}/.storybook/**/*",
-            "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
-            "!{projectRoot}/.eslintrc.json"
-        ],
-        "sharedGlobals": ["{workspaceRoot}/babel.config.json"]
-    },
-    "generators": {
-        "@nrwl/react": {
-            "application": {
-                "babel": true
-            },
-            "library": {
-                "unitTestRunner": "jest"
-            }
-        },
-        "@nrwl/next": {
-            "application": {
-                "style": "css",
-                "linter": "eslint"
-            }
-        }
-    },
-    "workspaceLayout": {
-        "appsDir": "apps",
-        "libsDir": "packages"
+    "test": {
+      "inputs": ["default", "^production"],
+      "cache": true
     }
+  },
+  "workspaceLayout": {
+    "appsDir": "apps",
+    "libsDir": "packages"
+  },
+  "defaultBase": "main"
 }

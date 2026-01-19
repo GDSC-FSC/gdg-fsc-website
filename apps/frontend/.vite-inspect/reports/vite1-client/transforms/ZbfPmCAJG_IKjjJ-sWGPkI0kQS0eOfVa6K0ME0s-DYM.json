@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/cone.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"m20.9 18.55-8-15.98a1 1 0 0 0-1.8 0l-8 15.98\", key: \"53pte7\" }],\n  [\"ellipse\", { cx: \"12\", cy: \"19\", rx: \"9\", ry: \"3\", key: \"1ji25f\" }]\n];\nconst Cone = createLucideIcon(\"cone\", __iconNode);\n\nexport { __iconNode, Cone as default };\n//# sourceMappingURL=cone.js.map\n",
+      "start": 1768772628537,
+      "end": 1768772628537
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628537,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628564,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628593,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628625,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

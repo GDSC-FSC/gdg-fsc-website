@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/wallet-minimal.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M17 14h.01\", key: \"7oqj8z\" }],\n  [\n    \"path\",\n    {\n      d: \"M7 7h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14\",\n      key: \"u1rqew\"\n    }\n  ]\n];\nconst WalletMinimal = createLucideIcon(\"wallet-minimal\", __iconNode);\n\nexport { __iconNode, WalletMinimal as default };\n//# sourceMappingURL=wallet-minimal.js.map\n",
+      "start": 1768772628536,
+      "end": 1768772628536
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628536,
+      "end": 1768772628552,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628563,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628592,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628627,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

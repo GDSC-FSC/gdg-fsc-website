@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/_internals/builders/CompareFunctionArbitraryBuilder.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { escapeForMultilineComments } from '../helpers/TextEscaper.js';\nimport { cloneMethod } from '../../../check/symbols.js';\nimport { hash } from '../../../utils/hash.js';\nimport { stringify } from '../../../utils/stringify.js';\nimport { integer } from '../../integer.js';\nimport { noShrink } from '../../noShrink.js';\nimport { tuple } from '../../tuple.js';\nimport { safeJoin } from '../../../utils/globals.js';\nconst safeObjectAssign = Object.assign;\nconst safeObjectKeys = Object.keys;\nexport function buildCompareFunctionArbitrary(cmp) {\n    return tuple(noShrink(integer()), noShrink(integer({ min: 1, max: 0xffffffff }))).map(([seed, hashEnvSize]) => {\n        const producer = () => {\n            const recorded = {};\n            const f = (a, b) => {\n                const reprA = stringify(a);\n                const reprB = stringify(b);\n                const hA = hash(`${seed}${reprA}`) % hashEnvSize;\n                const hB = hash(`${seed}${reprB}`) % hashEnvSize;\n                const val = cmp(hA, hB);\n                recorded[`[${reprA},${reprB}]`] = val;\n                return val;\n            };\n            return safeObjectAssign(f, {\n                toString: () => {\n                    const seenValues = safeObjectKeys(recorded)\n                        .sort()\n                        .map((k) => `${k} => ${stringify(recorded[k])}`)\n                        .map((line) => `/* ${escapeForMultilineComments(line)} */`);\n                    return `function(a, b) {\n  // With hash and stringify coming from fast-check${seenValues.length !== 0 ? `\\n  ${safeJoin(seenValues, '\\n  ')}` : ''}\n  const cmp = ${cmp};\n  const hA = hash('${seed}' + stringify(a)) % ${hashEnvSize};\n  const hB = hash('${seed}' + stringify(b)) % ${hashEnvSize};\n  return cmp(hA, hB);\n}`;\n                },\n                [cloneMethod]: producer,\n            });\n        };\n        return producer();\n    });\n}\n",
+      "start": 1768772628893,
+      "end": 1768772628893
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628893,
+      "end": 1768772628894,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628895,
+      "end": 1768772628896,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628897,
+      "end": 1768772628897,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628899,
+      "end": 1768772628899,
+      "order": "post-post"
+    }
+  ]
+}

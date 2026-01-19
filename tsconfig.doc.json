@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "paths": {
+      "@gdg-fsc/utils": ["./packages/shared/utils/src/lib/index.ts"],
+      "@gdg-fsc/classes": ["./packages/shared/classes/src/lib/index.ts"],
+      "@gdg-fsc/decorators": ["./packages/shared/decorators/src/lib/index.ts"],
+      "@gdg-fsc/interface": ["./packages/interface/index.ts"],
+      "@gdg-fsc/shared": ["./packages/shared/src/index.ts"]
+    },
+    "noUnusedParameters": false,
+    "verbatimModuleSyntax": false,
+    "noUnusedLocals": false
+  },
+  "include": [
+    "packages/shared/utils/src/lib/**/*.ts",
+    "packages/shared/classes/src/lib/**/*.ts",
+    "packages/shared/decorators/src/lib/**/*.ts",
+    "packages/interface/**/*.ts"
+  ]
+}

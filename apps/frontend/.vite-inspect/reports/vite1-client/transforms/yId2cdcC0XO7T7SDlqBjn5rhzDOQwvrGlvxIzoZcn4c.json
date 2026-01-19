@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/encoding/common.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { hasProperty, isString } from \"../../Predicate.js\";\n/** @internal */\nexport const DecodeExceptionTypeId = /*#__PURE__*/Symbol.for(\"effect/Encoding/errors/Decode\");\n/** @internal */\nexport const DecodeException = (input, message) => {\n  const out = {\n    _tag: \"DecodeException\",\n    [DecodeExceptionTypeId]: DecodeExceptionTypeId,\n    input\n  };\n  if (isString(message)) {\n    out.message = message;\n  }\n  return out;\n};\n/** @internal */\nexport const isDecodeException = u => hasProperty(u, DecodeExceptionTypeId);\n/** @internal */\nexport const EncodeExceptionTypeId = /*#__PURE__*/Symbol.for(\"effect/Encoding/errors/Encode\");\n/** @internal */\nexport const EncodeException = (input, message) => {\n  const out = {\n    _tag: \"EncodeException\",\n    [EncodeExceptionTypeId]: EncodeExceptionTypeId,\n    input\n  };\n  if (isString(message)) {\n    out.message = message;\n  }\n  return out;\n};\n/** @internal */\nexport const isEncodeException = u => hasProperty(u, EncodeExceptionTypeId);\n/** @interal */\nexport const encoder = /*#__PURE__*/new TextEncoder();\n/** @interal */\nexport const decoder = /*#__PURE__*/new TextDecoder();\n//# sourceMappingURL=common.js.map",
+      "start": 1768772628585,
+      "end": 1768772628585
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628585,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628620,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628648,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

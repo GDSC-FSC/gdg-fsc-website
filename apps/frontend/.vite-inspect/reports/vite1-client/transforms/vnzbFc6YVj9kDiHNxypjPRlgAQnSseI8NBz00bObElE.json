@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/is-what/dist/isHexDecimal.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { isString } from './isString.js';\n/**\n * Checks if a string is a valid hexadecimal string. If a length is provided, it also checks that\n * the string has that length.\n */\nexport function isHexDecimal(payload, length) {\n    if (!isString(payload))\n        return false;\n    if (!/^[0-9a-fA-F]+$/.test(payload))\n        return false;\n    return length === undefined || payload.length === length;\n}\n",
+      "start": 1768772628847,
+      "end": 1768772628847
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628847,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628850,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628853,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628857,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+$ playwright test --list
+
+Error: No tests found
+Listing tests:
+Total: 0 tests in 0 files
+error: script "test" exited with code 1

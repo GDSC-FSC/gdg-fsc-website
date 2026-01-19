@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/request.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { dual } from \"../Function.js\";\nimport { hasProperty } from \"../Predicate.js\";\nimport * as completedRequestMap from \"./completedRequestMap.js\";\nimport * as core from \"./core.js\";\nimport { StructuralPrototype } from \"./effectable.js\";\n/** @internal */\nconst RequestSymbolKey = \"effect/Request\";\n/** @internal */\nexport const RequestTypeId = /*#__PURE__*/Symbol.for(RequestSymbolKey);\nconst requestVariance = {\n  /* c8 ignore next */\n  _E: _ => _,\n  /* c8 ignore next */\n  _A: _ => _\n};\nconst RequestPrototype = {\n  ...StructuralPrototype,\n  [RequestTypeId]: requestVariance\n};\n/** @internal */\nexport const isRequest = u => hasProperty(u, RequestTypeId);\n/** @internal */\nexport const of = () => args => Object.assign(Object.create(RequestPrototype), args);\n/** @internal */\nexport const tagged = tag => args => {\n  const request = Object.assign(Object.create(RequestPrototype), args);\n  request._tag = tag;\n  return request;\n};\n/** @internal */\nexport const Class = /*#__PURE__*/function () {\n  function Class(args) {\n    if (args) {\n      Object.assign(this, args);\n    }\n  }\n  Class.prototype = RequestPrototype;\n  return Class;\n}();\n/** @internal */\nexport const TaggedClass = tag => {\n  return class TaggedClass extends Class {\n    _tag = tag;\n  };\n};\n/** @internal */\nexport const complete = /*#__PURE__*/dual(2, (self, result) => core.fiberRefGetWith(completedRequestMap.currentRequestMap, map => core.sync(() => {\n  if (map.has(self)) {\n    const entry = map.get(self);\n    if (!entry.state.completed) {\n      entry.state.completed = true;\n      core.deferredUnsafeDone(entry.result, result);\n    }\n  }\n})));\n/** @internal */\nexport const completeEffect = /*#__PURE__*/dual(2, (self, effect) => core.matchEffect(effect, {\n  onFailure: error => complete(self, core.exitFail(error)),\n  onSuccess: value => complete(self, core.exitSucceed(value))\n}));\n/** @internal */\nexport const fail = /*#__PURE__*/dual(2, (self, error) => complete(self, core.exitFail(error)));\n/** @internal */\nexport const failCause = /*#__PURE__*/dual(2, (self, cause) => complete(self, core.exitFailCause(cause)));\n/** @internal */\nexport const succeed = /*#__PURE__*/dual(2, (self, value) => complete(self, core.exitSucceed(value)));\n/** @internal */\nexport class Listeners {\n  count = 0;\n  observers = /*#__PURE__*/new Set();\n  interrupted = false;\n  addObserver(f) {\n    this.observers.add(f);\n  }\n  removeObserver(f) {\n    this.observers.delete(f);\n  }\n  increment() {\n    this.count++;\n    this.observers.forEach(f => f(this.count));\n  }\n  decrement() {\n    this.count--;\n    this.observers.forEach(f => f(this.count));\n  }\n}\n/**\n * @internal\n */\nexport const filterOutCompleted = requests => core.fiberRefGetWith(completedRequestMap.currentRequestMap, map => core.succeed(requests.filter(request => !(map.get(request)?.state.completed === true))));\n//# sourceMappingURL=request.js.map",
+      "start": 1768772628585,
+      "end": 1768772628585
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628585,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628620,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628651,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628706,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

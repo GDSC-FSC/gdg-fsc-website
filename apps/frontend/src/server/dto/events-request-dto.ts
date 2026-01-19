@@ -14,4 +14,32 @@
  * limitations under the License.
  */
 
-export class EventsRequestDTO {}
+import { t } from 'elysia';
+
+/**
+ * Request DTO for fetching events list with optional filters.
+ */
+export const GetEventsRequestDTO = t.Object({
+  /** Filter by event type */
+  type: t.Optional(t.Union([t.Literal('upcoming'), t.Literal('past'), t.Literal('all')])),
+
+  /** Page number for pagination (1-indexed) */
+  page: t.Optional(t.Number({ minimum: 1, default: 1 })),
+
+  /** Number of items per page */
+  limit: t.Optional(t.Number({ minimum: 1, maximum: 100, default: 20 })),
+
+  /** Search query string */
+  search: t.Optional(t.String()),
+});
+
+/**
+ * Request DTO for fetching a single event by ID.
+ */
+export const GetEventByIdRequestDTO = t.Object({
+  /** The unique event identifier */
+  id: t.String({ minLength: 1 }),
+});
+
+export type GetEventsRequestDTO = typeof GetEventsRequestDTO.static;
+export type GetEventByIdRequestDTO = typeof GetEventByIdRequestDTO.static;

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/arrow-down-narrow-wide.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"m3 16 4 4 4-4\", key: \"1co6wj\" }],\n  [\"path\", { d: \"M7 20V4\", key: \"1yoxec\" }],\n  [\"path\", { d: \"M11 4h4\", key: \"6d7r33\" }],\n  [\"path\", { d: \"M11 8h7\", key: \"djye34\" }],\n  [\"path\", { d: \"M11 12h10\", key: \"1438ji\" }]\n];\nconst ArrowDownNarrowWide = createLucideIcon(\"arrow-down-narrow-wide\", __iconNode);\n\nexport { __iconNode, ArrowDownNarrowWide as default };\n//# sourceMappingURL=arrow-down-narrow-wide.js.map\n",
+      "start": 1768772628537,
+      "end": 1768772628537
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628537,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628564,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628594,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628625,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

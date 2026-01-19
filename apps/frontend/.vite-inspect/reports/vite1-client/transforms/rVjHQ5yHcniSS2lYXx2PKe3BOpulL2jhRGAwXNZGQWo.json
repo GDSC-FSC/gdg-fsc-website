@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/components/Reorder/utils/auto-scroll.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "const threshold = 50;\nconst maxSpeed = 25;\nconst overflowStyles = new Set([\"auto\", \"scroll\"]);\n// Track initial scroll limits per scrollable element (Bug 1 fix)\nconst initialScrollLimits = new WeakMap();\nconst activeScrollEdge = new WeakMap();\n// Track which group element is currently dragging to clear state on end\nlet currentGroupElement = null;\nfunction resetAutoScrollState() {\n    if (currentGroupElement) {\n        const scrollableAncestor = findScrollableAncestor(currentGroupElement, \"y\");\n        if (scrollableAncestor) {\n            activeScrollEdge.delete(scrollableAncestor);\n            initialScrollLimits.delete(scrollableAncestor);\n        }\n        // Also try x axis\n        const scrollableAncestorX = findScrollableAncestor(currentGroupElement, \"x\");\n        if (scrollableAncestorX && scrollableAncestorX !== scrollableAncestor) {\n            activeScrollEdge.delete(scrollableAncestorX);\n            initialScrollLimits.delete(scrollableAncestorX);\n        }\n        currentGroupElement = null;\n    }\n}\nfunction isScrollableElement(element, axis) {\n    const style = getComputedStyle(element);\n    const overflow = axis === \"x\" ? style.overflowX : style.overflowY;\n    return overflowStyles.has(overflow);\n}\nfunction findScrollableAncestor(element, axis) {\n    let current = element?.parentElement;\n    while (current) {\n        if (isScrollableElement(current, axis)) {\n            return current;\n        }\n        current = current.parentElement;\n    }\n    return null;\n}\nfunction getScrollAmount(pointerPosition, scrollElement, axis) {\n    const rect = scrollElement.getBoundingClientRect();\n    const start = axis === \"x\" ? rect.left : rect.top;\n    const end = axis === \"x\" ? rect.right : rect.bottom;\n    const distanceFromStart = pointerPosition - start;\n    const distanceFromEnd = end - pointerPosition;\n    if (distanceFromStart < threshold) {\n        const intensity = 1 - distanceFromStart / threshold;\n        return { amount: -maxSpeed * intensity * intensity, edge: \"start\" };\n    }\n    else if (distanceFromEnd < threshold) {\n        const intensity = 1 - distanceFromEnd / threshold;\n        return { amount: maxSpeed * intensity * intensity, edge: \"end\" };\n    }\n    return { amount: 0, edge: null };\n}\nfunction autoScrollIfNeeded(groupElement, pointerPosition, axis, velocity) {\n    if (!groupElement)\n        return;\n    // Track the group element for cleanup\n    currentGroupElement = groupElement;\n    const scrollableAncestor = findScrollableAncestor(groupElement, axis);\n    if (!scrollableAncestor)\n        return;\n    const { amount: scrollAmount, edge } = getScrollAmount(pointerPosition, scrollableAncestor, axis);\n    // If not in any threshold zone, clear all state\n    if (edge === null) {\n        activeScrollEdge.delete(scrollableAncestor);\n        initialScrollLimits.delete(scrollableAncestor);\n        return;\n    }\n    const currentActiveEdge = activeScrollEdge.get(scrollableAncestor);\n    // If not currently scrolling this edge, check velocity to see if we should start\n    if (currentActiveEdge !== edge) {\n        // Only start scrolling if velocity is towards the edge\n        const shouldStart = (edge === \"start\" && velocity < 0) ||\n            (edge === \"end\" && velocity > 0);\n        if (!shouldStart)\n            return;\n        // Activate this edge\n        activeScrollEdge.set(scrollableAncestor, edge);\n        // Record initial scroll limit (prevents infinite scroll)\n        const maxScroll = axis === \"x\"\n            ? scrollableAncestor.scrollWidth -\n                scrollableAncestor.clientWidth\n            : scrollableAncestor.scrollHeight -\n                scrollableAncestor.clientHeight;\n        initialScrollLimits.set(scrollableAncestor, maxScroll);\n    }\n    // Cap scrolling at initial limit (prevents infinite scroll)\n    if (scrollAmount > 0) {\n        const initialLimit = initialScrollLimits.get(scrollableAncestor);\n        const currentScroll = axis === \"x\"\n            ? scrollableAncestor.scrollLeft\n            : scrollableAncestor.scrollTop;\n        if (currentScroll >= initialLimit)\n            return;\n    }\n    // Apply scroll\n    if (axis === \"x\") {\n        scrollableAncestor.scrollLeft += scrollAmount;\n    }\n    else {\n        scrollableAncestor.scrollTop += scrollAmount;\n    }\n}\n\nexport { autoScrollIfNeeded, resetAutoScrollState };\n//# sourceMappingURL=auto-scroll.mjs.map\n",
+      "start": 1768772628848,
+      "end": 1768772628848
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628848,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628852,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628855,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628858,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

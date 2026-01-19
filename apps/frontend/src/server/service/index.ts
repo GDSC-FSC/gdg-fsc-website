@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export * from './events-service.ts';
+export * from './events-service';

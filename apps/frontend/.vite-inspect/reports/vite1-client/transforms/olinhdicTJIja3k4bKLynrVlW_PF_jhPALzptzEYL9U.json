@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/gestures/press/utils/keyboard.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { isPressing } from './state.mjs';\n\n/**\n * Filter out events that are not \"Enter\" keys.\n */\nfunction filterEvents(callback) {\n    return (event) => {\n        if (event.key !== \"Enter\")\n            return;\n        callback(event);\n    };\n}\nfunction firePointerEvent(target, type) {\n    target.dispatchEvent(new PointerEvent(\"pointer\" + type, { isPrimary: true, bubbles: true }));\n}\nconst enableKeyboardPress = (focusEvent, eventOptions) => {\n    const element = focusEvent.currentTarget;\n    if (!element)\n        return;\n    const handleKeydown = filterEvents(() => {\n        if (isPressing.has(element))\n            return;\n        firePointerEvent(element, \"down\");\n        const handleKeyup = filterEvents(() => {\n            firePointerEvent(element, \"up\");\n        });\n        const handleBlur = () => firePointerEvent(element, \"cancel\");\n        element.addEventListener(\"keyup\", handleKeyup, eventOptions);\n        element.addEventListener(\"blur\", handleBlur, eventOptions);\n    });\n    element.addEventListener(\"keydown\", handleKeydown, eventOptions);\n    /**\n     * Add an event listener that fires on blur to remove the keydown events.\n     */\n    element.addEventListener(\"blur\", () => element.removeEventListener(\"keydown\", handleKeydown), eventOptions);\n};\n\nexport { enableKeyboardPress };\n",
+      "start": 1768772628848,
+      "end": 1768772628848
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628848,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628851,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628854,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628857,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

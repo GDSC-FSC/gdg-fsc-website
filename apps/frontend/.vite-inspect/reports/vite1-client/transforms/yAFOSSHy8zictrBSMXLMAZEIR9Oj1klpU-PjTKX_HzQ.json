@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/mountain-snow.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"m8 3 4 8 5-5 5 15H2L8 3z\", key: \"otkl63\" }],\n  [\n    \"path\",\n    { d: \"M4.14 15.08c2.62-1.57 5.24-1.43 7.86.42 2.74 1.94 5.49 2 8.23.19\", key: \"1pvmmp\" }\n  ]\n];\nconst MountainSnow = createLucideIcon(\"mountain-snow\", __iconNode);\n\nexport { __iconNode, MountainSnow as default };\n//# sourceMappingURL=mountain-snow.js.map\n",
+      "start": 1768772628541,
+      "end": 1768772628541
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628541,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628570,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628598,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628628,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

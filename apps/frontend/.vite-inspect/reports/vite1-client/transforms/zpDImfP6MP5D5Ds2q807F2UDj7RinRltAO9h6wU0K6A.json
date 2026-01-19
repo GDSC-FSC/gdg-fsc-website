@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/FiberStatus.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as internal from \"./internal/fiberStatus.js\";\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const FiberStatusTypeId = internal.FiberStatusTypeId;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const done = internal.done;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const running = internal.running;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const suspended = internal.suspended;\n/**\n * Returns `true` if the specified value is a `FiberStatus`, `false` otherwise.\n *\n * @since 2.0.0\n * @category refinements\n */\nexport const isFiberStatus = internal.isFiberStatus;\n/**\n * Returns `true` if the specified `FiberStatus` is `Done`, `false` otherwise.\n *\n * @since 2.0.0\n * @category refinements\n */\nexport const isDone = internal.isDone;\n/**\n * Returns `true` if the specified `FiberStatus` is `Running`, `false`\n * otherwise.\n *\n * @since 2.0.0\n * @category refinements\n */\nexport const isRunning = internal.isRunning;\n/**\n * Returns `true` if the specified `FiberStatus` is `Suspended`, `false`\n * otherwise.\n *\n * @since 2.0.0\n * @category refinements\n */\nexport const isSuspended = internal.isSuspended;\n//# sourceMappingURL=FiberStatus.js.map",
+      "start": 1768772628414,
+      "end": 1768772628414
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628414,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628418,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628433,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628476,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

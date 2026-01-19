@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/circle-arrow-down.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"circle\", { cx: \"12\", cy: \"12\", r: \"10\", key: \"1mglay\" }],\n  [\"path\", { d: \"M12 8v8\", key: \"napkw2\" }],\n  [\"path\", { d: \"m8 12 4 4 4-4\", key: \"k98ssh\" }]\n];\nconst CircleArrowDown = createLucideIcon(\"circle-arrow-down\", __iconNode);\n\nexport { __iconNode, CircleArrowDown as default };\n//# sourceMappingURL=circle-arrow-down.js.map\n",
+      "start": 1768772628531,
+      "end": 1768772628531
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628531,
+      "end": 1768772628552,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628561,
+      "end": 1768772628579,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628589,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628622,
+      "end": 1768772628636,
+      "order": "post-post"
+    }
+  ]
+}

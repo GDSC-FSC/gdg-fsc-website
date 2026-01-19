@@ -26,8 +26,8 @@ export const LoadingScreen: FC<{
 
   useEffect(() => {
     // Check theme from localStorage or system preference
-    const storedTheme = localStorage.getItem('theme');
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const storedTheme = globalThis.localStorage.getItem('theme');
+    const systemTheme = globalThis.matchMedia('(prefers-color-scheme: dark)').matches
       ? 'dark'
       : 'light';
     const currentTheme = storedTheme === 'system' ? systemTheme : storedTheme || systemTheme;
@@ -60,16 +60,16 @@ export const LoadingScreen: FC<{
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 transition-opacity duration-500 ${isComplete ? 'opacity-0' : 'opacity-100'}`}
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 transition-opacity duration-500 ${isComplete ? 'opacity-0' : 'opacity-100'}`}
     >
       <div className="text-center space-y-8">
         {/* Minimalistic Logo */}
         <div className="flex flex-col items-center space-y-4">
           <div className="relative">
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl flex items-center justify-center shadow-lg">
+            <div className="w-16 h-16 bg-linear-to-br from-blue-500 to-green-500 rounded-2xl flex items-center justify-center shadow-lg">
               <Code className="h-8 w-8 text-white" />
             </div>
-            <div className="absolute inset-0 w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl animate-ping opacity-20" />
+            <div className="absolute inset-0 w-16 h-16 bg-linear-to-br from-blue-500 to-green-500 rounded-2xl animate-ping opacity-20" />
           </div>
 
           <div>
@@ -84,7 +84,7 @@ export const LoadingScreen: FC<{
         <div className="w-64 mx-auto">
           <div className="h-1 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-blue-500 to-green-500 rounded-full transition-all duration-300 ease-out"
+              className="h-full bg-linear-to-r from-blue-500 to-green-500 rounded-full transition-all duration-300 ease-out"
               style={{ width: `${progress}%` }}
             />
           </div>

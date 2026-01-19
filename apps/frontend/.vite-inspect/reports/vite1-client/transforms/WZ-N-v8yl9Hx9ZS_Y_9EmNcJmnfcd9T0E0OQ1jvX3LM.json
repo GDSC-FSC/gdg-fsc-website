@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/case-lower.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M10 9v7\", key: \"ylp826\" }],\n  [\"path\", { d: \"M14 6v10\", key: \"1jy4vg\" }],\n  [\"circle\", { cx: \"17.5\", cy: \"12.5\", r: \"3.5\", key: \"1a9481\" }],\n  [\"circle\", { cx: \"6.5\", cy: \"12.5\", r: \"3.5\", key: \"2jlv1r\" }]\n];\nconst CaseLower = createLucideIcon(\"case-lower\", __iconNode);\n\nexport { __iconNode, CaseLower as default };\n//# sourceMappingURL=case-lower.js.map\n",
+      "start": 1768772628538,
+      "end": 1768772628538
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628538,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628565,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628594,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628625,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

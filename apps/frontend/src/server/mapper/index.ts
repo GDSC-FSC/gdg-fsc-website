@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export * from './events-mapper.ts';
+export * from './events-mapper';

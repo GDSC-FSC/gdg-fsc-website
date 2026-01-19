@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/forward.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"m15 17 5-5-5-5\", key: \"nf172w\" }],\n  [\"path\", { d: \"M4 18v-2a4 4 0 0 1 4-4h12\", key: \"jmiej9\" }]\n];\nconst Forward = createLucideIcon(\"forward\", __iconNode);\n\nexport { __iconNode, Forward as default };\n//# sourceMappingURL=forward.js.map\n",
+      "start": 1768772628546,
+      "end": 1768772628546
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628546,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628579,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628610,
+      "end": 1768772628613,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628635,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/utils/use-constant.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "\"use client\";\nimport { useRef } from 'react';\n\n/**\n * Creates a constant value over the lifecycle of a component.\n *\n * Even if `useMemo` is provided an empty array as its final argument, it doesn't offer\n * a guarantee that it won't re-run for performance reasons later on. By using `useConstant`\n * you can ensure that initialisers don't execute twice or more.\n */\nfunction useConstant(init) {\n    const ref = useRef(null);\n    if (ref.current === null) {\n        ref.current = init();\n    }\n    return ref.current;\n}\n\nexport { useConstant };\n//# sourceMappingURL=use-constant.mjs.map\n",
+      "start": 1768772628755,
+      "end": 1768772628755
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628755,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628772,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628791,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628807,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

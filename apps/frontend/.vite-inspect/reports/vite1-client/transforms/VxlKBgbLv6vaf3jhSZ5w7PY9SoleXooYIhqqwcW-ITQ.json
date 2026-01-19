@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/cable.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\n    \"path\",\n    { d: \"M17 19a1 1 0 0 1-1-1v-2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a1 1 0 0 1-1 1z\", key: \"trhst0\" }\n  ],\n  [\"path\", { d: \"M17 21v-2\", key: \"ds4u3f\" }],\n  [\"path\", { d: \"M19 14V6.5a1 1 0 0 0-7 0v11a1 1 0 0 1-7 0V10\", key: \"1mo9zo\" }],\n  [\"path\", { d: \"M21 21v-2\", key: \"eo0ou\" }],\n  [\"path\", { d: \"M3 5V3\", key: \"1k5hjh\" }],\n  [\n    \"path\",\n    { d: \"M4 10a2 2 0 0 1-2-2V6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2a2 2 0 0 1-2 2z\", key: \"1dd30t\" }\n  ],\n  [\"path\", { d: \"M7 5V3\", key: \"1t1388\" }]\n];\nconst Cable = createLucideIcon(\"cable\", __iconNode);\n\nexport { __iconNode, Cable as default };\n//# sourceMappingURL=cable.js.map\n",
+      "start": 1768772628548,
+      "end": 1768772628548
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628548,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628576,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628605,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628632,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/animation/waapi/supports/partial-keyframes.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { memo } from 'motion-utils';\n\nconst supportsPartialKeyframes = /*@__PURE__*/ memo(() => {\n    try {\n        document.createElement(\"div\").animate({ opacity: [1] });\n    }\n    catch (e) {\n        return false;\n    }\n    return true;\n});\n\nexport { supportsPartialKeyframes };\n",
+      "start": 1768772628755,
+      "end": 1768772628755
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628755,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628772,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628791,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628808,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

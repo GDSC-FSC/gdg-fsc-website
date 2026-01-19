@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/utils/supports/scroll-timeline.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { memo } from 'motion-utils';\n\nconst supportsScrollTimeline = /* @__PURE__ */ memo(() => window.ScrollTimeline !== undefined);\n\nexport { supportsScrollTimeline };\n",
+      "start": 1768772628755,
+      "end": 1768772628755
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628755,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628772,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628791,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628808,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

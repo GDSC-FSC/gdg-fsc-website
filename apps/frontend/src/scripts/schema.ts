@@ -16,21 +16,92 @@
 
 'use client';
 
-type SchemaType = 'NewsArticle' | 'WebPage' | 'Organization' | 'Article' | 'BlogPosting';
-
-interface SchemaProps {
+/**
+ * Describes the options for generating a Schema.org JSON-LD object.
+ *
+ * @public
+ * @see https://schema.org/docs/schemas.html
+ * @author Mike Odnis
+ * @version 1.0.0
+ */
+export interface SchemaProps {
+  /**
+   * The Schema.org type for the object.
+   * @type {SchemaType}
+   * @readonly
+   */
   type: SchemaType;
+  /**
+   * Headline for articles or news pieces.
+   * @type {string}
+   * @readonly
+   */
   headline?: string;
+  /**
+   * Canonical URL for the schema.
+   * @type {string}
+   * @readonly
+   */
   url: string;
+  /**
+   * Thumbnail URL for the content.
+   * @type {string}
+   * @readonly
+   */
   thumbnailUrl?: string;
+  /**
+   * Date the item was published (ISO string).
+   * @type {string}
+   * @readonly
+   */
   datePublished?: string;
+  /**
+   * Section in which the article appears.
+   * @type {string}
+   * @readonly
+   */
   articleSection?: string;
+  /**
+   * Creator(s) of the content.
+   * @type {string | string[]}
+   * @readonly
+   */
   creator?: string | string[];
+  /**
+   * Keywords associated with the content.
+   * @type {string[]}
+   * @readonly
+   */
   keywords?: string[];
+  /**
+   * Name of the entity (for Organization, etc.).
+   * @type {string}
+   * @readonly
+   */
   name?: string;
+  /**
+   * Logo URL for the entity.
+   * @type {string}
+   * @readonly
+   */
   logo?: string;
+  /**
+   * Additional URLs related to the entity (social media, etc.).
+   * @type {string[]}
+   * @readonly
+   */
   sameAs?: string[];
 }
+
+/**
+ * Supported Schema.org types for structured data generation.
+ * @public
+ * @readonly
+ * @see https://schema.org/docs/full.html
+ * @author Mike Odnis
+ * @version 1.0.0
+ */
+export type SchemaType = 'NewsArticle' | 'WebPage' | 'Organization' | 'Article' | 'BlogPosting';
 
 export const generateSchema = (props: SchemaProps) => {
   const schema = {
@@ -46,7 +117,7 @@ export const generateSchema = (props: SchemaProps) => {
     ...(props.name && { name: props.name }),
     ...(props.logo && { logo: props.logo }),
     ...(props.sameAs && { sameAs: props.sameAs }),
-  };
+  } as const;
 
   return schema;
 };

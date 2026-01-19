@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/eye-closed.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"m15 18-.722-3.25\", key: \"1j64jw\" }],\n  [\"path\", { d: \"M2 8a10.645 10.645 0 0 0 20 0\", key: \"1e7gxb\" }],\n  [\"path\", { d: \"m20 15-1.726-2.05\", key: \"1cnuld\" }],\n  [\"path\", { d: \"m4 15 1.726-2.05\", key: \"1dsqqd\" }],\n  [\"path\", { d: \"m9 18 .722-3.25\", key: \"ypw2yx\" }]\n];\nconst EyeClosed = createLucideIcon(\"eye-closed\", __iconNode);\n\nexport { __iconNode, EyeClosed as default };\n//# sourceMappingURL=eye-closed.js.map\n",
+      "start": 1768772628540,
+      "end": 1768772628540
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628540,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628566,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628596,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628631,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

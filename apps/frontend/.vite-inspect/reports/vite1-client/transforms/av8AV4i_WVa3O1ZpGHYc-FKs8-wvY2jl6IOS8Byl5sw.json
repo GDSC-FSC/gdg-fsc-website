@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/sticker.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\n    \"path\",\n    {\n      d: \"M21 9a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 15 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z\",\n      key: \"1dfntj\"\n    }\n  ],\n  [\"path\", { d: \"M15 3v5a1 1 0 0 0 1 1h5\", key: \"6s6qgf\" }],\n  [\"path\", { d: \"M8 13h.01\", key: \"1sbv64\" }],\n  [\"path\", { d: \"M16 13h.01\", key: \"wip0gl\" }],\n  [\"path\", { d: \"M10 16s.8 1 2 1c1.3 0 2-1 2-1\", key: \"1vvgv3\" }]\n];\nconst Sticker = createLucideIcon(\"sticker\", __iconNode);\n\nexport { __iconNode, Sticker as default };\n//# sourceMappingURL=sticker.js.map\n",
+      "start": 1768772628550,
+      "end": 1768772628550
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628550,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628578,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628608,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628634,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

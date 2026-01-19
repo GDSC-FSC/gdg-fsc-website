@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/saudi-riyal.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"m20 19.5-5.5 1.2\", key: \"1aenhr\" }],\n  [\"path\", { d: \"M14.5 4v11.22a1 1 0 0 0 1.242.97L20 15.2\", key: \"2rtezt\" }],\n  [\"path\", { d: \"m2.978 19.351 5.549-1.363A2 2 0 0 0 10 16V2\", key: \"1kbm92\" }],\n  [\"path\", { d: \"M20 10 4 13.5\", key: \"8nums9\" }]\n];\nconst SaudiRiyal = createLucideIcon(\"saudi-riyal\", __iconNode);\n\nexport { __iconNode, SaudiRiyal as default };\n//# sourceMappingURL=saudi-riyal.js.map\n",
+      "start": 1768772628546,
+      "end": 1768772628546
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628546,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628575,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628607,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628633,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

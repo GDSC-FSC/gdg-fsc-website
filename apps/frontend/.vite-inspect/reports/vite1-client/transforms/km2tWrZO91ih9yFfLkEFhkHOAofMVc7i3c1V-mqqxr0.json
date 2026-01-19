@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/link-2.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M9 17H7A5 5 0 0 1 7 7h2\", key: \"8i5ue5\" }],\n  [\"path\", { d: \"M15 7h2a5 5 0 1 1 0 10h-2\", key: \"1b9ql8\" }],\n  [\"line\", { x1: \"8\", x2: \"16\", y1: \"12\", y2: \"12\", key: \"1jonct\" }]\n];\nconst Link2 = createLucideIcon(\"link-2\", __iconNode);\n\nexport { __iconNode, Link2 as default };\n//# sourceMappingURL=link-2.js.map\n",
+      "start": 1768772628548,
+      "end": 1768772628548
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628548,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628576,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628604,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628631,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

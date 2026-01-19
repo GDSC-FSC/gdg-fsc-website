@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.app.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@gdg-fsc/utils": ["../../packages/shared/utils/src/lib/index.ts"],
+      "@gdg-fsc/classes": ["../../packages/shared/classes/src/lib/index.ts"],
+      "@gdg-fsc/decorators": ["../../packages/shared/decorators/src/lib/index.ts"],
+      "@gdg-fsc/interface": ["../../packages/interface/src/index.ts"],
+      "@gdg-fsc/shared": ["../../packages/shared/src/index.ts"]
+    },
+    "types": ["bun-types", "vite/client"]
+  },
+  "include": ["src", "server.ts", "vite.config.ts", "../../packages/shared/utils/src/lib/helpers.ts"]
+}

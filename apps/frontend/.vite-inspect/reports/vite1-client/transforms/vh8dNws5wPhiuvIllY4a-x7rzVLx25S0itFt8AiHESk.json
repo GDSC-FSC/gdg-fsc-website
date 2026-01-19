@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/luggage.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\n    \"path\",\n    { d: \"M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2\", key: \"1m57jg\" }\n  ],\n  [\"path\", { d: \"M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14\", key: \"1l99gc\" }],\n  [\"path\", { d: \"M10 20h4\", key: \"ni2waw\" }],\n  [\"circle\", { cx: \"16\", cy: \"20\", r: \"2\", key: \"1vifvg\" }],\n  [\"circle\", { cx: \"8\", cy: \"20\", r: \"2\", key: \"ckkr5m\" }]\n];\nconst Luggage = createLucideIcon(\"luggage\", __iconNode);\n\nexport { __iconNode, Luggage as default };\n//# sourceMappingURL=luggage.js.map\n",
+      "start": 1768772628547,
+      "end": 1768772628547
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628547,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628576,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628603,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628631,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

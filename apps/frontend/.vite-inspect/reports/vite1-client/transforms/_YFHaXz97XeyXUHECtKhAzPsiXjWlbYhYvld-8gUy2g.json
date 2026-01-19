@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/check/runner/utils/PathWalker.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "function produce(producer) {\n    return producer();\n}\nexport function pathWalk(path, initialProducers, shrink) {\n    const producers = initialProducers;\n    const segments = path.split(':').map((text) => +text);\n    if (segments.length === 0) {\n        return producers.map(produce);\n    }\n    if (!segments.every((v) => !Number.isNaN(v))) {\n        throw new Error(`Unable to replay, got invalid path=${path}`);\n    }\n    let values = producers.drop(segments[0]).map(produce);\n    for (const s of segments.slice(1)) {\n        const valueToShrink = values.getNthOrLast(0);\n        if (valueToShrink === null) {\n            throw new Error(`Unable to replay, got wrong path=${path}`);\n        }\n        values = shrink(valueToShrink).drop(s);\n    }\n    return values;\n}\n",
+      "start": 1768772628893,
+      "end": 1768772628893
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628893,
+      "end": 1768772628894,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628895,
+      "end": 1768772628896,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628897,
+      "end": 1768772628897,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628898,
+      "end": 1768772628899,
+      "order": "post-post"
+    }
+  ]
+}

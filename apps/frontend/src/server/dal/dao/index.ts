@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export * from './events-dao.ts';
+export * from './events-dao';

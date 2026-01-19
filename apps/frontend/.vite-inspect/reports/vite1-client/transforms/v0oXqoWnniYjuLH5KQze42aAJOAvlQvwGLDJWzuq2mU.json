@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/loader-pinwheel.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M22 12a1 1 0 0 1-10 0 1 1 0 0 0-10 0\", key: \"1lzz15\" }],\n  [\"path\", { d: \"M7 20.7a1 1 0 1 1 5-8.7 1 1 0 1 0 5-8.6\", key: \"1gnrpi\" }],\n  [\"path\", { d: \"M7 3.3a1 1 0 1 1 5 8.6 1 1 0 1 0 5 8.6\", key: \"u9yy5q\" }],\n  [\"circle\", { cx: \"12\", cy: \"12\", r: \"10\", key: \"1mglay\" }]\n];\nconst LoaderPinwheel = createLucideIcon(\"loader-pinwheel\", __iconNode);\n\nexport { __iconNode, LoaderPinwheel as default };\n//# sourceMappingURL=loader-pinwheel.js.map\n",
+      "start": 1768772628537,
+      "end": 1768772628537
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628537,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628564,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628594,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628625,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/render/svg/utils/scrape-motion-values.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { isMotionValue } from '../../../value/utils/is-motion-value.mjs';\nimport { transformPropOrder } from '../../utils/keys-transform.mjs';\nimport { scrapeMotionValuesFromProps as scrapeMotionValuesFromProps$1 } from '../../html/utils/scrape-motion-values.mjs';\n\nfunction scrapeMotionValuesFromProps(props, prevProps, visualElement) {\n    const newValues = scrapeMotionValuesFromProps$1(props, prevProps, visualElement);\n    for (const key in props) {\n        if (isMotionValue(props[key]) ||\n            isMotionValue(prevProps[key])) {\n            const targetKey = transformPropOrder.indexOf(key) !== -1\n                ? \"attr\" + key.charAt(0).toUpperCase() + key.substring(1)\n                : key;\n            newValues[targetKey] = props[key];\n        }\n    }\n    return newValues;\n}\n\nexport { scrapeMotionValuesFromProps };\n",
+      "start": 1768772628755,
+      "end": 1768772628755
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628755,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628771,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628790,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628807,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

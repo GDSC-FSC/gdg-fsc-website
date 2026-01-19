@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/RequestResolver.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @since 2.0.0\n */\nimport * as Context from \"./Context.js\";\nimport * as Effect from \"./Effect.js\";\nimport * as core from \"./internal/core.js\";\nimport * as internal from \"./internal/dataSource.js\";\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const RequestResolverTypeId = core.RequestResolverTypeId;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const contextFromEffect = self => Effect.contextWith(_ => provideContext(self, _));\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const contextFromServices = (...services) => self => Effect.contextWith(_ => provideContext(self, Context.pick(...services)(_)));\n/**\n * Returns `true` if the specified value is a `RequestResolver`, `false` otherwise.\n *\n * @since 2.0.0\n * @category refinements\n */\nexport const isRequestResolver = core.isRequestResolver;\n/**\n * Constructs a data source with the specified identifier and method to run\n * requests.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const make = internal.make;\n/**\n * Constructs a data source with the specified identifier and method to run\n * requests.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const makeWithEntry = internal.makeWithEntry;\n/**\n * Constructs a data source from a function taking a collection of requests.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const makeBatched = internal.makeBatched;\n/**\n * A data source aspect that executes requests between two effects, `before`\n * and `after`, where the result of `before` can be used by `after`.\n *\n * @since 2.0.0\n * @category combinators\n */\nexport const around = internal.around;\n/**\n * A data source aspect that executes requests between two effects, `before`\n * and `after`, where the result of `before` can be used by `after`.\n *\n * The `before` and `after` effects are provided with the requests being executed.\n *\n * @since 2.0.0\n * @category combinators\n * @example\n * ```ts\n * import { Effect, Request, RequestResolver } from \"effect\"\n *\n * interface GetUserById extends Request.Request<unknown> {\n *   readonly id: number\n * }\n *\n * const resolver = RequestResolver.fromFunction(\n *   (request: GetUserById) => ({ id: request.id, name: \"John\" })\n * )\n *\n * RequestResolver.aroundRequests(\n *   resolver,\n *   (requests) => Effect.log(`got ${requests.length} requests`),\n *   (requests, _) => Effect.log(`finised running ${requests.length} requests`)\n * )\n * ```\n */\nexport const aroundRequests = internal.aroundRequests;\n/**\n * Returns a data source that executes at most `n` requests in parallel.\n *\n * @since 2.0.0\n * @category combinators\n */\nexport const batchN = internal.batchN;\n/**\n * Provides this data source with part of its required context.\n *\n * @since 2.0.0\n * @category context\n */\nexport const mapInputContext = internal.mapInputContext;\n/**\n * Returns a new data source that executes requests of type `C` using the\n * specified function to transform `C` requests into requests that either this\n * data source or that data source can execute.\n *\n * @since 2.0.0\n * @category combinators\n */\nexport const eitherWith = internal.eitherWith;\n/**\n * Constructs a data source from a pure function.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const fromFunction = internal.fromFunction;\n/**\n * Constructs a data source from a pure function that takes a list of requests\n * and returns a list of results of the same size. Each item in the result\n * list must correspond to the item at the same index in the request list.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const fromFunctionBatched = internal.fromFunctionBatched;\n/**\n * Constructs a data source from an effectual function.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const fromEffect = internal.fromEffect;\n/**\n * Constructs a data source from a list of tags paired to functions, that takes\n * a list of requests and returns a list of results of the same size. Each item\n * in the result list must correspond to the item at the same index in the\n * request list.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const fromEffectTagged = internal.fromEffectTagged;\n/**\n * A data source that never executes requests.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const never = internal.never;\n/**\n * Provides this data source with its required context.\n *\n * @since 2.0.0\n * @category context\n */\nexport const provideContext = internal.provideContext;\n/**\n * Returns a new data source that executes requests by sending them to this\n * data source and that data source, returning the results from the first data\n * source to complete and safely interrupting the loser.\n *\n * @since 2.0.0\n * @category combinators\n */\nexport const race = internal.race;\n/**\n * Returns a new data source with a localized FiberRef\n *\n * @since 2.0.0\n * @category combinators\n */\nexport const locally = core.resolverLocally;\n//# sourceMappingURL=RequestResolver.js.map",
+      "start": 1768772628410,
+      "end": 1768772628410
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628410,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628417,
+      "end": 1768772628420,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628432,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628476,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

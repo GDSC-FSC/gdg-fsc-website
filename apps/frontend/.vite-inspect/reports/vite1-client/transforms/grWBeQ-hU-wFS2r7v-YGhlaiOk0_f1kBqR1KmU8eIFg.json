@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/chevrons-down-up.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"m7 20 5-5 5 5\", key: \"13a0gw\" }],\n  [\"path\", { d: \"m7 4 5 5 5-5\", key: \"1kwcof\" }]\n];\nconst ChevronsDownUp = createLucideIcon(\"chevrons-down-up\", __iconNode);\n\nexport { __iconNode, ChevronsDownUp as default };\n//# sourceMappingURL=chevrons-down-up.js.map\n",
+      "start": 1768772628545,
+      "end": 1768772628545
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628545,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628574,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628602,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628630,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

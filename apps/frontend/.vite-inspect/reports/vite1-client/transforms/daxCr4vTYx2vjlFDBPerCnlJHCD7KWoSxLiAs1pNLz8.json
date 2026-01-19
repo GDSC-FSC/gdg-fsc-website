@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/value/use-will-change/WillChangeMotionValue.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { MotionValue, transformProps, acceleratedValues } from 'motion-dom';\n\nclass WillChangeMotionValue extends MotionValue {\n    constructor() {\n        super(...arguments);\n        this.isEnabled = false;\n    }\n    add(name) {\n        if (transformProps.has(name) || acceleratedValues.has(name)) {\n            this.isEnabled = true;\n            this.update();\n        }\n    }\n    update() {\n        this.set(this.isEnabled ? \"transform\" : \"auto\");\n    }\n}\n\nexport { WillChangeMotionValue };\n//# sourceMappingURL=WillChangeMotionValue.mjs.map\n",
+      "start": 1768772628587,
+      "end": 1768772628587
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628587,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628620,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628649,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

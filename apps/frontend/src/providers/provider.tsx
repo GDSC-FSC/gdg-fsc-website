@@ -32,12 +32,11 @@ export const Provider: React.FC<React.PropsWithChildren> = ({ children }) => {
           },
         ],
         [GlobalStoreProvider, {}],
-        [QueryClientProvider, { client: createQueryClient() }],
+        [QueryClientProvider, { client: createQueryClient()() }],
         [TooltipProvider, {}],
       ]}
-    >
-      {children}
-    </Providers>
+      node={children}
+    />
   );
 };
 

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/list-indent-decrease.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M21 5H11\", key: \"us1j55\" }],\n  [\"path\", { d: \"M21 12H11\", key: \"wd7e0v\" }],\n  [\"path\", { d: \"M21 19H11\", key: \"saa85w\" }],\n  [\"path\", { d: \"m7 8-4 4 4 4\", key: \"o5hrat\" }]\n];\nconst ListIndentDecrease = createLucideIcon(\"list-indent-decrease\", __iconNode);\n\nexport { __iconNode, ListIndentDecrease as default };\n//# sourceMappingURL=list-indent-decrease.js.map\n",
+      "start": 1768772628532,
+      "end": 1768772628532
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628532,
+      "end": 1768772628552,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628561,
+      "end": 1768772628579,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628589,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628627,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

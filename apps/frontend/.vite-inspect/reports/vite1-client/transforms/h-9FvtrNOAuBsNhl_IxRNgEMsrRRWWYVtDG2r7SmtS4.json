@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/chess-bishop.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\n    \"path\",\n    { d: \"M5 20a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z\", key: \"b89hwq\" }\n  ],\n  [\n    \"path\",\n    {\n      d: \"M15 18c1.5-.615 3-2.461 3-4.923C18 8.769 14.5 4.462 12 2 9.5 4.462 6 8.77 6 13.077 6 15.539 7.5 17.385 9 18\",\n      key: \"8jdkhx\"\n    }\n  ],\n  [\"path\", { d: \"m16 7-2.5 2.5\", key: \"1jq90w\" }],\n  [\"path\", { d: \"M9 2h6\", key: \"1jrp98\" }]\n];\nconst ChessBishop = createLucideIcon(\"chess-bishop\", __iconNode);\n\nexport { __iconNode, ChessBishop as default };\n//# sourceMappingURL=chess-bishop.js.map\n",
+      "start": 1768772628536,
+      "end": 1768772628536
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628536,
+      "end": 1768772628552,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628564,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628593,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628624,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

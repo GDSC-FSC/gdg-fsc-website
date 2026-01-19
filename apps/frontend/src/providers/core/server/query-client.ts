@@ -1,5 +1,5 @@
 /**
- * Copyright 2025 GDG on Campus Farmingdale State College
+ * Copyright 2025 Mike Odnis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,93 +14,137 @@
  * limitations under the License.
  */
 
+import { logger } from '@gdg-fsc/utils';
 import {
-    defaultShouldDehydrateQuery,
-    MutationCache,
-    QueryCache,
-    QueryClient,
+  defaultShouldDehydrateQuery,
+  MutationCache,
+  QueryCache,
+  QueryClient,
 } from '@tanstack/react-query';
 import { cache } from 'react';
 import SuperJSON from 'superjson';
-import { logger } from '../../../../../../packages/interface';
 
-const fetchWithSuperJSON = async (url: string): Promise<any> => {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-
-  const contentType = response.headers.get('Content-Type');
-  if (!contentType || !contentType.includes('application/json')) {
-    throw new Error('Response is not JSON');
-  }
-
-  const text = await response.text();
-  try {
-    return SuperJSON.parse(text);
-  } catch (error) {
-    console.error('Failed to parse response as SuperJSON:', error);
-    throw new Error('Failed to parse response');
-  }
-};
-
+/**
+ * Instantiates (and memoizes per invocation context) a configured TanStack QueryClient instance
+ * for use on the server-side. This QueryClient setup attaches logging for query and mutation
+ * lifecycle events and custom serialization using SuperJSON.
+ *
+ * Uses React's `cache` utility to ensure a stable instance per execution context on the server.
+ *
+ * @function createQueryClient
+ * @returns {QueryClient} A strongly-typed, memoized instance of QueryClient
+ * @throws {Error} If QueryClient instantiation fails unexpectedly
+ * @see {@link https://tanstack.com/query/v4/docs/framework/react/reference/QueryClient TanStack QueryClient Documentation}
+ * @example
+ * // Get a QueryClient instance
+ * const queryClient = createQueryClient();
+ * @readonly
+ * @public
+ * @web
+ * @version 1.0.0
+ * @author Mike Odnis <WomB0ComB0>
+ */
 export const createQueryClient = cache(() => {
   let queryClient: QueryClient | null = null;
 
+  /**
+   * Returns a singleton QueryClient instance for the server context.
+   *
+   * @returns {QueryClient} A server-safe QueryClient instance
+   * @throws {Error} If QueryClient configuration fails
+   * @example
+   * const qc = createQueryClient();
+   */
   return (): QueryClient => {
-    if (!queryClient) {
-      queryClient = new QueryClient({
-        queryCache: new QueryCache({
-          onError: (error, query) => {
-            logger.error(`Query error: ${error}`, query);
-          },
-          onSuccess: (data, query) => {
-            logger.debug('Query success', { data, query });
-          },
-          onSettled: (data, error, query) => {
-            logger.debug('Query settled', { data, error, query });
-          },
-        }),
-        mutationCache: new MutationCache({
-          onError: (error) => {
-            logger.error(`Mutation error: ${error}`, {
-              message: error.message,
-              stack: error.stack,
-            });
-            return Promise.resolve();
-          },
-          onSuccess: (data, variables, context, mutation) => {
-            logger.success('Mutation succeeded', {
-              data,
-              variables,
-              context,
-              mutationKey: mutation?.options?.mutationKey,
-              mutationFn: mutation?.options?.mutationFn?.name || 'anonymous',
-            });
-            return Promise.resolve();
-          },
-        }),
-        defaultOptions: {
-          queries: {
-            staleTime: 30 * 1000,
-            refetchOnWindowFocus: false,
-            queryFn: async ({ queryKey }) => fetchWithSuperJSON(queryKey[0] as string),
-            retry: 2,
-            retryOnMount: false,
-          },
-          dehydrate: {
-            serializeData: SuperJSON.serialize,
-            shouldDehydrateQuery: (query) =>
-              typeof defaultShouldDehydrateQuery !== 'undefined'
-                ? defaultShouldDehydrateQuery(query) || query.state.status === 'pending'
-                : query.state.status === 'pending',
-          },
-          hydrate: {
-            deserializeData: SuperJSON.deserialize,
-          },
+    queryClient ??= new QueryClient({
+      queryCache: new QueryCache({
+        /**
+         * Handles errors encountered during server-side queries.
+         * @param {unknown} error - The error thrown by the query.
+         * @param {import('@tanstack/react-query').Query} query - The Query that caused the error.
+         * @returns {void}
+         */
+        onError: (error, query) => {
+          logger.error(`Query error: ${error}`, query);
         },
-      });
-    }
+        /**
+         * Handles successful query results.
+         * @param {unknown} data - The resolved data from the query.
+         * @param {import('@tanstack/react-query').Query} query - The Query that succeeded.
+         * @returns {void}
+         */
+        onSuccess: (data, query) => {
+          logger.debug('Query success', { data, query });
+        },
+        /**
+         * Handles settled queries, regardless of outcome.
+         * @param {unknown} data
+         * @param {unknown} error
+         * @param {import('@tanstack/react-query').Query} query
+         * @returns {void}
+         */
+        onSettled: (data, error, query) => {
+          logger.debug('Query settled', { data, error, query });
+        },
+      }),
+      mutationCache: new MutationCache({
+        /**
+         * Handles errors in mutation executions.
+         * @param {Error} error
+         * @returns {Promise<void>}
+         */
+        onError: (error) => {
+          logger.error(`Mutation error: ${error}`, {
+            message: error.message,
+            stack: error.stack,
+          });
+          return Promise.resolve();
+        },
+        /**
+         * Logs successful mutation executions.
+         * @param {unknown} data
+         * @param {unknown} variables
+         * @param {unknown} context
+         * @param {import('@tanstack/react-query').Mutation | undefined} mutation
+         * @returns {Promise<void>}
+         */
+        onSuccess: (data, variables, context, mutation) => {
+          logger.info('Mutation succeeded', {
+            data,
+            variables,
+            context,
+            mutationKey: mutation?.options?.mutationKey,
+            mutationFn: mutation?.options?.mutationFn?.name || 'anonymous',
+          });
+          return Promise.resolve();
+        },
+      }),
+      defaultOptions: {
+        dehydrate: {
+          /**
+           * Serializes dehydratable data in a type-safe manner with SuperJSON.
+           * @param {unknown} data
+           * @returns {string}
+           */
+          serializeData: SuperJSON.serialize,
+          /**
+           * Determines if a query should be dehydrated.
+           * @param {import('@tanstack/react-query').Query} query
+           * @returns {boolean}
+           */
+          shouldDehydrateQuery: (query) =>
+            defaultShouldDehydrateQuery(query) || query.state.status === 'pending',
+        },
+        hydrate: {
+          /**
+           * Deserializes hydrated data from SuperJSON.
+           * @param {string} data
+           * @returns {unknown}
+           */
+          deserializeData: SuperJSON.deserialize,
+        },
+      },
+    });
     return queryClient;
   };
-})();
+});

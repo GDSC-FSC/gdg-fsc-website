@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@tanstack/react-query/build/modern/IsRestoringProvider.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "\"use client\";\n\n// src/IsRestoringProvider.ts\nimport * as React from \"react\";\nvar IsRestoringContext = React.createContext(false);\nvar useIsRestoring = () => React.useContext(IsRestoringContext);\nvar IsRestoringProvider = IsRestoringContext.Provider;\nexport {\n  IsRestoringProvider,\n  useIsRestoring\n};\n//# sourceMappingURL=IsRestoringProvider.js.map",
+      "start": 1768772628338,
+      "end": 1768772628338
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628338,
+      "end": 1768772628338,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628339,
+      "end": 1768772628339,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628356,
+      "end": 1768772628357,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628358,
+      "end": 1768772628358,
+      "order": "post-post"
+    }
+  ]
+}

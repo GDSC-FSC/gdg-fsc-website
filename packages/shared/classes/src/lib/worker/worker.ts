@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import type { WorkerMessage, WorkerResult } from './worker.types';
+import type { WorkerMessage, WorkerResult } from './worker.types.js';
 
 export class WorkerThread {
   private taskHandlers: Map<string, (data: any) => Promise<any>> = new Map();

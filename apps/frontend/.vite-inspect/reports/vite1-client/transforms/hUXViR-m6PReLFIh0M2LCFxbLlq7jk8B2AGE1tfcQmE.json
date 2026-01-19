@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/search-x.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"m13.5 8.5-5 5\", key: \"1cs55j\" }],\n  [\"path\", { d: \"m8.5 8.5 5 5\", key: \"a8mexj\" }],\n  [\"circle\", { cx: \"11\", cy: \"11\", r: \"8\", key: \"4ej97u\" }],\n  [\"path\", { d: \"m21 21-4.3-4.3\", key: \"1qie3q\" }]\n];\nconst SearchX = createLucideIcon(\"search-x\", __iconNode);\n\nexport { __iconNode, SearchX as default };\n//# sourceMappingURL=search-x.js.map\n",
+      "start": 1768772628546,
+      "end": 1768772628546
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628546,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628574,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628604,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628632,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

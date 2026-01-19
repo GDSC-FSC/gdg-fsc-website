@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/context/MotionContext/utils.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { isControllingVariants, isVariantLabel } from 'motion-dom';\n\nfunction getCurrentTreeVariants(props, context) {\n    if (isControllingVariants(props)) {\n        const { initial, animate } = props;\n        return {\n            initial: initial === false || isVariantLabel(initial)\n                ? initial\n                : undefined,\n            animate: isVariantLabel(animate) ? animate : undefined,\n        };\n    }\n    return props.inherit !== false ? context : {};\n}\n\nexport { getCurrentTreeVariants };\n//# sourceMappingURL=utils.mjs.map\n",
+      "start": 1768772628908,
+      "end": 1768772628908
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628908,
+      "end": 1768772628908,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628909,
+      "end": 1768772628909,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628909,
+      "end": 1768772628909,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628910,
+      "end": 1768772628910,
+      "order": "post-post"
+    }
+  ]
+}

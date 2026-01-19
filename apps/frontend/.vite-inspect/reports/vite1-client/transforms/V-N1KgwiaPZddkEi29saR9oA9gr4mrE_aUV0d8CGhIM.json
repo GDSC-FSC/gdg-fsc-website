@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/packages/shared/dist/utils/src/lib/performance.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * Copyright 2026 GDG on Campus Farmingdale State College\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\nimport { perf } from '@jsheaven/perf';\n/**\n * Measures the performance characteristics of one or more algorithms\n * @param algorithms Single algorithm or array of algorithms to measure\n * @returns Object containing performance measurements for each algorithm\n */\nexport const measurePerformance = async (algorithms, sizes, warm, iterations, maxExecutionTime, chunkSize) => {\n    const algorithmArray = Array.isArray(algorithms) ? algorithms : [algorithms];\n    try {\n        const results = await perf(algorithmArray, sizes, warm, iterations, maxExecutionTime, chunkSize);\n        return Object.entries(results).reduce((acc, [name, data]) => {\n            acc[name] = {\n                duration: data.duration,\n                estimatedDomains: data.estimatedDomains,\n            };\n            return acc;\n        }, {});\n    }\n    catch (error) {\n        console.error('Error measuring performance:', error);\n        throw error;\n    }\n};\n/**\n * Example usage:\n *\n * const bubbleSort: Algorithm = {\n *   name: 'BubbleSort',\n *   fn: (size) => {\n *     const arr = Array.from({ length: size }, () => Math.random())\n *     // ... sorting logic\n *   }\n * }\n *\n * const results = await measurePerformance(bubbleSort)\n * console.log(results.BubbleSort.duration)\n * console.log(results.BubbleSort.estimatedDomains)\n */\n//# sourceMappingURL=performance.js.map",
+      "start": 1768772628388,
+      "end": 1768772628388
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628388,
+      "end": 1768772628389,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628394,
+      "end": 1768772628394,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628409,
+      "end": 1768772628410,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628422,
+      "end": 1768772628422,
+      "order": "post-post"
+    }
+  ]
+}

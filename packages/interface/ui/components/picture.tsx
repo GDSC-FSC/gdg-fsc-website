@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import { cn } from '@gdg-fsc/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
 import {
   type ComponentProps,
@@ -24,7 +25,6 @@ import {
   useState,
 } from 'react';
 import { useEventCallback } from 'usehooks-ts';
-import { cn } from '../utils';
 import type { DistributiveOmit, Overwrite } from './types';
 
 const defaultRootElement = 'img' as const;
@@ -138,7 +138,9 @@ namespace Picture {
   }
 }
 
-export const PictureInternal: Picture.Type = ({
+export const PictureInternal = <
+  TRootElement extends Picture.BaseRootElementType = typeof defaultRootElement,
+>({
   component: Component = defaultRootElement,
   variant,
   src,
@@ -155,17 +157,17 @@ export const PictureInternal: Picture.Type = ({
   onLoad,
   onError,
   ...rest
-}: Overwrite<Picture.BaseRootElementProps, Picture.OwnProps>) => {
+}: Picture.Props<TRootElement>) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const handleLoad = useEventCallback((e: SyntheticEvent<HTMLImageElement>) => {
-    onLoad?.(e);
+    (onLoad as any)?.(e);
     if (e.defaultPrevented) return;
     setIsLoading(false);
   });
 
   const handleError = useEventCallback((e: SyntheticEvent<HTMLImageElement>) => {
-    onError?.(e);
+    (onError as any)?.(e);
     if (e.defaultPrevented) return;
     setIsLoading(false);
     console.warn('Image failed to load:', src);
@@ -183,14 +185,16 @@ export const PictureInternal: Picture.Type = ({
 
   const imgClassName = useMemo<Picture.BaseRootElementProps['className']>(
     () =>
-      pictureVariants({
-        variant,
-        isLoading,
-        rounded,
-        shadow,
-        transition,
-        className,
-      }),
+      cn(
+        pictureVariants({
+          variant,
+          isLoading,
+          rounded,
+          shadow,
+          transition,
+          className,
+        }),
+      ),
     [className, variant, isLoading, rounded, shadow, transition],
   );
 
@@ -208,9 +212,9 @@ export const PictureInternal: Picture.Type = ({
   return (
     <picture className={cn('block', picture?.className)}>
       {source && <source srcSet={source.srcSet} sizes={source.sizes} media={source.media} />}
-      <Component {...imgProps} />
+      <Component {...(imgProps as any)} />
     </picture>
   );
 };
 
-export const Picture = PictureInternal;
+export const Picture = PictureInternal as Picture.Type;

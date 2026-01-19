@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@tanstack/react-query/build/modern/useQuery.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "\"use client\";\n\n// src/useQuery.ts\nimport { QueryObserver } from \"@tanstack/query-core\";\nimport { useBaseQuery } from \"./useBaseQuery.js\";\nfunction useQuery(options, queryClient) {\n  return useBaseQuery(options, QueryObserver, queryClient);\n}\nexport {\n  useQuery\n};\n//# sourceMappingURL=useQuery.js.map",
+      "start": 1768772628338,
+      "end": 1768772628338
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628338,
+      "end": 1768772628338,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628339,
+      "end": 1768772628339,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628356,
+      "end": 1768772628357,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628358,
+      "end": 1768772628358,
+      "order": "post-post"
+    }
+  ]
+}

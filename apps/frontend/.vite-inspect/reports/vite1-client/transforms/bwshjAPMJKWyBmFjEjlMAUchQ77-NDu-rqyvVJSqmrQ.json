@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/replace.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M14 4a1 1 0 0 1 1-1\", key: \"dhj8ez\" }],\n  [\"path\", { d: \"M15 10a1 1 0 0 1-1-1\", key: \"1mnyi5\" }],\n  [\"path\", { d: \"M21 4a1 1 0 0 0-1-1\", key: \"sfs9ap\" }],\n  [\"path\", { d: \"M21 9a1 1 0 0 1-1 1\", key: \"mp6qeo\" }],\n  [\"path\", { d: \"m3 7 3 3 3-3\", key: \"x25e72\" }],\n  [\"path\", { d: \"M6 10V5a2 2 0 0 1 2-2h2\", key: \"15xut4\" }],\n  [\"rect\", { x: \"3\", y: \"14\", width: \"7\", height: \"7\", rx: \"1\", key: \"1bkyp8\" }]\n];\nconst Replace = createLucideIcon(\"replace\", __iconNode);\n\nexport { __iconNode, Replace as default };\n//# sourceMappingURL=replace.js.map\n",
+      "start": 1768772628543,
+      "end": 1768772628543
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628543,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628572,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628599,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628628,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

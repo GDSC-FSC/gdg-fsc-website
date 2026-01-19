@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/string16bits.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { array } from './array.js';\nimport { char16bits } from './char16bits.js';\nimport { charsToStringMapper, charsToStringUnmapper } from './_internals/mappers/CharsToString.js';\nimport { createSlicesForStringLegacy } from './_internals/helpers/SlicesForStringBuilder.js';\nconst safeObjectAssign = Object.assign;\nexport function string16bits(constraints = {}) {\n    const charArbitrary = char16bits();\n    const experimentalCustomSlices = createSlicesForStringLegacy(charArbitrary, charsToStringUnmapper);\n    const enrichedConstraints = safeObjectAssign(safeObjectAssign({}, constraints), {\n        experimentalCustomSlices,\n    });\n    return array(charArbitrary, enrichedConstraints).map(charsToStringMapper, charsToStringUnmapper);\n}\n",
+      "start": 1768772628848,
+      "end": 1768772628848
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628848,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628852,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628855,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628858,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
-import { fileURLToPath } from "node:url";
-import { dirname } from "node:path";
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 /**
  * Copyright 2025 GDG on Campus Farmingdale State College
  *
@@ -22,27 +22,33 @@ export default {
       directory: '../ui/components',
       files: '**/*.stories.@(ts|tsx)',
       titlePrefix: 'UI',
-    }
-  ], 
+    },
+  ],
   addons: [
-    getAbsolutePath("@storybook/addon-a11y"),
-    getAbsolutePath("@storybook/addon-links"),
-    getAbsolutePath("@storybook/addon-docs"),
-    getAbsolutePath("@chromatic-com/storybook")
+    getAbsolutePath('@storybook/addon-a11y'),
+    getAbsolutePath('@storybook/addon-links'),
+    getAbsolutePath('@storybook/addon-docs'),
+    getAbsolutePath('@chromatic-com/storybook'),
   ],
   framework: {
-    name: getAbsolutePath("@storybook/react-vite"),
+    name: getAbsolutePath('@storybook/react-vite'),
     options: {
-      strictMode: true
+      strictMode: true,
     },
   },
   staticDirs: ['../public'],
-  docs: { 
+  docs: {
     docsMode: true,
   },
   typescript: {
-    reactDocgen: 'react-docgen-typescript'
-  }
+    reactDocgen: 'react-docgen-typescript',
+  },
+  async viteFinal(config) {
+    const { default: tailwindcss } = await import('@tailwindcss/vite');
+    config.plugins = config.plugins || [];
+    config.plugins.push(tailwindcss());
+    return config;
+  },
 } satisfies import('@storybook/react-vite').StorybookConfig;
 
 function getAbsolutePath(value: string): any {

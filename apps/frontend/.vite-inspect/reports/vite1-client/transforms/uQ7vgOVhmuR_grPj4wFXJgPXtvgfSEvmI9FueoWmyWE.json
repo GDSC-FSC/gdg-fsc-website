@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/components/Reorder/Group.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "\"use client\";\nimport { jsx } from 'react/jsx-runtime';\nimport { invariant } from 'motion-utils';\nimport { forwardRef, useRef, useEffect } from 'react';\nimport { ReorderContext } from '../../context/ReorderContext.mjs';\nimport { motion } from '../../render/components/motion/proxy.mjs';\nimport { useConstant } from '../../utils/use-constant.mjs';\nimport { checkReorder } from './utils/check-reorder.mjs';\n\nfunction ReorderGroupComponent({ children, as = \"ul\", axis = \"y\", onReorder, values, ...props }, externalRef) {\n    const Component = useConstant(() => motion[as]);\n    const order = [];\n    const isReordering = useRef(false);\n    const groupRef = useRef(null);\n    invariant(Boolean(values), \"Reorder.Group must be provided a values prop\", \"reorder-values\");\n    const context = {\n        axis,\n        groupRef,\n        registerItem: (value, layout) => {\n            // If the entry was already added, update it rather than adding it again\n            const idx = order.findIndex((entry) => value === entry.value);\n            if (idx !== -1) {\n                order[idx].layout = layout[axis];\n            }\n            else {\n                order.push({ value: value, layout: layout[axis] });\n            }\n            order.sort(compareMin);\n        },\n        updateOrder: (item, offset, velocity) => {\n            if (isReordering.current)\n                return;\n            const newOrder = checkReorder(order, item, offset, velocity);\n            if (order !== newOrder) {\n                isReordering.current = true;\n                onReorder(newOrder\n                    .map(getValue)\n                    .filter((value) => values.indexOf(value) !== -1));\n            }\n        },\n    };\n    useEffect(() => {\n        isReordering.current = false;\n    });\n    // Combine refs if external ref is provided\n    const setRef = (element) => {\n        groupRef.current = element;\n        if (typeof externalRef === \"function\") {\n            externalRef(element);\n        }\n        else if (externalRef) {\n            externalRef.current = element;\n        }\n    };\n    /**\n     * Disable browser scroll anchoring on the group container.\n     * When items reorder, scroll anchoring can cause the browser to adjust\n     * the scroll position, which interferes with drag position calculations.\n     */\n    const groupStyle = {\n        overflowAnchor: \"none\",\n        ...props.style,\n    };\n    return (jsx(Component, { ...props, style: groupStyle, ref: setRef, ignoreStrict: true, children: jsx(ReorderContext.Provider, { value: context, children: children }) }));\n}\nconst ReorderGroup = /*@__PURE__*/ forwardRef(ReorderGroupComponent);\nfunction getValue(item) {\n    return item.value;\n}\nfunction compareMin(a, b) {\n    return a.layout.min - b.layout.min;\n}\n\nexport { ReorderGroup, ReorderGroupComponent };\n//# sourceMappingURL=Group.mjs.map\n",
+      "start": 1768772628752,
+      "end": 1768772628752
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628752,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628770,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628788,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628805,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

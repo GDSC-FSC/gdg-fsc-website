@@ -1,0 +1,106 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/apps/frontend/src/components/ui/alert.tsx",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * Copyright (c) 2026 GDG on Campus Farmingdale State College\n *\n * Permission is hereby granted, free of charge, to any person obtaining a copy\n * of this software and associated documentation files (the \"Software\"), to deal\n * in the Software without restriction, including without limitation the rights\n * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n * copies of the Software, and to permit persons to whom the Software is\n * furnished to do so, subject to the following conditions:\n *\n * The above copyright notice and this permission notice shall be included in all\n * copies or substantial portions of the Software.\n *\n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */\n\nimport { cn } from '@gdg-fsc/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport * as React from 'react';\n\nconst alertVariants = cva(\n  'relative w-full rounded-lg border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7',\n  {\n    variants: {\n      variant: {\n        default: 'bg-background text-foreground',\n        destructive:\n          'border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive',\n      },\n    },\n    defaultVariants: {\n      variant: 'default',\n    },\n  },\n);\n\nconst Alert = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>\n>(({ className, variant, ...props }, ref) => (\n  <div ref={ref} role=\"alert\" className={cn(alertVariants({ variant }), className)} {...props} />\n));\nAlert.displayName = 'Alert';\n\nconst AlertTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(\n  ({ className, ...props }, ref) => (\n    <h5\n      ref={ref}\n      className={cn('mb-1 font-medium leading-none tracking-tight', className)}\n      {...props}\n    />\n  ),\n);\nAlertTitle.displayName = 'AlertTitle';\n\nconst AlertDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn('text-sm [&_p]:leading-relaxed', className)} {...props} />\n));\nAlertDescription.displayName = 'AlertDescription';\n\nexport { Alert, AlertDescription, AlertTitle };\n",
+      "start": 1768772628340,
+      "end": 1768772628340,
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "cn",
+          "cva",
+          "VariantProps",
+          "React",
+          "alertVariants",
+          "variants",
+          "variant",
+          "default",
+          "destructive",
+          "defaultVariants",
+          "Alert",
+          "forwardRef",
+          "HTMLDivElement",
+          "HTMLAttributes",
+          "className",
+          "props",
+          "ref",
+          "displayName",
+          "AlertTitle",
+          "HTMLParagraphElement",
+          "HTMLHeadingElement",
+          "AlertDescription"
+        ],
+        "sources": [
+          "/home/wombocombo/github/wrk/gdg-fsc-website/apps/frontend/src/components/ui/alert.tsx"
+        ],
+        "sourcesContent": [
+          "/**\n * Copyright (c) 2026 GDG on Campus Farmingdale State College\n *\n * Permission is hereby granted, free of charge, to any person obtaining a copy\n * of this software and associated documentation files (the \"Software\"), to deal\n * in the Software without restriction, including without limitation the rights\n * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n * copies of the Software, and to permit persons to whom the Software is\n * furnished to do so, subject to the following conditions:\n *\n * The above copyright notice and this permission notice shall be included in all\n * copies or substantial portions of the Software.\n *\n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */\n\nimport { cn } from '@gdg-fsc/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport * as React from 'react';\n\nconst alertVariants = cva(\n  'relative w-full rounded-lg border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7',\n  {\n    variants: {\n      variant: {\n        default: 'bg-background text-foreground',\n        destructive:\n          'border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive',\n      },\n    },\n    defaultVariants: {\n      variant: 'default',\n    },\n  },\n);\n\nconst Alert = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>\n>(({ className, variant, ...props }, ref) => (\n  <div ref={ref} role=\"alert\" className={cn(alertVariants({ variant }), className)} {...props} />\n));\nAlert.displayName = 'Alert';\n\nconst AlertTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(\n  ({ className, ...props }, ref) => (\n    <h5\n      ref={ref}\n      className={cn('mb-1 font-medium leading-none tracking-tight', className)}\n      {...props}\n    />\n  ),\n);\nAlertTitle.displayName = 'AlertTitle';\n\nconst AlertDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn('text-sm [&_p]:leading-relaxed', className)} {...props} />\n));\nAlertDescription.displayName = 'AlertDescription';\n\nexport { Alert, AlertDescription, AlertTitle };\n"
+        ],
+        "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA,SAASA,EAAE,QAAQ,gBAAgB;AACnC,SAASC,GAAG,EAAE,KAAKC,YAAY,QAAQ,0BAA0B;AACjE,OAAO,KAAKC,KAAK,MAAM,OAAO;AAE9B,MAAMC,aAAa,GAAGH,GAAG,CACvB,yKAAyK,EACzK;EACEI,QAAQ,EAAE;IACRC,OAAO,EAAE;MACPC,OAAO,EAAE,+BAA+B;MACxCC,WAAW,EACT;IACJ;EACF,CAAC;EACDC,eAAe,EAAE;IACfH,OAAO,EAAE;EACX;AACF,CACF,CAAC;AAED,MAAMI,KAAK,GAAGP,KAAK,CAACQ,UAAU,CAC5BC,cAAc,EACdT,KAAK,CAACU,cAAc,CAACD,cAAc,CAAC,GAAGV,YAAY,CAAC,OAAOE,aAAa,CAAC,CAC1E,CAAC,CAAC;EAAEU,SAAS;EAAER,OAAO;EAAE,GAAGS;AAAM,CAAC,EAAEC,GAAG,KACtC,CAAC,GAAG,CAAC,GAAG,CAAC,CAACA,GAAG,CAAC,CAAC,IAAI,CAAC,OAAO,CAAC,SAAS,CAAC,CAAChB,EAAE,CAACI,aAAa,CAAC;EAAEE;AAAQ,CAAC,CAAC,EAAEQ,SAAS,CAAC,CAAC,CAAC,IAAIC,KAAK,CAAC,GAC7F,CAAC;AACFL,KAAK,CAACO,WAAW,GAAG,OAAO;AAE3B,MAAMC,UAAU,GAAGf,KAAK,CAACQ,UAAU,CAACQ,oBAAoB,EAAEhB,KAAK,CAACU,cAAc,CAACO,kBAAkB,CAAC,CAAC,CACjG,CAAC;EAAEN,SAAS;EAAE,GAAGC;AAAM,CAAC,EAAEC,GAAG,KAC3B,CAAC,EAAE,CACD,GAAG,CAAC,CAACA,GAAG,CAAC,CACT,SAAS,CAAC,CAAChB,EAAE,CAAC,8CAA8C,EAAEc,SAAS,CAAC,CAAC,CACzE,IAAIC,KAAK,CAAC,GAGhB,CAAC;AACDG,UAAU,CAACD,WAAW,GAAG,YAAY;AAErC,MAAMI,gBAAgB,GAAGlB,KAAK,CAACQ,UAAU,CACvCQ,oBAAoB,EACpBhB,KAAK,CAACU,cAAc,CAACM,oBAAoB,CAAC,CAC3C,CAAC,CAAC;EAAEL,SAAS;EAAE,GAAGC;AAAM,CAAC,EAAEC,GAAG,KAC7B,CAAC,GAAG,CAAC,GAAG,CAAC,CAACA,GAAG,CAAC,CAAC,SAAS,CAAC,CAAChB,EAAE,CAAC,+BAA+B,EAAEc,SAAS,CAAC,CAAC,CAAC,IAAIC,KAAK,CAAC,GACrF,CAAC;AACFM,gBAAgB,CAACJ,WAAW,GAAG,kBAAkB;AAEjD,SAASP,KAAK,EAAEW,gBAAgB,EAAEH,UAAU",
+        "ignoreList": []
+      }
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "result": "/**\n * Copyright (c) 2026 GDG on Campus Farmingdale State College\n *\n * Permission is hereby granted, free of charge, to any person obtaining a copy\n * of this software and associated documentation files (the \"Software\"), to deal\n * in the Software without restriction, including without limitation the rights\n * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n * copies of the Software, and to permit persons to whom the Software is\n * furnished to do so, subject to the following conditions:\n *\n * The above copyright notice and this permission notice shall be included in all\n * copies or substantial portions of the Software.\n *\n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */\n\nimport { cn } from '@gdg-fsc/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport * as React from 'react';\nconst alertVariants = cva('relative w-full rounded-lg border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7', {\n  variants: {\n    variant: {\n      default: 'bg-background text-foreground',\n      destructive: 'border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive'\n    }\n  },\n  defaultVariants: {\n    variant: 'default'\n  }\n});\nconst Alert = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>>(({\n  className,\n  variant,\n  ...props\n}, ref) => <div ref={ref} role=\"alert\" className={cn(alertVariants({\n  variant\n}), className)} {...props} />);\nAlert.displayName = 'Alert';\nconst AlertTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(({\n  className,\n  ...props\n}, ref) => <h5 ref={ref} className={cn('mb-1 font-medium leading-none tracking-tight', className)} {...props} />);\nAlertTitle.displayName = 'AlertTitle';\nconst AlertDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(({\n  className,\n  ...props\n}, ref) => <div ref={ref} className={cn('text-sm [&_p]:leading-relaxed', className)} {...props} />);\nAlertDescription.displayName = 'AlertDescription';\nexport { Alert, AlertDescription, AlertTitle };",
+      "start": 1768772628340,
+      "end": 1768772628356,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "cn",
+          "cva",
+          "VariantProps",
+          "React",
+          "alertVariants",
+          "variants",
+          "variant",
+          "default",
+          "destructive",
+          "defaultVariants",
+          "Alert",
+          "forwardRef",
+          "HTMLDivElement",
+          "HTMLAttributes",
+          "className",
+          "props",
+          "ref",
+          "displayName",
+          "AlertTitle",
+          "HTMLParagraphElement",
+          "HTMLHeadingElement",
+          "AlertDescription"
+        ],
+        "sources": [
+          "/home/wombocombo/github/wrk/gdg-fsc-website/apps/frontend/src/components/ui/alert.tsx"
+        ],
+        "sourcesContent": [
+          "/**\n * Copyright (c) 2026 GDG on Campus Farmingdale State College\n *\n * Permission is hereby granted, free of charge, to any person obtaining a copy\n * of this software and associated documentation files (the \"Software\"), to deal\n * in the Software without restriction, including without limitation the rights\n * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n * copies of the Software, and to permit persons to whom the Software is\n * furnished to do so, subject to the following conditions:\n *\n * The above copyright notice and this permission notice shall be included in all\n * copies or substantial portions of the Software.\n *\n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */\n\nimport { cn } from '@gdg-fsc/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport * as React from 'react';\n\nconst alertVariants = cva(\n  'relative w-full rounded-lg border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7',\n  {\n    variants: {\n      variant: {\n        default: 'bg-background text-foreground',\n        destructive:\n          'border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive',\n      },\n    },\n    defaultVariants: {\n      variant: 'default',\n    },\n  },\n);\n\nconst Alert = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>\n>(({ className, variant, ...props }, ref) => (\n  <div ref={ref} role=\"alert\" className={cn(alertVariants({ variant }), className)} {...props} />\n));\nAlert.displayName = 'Alert';\n\nconst AlertTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(\n  ({ className, ...props }, ref) => (\n    <h5\n      ref={ref}\n      className={cn('mb-1 font-medium leading-none tracking-tight', className)}\n      {...props}\n    />\n  ),\n);\nAlertTitle.displayName = 'AlertTitle';\n\nconst AlertDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn('text-sm [&_p]:leading-relaxed', className)} {...props} />\n));\nAlertDescription.displayName = 'AlertDescription';\n\nexport { Alert, AlertDescription, AlertTitle };\n"
+        ],
+        "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA,SAASA,EAAE,QAAQ,gBAAgB;AACnC,SAASC,GAAG,EAAE,KAAKC,YAAY,QAAQ,0BAA0B;AACjE,OAAO,KAAKC,KAAK,MAAM,OAAO;AAE9B,MAAMC,aAAa,GAAGH,GAAG,CACvB,yKAAyK,EACzK;EACEI,QAAQ,EAAE;IACRC,OAAO,EAAE;MACPC,OAAO,EAAE,+BAA+B;MACxCC,WAAW,EACT;IACJ;EACF,CAAC;EACDC,eAAe,EAAE;IACfH,OAAO,EAAE;EACX;AACF,CACF,CAAC;AAED,MAAMI,KAAK,GAAGP,KAAK,CAACQ,UAAU,CAC5BC,cAAc,EACdT,KAAK,CAACU,cAAc,CAACD,cAAc,CAAC,GAAGV,YAAY,CAAC,OAAOE,aAAa,CAAC,CAC1E,CAAC,CAAC;EAAEU,SAAS;EAAER,OAAO;EAAE,GAAGS;AAAM,CAAC,EAAEC,GAAG,KACtC,CAAC,GAAG,CAAC,GAAG,CAAC,CAACA,GAAG,CAAC,CAAC,IAAI,CAAC,OAAO,CAAC,SAAS,CAAC,CAAChB,EAAE,CAACI,aAAa,CAAC;EAAEE;AAAQ,CAAC,CAAC,EAAEQ,SAAS,CAAC,CAAC,CAAC,IAAIC,KAAK,CAAC,GAC7F,CAAC;AACFL,KAAK,CAACO,WAAW,GAAG,OAAO;AAE3B,MAAMC,UAAU,GAAGf,KAAK,CAACQ,UAAU,CAACQ,oBAAoB,EAAEhB,KAAK,CAACU,cAAc,CAACO,kBAAkB,CAAC,CAAC,CACjG,CAAC;EAAEN,SAAS;EAAE,GAAGC;AAAM,CAAC,EAAEC,GAAG,KAC3B,CAAC,EAAE,CACD,GAAG,CAAC,CAACA,GAAG,CAAC,CACT,SAAS,CAAC,CAAChB,EAAE,CAAC,8CAA8C,EAAEc,SAAS,CAAC,CAAC,CACzE,IAAIC,KAAK,CAAC,GAGhB,CAAC;AACDG,UAAU,CAACD,WAAW,GAAG,YAAY;AAErC,MAAMI,gBAAgB,GAAGlB,KAAK,CAACQ,UAAU,CACvCQ,oBAAoB,EACpBhB,KAAK,CAACU,cAAc,CAACM,oBAAoB,CAAC,CAC3C,CAAC,CAAC;EAAEL,SAAS;EAAE,GAAGC;AAAM,CAAC,EAAEC,GAAG,KAC7B,CAAC,GAAG,CAAC,GAAG,CAAC,CAACA,GAAG,CAAC,CAAC,SAAS,CAAC,CAAChB,EAAE,CAAC,+BAA+B,EAAEc,SAAS,CAAC,CAAC,CAAC,IAAIC,KAAK,CAAC,GACrF,CAAC;AACFM,gBAAgB,CAACJ,WAAW,GAAG,kBAAkB;AAEjD,SAASP,KAAK,EAAEW,gBAAgB,EAAEH,UAAU",
+        "ignoreList": []
+      }
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628358,
+      "end": 1768772628358,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628359,
+      "end": 1768772628359,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628360,
+      "end": 1768772628360,
+      "order": "post-post"
+    }
+  ]
+}

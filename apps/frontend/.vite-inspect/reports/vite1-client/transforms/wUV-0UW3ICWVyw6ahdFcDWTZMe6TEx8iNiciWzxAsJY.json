@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@tanstack/query-core/build/modern/removable.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "// src/removable.ts\nimport { timeoutManager } from \"./timeoutManager.js\";\nimport { isServer, isValidTimeout } from \"./utils.js\";\nvar Removable = class {\n  #gcTimeout;\n  destroy() {\n    this.clearGcTimeout();\n  }\n  scheduleGc() {\n    this.clearGcTimeout();\n    if (isValidTimeout(this.gcTime)) {\n      this.#gcTimeout = timeoutManager.setTimeout(() => {\n        this.optionalRemove();\n      }, this.gcTime);\n    }\n  }\n  updateGcTime(newGcTime) {\n    this.gcTime = Math.max(\n      this.gcTime || 0,\n      newGcTime ?? (isServer ? Infinity : 5 * 60 * 1e3)\n    );\n  }\n  clearGcTimeout() {\n    if (this.#gcTimeout) {\n      timeoutManager.clearTimeout(this.#gcTimeout);\n      this.#gcTimeout = void 0;\n    }\n  }\n};\nexport {\n  Removable\n};\n//# sourceMappingURL=removable.js.map",
+      "start": 1768772628584,
+      "end": 1768772628584
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628584,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628618,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628646,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628703,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

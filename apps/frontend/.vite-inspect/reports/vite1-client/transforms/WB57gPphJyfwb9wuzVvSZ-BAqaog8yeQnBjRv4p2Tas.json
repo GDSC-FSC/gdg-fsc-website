@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/Ref.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as internal from \"./internal/ref.js\";\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const RefTypeId = internal.RefTypeId;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const make = internal.make;\n/**\n * @since 2.0.0\n * @category getters\n */\nexport const get = internal.get;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const getAndSet = internal.getAndSet;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const getAndUpdate = internal.getAndUpdate;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const getAndUpdateSome = internal.getAndUpdateSome;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const modify = internal.modify;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const modifySome = internal.modifySome;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const set = internal.set;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const setAndGet = internal.setAndGet;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const update = internal.update;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const updateAndGet = internal.updateAndGet;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const updateSome = internal.updateSome;\n/**\n * @since 2.0.0\n * @category utils\n */\nexport const updateSomeAndGet = internal.updateSomeAndGet;\n/**\n * @since 2.0.0\n * @category unsafe\n */\nexport const unsafeMake = internal.unsafeMake;\n//# sourceMappingURL=Ref.js.map",
+      "start": 1768772628415,
+      "end": 1768772628415
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628415,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628418,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628433,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628477,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

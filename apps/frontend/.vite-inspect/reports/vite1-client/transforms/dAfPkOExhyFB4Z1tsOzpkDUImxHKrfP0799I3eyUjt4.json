@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/maximize-2.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M15 3h6v6\", key: \"1q9fwt\" }],\n  [\"path\", { d: \"m21 3-7 7\", key: \"1l2asr\" }],\n  [\"path\", { d: \"m3 21 7-7\", key: \"tjx5ai\" }],\n  [\"path\", { d: \"M9 21H3v-6\", key: \"wtvkvv\" }]\n];\nconst Maximize2 = createLucideIcon(\"maximize-2\", __iconNode);\n\nexport { __iconNode, Maximize2 as default };\n//# sourceMappingURL=maximize-2.js.map\n",
+      "start": 1768772628539,
+      "end": 1768772628539
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628539,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628567,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628597,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628627,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

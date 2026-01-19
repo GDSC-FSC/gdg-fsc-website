@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/brick-wall-fire.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M16 3v2.107\", key: \"gq8xun\" }],\n  [\n    \"path\",\n    {\n      d: \"M17 9c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 22 17a5 5 0 0 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C13 11.5 16 9 17 9\",\n      key: \"1l2pih\"\n    }\n  ],\n  [\n    \"path\",\n    { d: \"M21 8.274V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.938\", key: \"jrnqjp\" }\n  ],\n  [\"path\", { d: \"M3 15h5.253\", key: \"xqg7rb\" }],\n  [\"path\", { d: \"M3 9h8.228\", key: \"1ppb70\" }],\n  [\"path\", { d: \"M8 15v6\", key: \"1stoo3\" }],\n  [\"path\", { d: \"M8 3v6\", key: \"vlvjmk\" }]\n];\nconst BrickWallFire = createLucideIcon(\"brick-wall-fire\", __iconNode);\n\nexport { __iconNode, BrickWallFire as default };\n//# sourceMappingURL=brick-wall-fire.js.map\n",
+      "start": 1768772628545,
+      "end": 1768772628545
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628545,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628579,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628611,
+      "end": 1768772628613,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628636,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

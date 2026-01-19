@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "useDefineForClassFields": true,
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@gdg-fsc/utils": ["../../packages/shared/utils/src/lib/index.ts"],
+      "@gdg-fsc/classes": ["../../packages/shared/classes/src/lib/index.ts"],
+      "@gdg-fsc/decorators": ["../../packages/shared/decorators/src/lib/index.ts"],
+      "@gdg-fsc/interface": ["../../packages/interface/src/index.ts"],
+      "@gdg-fsc/shared": ["../../packages/shared/src/index.ts"]
+    }
+  },
+  "include": ["src/main.tsx"]
+}

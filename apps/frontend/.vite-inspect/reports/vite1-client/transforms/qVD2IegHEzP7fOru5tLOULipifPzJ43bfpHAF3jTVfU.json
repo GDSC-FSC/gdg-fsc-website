@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/components/MotionConfig/index.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "\"use client\";\nimport { jsx } from 'react/jsx-runtime';\nimport { useContext, useMemo } from 'react';\nimport { MotionConfigContext } from '../../context/MotionConfigContext.mjs';\nimport { loadExternalIsValidProp } from '../../render/dom/utils/filter-props.mjs';\nimport { useConstant } from '../../utils/use-constant.mjs';\n\n/**\n * `MotionConfig` is used to set configuration options for all children `motion` components.\n *\n * ```jsx\n * import { motion, MotionConfig } from \"framer-motion\"\n *\n * export function App() {\n *   return (\n *     <MotionConfig transition={{ type: \"spring\" }}>\n *       <motion.div animate={{ x: 100 }} />\n *     </MotionConfig>\n *   )\n * }\n * ```\n *\n * @public\n */\nfunction MotionConfig({ children, isValidProp, ...config }) {\n    isValidProp && loadExternalIsValidProp(isValidProp);\n    /**\n     * Inherit props from any parent MotionConfig components\n     */\n    config = { ...useContext(MotionConfigContext), ...config };\n    /**\n     * Don't allow isStatic to change between renders as it affects how many hooks\n     * motion components fire.\n     */\n    config.isStatic = useConstant(() => config.isStatic);\n    /**\n     * Creating a new config context object will re-render every `motion` component\n     * every time it renders. So we only want to create a new one sparingly.\n     */\n    const context = useMemo(() => config, [\n        JSON.stringify(config.transition),\n        config.transformPagePoint,\n        config.reducedMotion,\n    ]);\n    return (jsx(MotionConfigContext.Provider, { value: context, children: children }));\n}\n\nexport { MotionConfig };\n//# sourceMappingURL=index.mjs.map\n",
+      "start": 1768772628585,
+      "end": 1768772628585
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628585,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628618,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628647,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628704,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

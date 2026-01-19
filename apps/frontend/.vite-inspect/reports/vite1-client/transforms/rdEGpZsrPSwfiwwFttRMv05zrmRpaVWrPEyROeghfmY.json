@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/ambulance.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M10 10H6\", key: \"1bsnug\" }],\n  [\"path\", { d: \"M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2\", key: \"wrbu53\" }],\n  [\n    \"path\",\n    {\n      d: \"M19 18h2a1 1 0 0 0 1-1v-3.28a1 1 0 0 0-.684-.948l-1.923-.641a1 1 0 0 1-.578-.502l-1.539-3.076A1 1 0 0 0 16.382 8H14\",\n      key: \"lrkjwd\"\n    }\n  ],\n  [\"path\", { d: \"M8 8v4\", key: \"1fwk8c\" }],\n  [\"path\", { d: \"M9 18h6\", key: \"x1upvd\" }],\n  [\"circle\", { cx: \"17\", cy: \"18\", r: \"2\", key: \"332jqn\" }],\n  [\"circle\", { cx: \"7\", cy: \"18\", r: \"2\", key: \"19iecd\" }]\n];\nconst Ambulance = createLucideIcon(\"ambulance\", __iconNode);\n\nexport { __iconNode, Ambulance as default };\n//# sourceMappingURL=ambulance.js.map\n",
+      "start": 1768772628536,
+      "end": 1768772628536
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628536,
+      "end": 1768772628552,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628564,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628593,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628624,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

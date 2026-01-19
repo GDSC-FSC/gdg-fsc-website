@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@effect/platform/dist/esm/internal/httpApp.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Effect from \"effect/Effect\";\nimport * as FiberRef from \"effect/FiberRef\";\nimport { dual } from \"effect/Function\";\nimport { globalValue } from \"effect/GlobalValue\";\nimport * as Option from \"effect/Option\";\n/** @internal */\nexport const currentPreResponseHandlers = /*#__PURE__*/globalValue(/*#__PURE__*/Symbol.for(\"@effect/platform/HttpApp/preResponseHandlers\"), () => FiberRef.unsafeMake(Option.none()));\n/** @internal */\nexport const appendPreResponseHandler = handler => FiberRef.update(currentPreResponseHandlers, Option.match({\n  onNone: () => Option.some(handler),\n  onSome: prev => Option.some((request, response) => Effect.flatMap(prev(request, response), response => handler(request, response)))\n}));\n/** @internal */\nexport const withPreResponseHandler = /*#__PURE__*/dual(2, (self, handler) => Effect.locallyWith(self, currentPreResponseHandlers, Option.match({\n  onNone: () => Option.some(handler),\n  onSome: prev => Option.some((request, response) => Effect.flatMap(prev(request, response), response => handler(request, response)))\n})));\n//# sourceMappingURL=httpApp.js.map",
+      "start": 1768772628753,
+      "end": 1768772628753
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628753,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628770,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628789,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628805,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

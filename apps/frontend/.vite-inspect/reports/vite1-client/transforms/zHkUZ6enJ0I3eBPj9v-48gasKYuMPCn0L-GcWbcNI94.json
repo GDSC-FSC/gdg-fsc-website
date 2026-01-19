@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/clock.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Context from \"../Context.js\";\nimport * as Duration from \"../Duration.js\";\nimport { constFalse } from \"../Function.js\";\nimport * as core from \"./core.js\";\n/** @internal */\nconst ClockSymbolKey = \"effect/Clock\";\n/** @internal */\nexport const ClockTypeId = /*#__PURE__*/Symbol.for(ClockSymbolKey);\n/** @internal */\nexport const clockTag = /*#__PURE__*/Context.GenericTag(\"effect/Clock\");\n/** @internal */\nexport const MAX_TIMER_MILLIS = 2 ** 31 - 1;\n/** @internal */\nexport const globalClockScheduler = {\n  unsafeSchedule(task, duration) {\n    const millis = Duration.toMillis(duration);\n    // If the duration is greater than the value allowable by the JS timer\n    // functions, treat the value as an infinite duration\n    if (millis > MAX_TIMER_MILLIS) {\n      return constFalse;\n    }\n    let completed = false;\n    const handle = setTimeout(() => {\n      completed = true;\n      task();\n    }, millis);\n    return () => {\n      clearTimeout(handle);\n      return !completed;\n    };\n  }\n};\nconst performanceNowNanos = /*#__PURE__*/function () {\n  const bigint1e6 = /*#__PURE__*/BigInt(1_000_000);\n  if (typeof performance === \"undefined\" || typeof performance.now !== \"function\") {\n    return () => BigInt(Date.now()) * bigint1e6;\n  }\n  let origin;\n  return () => {\n    if (origin === undefined) {\n      origin = BigInt(Date.now()) * bigint1e6 - BigInt(Math.round(performance.now() * 1_000_000));\n    }\n    return origin + BigInt(Math.round(performance.now() * 1000000));\n  };\n}();\nconst processOrPerformanceNow = /*#__PURE__*/function () {\n  const processHrtime = typeof process === \"object\" && \"hrtime\" in process && typeof process.hrtime.bigint === \"function\" ? process.hrtime : undefined;\n  if (!processHrtime) {\n    return performanceNowNanos;\n  }\n  const origin = /*#__PURE__*/performanceNowNanos() - /*#__PURE__*/processHrtime.bigint();\n  return () => origin + processHrtime.bigint();\n}();\n/** @internal */\nclass ClockImpl {\n  [ClockTypeId] = ClockTypeId;\n  unsafeCurrentTimeMillis() {\n    return Date.now();\n  }\n  unsafeCurrentTimeNanos() {\n    return processOrPerformanceNow();\n  }\n  currentTimeMillis = /*#__PURE__*/core.sync(() => this.unsafeCurrentTimeMillis());\n  currentTimeNanos = /*#__PURE__*/core.sync(() => this.unsafeCurrentTimeNanos());\n  scheduler() {\n    return core.succeed(globalClockScheduler);\n  }\n  sleep(duration) {\n    return core.async(resume => {\n      const canceler = globalClockScheduler.unsafeSchedule(() => resume(core.void), duration);\n      return core.asVoid(core.sync(canceler));\n    });\n  }\n}\n/** @internal */\nexport const make = () => new ClockImpl();\n//# sourceMappingURL=clock.js.map",
+      "start": 1768772628587,
+      "end": 1768772628587
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628587,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628621,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628650,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

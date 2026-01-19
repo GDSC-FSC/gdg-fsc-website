@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@radix-ui/react-context/dist/index.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "// packages/react/context/src/create-context.tsx\nimport * as React from \"react\";\nimport { jsx } from \"react/jsx-runtime\";\nfunction createContext2(rootComponentName, defaultContext) {\n  const Context = React.createContext(defaultContext);\n  const Provider = (props) => {\n    const { children, ...context } = props;\n    const value = React.useMemo(() => context, Object.values(context));\n    return /* @__PURE__ */ jsx(Context.Provider, { value, children });\n  };\n  Provider.displayName = rootComponentName + \"Provider\";\n  function useContext2(consumerName) {\n    const context = React.useContext(Context);\n    if (context) return context;\n    if (defaultContext !== void 0) return defaultContext;\n    throw new Error(`\\`${consumerName}\\` must be used within \\`${rootComponentName}\\``);\n  }\n  return [Provider, useContext2];\n}\nfunction createContextScope(scopeName, createContextScopeDeps = []) {\n  let defaultContexts = [];\n  function createContext3(rootComponentName, defaultContext) {\n    const BaseContext = React.createContext(defaultContext);\n    const index = defaultContexts.length;\n    defaultContexts = [...defaultContexts, defaultContext];\n    const Provider = (props) => {\n      const { scope, children, ...context } = props;\n      const Context = scope?.[scopeName]?.[index] || BaseContext;\n      const value = React.useMemo(() => context, Object.values(context));\n      return /* @__PURE__ */ jsx(Context.Provider, { value, children });\n    };\n    Provider.displayName = rootComponentName + \"Provider\";\n    function useContext2(consumerName, scope) {\n      const Context = scope?.[scopeName]?.[index] || BaseContext;\n      const context = React.useContext(Context);\n      if (context) return context;\n      if (defaultContext !== void 0) return defaultContext;\n      throw new Error(`\\`${consumerName}\\` must be used within \\`${rootComponentName}\\``);\n    }\n    return [Provider, useContext2];\n  }\n  const createScope = () => {\n    const scopeContexts = defaultContexts.map((defaultContext) => {\n      return React.createContext(defaultContext);\n    });\n    return function useScope(scope) {\n      const contexts = scope?.[scopeName] || scopeContexts;\n      return React.useMemo(\n        () => ({ [`__scope${scopeName}`]: { ...scope, [scopeName]: contexts } }),\n        [scope, contexts]\n      );\n    };\n  };\n  createScope.scopeName = scopeName;\n  return [createContext3, composeContextScopes(createScope, ...createContextScopeDeps)];\n}\nfunction composeContextScopes(...scopes) {\n  const baseScope = scopes[0];\n  if (scopes.length === 1) return baseScope;\n  const createScope = () => {\n    const scopeHooks = scopes.map((createScope2) => ({\n      useScope: createScope2(),\n      scopeName: createScope2.scopeName\n    }));\n    return function useComposedScopes(overrideScopes) {\n      const nextScopes = scopeHooks.reduce((nextScopes2, { useScope, scopeName }) => {\n        const scopeProps = useScope(overrideScopes);\n        const currentScope = scopeProps[`__scope${scopeName}`];\n        return { ...nextScopes2, ...currentScope };\n      }, {});\n      return React.useMemo(() => ({ [`__scope${baseScope.scopeName}`]: nextScopes }), [nextScopes]);\n    };\n  };\n  createScope.scopeName = baseScope.scopeName;\n  return createScope;\n}\nexport {\n  createContext2 as createContext,\n  createContextScope\n};\n//# sourceMappingURL=index.mjs.map\n",
+      "start": 1768772628413,
+      "end": 1768772628413
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628413,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628417,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628433,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628476,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

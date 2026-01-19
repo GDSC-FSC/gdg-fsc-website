@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-utils/dist/es/warn-once.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { formatErrorMessage } from './format-error-message.mjs';\n\nconst warned = new Set();\nfunction hasWarned(message) {\n    return warned.has(message);\n}\nfunction warnOnce(condition, message, errorCode) {\n    if (condition || warned.has(message))\n        return;\n    console.warn(formatErrorMessage(message, errorCode));\n    warned.add(message);\n}\n\nexport { hasWarned, warnOnce };\n",
+      "start": 1768772628753,
+      "end": 1768772628753
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628753,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628770,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628789,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628806,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

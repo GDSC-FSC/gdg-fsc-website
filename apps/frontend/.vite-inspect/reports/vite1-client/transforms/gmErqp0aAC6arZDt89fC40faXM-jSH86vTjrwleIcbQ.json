@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/packages/shared/dist/utils/src/lib/task-exec.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * Copyright (c) 2026 GDG on Campus Farmingdale State College\n *\n * Permission is hereby granted, free of charge, to any person obtaining a copy\n * of this software and associated documentation files (the \"Software\"), to deal\n * in the Software without restriction, including without limitation the rights\n * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n * copies of the Software, and to permit persons to whom the Software is\n * furnished to do so, subject to the following conditions:\n *\n * The above copyright notice and this permission notice shall be included in all\n * copies or substantial portions of the Software.\n *\n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */\nimport TinyQueue from 'tinyqueue';\nexport class TaskExec {\n    tasks = new TinyQueue([], (a, b) => a.execTime - b.execTime);\n    // eslint-disable-next-line @typescript-eslint/no-explicit-any\n    handler;\n    exec(func, ttl) {\n        this.tasks.push({ func, execTime: Date.now() + ttl });\n        this.handleNext();\n    }\n    handleNext() {\n        if (!this.tasks.length) {\n            return;\n        }\n        const { execTime } = this.tasks.peek();\n        this.execNext(Math.max(execTime - Date.now(), 0));\n    }\n    execNext(ttl) {\n        clearTimeout(this.handler);\n        this.handler = setTimeout(() => {\n            const { func } = this.tasks.pop();\n            func();\n            this.handleNext();\n        }, ttl);\n    }\n}\n//# sourceMappingURL=task-exec.js.map",
+      "start": 1768772628388,
+      "end": 1768772628388
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628388,
+      "end": 1768772628389,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628394,
+      "end": 1768772628394,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628409,
+      "end": 1768772628410,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628422,
+      "end": 1768772628422,
+      "order": "post-post"
+    }
+  ]
+}

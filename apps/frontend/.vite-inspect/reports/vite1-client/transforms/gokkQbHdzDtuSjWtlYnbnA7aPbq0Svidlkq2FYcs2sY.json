@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/schema/errors.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as array_ from \"../../Array.js\";\nimport * as Inspectable from \"../../Inspectable.js\";\nimport * as util_ from \"./util.js\";\nconst getErrorMessage = (reason, details, path, ast) => {\n  let out = reason;\n  if (path && array_.isNonEmptyReadonlyArray(path)) {\n    out += `\\nat path: ${util_.formatPath(path)}`;\n  }\n  if (details !== undefined) {\n    out += `\\ndetails: ${details}`;\n  }\n  if (ast) {\n    out += `\\nschema (${ast._tag}): ${ast}`;\n  }\n  return out;\n};\n// ---------------------------------------------\n// generic\n// ---------------------------------------------\n/** @internal */\nexport const getInvalidArgumentErrorMessage = details => getErrorMessage(\"Invalid Argument\", details);\nconst getUnsupportedSchemaErrorMessage = (details, path, ast) => getErrorMessage(\"Unsupported schema\", details, path, ast);\nconst getMissingAnnotationErrorMessage = (details, path, ast) => getErrorMessage(\"Missing annotation\", details, path, ast);\n// ---------------------------------------------\n// Arbitrary\n// ---------------------------------------------\n/** @internal */\nexport const getArbitraryUnsupportedErrorMessage = (path, ast) => getUnsupportedSchemaErrorMessage(\"Cannot build an Arbitrary for this schema\", path, ast);\n/** @internal */\nexport const getArbitraryMissingAnnotationErrorMessage = (path, ast) => getMissingAnnotationErrorMessage(`Generating an Arbitrary for this schema requires an \"arbitrary\" annotation`, path, ast);\n/** @internal */\nexport const getArbitraryEmptyEnumErrorMessage = path => getErrorMessage(\"Empty Enums schema\", \"Generating an Arbitrary for this schema requires at least one enum\", path);\n// ---------------------------------------------\n// Equivalence\n// ---------------------------------------------\n/** @internal */\nexport const getEquivalenceUnsupportedErrorMessage = (ast, path) => getUnsupportedSchemaErrorMessage(\"Cannot build an Equivalence\", path, ast);\n// ---------------------------------------------\n// JSON Schema\n// ---------------------------------------------\n/** @internal */\nexport const getJSONSchemaMissingAnnotationErrorMessage = (path, ast) => getMissingAnnotationErrorMessage(`Generating a JSON Schema for this schema requires a \"jsonSchema\" annotation`, path, ast);\n/** @internal */\nexport const getJSONSchemaMissingIdentifierAnnotationErrorMessage = (path, ast) => getMissingAnnotationErrorMessage(`Generating a JSON Schema for this schema requires an \"identifier\" annotation`, path, ast);\n/** @internal */\nexport const getJSONSchemaUnsupportedPostRestElementsErrorMessage = path => getErrorMessage(\"Generating a JSON Schema for post-rest elements is not currently supported. You're welcome to contribute by submitting a Pull Request\", undefined, path);\n/** @internal */\nexport const getJSONSchemaUnsupportedKeyErrorMessage = (key, path) => getErrorMessage(\"Unsupported key\", `Cannot encode ${Inspectable.formatPropertyKey(key)} key to JSON Schema`, path);\n// ---------------------------------------------\n// Pretty\n// ---------------------------------------------\n/** @internal */\nexport const getPrettyMissingAnnotationErrorMessage = (path, ast) => getMissingAnnotationErrorMessage(`Generating a Pretty for this schema requires a \"pretty\" annotation`, path, ast);\n/** @internal */\nexport const getPrettyNeverErrorMessage = \"Cannot pretty print a `never` value\";\n/** @internal */\nexport const getPrettyNoMatchingSchemaErrorMessage = (actual, path, ast) => getErrorMessage(\"Unexpected Error\", `Cannot find a matching schema for ${Inspectable.formatUnknown(actual)}`, path, ast);\n// ---------------------------------------------\n// Schema\n// ---------------------------------------------\n/** @internal */\nexport const getSchemaExtendErrorMessage = (x, y, path) => getErrorMessage(\"Unsupported schema or overlapping types\", `cannot extend ${x} with ${y}`, path);\n/** @internal */\nexport const getSchemaUnsupportedLiteralSpanErrorMessage = ast => getErrorMessage(\"Unsupported template literal span\", undefined, undefined, ast);\n// ---------------------------------------------\n// AST\n// ---------------------------------------------\n/** @internal */\nexport const getASTUnsupportedSchemaErrorMessage = ast => getUnsupportedSchemaErrorMessage(undefined, undefined, ast);\n/** @internal */\nexport const getASTUnsupportedKeySchemaErrorMessage = ast => getErrorMessage(\"Unsupported key schema\", undefined, undefined, ast);\n/** @internal */\nexport const getASTUnsupportedLiteralErrorMessage = literal => getErrorMessage(\"Unsupported literal\", `literal value: ${Inspectable.formatUnknown(literal)}`);\n/** @internal */\nexport const getASTDuplicateIndexSignatureErrorMessage = type => getErrorMessage(\"Duplicate index signature\", `${type} index signature`);\n/** @internal */\nexport const getASTIndexSignatureParameterErrorMessage = /*#__PURE__*/getErrorMessage(\"Unsupported index signature parameter\", \"An index signature parameter type must be `string`, `symbol`, a template literal type or a refinement of the previous types\");\n/** @internal */\nexport const getASTRequiredElementFollowinAnOptionalElementErrorMessage = /*#__PURE__*/getErrorMessage(\"Invalid element\", \"A required element cannot follow an optional element. ts(1257)\");\n/** @internal */\nexport const getASTDuplicatePropertySignatureTransformationErrorMessage = key => getErrorMessage(\"Duplicate property signature transformation\", `Duplicate key ${Inspectable.formatUnknown(key)}`);\n/** @internal */\nexport const getASTUnsupportedRenameSchemaErrorMessage = ast => getUnsupportedSchemaErrorMessage(undefined, undefined, ast);\n/** @internal */\nexport const getASTDuplicatePropertySignatureErrorMessage = key => getErrorMessage(\"Duplicate property signature\", `Duplicate key ${Inspectable.formatUnknown(key)}`);\n//# sourceMappingURL=errors.js.map",
+      "start": 1768772628586,
+      "end": 1768772628586
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628586,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628620,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628651,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628706,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

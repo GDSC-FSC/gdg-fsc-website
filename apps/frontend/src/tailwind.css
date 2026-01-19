@@ -131,7 +131,6 @@ html {
   transition-duration: 0.3s;
   list-style: none;
   scroll-behavior: smooth;
-  transition: all;
   width: 100dvw;
   height: 100dvh;
 }
@@ -260,6 +259,28 @@ button:focus-visible {
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  /*---break---
+ */
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  /*---break---
+ */
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
 }
 
 @layer base {

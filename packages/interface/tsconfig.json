@@ -3,20 +3,26 @@
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "jsx": "react-jsx",
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "./dist",
     "rootDir": ".",
+    "baseUrl": ".",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": false
+    "jsx": "react-jsx",
+    "noEmit": false,
+    "paths": {
+      "@gdg-fsc/utils": ["../shared/dist/utils/src/index.d.ts"],
+      "@gdg-fsc/classes": ["../shared/dist/classes/src/lib/index.d.ts"],
+      "@gdg-fsc/decorators": ["../shared/dist/decorators/src/lib/index.d.ts"],
+      "@gdg-fsc/shared": ["../shared/dist/index.d.ts"]
+    }
   },
   "include": ["index.ts", "ui/**/*.ts", "ui/**/*.tsx"],
   "exclude": ["node_modules", "dist", "**/*.stories.ts", "**/*.stories.tsx", ".storybook"]

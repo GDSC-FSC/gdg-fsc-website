@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/shared/src/utils.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nconst toKebabCase = (string) => string.replace(/([a-z0-9])([A-Z])/g, \"$1-$2\").toLowerCase();\nconst toCamelCase = (string) => string.replace(\n  /^([A-Z])|[\\s-_]+(\\w)/g,\n  (match, p1, p2) => p2 ? p2.toUpperCase() : p1.toLowerCase()\n);\nconst toPascalCase = (string) => {\n  const camelCase = toCamelCase(string);\n  return camelCase.charAt(0).toUpperCase() + camelCase.slice(1);\n};\nconst mergeClasses = (...classes) => classes.filter((className, index, array) => {\n  return Boolean(className) && className.trim() !== \"\" && array.indexOf(className) === index;\n}).join(\" \").trim();\nconst hasA11yProp = (props) => {\n  for (const prop in props) {\n    if (prop.startsWith(\"aria-\") || prop === \"role\" || prop === \"title\") {\n      return true;\n    }\n  }\n};\n\nexport { hasA11yProp, mergeClasses, toCamelCase, toKebabCase, toPascalCase };\n//# sourceMappingURL=utils.js.map\n",
+      "start": 1768772628742,
+      "end": 1768772628742
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628742,
+      "end": 1768772628742,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628744,
+      "end": 1768772628744,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628769,
+      "end": 1768772628769,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628788,
+      "end": 1768772628788,
+      "order": "post-post"
+    }
+  ]
+}

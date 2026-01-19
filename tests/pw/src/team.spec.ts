@@ -14,7 +14,21 @@
  * limitations under the License.
  */
 
-import { expect } from '@playwright/test';
-import { test } from '../../../test-fixtures';
+import { expect, test } from '@playwright/test';
 
-test.describe('', () => {});
+test.describe('Team Page', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/team');
+  });
+
+  test('should render team header', async ({ page }) => {
+    await expect(page.getByRole('heading', { name: /leadership team/i })).toBeVisible();
+  });
+
+  test('should render team members', async ({ page }) => {
+    // Assuming there are team members rendered
+    // We can check for a specific member or just that the grid exists
+    await expect(page.locator('.grid > div').first()).toBeVisible(); // Check if at least one member card is visible
+    await expect(page.getByRole('button', { name: /get involved/i })).toBeVisible();
+  });
+});

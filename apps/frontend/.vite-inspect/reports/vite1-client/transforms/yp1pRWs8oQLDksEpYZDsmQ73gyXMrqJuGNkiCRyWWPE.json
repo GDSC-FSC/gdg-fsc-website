@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/check/runner/configuration/QualifiedParameters.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import prand, { unsafeSkipN } from 'pure-rand';\nimport { VerbosityLevel } from './VerbosityLevel.js';\nconst safeDateNow = Date.now;\nconst safeMathMin = Math.min;\nconst safeMathRandom = Math.random;\nexport class QualifiedParameters {\n    constructor(op) {\n        const p = op || {};\n        this.seed = QualifiedParameters.readSeed(p);\n        this.randomType = QualifiedParameters.readRandomType(p);\n        this.numRuns = QualifiedParameters.readNumRuns(p);\n        this.verbose = QualifiedParameters.readVerbose(p);\n        this.maxSkipsPerRun = QualifiedParameters.readOrDefault(p, 'maxSkipsPerRun', 100);\n        this.timeout = QualifiedParameters.safeTimeout(QualifiedParameters.readOrDefault(p, 'timeout', null));\n        this.skipAllAfterTimeLimit = QualifiedParameters.safeTimeout(QualifiedParameters.readOrDefault(p, 'skipAllAfterTimeLimit', null));\n        this.interruptAfterTimeLimit = QualifiedParameters.safeTimeout(QualifiedParameters.readOrDefault(p, 'interruptAfterTimeLimit', null));\n        this.markInterruptAsFailure = QualifiedParameters.readBoolean(p, 'markInterruptAsFailure');\n        this.skipEqualValues = QualifiedParameters.readBoolean(p, 'skipEqualValues');\n        this.ignoreEqualValues = QualifiedParameters.readBoolean(p, 'ignoreEqualValues');\n        this.logger = QualifiedParameters.readOrDefault(p, 'logger', (v) => {\n            console.log(v);\n        });\n        this.path = QualifiedParameters.readOrDefault(p, 'path', '');\n        this.unbiased = QualifiedParameters.readBoolean(p, 'unbiased');\n        this.examples = QualifiedParameters.readOrDefault(p, 'examples', []);\n        this.endOnFailure = QualifiedParameters.readBoolean(p, 'endOnFailure');\n        this.reporter = QualifiedParameters.readOrDefault(p, 'reporter', null);\n        this.asyncReporter = QualifiedParameters.readOrDefault(p, 'asyncReporter', null);\n        this.errorWithCause = QualifiedParameters.readBoolean(p, 'errorWithCause');\n    }\n    toParameters() {\n        const orUndefined = (value) => (value !== null ? value : undefined);\n        const parameters = {\n            seed: this.seed,\n            randomType: this.randomType,\n            numRuns: this.numRuns,\n            maxSkipsPerRun: this.maxSkipsPerRun,\n            timeout: orUndefined(this.timeout),\n            skipAllAfterTimeLimit: orUndefined(this.skipAllAfterTimeLimit),\n            interruptAfterTimeLimit: orUndefined(this.interruptAfterTimeLimit),\n            markInterruptAsFailure: this.markInterruptAsFailure,\n            skipEqualValues: this.skipEqualValues,\n            ignoreEqualValues: this.ignoreEqualValues,\n            path: this.path,\n            logger: this.logger,\n            unbiased: this.unbiased,\n            verbose: this.verbose,\n            examples: this.examples,\n            endOnFailure: this.endOnFailure,\n            reporter: orUndefined(this.reporter),\n            asyncReporter: orUndefined(this.asyncReporter),\n            errorWithCause: this.errorWithCause,\n        };\n        return parameters;\n    }\n    static read(op) {\n        return new QualifiedParameters(op);\n    }\n}\nQualifiedParameters.createQualifiedRandomGenerator = (random) => {\n    return (seed) => {\n        const rng = random(seed);\n        if (rng.unsafeJump === undefined) {\n            rng.unsafeJump = () => unsafeSkipN(rng, 42);\n        }\n        return rng;\n    };\n};\nQualifiedParameters.readSeed = (p) => {\n    if (p.seed == null)\n        return safeDateNow() ^ (safeMathRandom() * 0x100000000);\n    const seed32 = p.seed | 0;\n    if (p.seed === seed32)\n        return seed32;\n    const gap = p.seed - seed32;\n    return seed32 ^ (gap * 0x100000000);\n};\nQualifiedParameters.readRandomType = (p) => {\n    if (p.randomType == null)\n        return prand.xorshift128plus;\n    if (typeof p.randomType === 'string') {\n        switch (p.randomType) {\n            case 'mersenne':\n                return QualifiedParameters.createQualifiedRandomGenerator(prand.mersenne);\n            case 'congruential':\n            case 'congruential32':\n                return QualifiedParameters.createQualifiedRandomGenerator(prand.congruential32);\n            case 'xorshift128plus':\n                return prand.xorshift128plus;\n            case 'xoroshiro128plus':\n                return prand.xoroshiro128plus;\n            default:\n                throw new Error(`Invalid random specified: '${p.randomType}'`);\n        }\n    }\n    const mrng = p.randomType(0);\n    if ('min' in mrng && mrng.min !== -0x80000000) {\n        throw new Error(`Invalid random number generator: min must equal -0x80000000, got ${String(mrng.min)}`);\n    }\n    if ('max' in mrng && mrng.max !== 0x7fffffff) {\n        throw new Error(`Invalid random number generator: max must equal 0x7fffffff, got ${String(mrng.max)}`);\n    }\n    if ('unsafeJump' in mrng) {\n        return p.randomType;\n    }\n    return QualifiedParameters.createQualifiedRandomGenerator(p.randomType);\n};\nQualifiedParameters.readNumRuns = (p) => {\n    const defaultValue = 100;\n    if (p.numRuns != null)\n        return p.numRuns;\n    if (p.num_runs != null)\n        return p.num_runs;\n    return defaultValue;\n};\nQualifiedParameters.readVerbose = (p) => {\n    if (p.verbose == null)\n        return VerbosityLevel.None;\n    if (typeof p.verbose === 'boolean') {\n        return p.verbose === true ? VerbosityLevel.Verbose : VerbosityLevel.None;\n    }\n    if (p.verbose <= VerbosityLevel.None) {\n        return VerbosityLevel.None;\n    }\n    if (p.verbose >= VerbosityLevel.VeryVerbose) {\n        return VerbosityLevel.VeryVerbose;\n    }\n    return p.verbose | 0;\n};\nQualifiedParameters.readBoolean = (p, key) => p[key] === true;\nQualifiedParameters.readOrDefault = (p, key, defaultValue) => {\n    const value = p[key];\n    return value != null ? value : defaultValue;\n};\nQualifiedParameters.safeTimeout = (value) => {\n    if (value === null) {\n        return null;\n    }\n    return safeMathMin(value, 0x7fffffff);\n};\n",
+      "start": 1768772628893,
+      "end": 1768772628893
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628893,
+      "end": 1768772628894,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628895,
+      "end": 1768772628896,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628897,
+      "end": 1768772628897,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628898,
+      "end": 1768772628899,
+      "order": "post-post"
+    }
+  ]
+}

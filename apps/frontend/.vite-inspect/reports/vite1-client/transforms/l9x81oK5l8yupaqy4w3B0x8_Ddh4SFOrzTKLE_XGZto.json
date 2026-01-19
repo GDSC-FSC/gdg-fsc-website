@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/render/dom/use-render.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "\"use client\";\nimport { isMotionValue } from 'motion-dom';\nimport { Fragment, useMemo, createElement } from 'react';\nimport { useHTMLProps } from '../html/use-props.mjs';\nimport { useSVGProps } from '../svg/use-props.mjs';\nimport { filterProps } from './utils/filter-props.mjs';\nimport { isSVGComponent } from './utils/is-svg-component.mjs';\n\nfunction useRender(Component, props, ref, { latestValues, }, isStatic, forwardMotionProps = false, isSVG) {\n    const useVisualProps = (isSVG ?? isSVGComponent(Component)) ? useSVGProps : useHTMLProps;\n    const visualProps = useVisualProps(props, latestValues, isStatic, Component);\n    const filteredProps = filterProps(props, typeof Component === \"string\", forwardMotionProps);\n    const elementProps = Component !== Fragment ? { ...filteredProps, ...visualProps, ref } : {};\n    /**\n     * If component has been handed a motion value as its child,\n     * memoise its initial value and render that. Subsequent updates\n     * will be handled by the onChange handler\n     */\n    const { children } = props;\n    const renderedChildren = useMemo(() => (isMotionValue(children) ? children.get() : children), [children]);\n    return createElement(Component, {\n        ...elementProps,\n        children: renderedChildren,\n    });\n}\n\nexport { useRender };\n//# sourceMappingURL=use-render.mjs.map\n",
+      "start": 1768772628893,
+      "end": 1768772628893
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628893,
+      "end": 1768772628894,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628895,
+      "end": 1768772628896,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628897,
+      "end": 1768772628897,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628898,
+      "end": 1768772628899,
+      "order": "post-post"
+    }
+  ]
+}

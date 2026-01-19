@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/string-utils.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * Adapted from the `change-case` library.\n *\n * Copyright (c) 2014 Blake Embrey (hello@blakeembrey.com)\n */\n/** @internal */\nexport const lowerCase = str => str.toLowerCase();\n/** @internal */\nexport const upperCase = str => str.toUpperCase();\n/**\n * Replace `re` in the input string with the replacement value.\n */\nconst replace = (input, re, value) => re instanceof RegExp ? input.replace(re, value) : re.reduce((input, re) => input.replace(re, value), input);\n// Support camel case (\"camelCase\" -> \"camel Case\" and \"CAMELCase\" -> \"CAMEL Case\").\nconst DEFAULT_SPLIT_REGEXP = [/([a-z0-9])([A-Z])/g, /([A-Z])([A-Z][a-z])/g];\n// Remove all non-word characters.\nconst DEFAULT_STRIP_REGEXP = /[^A-Z0-9]+/gi;\n/**\n * Normalize the string into something other libraries can manipulate easier.\n */\nconst noCase = (input, options = {}) => {\n  const {\n    delimiter = \" \",\n    splitRegexp = DEFAULT_SPLIT_REGEXP,\n    stripRegexp = DEFAULT_STRIP_REGEXP,\n    transform = lowerCase\n  } = options;\n  const result = replace(replace(input, splitRegexp, \"$1\\0$2\"), stripRegexp, \"\\0\");\n  let start = 0;\n  let end = result.length;\n  // Trim the delimiter from around the output string.\n  while (result.charAt(start) === \"\\0\") {\n    start++;\n  }\n  while (result.charAt(end - 1) === \"\\0\") {\n    end--;\n  }\n  // Transform each token independently.\n  return result.slice(start, end).split(\"\\0\").map(transform).join(delimiter);\n};\nconst pascalCaseTransform = (input, index) => {\n  const firstChar = input.charAt(0);\n  const lowerChars = input.substring(1).toLowerCase();\n  if (index > 0 && firstChar >= \"0\" && firstChar <= \"9\") {\n    return `_${firstChar}${lowerChars}`;\n  }\n  return `${firstChar.toUpperCase()}${lowerChars}`;\n};\n/** @internal */\nexport const pascalCase = (input, options) => noCase(input, {\n  delimiter: \"\",\n  transform: pascalCaseTransform,\n  ...options\n});\nconst camelCaseTransform = (input, index) => index === 0 ? input.toLowerCase() : pascalCaseTransform(input, index);\n/** @internal */\nexport const camelCase = (input, options) => pascalCase(input, {\n  transform: camelCaseTransform,\n  ...options\n});\n/** @internal */\nexport const constantCase = (input, options) => noCase(input, {\n  delimiter: \"_\",\n  transform: upperCase,\n  ...options\n});\n/** @internal */\nexport const kebabCase = (input, options) => noCase(input, {\n  delimiter: \"-\",\n  ...options\n});\n/** @internal */\nexport const snakeCase = (input, options) => noCase(input, {\n  delimiter: \"_\",\n  ...options\n});\n//# sourceMappingURL=string-utils.js.map",
+      "start": 1768772628753,
+      "end": 1768772628753
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628753,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628770,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628789,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628806,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

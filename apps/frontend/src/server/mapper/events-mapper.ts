@@ -14,4 +14,53 @@
  * limitations under the License.
  */
 
-export class EventsMapper {}
+import type { EventEntity } from '../dal/models/event-entity';
+import type { EventResponseDTO, EventsListResponseDTO } from '../dto/events-response-dto';
+
+/**
+ * Mapper for converting between EventEntity and DTOs.
+ */
+export class EventsMapper {
+  /**
+   * Converts an EventEntity to an EventResponseDTO.
+   */
+  static toDTO(entity: EventEntity): EventResponseDTO {
+    return {
+      id: entity.id,
+      title: entity.title,
+      thumbnailLink: entity.thumbnailLink,
+      detailsLink: entity.detailsLink,
+      eventType: entity.eventType,
+      isUpcoming: entity.isUpcoming,
+    };
+  }
+
+  /**
+   * Converts an array of EventEntity to EventResponseDTOs.
+   */
+  static toDTOList(entities: EventEntity[]): EventResponseDTO[] {
+    return entities.map(EventsMapper.toDTO);
+  }
+
+  /**
+   * Converts an array of entities to a paginated list response.
+   */
+  static toListResponse(entities: EventEntity[], page = 1, limit = 20): EventsListResponseDTO {
+    const startIndex = (page - 1) * limit;
+    const paginatedEntities = entities.slice(startIndex, startIndex + limit);
+
+    return {
+      data: EventsMapper.toDTOList(paginatedEntities),
+      meta: {
+        total: entities.length,
+        page,
+        limit,
+        totalPages: Math.ceil(entities.length / limit),
+      },
+    };
+  }
+
+  toString(): string {
+    return 'EventsMapper';
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/file-archive.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\n    \"path\",\n    {\n      d: \"M13.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v11.5\",\n      key: \"4pqfef\"\n    }\n  ],\n  [\"path\", { d: \"M14 2v5a1 1 0 0 0 1 1h5\", key: \"wfsgrz\" }],\n  [\"path\", { d: \"M8 12v-1\", key: \"1ej8lb\" }],\n  [\"path\", { d: \"M8 18v-2\", key: \"qcmpov\" }],\n  [\"path\", { d: \"M8 7V6\", key: \"1nbb54\" }],\n  [\"circle\", { cx: \"8\", cy: \"20\", r: \"2\", key: \"ckkr5m\" }]\n];\nconst FileArchive = createLucideIcon(\"file-archive\", __iconNode);\n\nexport { __iconNode, FileArchive as default };\n//# sourceMappingURL=file-archive.js.map\n",
+      "start": 1768772628546,
+      "end": 1768772628546
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628546,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628574,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628605,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628632,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

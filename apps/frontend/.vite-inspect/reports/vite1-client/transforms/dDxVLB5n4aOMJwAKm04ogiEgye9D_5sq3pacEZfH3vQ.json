@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/render/html/utils/render.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "function renderHTML(element, { style, vars }, styleProp, projection) {\n    const elementStyle = element.style;\n    let key;\n    for (key in style) {\n        // CSSStyleDeclaration has [index: number]: string; in the types, so we use that as key type.\n        elementStyle[key] = style[key];\n    }\n    // Write projection styles directly to element style\n    projection?.applyProjectionStyles(elementStyle, styleProp);\n    for (key in vars) {\n        // Loop over any CSS variables and assign those.\n        // They can only be assigned using `setProperty`.\n        elementStyle.setProperty(key, vars[key]);\n    }\n}\n\nexport { renderHTML };\n",
+      "start": 1768772628756,
+      "end": 1768772628756
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628756,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628772,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628791,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628808,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

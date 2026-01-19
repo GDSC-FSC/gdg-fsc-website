@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/hashMap/array.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/** @internal */\nexport function arrayUpdate(mutate, at, v, arr) {\n  let out = arr;\n  if (!mutate) {\n    const len = arr.length;\n    out = new Array(len);\n    for (let i = 0; i < len; ++i) out[i] = arr[i];\n  }\n  out[at] = v;\n  return out;\n}\n/** @internal */\nexport function arraySpliceOut(mutate, at, arr) {\n  const newLen = arr.length - 1;\n  let i = 0;\n  let g = 0;\n  let out = arr;\n  if (mutate) {\n    i = g = at;\n  } else {\n    out = new Array(newLen);\n    while (i < at) out[g++] = arr[i++];\n  }\n  ++i;\n  while (i <= newLen) out[g++] = arr[i++];\n  if (mutate) {\n    out.length = newLen;\n  }\n  return out;\n}\n/** @internal */\nexport function arraySpliceIn(mutate, at, v, arr) {\n  const len = arr.length;\n  if (mutate) {\n    let i = len;\n    while (i >= at) arr[i--] = arr[i];\n    arr[at] = v;\n    return arr;\n  }\n  let i = 0,\n    g = 0;\n  const out = new Array(len + 1);\n  while (i < at) out[g++] = arr[i++];\n  out[at] = v;\n  while (i < len) out[++g] = arr[i++];\n  return out;\n}\n//# sourceMappingURL=array.js.map",
+      "start": 1768772628847,
+      "end": 1768772628847
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628847,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628850,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628853,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628857,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

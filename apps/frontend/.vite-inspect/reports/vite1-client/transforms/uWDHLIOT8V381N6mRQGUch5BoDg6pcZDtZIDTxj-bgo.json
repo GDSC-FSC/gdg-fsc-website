@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/sword.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"m11 19-6-6\", key: \"s7kpr\" }],\n  [\"path\", { d: \"m5 21-2-2\", key: \"1kw20b\" }],\n  [\"path\", { d: \"m8 16-4 4\", key: \"1oqv8h\" }],\n  [\"path\", { d: \"M9.5 17.5 21 6V3h-3L6.5 14.5\", key: \"pkxemp\" }]\n];\nconst Sword = createLucideIcon(\"sword\", __iconNode);\n\nexport { __iconNode, Sword as default };\n//# sourceMappingURL=sword.js.map\n",
+      "start": 1768772628547,
+      "end": 1768772628547
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628547,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628575,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628606,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628632,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

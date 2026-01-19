@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/is-what/dist/isNullOrUndefined.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { isNull } from './isNull.js';\nimport { /* tree-shaking no-side-effects-when-called */ isOneOf } from './isOneOf.js';\nimport { isUndefined } from './isUndefined.js';\n/** Returns true whether the payload is null or undefined */\nexport const isNullOrUndefined = isOneOf(isNull, isUndefined);\n",
+      "start": 1768772628847,
+      "end": 1768772628847
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628847,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628850,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628853,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628857,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/ulid.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { tuple } from './tuple.js';\nimport { integer } from './integer.js';\nimport { paddedUintToBase32StringMapper, uintToBase32StringUnmapper } from './_internals/mappers/UintToBase32String.js';\nconst padded10Mapper = paddedUintToBase32StringMapper(10);\nconst padded8Mapper = paddedUintToBase32StringMapper(8);\nfunction ulidMapper(parts) {\n    return (padded10Mapper(parts[0]) +\n        padded8Mapper(parts[1]) +\n        padded8Mapper(parts[2]));\n}\nfunction ulidUnmapper(value) {\n    if (typeof value !== 'string' || value.length !== 26) {\n        throw new Error('Unsupported type');\n    }\n    return [\n        uintToBase32StringUnmapper(value.slice(0, 10)),\n        uintToBase32StringUnmapper(value.slice(10, 18)),\n        uintToBase32StringUnmapper(value.slice(18)),\n    ];\n}\nexport function ulid() {\n    const timestampPartArbitrary = integer({ min: 0, max: 0xffffffffffff });\n    const randomnessPartOneArbitrary = integer({ min: 0, max: 0xffffffffff });\n    const randomnessPartTwoArbitrary = integer({ min: 0, max: 0xffffffffff });\n    return tuple(timestampPartArbitrary, randomnessPartOneArbitrary, randomnessPartTwoArbitrary).map(ulidMapper, ulidUnmapper);\n}\n",
+      "start": 1768772628848,
+      "end": 1768772628848
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628848,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628852,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628855,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628858,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

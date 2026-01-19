@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/react-router-dom/dist/index.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * react-router-dom v7.12.0\n *\n * Copyright (c) Remix Software Inc.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.md file in the root directory of this source tree.\n *\n * @license MIT\n */\n\n// index.ts\nimport { HydratedRouter, RouterProvider } from \"react-router/dom\";\nexport * from \"react-router\";\nexport {\n  HydratedRouter,\n  RouterProvider\n};\n",
+      "start": 1768772628240,
+      "end": 1768772628240
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628240,
+      "end": 1768772628241,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628241,
+      "end": 1768772628242,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628242,
+      "end": 1768772628242,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628242,
+      "end": 1768772628243,
+      "order": "post-post"
+    }
+  ]
+}

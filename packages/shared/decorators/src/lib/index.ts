@@ -1,17 +1,38 @@
-export * from './after';
-export * from './before';
-export * from './bind';
-export * from './debounce';
-export * from './delay';
-export * from './delegate';
-export * from './exec-time';
-export * from './execute';
-export * from './memoize';
-export * from './memoize-async';
-export * from './observer';
-export * from './rate-limit';
-export * from './readonly';
-export * from './throttle';
-export * from './throttle-async';
-export * from './types';
+/**
+ * Copyright (c) 2026 GDG on Campus Farmingdale State College
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 
+export * from './after/index.js';
+export * from './before/index.js';
+export * from './bind/index.js';
+export * from './debounce/index.js';
+export * from './delay/index.js';
+export * from './delegate/index.js';
+export * from './exec-time/index.js';
+export * from './execute/index.js';
+export * from './memoize/index.js';
+export * from './memoize-async/index.js';
+export * from './observer/index.js';
+export * from './rate-limit/index.js';
+export * from './readonly/index.js';
+export * from './throttle/index.js';
+export * from './throttle-async/index.js';
+export * from './types.js';

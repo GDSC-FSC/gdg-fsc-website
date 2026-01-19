@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/motion/features/definitions.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { getFeatureDefinitions, setFeatureDefinitions } from 'motion-dom';\n\nconst featureProps = {\n    animation: [\n        \"animate\",\n        \"variants\",\n        \"whileHover\",\n        \"whileTap\",\n        \"exit\",\n        \"whileInView\",\n        \"whileFocus\",\n        \"whileDrag\",\n    ],\n    exit: [\"exit\"],\n    drag: [\"drag\", \"dragControls\"],\n    focus: [\"whileFocus\"],\n    hover: [\"whileHover\", \"onHoverStart\", \"onHoverEnd\"],\n    tap: [\"whileTap\", \"onTap\", \"onTapStart\", \"onTapCancel\"],\n    pan: [\"onPan\", \"onPanStart\", \"onPanSessionStart\", \"onPanEnd\"],\n    inView: [\"whileInView\", \"onViewportEnter\", \"onViewportLeave\"],\n    layout: [\"layout\", \"layoutId\"],\n};\nlet isInitialized = false;\n/**\n * Initialize feature definitions with isEnabled checks.\n * This must be called before any motion components are rendered.\n */\nfunction initFeatureDefinitions() {\n    if (isInitialized)\n        return;\n    const initialFeatureDefinitions = {};\n    for (const key in featureProps) {\n        initialFeatureDefinitions[key] = {\n            isEnabled: (props) => featureProps[key].some((name) => !!props[name]),\n        };\n    }\n    setFeatureDefinitions(initialFeatureDefinitions);\n    isInitialized = true;\n}\n/**\n * Get the current feature definitions, initializing if needed.\n */\nfunction getInitializedFeatureDefinitions() {\n    initFeatureDefinitions();\n    return getFeatureDefinitions();\n}\n\nexport { getInitializedFeatureDefinitions, initFeatureDefinitions };\n//# sourceMappingURL=definitions.mjs.map\n",
+      "start": 1768772628849,
+      "end": 1768772628849
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628849,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628852,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628855,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628858,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

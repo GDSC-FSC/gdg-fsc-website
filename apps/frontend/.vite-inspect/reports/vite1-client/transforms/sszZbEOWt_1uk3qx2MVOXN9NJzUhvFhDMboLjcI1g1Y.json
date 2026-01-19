@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/render/svg/utils/build-attrs.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { buildHTMLStyles } from '../../html/utils/build-styles.mjs';\nimport { buildSVGPath } from './path.mjs';\n\n/**\n * CSS Motion Path properties that should remain as CSS styles on SVG elements.\n */\nconst cssMotionPathProperties = [\n    \"offsetDistance\",\n    \"offsetPath\",\n    \"offsetRotate\",\n    \"offsetAnchor\",\n];\n/**\n * Build SVG visual attributes, like cx and style.transform\n */\nfunction buildSVGAttrs(state, { attrX, attrY, attrScale, pathLength, pathSpacing = 1, pathOffset = 0, \n// This is object creation, which we try to avoid per-frame.\n...latest }, isSVGTag, transformTemplate, styleProp) {\n    buildHTMLStyles(state, latest, transformTemplate);\n    /**\n     * For svg tags we just want to make sure viewBox is animatable and treat all the styles\n     * as normal HTML tags.\n     */\n    if (isSVGTag) {\n        if (state.style.viewBox) {\n            state.attrs.viewBox = state.style.viewBox;\n        }\n        return;\n    }\n    state.attrs = state.style;\n    state.style = {};\n    const { attrs, style } = state;\n    /**\n     * However, we apply transforms as CSS transforms.\n     * So if we detect a transform, transformOrigin we take it from attrs and copy it into style.\n     */\n    if (attrs.transform) {\n        style.transform = attrs.transform;\n        delete attrs.transform;\n    }\n    if (style.transform || attrs.transformOrigin) {\n        style.transformOrigin = attrs.transformOrigin ?? \"50% 50%\";\n        delete attrs.transformOrigin;\n    }\n    if (style.transform) {\n        /**\n         * SVG's element transform-origin uses its own median as a reference.\n         * Therefore, transformBox becomes a fill-box\n         */\n        style.transformBox = styleProp?.transformBox ?? \"fill-box\";\n        delete attrs.transformBox;\n    }\n    for (const key of cssMotionPathProperties) {\n        if (attrs[key] !== undefined) {\n            style[key] = attrs[key];\n            delete attrs[key];\n        }\n    }\n    // Render attrX/attrY/attrScale as attributes\n    if (attrX !== undefined)\n        attrs.x = attrX;\n    if (attrY !== undefined)\n        attrs.y = attrY;\n    if (attrScale !== undefined)\n        attrs.scale = attrScale;\n    // Build SVG path if one has been defined\n    if (pathLength !== undefined) {\n        buildSVGPath(attrs, pathLength, pathSpacing, pathOffset, false);\n    }\n}\n\nexport { buildSVGAttrs };\n",
+      "start": 1768772628756,
+      "end": 1768772628756
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628756,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628772,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628791,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628808,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

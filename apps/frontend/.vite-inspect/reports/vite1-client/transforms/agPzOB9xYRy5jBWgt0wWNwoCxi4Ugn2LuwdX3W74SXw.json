@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/check/runner/Tosser.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { skipN } from 'pure-rand';\nimport { Random } from '../../random/generator/Random.js';\nimport { Value } from '../arbitrary/definition/Value.js';\nimport { safeMap } from '../../utils/globals.js';\nfunction tossNext(generator, rng, index) {\n    rng.unsafeJump();\n    return generator.generate(new Random(rng), index);\n}\nexport function* toss(generator, seed, random, examples) {\n    for (let idx = 0; idx !== examples.length; ++idx) {\n        yield new Value(examples[idx], undefined);\n    }\n    for (let idx = 0, rng = random(seed);; ++idx) {\n        yield tossNext(generator, rng, idx);\n    }\n}\nfunction lazyGenerate(generator, rng, idx) {\n    return () => generator.generate(new Random(rng), idx);\n}\nexport function* lazyToss(generator, seed, random, examples) {\n    yield* safeMap(examples, (e) => () => new Value(e, undefined));\n    let idx = 0;\n    let rng = random(seed);\n    for (;;) {\n        rng = rng.jump ? rng.jump() : skipN(rng, 42);\n        yield lazyGenerate(generator, rng, idx++);\n    }\n}\n",
+      "start": 1768772628893,
+      "end": 1768772628893
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628893,
+      "end": 1768772628894,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628894,
+      "end": 1768772628896,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628896,
+      "end": 1768772628897,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628898,
+      "end": 1768772628899,
+      "order": "post-post"
+    }
+  ]
+}

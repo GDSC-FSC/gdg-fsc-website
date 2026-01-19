@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/Clock.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as internal from \"./internal/clock.js\";\nimport * as defaultServices from \"./internal/defaultServices.js\";\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const ClockTypeId = internal.ClockTypeId;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const make = internal.make;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const sleep = defaultServices.sleep;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const currentTimeMillis = defaultServices.currentTimeMillis;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const currentTimeNanos = defaultServices.currentTimeNanos;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport const clockWith = defaultServices.clockWith;\n/**\n * @since 2.0.0\n * @category context\n */\nexport const Clock = internal.clockTag;\n//# sourceMappingURL=Clock.js.map",
+      "start": 1768772628411,
+      "end": 1768772628411
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628411,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628417,
+      "end": 1768772628420,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628432,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628476,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

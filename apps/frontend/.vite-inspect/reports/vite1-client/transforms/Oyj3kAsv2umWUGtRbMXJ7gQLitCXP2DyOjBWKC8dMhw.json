@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@effect/platform/dist/esm/internal/httpBody.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Data from \"effect/Data\";\nimport * as Effect from \"effect/Effect\";\nimport { identity } from \"effect/Function\";\nimport * as Inspectable from \"effect/Inspectable\";\nimport * as Schema from \"effect/Schema\";\nimport * as Stream_ from \"effect/Stream\";\nimport * as FileSystem from \"../FileSystem.js\";\nimport * as UrlParams from \"../UrlParams.js\";\n/** @internal */\nexport const TypeId = /*#__PURE__*/Symbol.for(\"@effect/platform/HttpBody\");\n/** @internal */\nexport const ErrorTypeId = /*#__PURE__*/Symbol.for(\"@effect/platform/HttpBody/HttpBodyError\");\nconst bodyError = /*#__PURE__*/Data.tagged(\"HttpBodyError\");\n/** @internal */\nexport const HttpBodyError = reason => bodyError({\n  [ErrorTypeId]: ErrorTypeId,\n  reason\n});\nclass BodyBase {\n  [TypeId];\n  constructor() {\n    this[TypeId] = TypeId;\n  }\n  [Inspectable.NodeInspectSymbol]() {\n    return this.toJSON();\n  }\n  toString() {\n    return Inspectable.format(this);\n  }\n}\nclass EmptyImpl extends BodyBase {\n  _tag = \"Empty\";\n  toJSON() {\n    return {\n      _id: \"@effect/platform/HttpBody\",\n      _tag: \"Empty\"\n    };\n  }\n}\n/** @internal */\nexport const empty = /*#__PURE__*/new EmptyImpl();\nclass RawImpl extends BodyBase {\n  body;\n  contentType;\n  contentLength;\n  _tag = \"Raw\";\n  constructor(body, contentType, contentLength) {\n    super();\n    this.body = body;\n    this.contentType = contentType;\n    this.contentLength = contentLength;\n  }\n  toJSON() {\n    return {\n      _id: \"@effect/platform/HttpBody\",\n      _tag: \"Raw\",\n      body: this.body,\n      contentType: this.contentType,\n      contentLength: this.contentLength\n    };\n  }\n}\n/** @internal */\nexport const raw = (body, options) => new RawImpl(body, options?.contentType, options?.contentLength);\nclass Uint8ArrayImpl extends BodyBase {\n  body;\n  contentType;\n  _tag = \"Uint8Array\";\n  constructor(body, contentType) {\n    super();\n    this.body = body;\n    this.contentType = contentType;\n  }\n  get contentLength() {\n    return this.body.length;\n  }\n  toJSON() {\n    const toString = this.contentType.startsWith(\"text/\") || this.contentType.endsWith(\"json\");\n    return {\n      _id: \"@effect/platform/HttpBody\",\n      _tag: \"Uint8Array\",\n      body: toString ? new TextDecoder().decode(this.body) : `Uint8Array(${this.body.length})`,\n      contentType: this.contentType,\n      contentLength: this.contentLength\n    };\n  }\n}\n/** @internal */\nexport const uint8Array = (body, contentType) => new Uint8ArrayImpl(body, contentType ?? \"application/octet-stream\");\nconst encoder = /*#__PURE__*/new TextEncoder();\n/** @internal */\nexport const text = (body, contentType) => uint8Array(encoder.encode(body), contentType ?? \"text/plain\");\n/** @internal */\nexport const unsafeJson = body => text(JSON.stringify(body), \"application/json\");\n/** @internal */\nexport const json = body => Effect.try({\n  try: () => unsafeJson(body),\n  catch: error => HttpBodyError({\n    _tag: \"JsonError\",\n    error\n  })\n});\n/** @internal */\nexport const urlParams = urlParams => text(UrlParams.toString(urlParams), \"application/x-www-form-urlencoded\");\n/** @internal */\nexport const jsonSchema = (schema, options) => {\n  const encode = Schema.encode(schema, options);\n  return body => Effect.flatMap(Effect.mapError(encode(body), error => HttpBodyError({\n    _tag: \"SchemaError\",\n    error\n  })), json);\n};\n/** @internal */\nexport const file = (path, options) => Effect.flatMap(FileSystem.FileSystem, fs => Effect.map(fs.stat(path), info => stream(fs.stream(path, options), options?.contentType, Number(info.size))));\n/** @internal */\nexport const fileInfo = (path, info, options) => Effect.map(FileSystem.FileSystem, fs => stream(fs.stream(path, options), options?.contentType, Number(info.size)));\n/** @internal */\nexport const fileWeb = file => stream(Stream_.fromReadableStream(() => file.stream(), identity), file.type, file.size);\nclass FormDataImpl extends BodyBase {\n  formData;\n  _tag = \"FormData\";\n  constructor(formData) {\n    super();\n    this.formData = formData;\n  }\n  toJSON() {\n    return {\n      _id: \"@effect/platform/HttpBody\",\n      _tag: \"FormData\",\n      formData: this.formData\n    };\n  }\n}\n/** @internal */\nexport const formData = body => new FormDataImpl(body);\n/** @internal */\nexport const formDataRecord = entries => {\n  const formData = new FormData();\n  for (const [key, value] of Object.entries(entries)) {\n    if (Array.isArray(value)) {\n      for (const item of value) {\n        if (item == null) continue;\n        formData.append(key, typeof value === \"object\" ? item : String(item));\n      }\n    } else if (value != null) {\n      formData.append(key, typeof value === \"object\" ? value : String(value));\n    }\n  }\n  return new FormDataImpl(formData);\n};\nclass StreamImpl extends BodyBase {\n  stream;\n  contentType;\n  contentLength;\n  _tag = \"Stream\";\n  constructor(stream, contentType, contentLength) {\n    super();\n    this.stream = stream;\n    this.contentType = contentType;\n    this.contentLength = contentLength;\n  }\n  toJSON() {\n    return {\n      _id: \"@effect/platform/HttpBody\",\n      _tag: \"Stream\",\n      contentType: this.contentType,\n      contentLength: this.contentLength\n    };\n  }\n}\n/** @internal */\nexport const stream = (body, contentType, contentLength) => new StreamImpl(body, contentType ?? \"application/octet-stream\", contentLength);\n//# sourceMappingURL=httpBody.js.map",
+      "start": 1768772628754,
+      "end": 1768772628754
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628754,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628771,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628790,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628807,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

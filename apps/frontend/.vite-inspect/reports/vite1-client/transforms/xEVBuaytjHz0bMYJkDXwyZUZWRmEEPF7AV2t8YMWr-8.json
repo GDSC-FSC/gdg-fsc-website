@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/hashSet.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Equal from \"../Equal.js\";\nimport { dual } from \"../Function.js\";\nimport * as Hash from \"../Hash.js\";\nimport { format, NodeInspectSymbol, toJSON } from \"../Inspectable.js\";\nimport { pipeArguments } from \"../Pipeable.js\";\nimport { hasProperty } from \"../Predicate.js\";\nimport * as HM from \"./hashMap.js\";\nconst HashSetSymbolKey = \"effect/HashSet\";\n/** @internal */\nexport const HashSetTypeId = /*#__PURE__*/Symbol.for(HashSetSymbolKey);\nconst HashSetProto = {\n  [HashSetTypeId]: HashSetTypeId,\n  [Symbol.iterator]() {\n    return HM.keys(this._keyMap);\n  },\n  [Hash.symbol]() {\n    return Hash.cached(this, Hash.combine(Hash.hash(this._keyMap))(Hash.hash(HashSetSymbolKey)));\n  },\n  [Equal.symbol](that) {\n    if (isHashSet(that)) {\n      return HM.size(this._keyMap) === HM.size(that._keyMap) && Equal.equals(this._keyMap, that._keyMap);\n    }\n    return false;\n  },\n  toString() {\n    return format(this.toJSON());\n  },\n  toJSON() {\n    return {\n      _id: \"HashSet\",\n      values: Array.from(this).map(toJSON)\n    };\n  },\n  [NodeInspectSymbol]() {\n    return this.toJSON();\n  },\n  pipe() {\n    return pipeArguments(this, arguments);\n  }\n};\n/** @internal */\nexport const makeImpl = keyMap => {\n  const set = Object.create(HashSetProto);\n  set._keyMap = keyMap;\n  return set;\n};\n/** @internal */\nexport const isHashSet = u => hasProperty(u, HashSetTypeId);\nconst _empty = /*#__PURE__*/makeImpl(/*#__PURE__*/HM.empty());\n/** @internal */\nexport const empty = () => _empty;\n/** @internal */\nexport const fromIterable = elements => {\n  const set = beginMutation(empty());\n  for (const value of elements) {\n    add(set, value);\n  }\n  return endMutation(set);\n};\n/** @internal */\nexport const make = (...elements) => {\n  const set = beginMutation(empty());\n  for (const value of elements) {\n    add(set, value);\n  }\n  return endMutation(set);\n};\n/** @internal */\nexport const has = /*#__PURE__*/dual(2, (self, value) => HM.has(self._keyMap, value));\n/** @internal */\nexport const some = /*#__PURE__*/dual(2, (self, f) => {\n  let found = false;\n  for (const value of self) {\n    found = f(value);\n    if (found) {\n      break;\n    }\n  }\n  return found;\n});\n/** @internal */\nexport const every = /*#__PURE__*/dual(2, (self, refinement) => !some(self, a => !refinement(a)));\n/** @internal */\nexport const isSubset = /*#__PURE__*/dual(2, (self, that) => every(self, value => has(that, value)));\n/** @internal */\nexport const values = self => HM.keys(self._keyMap);\n/** @internal */\nexport const size = self => HM.size(self._keyMap);\n/** @internal */\nexport const beginMutation = self => makeImpl(HM.beginMutation(self._keyMap));\n/** @internal */\nexport const endMutation = self => {\n  ;\n  self._keyMap._editable = false;\n  return self;\n};\n/** @internal */\nexport const mutate = /*#__PURE__*/dual(2, (self, f) => {\n  const transient = beginMutation(self);\n  f(transient);\n  return endMutation(transient);\n});\n/** @internal */\nexport const add = /*#__PURE__*/dual(2, (self, value) => self._keyMap._editable ? (HM.set(value, true)(self._keyMap), self) : makeImpl(HM.set(value, true)(self._keyMap)));\n/** @internal */\nexport const remove = /*#__PURE__*/dual(2, (self, value) => self._keyMap._editable ? (HM.remove(value)(self._keyMap), self) : makeImpl(HM.remove(value)(self._keyMap)));\n/** @internal */\nexport const difference = /*#__PURE__*/dual(2, (self, that) => mutate(self, set => {\n  for (const value of that) {\n    remove(set, value);\n  }\n}));\n/** @internal */\nexport const intersection = /*#__PURE__*/dual(2, (self, that) => mutate(empty(), set => {\n  for (const value of that) {\n    if (has(value)(self)) {\n      add(value)(set);\n    }\n  }\n}));\n/** @internal */\nexport const union = /*#__PURE__*/dual(2, (self, that) => mutate(empty(), set => {\n  forEach(self, value => add(set, value));\n  for (const value of that) {\n    add(set, value);\n  }\n}));\n/** @internal */\nexport const toggle = /*#__PURE__*/dual(2, (self, value) => has(self, value) ? remove(self, value) : add(self, value));\n/** @internal */\nexport const map = /*#__PURE__*/dual(2, (self, f) => mutate(empty(), set => {\n  forEach(self, a => {\n    const b = f(a);\n    if (!has(set, b)) {\n      add(set, b);\n    }\n  });\n}));\n/** @internal */\nexport const flatMap = /*#__PURE__*/dual(2, (self, f) => mutate(empty(), set => {\n  forEach(self, a => {\n    for (const b of f(a)) {\n      if (!has(set, b)) {\n        add(set, b);\n      }\n    }\n  });\n}));\n/** @internal */\nexport const forEach = /*#__PURE__*/dual(2, (self, f) => HM.forEach(self._keyMap, (_, k) => f(k)));\n/** @internal */\nexport const reduce = /*#__PURE__*/dual(3, (self, zero, f) => HM.reduce(self._keyMap, zero, (z, _, a) => f(z, a)));\n/** @internal */\nexport const filter = /*#__PURE__*/dual(2, (self, f) => {\n  return mutate(empty(), set => {\n    const iterator = values(self);\n    let next;\n    while (!(next = iterator.next()).done) {\n      const value = next.value;\n      if (f(value)) {\n        add(set, value);\n      }\n    }\n  });\n});\n/** @internal */\nexport const partition = /*#__PURE__*/dual(2, (self, predicate) => {\n  const iterator = values(self);\n  let next;\n  const right = beginMutation(empty());\n  const left = beginMutation(empty());\n  while (!(next = iterator.next()).done) {\n    const value = next.value;\n    if (predicate(value)) {\n      add(right, value);\n    } else {\n      add(left, value);\n    }\n  }\n  return [endMutation(left), endMutation(right)];\n});\n//# sourceMappingURL=hashSet.js.map",
+      "start": 1768772628587,
+      "end": 1768772628587
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628587,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628621,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628650,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

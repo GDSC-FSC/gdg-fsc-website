@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/pure-rand/lib/esm/distribution/internals/UnsafeUniformIntDistributionInternal.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "export function unsafeUniformIntDistributionInternal(rangeSize, rng) {\n    var MaxAllowed = rangeSize > 2 ? ~~(0x100000000 / rangeSize) * rangeSize : 0x100000000;\n    var deltaV = rng.unsafeNext() + 0x80000000;\n    while (deltaV >= MaxAllowed) {\n        deltaV = rng.unsafeNext() + 0x80000000;\n    }\n    return deltaV % rangeSize;\n}\n",
+      "start": 1768772628914,
+      "end": 1768772628914
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628914,
+      "end": 1768772628914,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628914,
+      "end": 1768772628914,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628914,
+      "end": 1768772628914,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628914,
+      "end": 1768772628914,
+      "order": "post-post"
+    }
+  ]
+}

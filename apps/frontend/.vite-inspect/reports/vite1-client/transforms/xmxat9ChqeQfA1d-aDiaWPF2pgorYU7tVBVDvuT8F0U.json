@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/record.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { buildPartialRecordArbitrary } from './_internals/builders/PartialRecordArbitraryBuilder.js';\nfunction record(recordModel, constraints) {\n    const noNullPrototype = constraints === undefined || constraints.noNullPrototype === undefined || constraints.noNullPrototype;\n    if (constraints == null) {\n        return buildPartialRecordArbitrary(recordModel, undefined, noNullPrototype);\n    }\n    if ('withDeletedKeys' in constraints && 'requiredKeys' in constraints) {\n        throw new Error(`requiredKeys and withDeletedKeys cannot be used together in fc.record`);\n    }\n    const requireDeletedKeys = ('requiredKeys' in constraints && constraints.requiredKeys !== undefined) ||\n        ('withDeletedKeys' in constraints && !!constraints.withDeletedKeys);\n    if (!requireDeletedKeys) {\n        return buildPartialRecordArbitrary(recordModel, undefined, noNullPrototype);\n    }\n    const requiredKeys = ('requiredKeys' in constraints ? constraints.requiredKeys : undefined) || [];\n    for (let idx = 0; idx !== requiredKeys.length; ++idx) {\n        const descriptor = Object.getOwnPropertyDescriptor(recordModel, requiredKeys[idx]);\n        if (descriptor === undefined) {\n            throw new Error(`requiredKeys cannot reference keys that have not been defined in recordModel`);\n        }\n        if (!descriptor.enumerable) {\n            throw new Error(`requiredKeys cannot reference keys that have are enumerable in recordModel`);\n        }\n    }\n    return buildPartialRecordArbitrary(recordModel, requiredKeys, noNullPrototype);\n}\nexport { record };\n",
+      "start": 1768772628849,
+      "end": 1768772628849
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628849,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628852,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628856,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628859,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

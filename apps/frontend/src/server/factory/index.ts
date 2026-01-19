@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export * from './events-factory.ts';
+export * from './events-factory';

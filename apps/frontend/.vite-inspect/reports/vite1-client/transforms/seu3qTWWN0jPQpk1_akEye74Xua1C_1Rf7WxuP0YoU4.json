@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/utils/use-animation-frame.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "\"use client\";\nimport { frame, cancelFrame } from 'motion-dom';\nimport { useRef, useContext, useEffect } from 'react';\nimport { MotionConfigContext } from '../context/MotionConfigContext.mjs';\n\nfunction useAnimationFrame(callback) {\n    const initialTimestamp = useRef(0);\n    const { isStatic } = useContext(MotionConfigContext);\n    useEffect(() => {\n        if (isStatic)\n            return;\n        const provideTimeSinceStart = ({ timestamp, delta }) => {\n            if (!initialTimestamp.current)\n                initialTimestamp.current = timestamp;\n            callback(timestamp - initialTimestamp.current, delta);\n        };\n        frame.update(provideTimeSinceStart, true);\n        return () => cancelFrame(provideTimeSinceStart);\n    }, [callback]);\n}\n\nexport { useAnimationFrame };\n//# sourceMappingURL=use-animation-frame.mjs.map\n",
+      "start": 1768772628584,
+      "end": 1768772628584
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628584,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628621,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628650,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

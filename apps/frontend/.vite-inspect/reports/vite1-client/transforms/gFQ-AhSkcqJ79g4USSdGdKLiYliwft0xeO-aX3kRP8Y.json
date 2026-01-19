@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/check/property/IRawProperty.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "const safeMathLog = Math.log;\nexport function runIdToFrequency(runId) {\n    return 2 + ~~(safeMathLog(runId + 1) * 0.4342944819032518);\n}\n",
+      "start": 1768772628908,
+      "end": 1768772628908
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628908,
+      "end": 1768772628908,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628909,
+      "end": 1768772628909,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628909,
+      "end": 1768772628909,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628910,
+      "end": 1768772628910,
+      "order": "post-post"
+    }
+  ]
+}

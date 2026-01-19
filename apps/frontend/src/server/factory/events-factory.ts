@@ -14,4 +14,53 @@
  * limitations under the License.
  */
 
-export class EventsFactory {}
+import type { EventEntity, RawEventData } from '../dal/models/event-entity';
+
+/**
+ * Factory for creating EventEntity instances.
+ */
+export class EventsFactory {
+  /**
+   * Creates a new EventEntity with default values.
+   */
+  static create(data: Partial<EventEntity> = {}): EventEntity {
+    return {
+      id: data.id ?? crypto.randomUUID().slice(0, 16),
+      title: data.title ?? null,
+      thumbnailLink: data.thumbnailLink ?? null,
+      detailsLink: data.detailsLink ?? null,
+      eventType: data.eventType,
+      startDate: data.startDate,
+      endDate: data.endDate,
+      isUpcoming: data.isUpcoming ?? true,
+    };
+  }
+
+  /**
+   * Creates an EventEntity from raw API data.
+   */
+  static createFromRaw(raw: RawEventData, isUpcoming = true): EventEntity {
+    const id = raw.detailsLink
+      ? btoa(raw.detailsLink).slice(-16)
+      : crypto.randomUUID().slice(0, 16);
+
+    return {
+      id,
+      title: raw.title,
+      thumbnailLink: raw.thumbnailLink,
+      detailsLink: raw.detailsLink,
+      isUpcoming,
+    };
+  }
+
+  /**
+   * Creates multiple EventEntity instances from raw data array.
+   */
+  static createBatchFromRaw(rawData: RawEventData[], isUpcoming = true): EventEntity[] {
+    return rawData.map((raw) => EventsFactory.createFromRaw(raw, isUpcoming));
+  }
+
+  toString(): string {
+    return 'EventsFactory';
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/effects/MotionValueState.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { frame, cancelFrame } from '../frameloop/frame.mjs';\nimport { numberValueTypes } from '../value/types/maps/number.mjs';\nimport { getValueAsType } from '../value/types/utils/get-as-type.mjs';\n\nclass MotionValueState {\n    constructor() {\n        this.latest = {};\n        this.values = new Map();\n    }\n    set(name, value, render, computed, useDefaultValueType = true) {\n        const existingValue = this.values.get(name);\n        if (existingValue) {\n            existingValue.onRemove();\n        }\n        const onChange = () => {\n            const v = value.get();\n            if (useDefaultValueType) {\n                this.latest[name] = getValueAsType(v, numberValueTypes[name]);\n            }\n            else {\n                this.latest[name] = v;\n            }\n            render && frame.render(render);\n        };\n        onChange();\n        const cancelOnChange = value.on(\"change\", onChange);\n        computed && value.addDependent(computed);\n        const remove = () => {\n            cancelOnChange();\n            render && cancelFrame(render);\n            this.values.delete(name);\n            computed && value.removeDependent(computed);\n        };\n        this.values.set(name, { value, onRemove: remove });\n        return remove;\n    }\n    get(name) {\n        return this.values.get(name)?.value;\n    }\n    destroy() {\n        for (const value of this.values.values()) {\n            value.onRemove();\n        }\n    }\n}\n\nexport { MotionValueState };\n",
+      "start": 1768772628894,
+      "end": 1768772628894
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628894,
+      "end": 1768772628894,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628896,
+      "end": 1768772628896,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628897,
+      "end": 1768772628897,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628899,
+      "end": 1768772628899,
+      "order": "post-post"
+    }
+  ]
+}

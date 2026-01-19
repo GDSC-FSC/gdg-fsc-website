@@ -1,0 +1,90 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/apps/frontend/src/providers/theme/theme-toggle.tsx",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * Copyright 2025 GDG on Campus Farmingdale State College\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\nimport { Button } from '@gdg-fsc/interface';\nimport { Moon, Sun } from 'lucide-react';\nimport { useTheme } from 'next-themes';\nimport type { FC } from 'react';\nimport { useEffect, useState } from 'react';\n\nexport const ThemeToggle: FC = () => {\n  const { resolvedTheme, setTheme } = useTheme();\n  const [mounted, setMounted] = useState(false);\n\n  // Prevent hydration mismatch\n  useEffect(() => {\n    setMounted(true);\n  }, []);\n\n  if (!mounted) {\n    return (\n      <Button variant=\"ghost\" size=\"icon\" className=\"h-9 w-9\">\n        <span className=\"h-4 w-4\" />\n      </Button>\n    );\n  }\n\n  const isDark = resolvedTheme === 'dark';\n\n  return (\n    <Button\n      variant=\"ghost\"\n      size=\"icon\"\n      onClick={() => setTheme(isDark ? 'light' : 'dark')}\n      className=\"h-9 w-9\"\n    >\n      {isDark ? (\n        <Moon className=\"h-4 w-4\" />\n      ) : (\n        <Sun className=\"h-4 w-4\" />\n      )}\n      <span className=\"sr-only\">Toggle theme to {isDark ? 'light' : 'dark'}</span>\n    </Button>\n  );\n};\n\nThemeToggle.displayName = 'ThemeToggle';\nexport default ThemeToggle;\n\n",
+      "start": 1768772628256,
+      "end": 1768772628256,
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "Button",
+          "Moon",
+          "Sun",
+          "useTheme",
+          "FC",
+          "useEffect",
+          "useState",
+          "ThemeToggle",
+          "resolvedTheme",
+          "setTheme",
+          "mounted",
+          "setMounted",
+          "isDark",
+          "displayName"
+        ],
+        "sources": [
+          "/home/wombocombo/github/wrk/gdg-fsc-website/apps/frontend/src/providers/theme/theme-toggle.tsx"
+        ],
+        "sourcesContent": [
+          "/**\n * Copyright 2025 GDG on Campus Farmingdale State College\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\nimport { Button } from '@gdg-fsc/interface';\nimport { Moon, Sun } from 'lucide-react';\nimport { useTheme } from 'next-themes';\nimport type { FC } from 'react';\nimport { useEffect, useState } from 'react';\n\nexport const ThemeToggle: FC = () => {\n  const { resolvedTheme, setTheme } = useTheme();\n  const [mounted, setMounted] = useState(false);\n\n  // Prevent hydration mismatch\n  useEffect(() => {\n    setMounted(true);\n  }, []);\n\n  if (!mounted) {\n    return (\n      <Button variant=\"ghost\" size=\"icon\" className=\"h-9 w-9\">\n        <span className=\"h-4 w-4\" />\n      </Button>\n    );\n  }\n\n  const isDark = resolvedTheme === 'dark';\n\n  return (\n    <Button\n      variant=\"ghost\"\n      size=\"icon\"\n      onClick={() => setTheme(isDark ? 'light' : 'dark')}\n      className=\"h-9 w-9\"\n    >\n      {isDark ? (\n        <Moon className=\"h-4 w-4\" />\n      ) : (\n        <Sun className=\"h-4 w-4\" />\n      )}\n      <span className=\"sr-only\">Toggle theme to {isDark ? 'light' : 'dark'}</span>\n    </Button>\n  );\n};\n\nThemeToggle.displayName = 'ThemeToggle';\nexport default ThemeToggle;\n\n"
+        ],
+        "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA,SAASA,MAAM,QAAQ,oBAAoB;AAC3C,SAASC,IAAI,EAAEC,GAAG,QAAQ,cAAc;AACxC,SAASC,QAAQ,QAAQ,aAAa;AACtC,cAAcC,EAAE,QAAQ,OAAO;AAC/B,SAASC,SAAS,EAAEC,QAAQ,QAAQ,OAAO;AAE3C,OAAO,MAAMC,WAAW,EAAEH,EAAE,GAAGG,CAAA,KAAM;EACnC,MAAM;IAAEC,aAAa;IAAEC;EAAS,CAAC,GAAGN,QAAQ,CAAC,CAAC;EAC9C,MAAM,CAACO,OAAO,EAAEC,UAAU,CAAC,GAAGL,QAAQ,CAAC,KAAK,CAAC;;EAE7C;EACAD,SAAS,CAAC,MAAM;IACdM,UAAU,CAAC,IAAI,CAAC;EAClB,CAAC,EAAE,EAAE,CAAC;EAEN,IAAI,CAACD,OAAO,EAAE;IACZ,OACE,CAAC,MAAM,CAAC,OAAO,CAAC,OAAO,CAAC,IAAI,CAAC,MAAM,CAAC,SAAS,CAAC,SAAS;AAC7D,QAAQ,CAAC,IAAI,CAAC,SAAS,CAAC,SAAS;AACjC,MAAM,EAAE,MAAM,CAAC;EAEb;EAEA,MAAME,MAAM,GAAGJ,aAAa,KAAK,MAAM;EAEvC,OACE,CAAC,MAAM,CACL,OAAO,CAAC,OAAO,CACf,IAAI,CAAC,MAAM,CACX,OAAO,CAAC,CAAC,MAAMC,QAAQ,CAACG,MAAM,GAAG,OAAO,GAAG,MAAM,CAAC,CAAC,CACnD,SAAS,CAAC,SAAS;AAEzB,MAAM,CAACA,MAAM,GACL,CAAC,IAAI,CAAC,SAAS,CAAC,SAAS,GAAG,GAE5B,CAAC,GAAG,CAAC,SAAS,CAAC,SAAS,GACzB;AACP,MAAM,CAAC,IAAI,CAAC,SAAS,CAAC,SAAS,CAAC,gBAAgB,CAACA,MAAM,GAAG,OAAO,GAAG,MAAM,CAAC,EAAE,IAAI;AACjF,IAAI,EAAE,MAAM,CAAC;AAEb,CAAC;AAEDL,WAAW,CAACM,WAAW,GAAG,aAAa;AACvC,eAAeN,WAAW",
+        "ignoreList": []
+      }
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "result": "/**\n * Copyright 2025 GDG on Campus Farmingdale State College\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\nimport { Button } from '@gdg-fsc/interface';\nimport { Moon, Sun } from 'lucide-react';\nimport { useTheme } from 'next-themes';\nimport type { FC } from 'react';\nimport { useEffect, useState } from 'react';\nexport const ThemeToggle: FC = () => {\n  const {\n    resolvedTheme,\n    setTheme\n  } = useTheme();\n  const [mounted, setMounted] = useState(false);\n\n  // Prevent hydration mismatch\n  useEffect(() => {\n    setMounted(true);\n  }, []);\n  if (!mounted) {\n    return <Button variant=\"ghost\" size=\"icon\" className=\"h-9 w-9\">\n        <span className=\"h-4 w-4\" />\n      </Button>;\n  }\n  const isDark = resolvedTheme === 'dark';\n  return <Button variant=\"ghost\" size=\"icon\" onClick={() => setTheme(isDark ? 'light' : 'dark')} className=\"h-9 w-9\" data-sentry-element=\"Button\" data-sentry-component=\"ThemeToggle\" data-sentry-source-file=\"theme-toggle.tsx\">\n      {isDark ? <Moon className=\"h-4 w-4\" /> : <Sun className=\"h-4 w-4\" />}\n      <span className=\"sr-only\">Toggle theme to {isDark ? 'light' : 'dark'}</span>\n    </Button>;\n};\nThemeToggle.displayName = 'ThemeToggle';\nexport default ThemeToggle;",
+      "start": 1768772628256,
+      "end": 1768772628263,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "Button",
+          "Moon",
+          "Sun",
+          "useTheme",
+          "FC",
+          "useEffect",
+          "useState",
+          "ThemeToggle",
+          "resolvedTheme",
+          "setTheme",
+          "mounted",
+          "setMounted",
+          "isDark",
+          "displayName"
+        ],
+        "sources": [
+          "/home/wombocombo/github/wrk/gdg-fsc-website/apps/frontend/src/providers/theme/theme-toggle.tsx"
+        ],
+        "sourcesContent": [
+          "/**\n * Copyright 2025 GDG on Campus Farmingdale State College\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\nimport { Button } from '@gdg-fsc/interface';\nimport { Moon, Sun } from 'lucide-react';\nimport { useTheme } from 'next-themes';\nimport type { FC } from 'react';\nimport { useEffect, useState } from 'react';\n\nexport const ThemeToggle: FC = () => {\n  const { resolvedTheme, setTheme } = useTheme();\n  const [mounted, setMounted] = useState(false);\n\n  // Prevent hydration mismatch\n  useEffect(() => {\n    setMounted(true);\n  }, []);\n\n  if (!mounted) {\n    return (\n      <Button variant=\"ghost\" size=\"icon\" className=\"h-9 w-9\">\n        <span className=\"h-4 w-4\" />\n      </Button>\n    );\n  }\n\n  const isDark = resolvedTheme === 'dark';\n\n  return (\n    <Button\n      variant=\"ghost\"\n      size=\"icon\"\n      onClick={() => setTheme(isDark ? 'light' : 'dark')}\n      className=\"h-9 w-9\"\n    >\n      {isDark ? (\n        <Moon className=\"h-4 w-4\" />\n      ) : (\n        <Sun className=\"h-4 w-4\" />\n      )}\n      <span className=\"sr-only\">Toggle theme to {isDark ? 'light' : 'dark'}</span>\n    </Button>\n  );\n};\n\nThemeToggle.displayName = 'ThemeToggle';\nexport default ThemeToggle;\n\n"
+        ],
+        "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA,SAASA,MAAM,QAAQ,oBAAoB;AAC3C,SAASC,IAAI,EAAEC,GAAG,QAAQ,cAAc;AACxC,SAASC,QAAQ,QAAQ,aAAa;AACtC,cAAcC,EAAE,QAAQ,OAAO;AAC/B,SAASC,SAAS,EAAEC,QAAQ,QAAQ,OAAO;AAE3C,OAAO,MAAMC,WAAW,EAAEH,EAAE,GAAGG,CAAA,KAAM;EACnC,MAAM;IAAEC,aAAa;IAAEC;EAAS,CAAC,GAAGN,QAAQ,CAAC,CAAC;EAC9C,MAAM,CAACO,OAAO,EAAEC,UAAU,CAAC,GAAGL,QAAQ,CAAC,KAAK,CAAC;;EAE7C;EACAD,SAAS,CAAC,MAAM;IACdM,UAAU,CAAC,IAAI,CAAC;EAClB,CAAC,EAAE,EAAE,CAAC;EAEN,IAAI,CAACD,OAAO,EAAE;IACZ,OACE,CAAC,MAAM,CAAC,OAAO,CAAC,OAAO,CAAC,IAAI,CAAC,MAAM,CAAC,SAAS,CAAC,SAAS;AAC7D,QAAQ,CAAC,IAAI,CAAC,SAAS,CAAC,SAAS;AACjC,MAAM,EAAE,MAAM,CAAC;EAEb;EAEA,MAAME,MAAM,GAAGJ,aAAa,KAAK,MAAM;EAEvC,OACE,CAAC,MAAM,CACL,OAAO,CAAC,OAAO,CACf,IAAI,CAAC,MAAM,CACX,OAAO,CAAC,CAAC,MAAMC,QAAQ,CAACG,MAAM,GAAG,OAAO,GAAG,MAAM,CAAC,CAAC,CACnD,SAAS,CAAC,SAAS;AAEzB,MAAM,CAACA,MAAM,GACL,CAAC,IAAI,CAAC,SAAS,CAAC,SAAS,GAAG,GAE5B,CAAC,GAAG,CAAC,SAAS,CAAC,SAAS,GACzB;AACP,MAAM,CAAC,IAAI,CAAC,SAAS,CAAC,SAAS,CAAC,gBAAgB,CAACA,MAAM,GAAG,OAAO,GAAG,MAAM,CAAC,EAAE,IAAI;AACjF,IAAI,EAAE,MAAM,CAAC;AAEb,CAAC;AAEDL,WAAW,CAACM,WAAW,GAAG,aAAa;AACvC,eAAeN,WAAW",
+        "ignoreList": []
+      }
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628264,
+      "end": 1768772628264,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628264,
+      "end": 1768772628264,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628279,
+      "end": 1768772628279,
+      "order": "post-post"
+    }
+  ]
+}

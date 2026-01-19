@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-import MillionLint from '@million/lint';
 import { vCache } from '@raegen/vite-plugin-vitest-cache';
 import { sentryVitePlugin } from '@sentry/vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react-swc';
+import path from 'node:path';
 import sharp from 'sharp';
-import { defineConfig } from 'vite';
-import { analyzer, unstableRolldownAdapter } from 'vite-bundle-analyzer';
+import { defineConfig, loadEnv } from 'vite';
 import { imagetools } from 'vite-imagetools';
 import { comlink } from 'vite-plugin-comlink';
 import { compression } from 'vite-plugin-compression2';
@@ -30,8 +29,7 @@ import Inspect from 'vite-plugin-inspect';
 import lqip from 'vite-plugin-lqip';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { defaultStrategy } from '../../node_modules/@raegen/vite-plugin-vitest-cache/dist/strategy';
-import { logger } from "../../packages/shared/utils";
+import { logger } from '../../packages/shared/utils/src';
 import { app } from './src/constants';
 
 /**
@@ -39,11 +37,33 @@ import { app } from './src/constants';
  * @see https://vitejs.dev/config/
  **/
 export default defineConfig(({ mode }) => {
-  const isDevelopment = mode == 'development';
+  const isDevelopment = mode === 'development';
+  const env = loadEnv(mode, process.cwd(), '');
+
+  const SENTRY_ORG = env.SENTRY_ORG || env.VITE_SENTRY_ORG;
+  const SENTRY_PROJECT = env.SENTRY_PROJECT || env.VITE_SENTRY_PROJECT;
+  const SENTRY_AUTH_TOKEN = env.SENTRY_AUTH_TOKEN || env.VITE_SENTRY_AUTH_TOKEN;
+  const SENTRY_RELEASE = env.SENTRY_RELEASE || env.VITE_SENTRY_RELEASE;
+
   return {
-    optimizeDeps: {
-      include: [],
-      exclude: [],
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+        '@gdg-fsc/utils': path.resolve(
+          __dirname,
+          '../../packages/shared/dist/utils/src/lib/index.js',
+        ),
+        '@gdg-fsc/classes': path.resolve(
+          __dirname,
+          '../../packages/shared/dist/classes/src/index.js',
+        ),
+        '@gdg-fsc/decorators': path.resolve(
+          __dirname,
+          '../../packages/shared/dist/decorators/src/index.js',
+        ),
+        '@gdg-fsc/shared': path.resolve(__dirname, '../../packages/shared/dist/index.js'),
+      },
+      mainFields: ['browser', 'module', 'main'],
     },
     worker: {
       plugins: () => [comlink()],
@@ -53,7 +73,6 @@ export default defineConfig(({ mode }) => {
         dir: '.vitest-cache',
         states: ['pass', 'skip'],
         silent: false,
-        strategy: defaultStrategy,
       }),
       imagetools({
         include: '**/*.{heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
@@ -86,7 +105,8 @@ export default defineConfig(({ mode }) => {
       csp({
         algorithm: 'sha256',
         dev: {
-          run: true,
+          // Disabled in dev - CSP breaks Vite HMR, Million Lint, sonner, next-themes
+          run: false,
           outlierSupport: ['tailwind'],
         },
         build: {
@@ -99,7 +119,7 @@ export default defineConfig(({ mode }) => {
           'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
           'img-src': ["'self'", 'data:', 'https:'],
           'font-src': ["'self'", 'data:', 'https:'],
-          'connect-src': ["'self'", 'https:'],
+          'connect-src': ["'self'", 'https:', 'wss:'],
           'frame-src': ["'self'"],
           'worker-src': ["'self'"],
         },
@@ -124,16 +144,19 @@ export default defineConfig(({ mode }) => {
         build: true,
         outputDir: '.vite-inspect',
       }),
-      MillionLint.vite({
-        react: '19',
-        lite: true, // Enable lite mode for faster builds
-        filter: {
-          // Limit scope to only your app components
-          include: '**/components/**/*.{tsx,jsx}',
-          exclude: '**/node_modules/**/*',
-        },
-        optimizeDOM: false, // Disable DOM optimization to reduce complexity
-      }),
+      // Million Lint disabled - causes TypeError with Hono/Elysia backend proxy
+      // See: https://github.com/aidenybai/million/issues
+      // TODO: Re-enable once Million Lint fixes Hono compatibility
+      // MillionLint.vite({
+      //   react: '19',
+      //   lite: true, // Enable lite mode for faster builds
+      //   filter: {
+      //     // Limit scope to only your app components
+      //     include: '**/components/**/*.{tsx,jsx}',
+      //     exclude: '**/node_modules/**/*',
+      //   },
+      //   optimizeDOM: false, // Disable DOM optimization to reduce complexity
+      // }),
       /**
        * @see https://www.npmjs.com/package/vite-plugin-compression2
        */
@@ -148,59 +171,54 @@ export default defineConfig(({ mode }) => {
       /**
        * @see https://www.npmjs.com/package/vite-bundle-analyzer
        */
-      unstableRolldownAdapter(
-        analyzer({
-          openAnalyzer: true,
-          analyzerMode: 'static',
-        }),
-      ),
+      // unstableRolldownAdapter(
+      //   analyzer({
+      //     openAnalyzer: true,
+      //     analyzerMode: 'static',
+      //   }),
+      // ),
       react({
         tsDecorators: true,
         disableOxcRecommendation: true,
       }),
-      sentryVitePlugin({
-        authToken: process.env.SENTRY_AUTH_TOKEN,
-        org:
-          process.env.SENTRY_ORG ||
-          (() => {
-            throw new Error('SENTRY_ORG is not set');
-          })(),
-        project:
-          process.env.SENTRY_PROJECT ||
-          (() => {
-            throw new Error('SENTRY_PROJECT is not set');
-          })(),
-        release: {
-          // Automatically detect release name or use env override
-          name: process.env.SENTRY_RELEASE,
-          inject: true,
-          create: true,
-          finalize: true,
-        },
-        sourcemaps: {
-          // Only upload source maps from the dist directory
-          assets: 'dist/**/*.map',
-          // Ignore node_modules and test files
-          ignore: ['**/node_modules/**', '**/*.test.*', '**/*.cy.*'],
-        },
-        debug: isDevelopment,
-        telemetry: true,
-        errorHandler: (err) =>
-          Error.isError(err)
-            ? logger.warn('[sentry-vite-plugin]', {err})
-            : logger.warn('[sentry-vite-plugin]', err),
-        bundleSizeOptimizations: {
-          excludeDebugStatements: true,
-          excludeTracing: false,
-          excludeReplayShadowDom: true,
-          excludeReplayIframe: true,
-          excludeReplayWorker: true,
-        },
-        reactComponentAnnotation: {
-          enabled: true,
-          ignoredComponents: ['Provider', 'RouterProvider'],
-        },
-      }),
+      // Sentry plugin - only enabled when all required env vars are set
+      SENTRY_ORG && SENTRY_PROJECT && SENTRY_AUTH_TOKEN
+        ? sentryVitePlugin({
+            authToken: SENTRY_AUTH_TOKEN,
+            org: SENTRY_ORG,
+            project: SENTRY_PROJECT,
+            release: {
+              // Automatically detect release name or use env override
+              name: SENTRY_RELEASE,
+              inject: true,
+              create: true,
+              finalize: true,
+            },
+            sourcemaps: {
+              // Only upload source maps from the dist directory
+              assets: 'dist/**/*.map',
+              // Ignore node_modules and test files
+              ignore: ['**/node_modules/**', '**/*.test.*', '**/*.cy.*'],
+            },
+            debug: isDevelopment,
+            telemetry: true,
+            errorHandler: (err) =>
+              Error.isError(err)
+                ? logger.warn('[sentry-vite-plugin]', { err })
+                : logger.warn('[sentry-vite-plugin]', err),
+            bundleSizeOptimizations: {
+              excludeDebugStatements: true,
+              excludeTracing: false,
+              excludeReplayShadowDom: true,
+              excludeReplayIframe: true,
+              excludeReplayWorker: true,
+            },
+            reactComponentAnnotation: {
+              enabled: true,
+              ignoredComponents: ['Provider', 'RouterProvider'],
+            },
+          })
+        : false,
       /**
        * @see https://www.npmjs.com/package/vite-plugin-pwa
        */
@@ -214,15 +232,26 @@ export default defineConfig(({ mode }) => {
         injectRegister: 'auto',
         includeAssets: ['**/*'],
       }),
-      isDevelopment && tailwindcss(),
-    ].filter(Boolean),
+      tailwindcss(),
+    ],
     server: {
       proxy: {
         '/api': {
           target: isDevelopment ? 'http://localhost:3000' : app.url,
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ''),
+          // Note: No rewrite needed - backend expects /api/v1 prefix
           secure: !isDevelopment,
+          // Increase timeout for slow external API cold starts (Render.com)
+          timeout: 60000,
+          configure: (proxy) => {
+            proxy.on('error', (err, _req, res) => {
+              console.error('[Proxy Error]', err.message);
+              if (res && 'writeHead' in res) {
+                res.writeHead(504, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ error: 'Proxy timeout', message: err.message }));
+              }
+            });
+          },
         },
       },
     },
@@ -246,9 +275,6 @@ export default defineConfig(({ mode }) => {
           },
         },
       },
-    },
-    resolve: {
-      mainFields: ['browser', 'module', 'main'],
     },
     ssr: {
       resolve: {

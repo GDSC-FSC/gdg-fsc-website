@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/NonEmptyIterable.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @since 2.0.0\n */\n/**\n * @category getters\n * @since 2.0.0\n */\nexport const unprepend = self => {\n  const iterator = self[Symbol.iterator]();\n  const next = iterator.next();\n  if (next.done) {\n    throw new Error(\"BUG: NonEmptyIterator should not be empty - please report an issue at https://github.com/Effect-TS/effect/issues\");\n  }\n  return [next.value, iterator];\n};\n//# sourceMappingURL=NonEmptyIterable.js.map",
+      "start": 1768772628415,
+      "end": 1768772628415
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628415,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628418,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628433,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628477,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

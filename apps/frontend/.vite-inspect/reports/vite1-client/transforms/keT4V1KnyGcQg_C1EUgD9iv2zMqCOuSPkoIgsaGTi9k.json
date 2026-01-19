@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@tanstack/query-core/build/modern/onlineManager.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "// src/onlineManager.ts\nimport { Subscribable } from \"./subscribable.js\";\nimport { isServer } from \"./utils.js\";\nvar OnlineManager = class extends Subscribable {\n  #online = true;\n  #cleanup;\n  #setup;\n  constructor() {\n    super();\n    this.#setup = (onOnline) => {\n      if (!isServer && window.addEventListener) {\n        const onlineListener = () => onOnline(true);\n        const offlineListener = () => onOnline(false);\n        window.addEventListener(\"online\", onlineListener, false);\n        window.addEventListener(\"offline\", offlineListener, false);\n        return () => {\n          window.removeEventListener(\"online\", onlineListener);\n          window.removeEventListener(\"offline\", offlineListener);\n        };\n      }\n      return;\n    };\n  }\n  onSubscribe() {\n    if (!this.#cleanup) {\n      this.setEventListener(this.#setup);\n    }\n  }\n  onUnsubscribe() {\n    if (!this.hasListeners()) {\n      this.#cleanup?.();\n      this.#cleanup = void 0;\n    }\n  }\n  setEventListener(setup) {\n    this.#setup = setup;\n    this.#cleanup?.();\n    this.#cleanup = setup(this.setOnline.bind(this));\n  }\n  setOnline(online) {\n    const changed = this.#online !== online;\n    if (changed) {\n      this.#online = online;\n      this.listeners.forEach((listener) => {\n        listener(online);\n      });\n    }\n  }\n  isOnline() {\n    return this.#online;\n  }\n};\nvar onlineManager = new OnlineManager();\nexport {\n  OnlineManager,\n  onlineManager\n};\n//# sourceMappingURL=onlineManager.js.map",
+      "start": 1768772628386,
+      "end": 1768772628386
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628386,
+      "end": 1768772628386,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628388,
+      "end": 1768772628388,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628394,
+      "end": 1768772628394,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628409,
+      "end": 1768772628409,
+      "order": "post-post"
+    }
+  ]
+}

@@ -14,4 +14,65 @@
  * limitations under the License.
  */
 
-export class EventsResponseDTO {}
+/**
+ * Response DTO for a single event.
+ */
+export interface EventResponseDTO {
+  /** Unique identifier */
+  id: string;
+
+  /** Event title */
+  title: string | null;
+
+  /** Thumbnail image URL */
+  thumbnailLink: string | null;
+
+  /** Details page URL */
+  detailsLink: string | null;
+
+  /** Event type/category */
+  eventType?: string;
+
+  /** Whether this is an upcoming event */
+  isUpcoming?: boolean;
+}
+
+/**
+ * Response DTO for a list of events with metadata.
+ */
+export interface EventsListResponseDTO {
+  /** Array of events */
+  data: EventResponseDTO[];
+
+  /** Metadata about the response */
+  meta: {
+    /** Total count of events */
+    total: number;
+
+    /** Current page number */
+    page: number;
+
+    /** Items per page */
+    limit: number;
+
+    /** Total number of pages */
+    totalPages: number;
+  };
+}
+
+/**
+ * Standard API response wrapper.
+ */
+export interface ApiResponseDTO<T> {
+  /** Response status */
+  status: number;
+
+  /** Response message */
+  message: string;
+
+  /** Response payload */
+  data?: T;
+
+  /** Error details (optional) */
+  error?: string;
+}

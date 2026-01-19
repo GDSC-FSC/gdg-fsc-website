@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/differ.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Equal from \"../Equal.js\";\nimport * as Dual from \"../Function.js\";\nimport { constant, identity } from \"../Function.js\";\nimport { pipeArguments } from \"../Pipeable.js\";\nimport * as ChunkPatch from \"./differ/chunkPatch.js\";\nimport * as ContextPatch from \"./differ/contextPatch.js\";\nimport * as HashMapPatch from \"./differ/hashMapPatch.js\";\nimport * as HashSetPatch from \"./differ/hashSetPatch.js\";\nimport * as OrPatch from \"./differ/orPatch.js\";\nimport * as ReadonlyArrayPatch from \"./differ/readonlyArrayPatch.js\";\n/** @internal */\nexport const DifferTypeId = /*#__PURE__*/Symbol.for(\"effect/Differ\");\n/** @internal */\nexport const DifferProto = {\n  [DifferTypeId]: {\n    _P: identity,\n    _V: identity\n  },\n  pipe() {\n    return pipeArguments(this, arguments);\n  }\n};\n/** @internal */\nexport const make = params => {\n  const differ = Object.create(DifferProto);\n  differ.empty = params.empty;\n  differ.diff = params.diff;\n  differ.combine = params.combine;\n  differ.patch = params.patch;\n  return differ;\n};\n/** @internal */\nexport const environment = () => make({\n  empty: ContextPatch.empty(),\n  combine: (first, second) => ContextPatch.combine(second)(first),\n  diff: (oldValue, newValue) => ContextPatch.diff(oldValue, newValue),\n  patch: (patch, oldValue) => ContextPatch.patch(oldValue)(patch)\n});\n/** @internal */\nexport const chunk = differ => make({\n  empty: ChunkPatch.empty(),\n  combine: (first, second) => ChunkPatch.combine(second)(first),\n  diff: (oldValue, newValue) => ChunkPatch.diff({\n    oldValue,\n    newValue,\n    differ\n  }),\n  patch: (patch, oldValue) => ChunkPatch.patch(oldValue, differ)(patch)\n});\n/** @internal */\nexport const hashMap = differ => make({\n  empty: HashMapPatch.empty(),\n  combine: (first, second) => HashMapPatch.combine(second)(first),\n  diff: (oldValue, newValue) => HashMapPatch.diff({\n    oldValue,\n    newValue,\n    differ\n  }),\n  patch: (patch, oldValue) => HashMapPatch.patch(oldValue, differ)(patch)\n});\n/** @internal */\nexport const hashSet = () => make({\n  empty: HashSetPatch.empty(),\n  combine: (first, second) => HashSetPatch.combine(second)(first),\n  diff: (oldValue, newValue) => HashSetPatch.diff(oldValue, newValue),\n  patch: (patch, oldValue) => HashSetPatch.patch(oldValue)(patch)\n});\n/** @internal */\nexport const orElseEither = /*#__PURE__*/Dual.dual(2, (self, that) => make({\n  empty: OrPatch.empty(),\n  combine: (first, second) => OrPatch.combine(first, second),\n  diff: (oldValue, newValue) => OrPatch.diff({\n    oldValue,\n    newValue,\n    left: self,\n    right: that\n  }),\n  patch: (patch, oldValue) => OrPatch.patch(patch, {\n    oldValue,\n    left: self,\n    right: that\n  })\n}));\n/** @internal */\nexport const readonlyArray = differ => make({\n  empty: ReadonlyArrayPatch.empty(),\n  combine: (first, second) => ReadonlyArrayPatch.combine(first, second),\n  diff: (oldValue, newValue) => ReadonlyArrayPatch.diff({\n    oldValue,\n    newValue,\n    differ\n  }),\n  patch: (patch, oldValue) => ReadonlyArrayPatch.patch(patch, oldValue, differ)\n});\n/** @internal */\nexport const transform = /*#__PURE__*/Dual.dual(2, (self, {\n  toNew,\n  toOld\n}) => make({\n  empty: self.empty,\n  combine: (first, second) => self.combine(first, second),\n  diff: (oldValue, newValue) => self.diff(toOld(oldValue), toOld(newValue)),\n  patch: (patch, oldValue) => toNew(self.patch(patch, toOld(oldValue)))\n}));\n/** @internal */\nexport const update = () => updateWith((_, a) => a);\n/** @internal */\nexport const updateWith = f => make({\n  empty: identity,\n  combine: (first, second) => {\n    if (first === identity) {\n      return second;\n    }\n    if (second === identity) {\n      return first;\n    }\n    return a => second(first(a));\n  },\n  diff: (oldValue, newValue) => {\n    if (Equal.equals(oldValue, newValue)) {\n      return identity;\n    }\n    return constant(newValue);\n  },\n  patch: (patch, oldValue) => f(oldValue, patch(oldValue))\n});\n/** @internal */\nexport const zip = /*#__PURE__*/Dual.dual(2, (self, that) => make({\n  empty: [self.empty, that.empty],\n  combine: (first, second) => [self.combine(first[0], second[0]), that.combine(first[1], second[1])],\n  diff: (oldValue, newValue) => [self.diff(oldValue[0], newValue[0]), that.diff(oldValue[1], newValue[1])],\n  patch: (patch, oldValue) => [self.patch(patch[0], oldValue[0]), that.patch(patch[1], oldValue[1])]\n}));\n//# sourceMappingURL=differ.js.map",
+      "start": 1768772628585,
+      "end": 1768772628585
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628585,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628618,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628647,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628704,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

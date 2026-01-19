@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/Take.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as internal from \"./internal/take.js\";\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const TakeTypeId = internal.TakeTypeId;\n/**\n * Creates a `Take` with the specified chunk.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const chunk = internal.chunk;\n/**\n * Creates a failing `Take` with the specified defect.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const die = internal.die;\n/**\n * Creates a failing `Take` with the specified error message.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const dieMessage = internal.dieMessage;\n/**\n * Transforms a `Take<A, E>` to an `Effect<A, E>`.\n *\n * @since 2.0.0\n * @category destructors\n */\nexport const done = internal.done;\n/**\n * Represents the end-of-stream marker.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const end = internal.end;\n/**\n * Creates a failing `Take` with the specified error.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const fail = internal.fail;\n/**\n * Creates a failing `Take` with the specified cause.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const failCause = internal.failCause;\n/**\n * Creates an effect from `Effect<A, E, R>` that does not fail, but succeeds with\n * the `Take<A, E>`. Error from stream when pulling is converted to\n * `Take.failCause`. Creates a single value chunk.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const fromEffect = internal.fromEffect;\n/**\n * Creates a `Take` from an `Exit`.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const fromExit = internal.fromExit;\n/**\n * Creates effect from `Effect<Chunk<A>, Option<E>, R>` that does not fail, but\n * succeeds with the `Take<A, E>`. Errors from stream when pulling are converted\n * to `Take.failCause`, and the end-of-stream is converted to `Take.end`.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const fromPull = internal.fromPull;\n/**\n * Checks if this `take` is done (`Take.end`).\n *\n * @since 2.0.0\n * @category getters\n */\nexport const isDone = internal.isDone;\n/**\n * Checks if this `take` is a failure.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const isFailure = internal.isFailure;\n/**\n * Checks if this `take` is a success.\n *\n * @since 2.0.0\n * @category getters\n */\nexport const isSuccess = internal.isSuccess;\n/**\n * Constructs a `Take`.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const make = internal.make;\n/**\n * Transforms `Take<A, E>` to `Take<B, A>` by applying function `f`.\n *\n * @since 2.0.0\n * @category mapping\n */\nexport const map = internal.map;\n/**\n * Folds over the failure cause, success value and end-of-stream marker to\n * yield a value.\n *\n * @since 2.0.0\n * @category destructors\n */\nexport const match = internal.match;\n/**\n * Effectful version of `Take.fold`.\n *\n * Folds over the failure cause, success value and end-of-stream marker to\n * yield an effect.\n *\n * @since 2.0.0\n * @category destructors\n */\nexport const matchEffect = internal.matchEffect;\n/**\n * Creates a `Take` with a single value chunk.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const of = internal.of;\n/**\n * Returns an effect that effectfully \"peeks\" at the success of this take.\n *\n * @since 2.0.0\n * @category sequencing\n */\nexport const tap = internal.tap;\n//# sourceMappingURL=Take.js.map",
+      "start": 1768772628413,
+      "end": 1768772628413
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628413,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628418,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628434,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628477,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

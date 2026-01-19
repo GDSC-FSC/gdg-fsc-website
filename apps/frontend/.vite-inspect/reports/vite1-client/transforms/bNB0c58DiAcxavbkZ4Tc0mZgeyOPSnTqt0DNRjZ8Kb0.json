@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/components/AnimatePresence/utils.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { Children, isValidElement } from 'react';\n\nconst getChildKey = (child) => child.key || \"\";\nfunction onlyElements(children) {\n    const filtered = [];\n    // We use forEach here instead of map as map mutates the component key by preprending `.$`\n    Children.forEach(children, (child) => {\n        if (isValidElement(child))\n            filtered.push(child);\n    });\n    return filtered;\n}\n\nexport { getChildKey, onlyElements };\n//# sourceMappingURL=utils.mjs.map\n",
+      "start": 1768772628753,
+      "end": 1768772628753
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628753,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628770,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628789,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628805,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

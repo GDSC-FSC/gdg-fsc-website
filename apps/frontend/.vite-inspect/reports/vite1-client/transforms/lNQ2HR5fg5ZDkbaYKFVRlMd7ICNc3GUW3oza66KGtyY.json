@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/train-track.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M2 17 17 2\", key: \"18b09t\" }],\n  [\"path\", { d: \"m2 14 8 8\", key: \"1gv9hu\" }],\n  [\"path\", { d: \"m5 11 8 8\", key: \"189pqp\" }],\n  [\"path\", { d: \"m8 8 8 8\", key: \"1imecy\" }],\n  [\"path\", { d: \"m11 5 8 8\", key: \"ummqn6\" }],\n  [\"path\", { d: \"m14 2 8 8\", key: \"1vk7dn\" }],\n  [\"path\", { d: \"M7 22 22 7\", key: \"15mb1i\" }]\n];\nconst TrainTrack = createLucideIcon(\"train-track\", __iconNode);\n\nexport { __iconNode, TrainTrack as default };\n//# sourceMappingURL=train-track.js.map\n",
+      "start": 1768772628550,
+      "end": 1768772628550
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628550,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628578,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628607,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628634,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/dictionary.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { tuple } from './tuple.js';\nimport { uniqueArray } from './uniqueArray.js';\nimport { keyValuePairsToObjectMapper, keyValuePairsToObjectUnmapper } from './_internals/mappers/KeyValuePairsToObject.js';\nimport { constant } from './constant.js';\nimport { boolean } from './boolean.js';\nfunction dictionaryKeyExtractor(entry) {\n    return entry[0];\n}\nexport function dictionary(keyArb, valueArb, constraints = {}) {\n    const noNullPrototype = constraints.noNullPrototype !== false;\n    return tuple(uniqueArray(tuple(keyArb, valueArb), {\n        minLength: constraints.minKeys,\n        maxLength: constraints.maxKeys,\n        size: constraints.size,\n        selector: dictionaryKeyExtractor,\n        depthIdentifier: constraints.depthIdentifier,\n    }), noNullPrototype ? constant(false) : boolean()).map(keyValuePairsToObjectMapper, keyValuePairsToObjectUnmapper);\n}\n",
+      "start": 1768772628849,
+      "end": 1768772628849
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628849,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628851,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628855,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628858,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

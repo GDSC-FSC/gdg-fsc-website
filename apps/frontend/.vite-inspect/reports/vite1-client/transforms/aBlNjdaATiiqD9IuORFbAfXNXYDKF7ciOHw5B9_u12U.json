@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/animation/interfaces/motion-value.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { secondsToMilliseconds, MotionGlobalConfig } from 'motion-utils';\nimport { AsyncMotionValueAnimation } from '../AsyncMotionValueAnimation.mjs';\nimport { JSAnimation } from '../JSAnimation.mjs';\nimport { getValueTransition } from '../utils/get-value-transition.mjs';\nimport { makeAnimationInstant } from '../utils/make-animation-instant.mjs';\nimport { getDefaultTransition } from '../utils/default-transitions.mjs';\nimport { getFinalKeyframe } from '../utils/get-final-keyframe.mjs';\nimport { isTransitionDefined } from '../utils/is-transition-defined.mjs';\nimport { frame } from '../../frameloop/frame.mjs';\n\nconst animateMotionValue = (name, value, target, transition = {}, element, isHandoff) => (onComplete) => {\n    const valueTransition = getValueTransition(transition, name) || {};\n    /**\n     * Most transition values are currently completely overwritten by value-specific\n     * transitions. In the future it'd be nicer to blend these transitions. But for now\n     * delay actually does inherit from the root transition if not value-specific.\n     */\n    const delay = valueTransition.delay || transition.delay || 0;\n    /**\n     * Elapsed isn't a public transition option but can be passed through from\n     * optimized appear effects in milliseconds.\n     */\n    let { elapsed = 0 } = transition;\n    elapsed = elapsed - secondsToMilliseconds(delay);\n    const options = {\n        keyframes: Array.isArray(target) ? target : [null, target],\n        ease: \"easeOut\",\n        velocity: value.getVelocity(),\n        ...valueTransition,\n        delay: -elapsed,\n        onUpdate: (v) => {\n            value.set(v);\n            valueTransition.onUpdate && valueTransition.onUpdate(v);\n        },\n        onComplete: () => {\n            onComplete();\n            valueTransition.onComplete && valueTransition.onComplete();\n        },\n        name,\n        motionValue: value,\n        element: isHandoff ? undefined : element,\n    };\n    /**\n     * If there's no transition defined for this value, we can generate\n     * unique transition settings for this value.\n     */\n    if (!isTransitionDefined(valueTransition)) {\n        Object.assign(options, getDefaultTransition(name, options));\n    }\n    /**\n     * Both WAAPI and our internal animation functions use durations\n     * as defined by milliseconds, while our external API defines them\n     * as seconds.\n     */\n    options.duration && (options.duration = secondsToMilliseconds(options.duration));\n    options.repeatDelay && (options.repeatDelay = secondsToMilliseconds(options.repeatDelay));\n    /**\n     * Support deprecated way to set initial value. Prefer keyframe syntax.\n     */\n    if (options.from !== undefined) {\n        options.keyframes[0] = options.from;\n    }\n    let shouldSkip = false;\n    if (options.type === false ||\n        (options.duration === 0 && !options.repeatDelay)) {\n        makeAnimationInstant(options);\n        if (options.delay === 0) {\n            shouldSkip = true;\n        }\n    }\n    if (MotionGlobalConfig.instantAnimations ||\n        MotionGlobalConfig.skipAnimations) {\n        shouldSkip = true;\n        makeAnimationInstant(options);\n        options.delay = 0;\n    }\n    /**\n     * If the transition type or easing has been explicitly set by the user\n     * then we don't want to allow flattening the animation.\n     */\n    options.allowFlatten = !valueTransition.type && !valueTransition.ease;\n    /**\n     * If we can or must skip creating the animation, and apply only\n     * the final keyframe, do so. We also check once keyframes are resolved but\n     * this early check prevents the need to create an animation at all.\n     */\n    if (shouldSkip && !isHandoff && value.get() !== undefined) {\n        const finalKeyframe = getFinalKeyframe(options.keyframes, valueTransition);\n        if (finalKeyframe !== undefined) {\n            frame.update(() => {\n                options.onUpdate(finalKeyframe);\n                options.onComplete();\n            });\n            return;\n        }\n    }\n    return valueTransition.isSync\n        ? new JSAnimation(options)\n        : new AsyncMotionValueAnimation(options);\n};\n\nexport { animateMotionValue };\n",
+      "start": 1768772628753,
+      "end": 1768772628753
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628753,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628770,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628789,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628806,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

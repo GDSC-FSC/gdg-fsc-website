@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/copy-anything/dist/index.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { isArray, isPlainObject } from 'is-what';\nfunction assignProp(carry, key, newVal, originalObject, includeNonenumerable) {\n    const propType = {}.propertyIsEnumerable.call(originalObject, key)\n        ? 'enumerable'\n        : 'nonenumerable';\n    if (propType === 'enumerable')\n        carry[key] = newVal;\n    if (includeNonenumerable && propType === 'nonenumerable') {\n        Object.defineProperty(carry, key, {\n            value: newVal,\n            enumerable: false,\n            writable: true,\n            configurable: true,\n        });\n    }\n}\n/**\n * Copy (clone) an object and all its props recursively to get rid of any prop referenced of the\n * original object. Arrays are also cloned, however objects inside arrays are still linked.\n *\n * @param target Target can be anything\n * @param [options={}] See type {@link Options} for more details.\n *\n *   - `{ props: ['key1'] }` will only copy the `key1` property. When using this you will need to cast\n *       the return type manually (in order to keep the TS implementation in here simple I didn't\n *       built a complex auto resolved type for those few cases people want to use this option)\n *   - `{ nonenumerable: true }` will copy all non-enumerable properties. Default is `{}`\n *\n * @returns The target with replaced values\n */\nexport function copy(target, options = {}) {\n    if (isArray(target)) {\n        return target.map((item) => copy(item, options));\n    }\n    if (!isPlainObject(target)) {\n        return target;\n    }\n    const props = Object.getOwnPropertyNames(target);\n    const symbols = Object.getOwnPropertySymbols(target);\n    return [...props, ...symbols].reduce((carry, key) => {\n        // Skip __proto__ properties to prevent prototype pollution\n        if (key === '__proto__')\n            return carry;\n        if (isArray(options.props) && !options.props.includes(key)) {\n            return carry;\n        }\n        const val = target[key];\n        const newVal = copy(val, options);\n        assignProp(carry, key, newVal, target, options.nonenumerable);\n        return carry;\n    }, {});\n}\n",
+      "start": 1768772628550,
+      "end": 1768772628550
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628550,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628578,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628607,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628634,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@tanstack/react-query/build/modern/useIsFetching.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "\"use client\";\n\n// src/useIsFetching.ts\nimport * as React from \"react\";\nimport { notifyManager } from \"@tanstack/query-core\";\nimport { useQueryClient } from \"./QueryClientProvider.js\";\nfunction useIsFetching(filters, queryClient) {\n  const client = useQueryClient(queryClient);\n  const queryCache = client.getQueryCache();\n  return React.useSyncExternalStore(\n    React.useCallback(\n      (onStoreChange) => queryCache.subscribe(notifyManager.batchCalls(onStoreChange)),\n      [queryCache]\n    ),\n    () => client.isFetching(filters),\n    () => client.isFetching(filters)\n  );\n}\nexport {\n  useIsFetching\n};\n//# sourceMappingURL=useIsFetching.js.map",
+      "start": 1768772628338,
+      "end": 1768772628338
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628338,
+      "end": 1768772628338,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628339,
+      "end": 1768772628339,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628356,
+      "end": 1768772628357,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628358,
+      "end": 1768772628358,
+      "order": "post-post"
+    }
+  ]
+}

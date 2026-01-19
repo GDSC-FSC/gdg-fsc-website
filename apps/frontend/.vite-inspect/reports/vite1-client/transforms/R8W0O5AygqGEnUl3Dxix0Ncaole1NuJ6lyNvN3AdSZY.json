@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/subscriptionRef.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Effect from \"../Effect.js\";\nimport * as Effectable from \"../Effectable.js\";\nimport { dual, pipe } from \"../Function.js\";\nimport * as PubSub from \"../PubSub.js\";\nimport * as Readable from \"../Readable.js\";\nimport * as Ref from \"../Ref.js\";\nimport * as Subscribable from \"../Subscribable.js\";\nimport * as Synchronized from \"../SynchronizedRef.js\";\nimport * as circular_ from \"./effect/circular.js\";\nimport * as ref_ from \"./ref.js\";\nimport * as stream from \"./stream.js\";\n/** @internal */\nconst SubscriptionRefSymbolKey = \"effect/SubscriptionRef\";\n/** @internal */\nexport const SubscriptionRefTypeId = /*#__PURE__*/Symbol.for(SubscriptionRefSymbolKey);\nconst subscriptionRefVariance = {\n  /* c8 ignore next */\n  _A: _ => _\n};\n/** @internal */\nclass SubscriptionRefImpl extends Effectable.Class {\n  ref;\n  pubsub;\n  semaphore;\n  [Readable.TypeId] = Readable.TypeId;\n  [Subscribable.TypeId] = Subscribable.TypeId;\n  [Ref.RefTypeId] = ref_.refVariance;\n  [Synchronized.SynchronizedRefTypeId] = circular_.synchronizedVariance;\n  [SubscriptionRefTypeId] = subscriptionRefVariance;\n  constructor(ref, pubsub, semaphore) {\n    super();\n    this.ref = ref;\n    this.pubsub = pubsub;\n    this.semaphore = semaphore;\n    this.get = Ref.get(this.ref);\n  }\n  commit() {\n    return this.get;\n  }\n  get;\n  get changes() {\n    return pipe(Ref.get(this.ref), Effect.flatMap(a => Effect.map(stream.fromPubSub(this.pubsub, {\n      scoped: true\n    }), s => stream.concat(stream.make(a), s))), this.semaphore.withPermits(1), stream.unwrapScoped);\n  }\n  modify(f) {\n    return this.modifyEffect(a => Effect.succeed(f(a)));\n  }\n  modifyEffect(f) {\n    return pipe(Ref.get(this.ref), Effect.flatMap(f), Effect.flatMap(([b, a]) => pipe(Ref.set(this.ref, a), Effect.as(b), Effect.zipLeft(PubSub.publish(this.pubsub, a)))), this.semaphore.withPermits(1));\n  }\n}\n/** @internal */\nexport const get = self => Ref.get(self.ref);\n/** @internal */\nexport const make = value => pipe(Effect.all([PubSub.unbounded(), Ref.make(value), Effect.makeSemaphore(1)]), Effect.map(([pubsub, ref, semaphore]) => new SubscriptionRefImpl(ref, pubsub, semaphore)));\n/** @internal */\nexport const modify = /*#__PURE__*/dual(2, (self, f) => self.modify(f));\n/** @internal */\nexport const modifyEffect = /*#__PURE__*/dual(2, (self, f) => self.modifyEffect(f));\n/** @internal */\nexport const set = /*#__PURE__*/dual(2, (self, value) => pipe(Ref.set(self.ref, value), Effect.zipLeft(PubSub.publish(self.pubsub, value)), self.semaphore.withPermits(1)));\n//# sourceMappingURL=subscriptionRef.js.map",
+      "start": 1768772628587,
+      "end": 1768772628587
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628587,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628621,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628650,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

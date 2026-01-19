@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/check/runner/configuration/VerbosityLevel.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "export var VerbosityLevel;\n(function (VerbosityLevel) {\n    VerbosityLevel[VerbosityLevel[\"None\"] = 0] = \"None\";\n    VerbosityLevel[VerbosityLevel[\"Verbose\"] = 1] = \"Verbose\";\n    VerbosityLevel[VerbosityLevel[\"VeryVerbose\"] = 2] = \"VeryVerbose\";\n})(VerbosityLevel || (VerbosityLevel = {}));\n",
+      "start": 1768772628849,
+      "end": 1768772628849
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628849,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628852,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628855,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628858,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

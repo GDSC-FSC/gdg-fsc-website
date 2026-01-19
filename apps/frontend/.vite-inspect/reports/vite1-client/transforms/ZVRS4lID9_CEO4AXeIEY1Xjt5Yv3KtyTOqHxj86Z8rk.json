@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/stream/handoffSignal.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/** @internal */\nexport const OP_EMIT = \"Emit\";\n/** @internal */\nexport const OP_HALT = \"Halt\";\n/** @internal */\nexport const OP_END = \"End\";\n/** @internal */\nexport const emit = elements => ({\n  _tag: OP_EMIT,\n  elements\n});\n/** @internal */\nexport const halt = cause => ({\n  _tag: OP_HALT,\n  cause\n});\n/** @internal */\nexport const end = reason => ({\n  _tag: OP_END,\n  reason\n});\n//# sourceMappingURL=handoffSignal.js.map",
+      "start": 1768772628788,
+      "end": 1768772628788
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628788,
+      "end": 1768772628788,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628805,
+      "end": 1768772628805,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628815,
+      "end": 1768772628815,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628820,
+      "end": 1768772628820,
+      "order": "post-post"
+    }
+  ]
+}

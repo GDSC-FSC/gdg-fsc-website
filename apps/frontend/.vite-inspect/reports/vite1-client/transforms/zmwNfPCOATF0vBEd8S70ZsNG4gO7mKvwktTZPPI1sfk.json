@@ -1,0 +1,92 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/apps/frontend/src/components/loader.tsx",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * Copyright 2025 GDG on Campus Farmingdale State College\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\n// NOTE: Choose between . and ./loading-screen.tsx or redesign\n\n'use client';\n\nimport { Loader2 } from 'lucide-react';\nimport { motion } from 'motion/react';\nimport React from 'react';\n\n/**\n * A loading spinner component with animated background and fade-in effects.\n *\n * @component\n * @description\n * Displays a centered loading spinner with multiple animated elements:\n * - An animated gradient background\n * - A fading-in container with vertical transition\n * - A circular border with scaling animation\n * - A continuously rotating Loader2 icon\n *\n * Uses Framer Motion for animations and React.memo for performance optimization.\n *\n * @example\n * ```jsx\n * // Basic usage\n * <Loader />\n * ```\n *\n * @remarks\n * - Uses 'use client' directive for Next.js client-side rendering\n * - Implements full-screen responsive layout\n * - Includes fallback memoization to prevent unnecessary re-renders\n *\n * @returns {React.JSX.Element} A memoized loading spinner component with animations\n */\nexport const Loader = React.memo(\n  () => {\n    return (\n      <div className=\"relative flex flex-col items-center justify-center min-h-screen overflow-hidden\">\n        <motion.div\n          className=\"flex flex-col items-center\"\n          initial={{ opacity: 0, y: 20 }}\n          animate={{ opacity: 1, y: 0 }}\n          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}\n        >\n          <div className=\"relative\">\n            <motion.div\n              className=\"w-24 h-24 border-4 rounded-full border-primary-foreground/20\"\n              initial={{ opacity: 0, scale: 0.8 }}\n              animate={{ opacity: 1, scale: 1 }}\n              transition={{ duration: 0.5 }}\n            />\n            <div className=\"absolute inset-0 flex items-center justify-center\">\n              <motion.div\n                animate={{ rotate: 360 }}\n                transition={{\n                  duration: 2,\n                  repeat: Number.POSITIVE_INFINITY,\n                  ease: 'linear',\n                }}\n              >\n                <Loader2 className=\"w-12 h-12 text-primary-foreground\" />\n              </motion.div>\n            </div>\n          </div>\n        </motion.div>\n      </div>\n    );\n  },\n  () => true,\n);\n\nLoader.displayName = 'Loader';\nexport default Loader;\n",
+      "start": 1768772628280,
+      "end": 1768772628280,
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "Loader2",
+          "motion",
+          "React",
+          "Loader",
+          "memo",
+          "opacity",
+          "y",
+          "duration",
+          "ease",
+          "scale",
+          "rotate",
+          "repeat",
+          "Number",
+          "POSITIVE_INFINITY",
+          "displayName"
+        ],
+        "sources": [
+          "/home/wombocombo/github/wrk/gdg-fsc-website/apps/frontend/src/components/loader.tsx"
+        ],
+        "sourcesContent": [
+          "/**\n * Copyright 2025 GDG on Campus Farmingdale State College\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\n// NOTE: Choose between . and ./loading-screen.tsx or redesign\n\n'use client';\n\nimport { Loader2 } from 'lucide-react';\nimport { motion } from 'motion/react';\nimport React from 'react';\n\n/**\n * A loading spinner component with animated background and fade-in effects.\n *\n * @component\n * @description\n * Displays a centered loading spinner with multiple animated elements:\n * - An animated gradient background\n * - A fading-in container with vertical transition\n * - A circular border with scaling animation\n * - A continuously rotating Loader2 icon\n *\n * Uses Framer Motion for animations and React.memo for performance optimization.\n *\n * @example\n * ```jsx\n * // Basic usage\n * <Loader />\n * ```\n *\n * @remarks\n * - Uses 'use client' directive for Next.js client-side rendering\n * - Implements full-screen responsive layout\n * - Includes fallback memoization to prevent unnecessary re-renders\n *\n * @returns {React.JSX.Element} A memoized loading spinner component with animations\n */\nexport const Loader = React.memo(\n  () => {\n    return (\n      <div className=\"relative flex flex-col items-center justify-center min-h-screen overflow-hidden\">\n        <motion.div\n          className=\"flex flex-col items-center\"\n          initial={{ opacity: 0, y: 20 }}\n          animate={{ opacity: 1, y: 0 }}\n          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}\n        >\n          <div className=\"relative\">\n            <motion.div\n              className=\"w-24 h-24 border-4 rounded-full border-primary-foreground/20\"\n              initial={{ opacity: 0, scale: 0.8 }}\n              animate={{ opacity: 1, scale: 1 }}\n              transition={{ duration: 0.5 }}\n            />\n            <div className=\"absolute inset-0 flex items-center justify-center\">\n              <motion.div\n                animate={{ rotate: 360 }}\n                transition={{\n                  duration: 2,\n                  repeat: Number.POSITIVE_INFINITY,\n                  ease: 'linear',\n                }}\n              >\n                <Loader2 className=\"w-12 h-12 text-primary-foreground\" />\n              </motion.div>\n            </div>\n          </div>\n        </motion.div>\n      </div>\n    );\n  },\n  () => true,\n);\n\nLoader.displayName = 'Loader';\nexport default Loader;\n"
+        ],
+        "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;;AAEA,YAAY;;AAEZ,SAASA,OAAO,QAAQ,cAAc;AACtC,SAASC,MAAM,QAAQ,cAAc;AACrC,OAAOC,KAAK,MAAM,OAAO;;AAEzB;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,OAAO,MAAMC,MAAM,GAAGD,KAAK,CAACE,IAAI,CAC9B,MAAM;EACJ,OACE,CAAC,GAAG,CAAC,SAAS,CAAC,iFAAiF;AACtG,QAAQ,CAAC,MAAM,CAAC,GAAG,CACT,SAAS,CAAC,4BAA4B,CACtC,OAAO,CAAC,CAAC;MAAEC,OAAO,EAAE,CAAC;MAAEC,CAAC,EAAE;IAAG,CAAC,CAAC,CAC/B,OAAO,CAAC,CAAC;MAAED,OAAO,EAAE,CAAC;MAAEC,CAAC,EAAE;IAAE,CAAC,CAAC,CAC9B,UAAU,CAAC,CAAC;MAAEC,QAAQ,EAAE,GAAG;MAAEC,IAAI,EAAE,CAAC,GAAG,EAAE,CAAC,EAAE,GAAG,EAAE,CAAC;IAAE,CAAC,CAAC;AAEhE,UAAU,CAAC,GAAG,CAAC,SAAS,CAAC,UAAU;AACnC,YAAY,CAAC,MAAM,CAAC,GAAG,CACT,SAAS,CAAC,8DAA8D,CACxE,OAAO,CAAC,CAAC;UAAEH,OAAO,EAAE,CAAC;UAAEI,KAAK,EAAE;QAAI,CAAC,CAAC,CACpC,OAAO,CAAC,CAAC;UAAEJ,OAAO,EAAE,CAAC;UAAEI,KAAK,EAAE;QAAE,CAAC,CAAC,CAClC,UAAU,CAAC,CAAC;UAAEF,QAAQ,EAAE;QAAI,CAAC,CAAC;AAE5C,YAAY,CAAC,GAAG,CAAC,SAAS,CAAC,mDAAmD;AAC9E,cAAc,CAAC,MAAM,CAAC,GAAG,CACT,OAAO,CAAC,CAAC;YAAEG,MAAM,EAAE;UAAI,CAAC,CAAC,CACzB,UAAU,CAAC,CAAC;YACVH,QAAQ,EAAE,CAAC;YACXI,MAAM,EAAEC,MAAM,CAACC,iBAAiB;YAChCL,IAAI,EAAE;UACR,CAAC,CAAC;AAElB,gBAAgB,CAAC,OAAO,CAAC,SAAS,CAAC,mCAAmC;AACtE,cAAc,EAAE,MAAM,CAAC,GAAG;AAC1B,YAAY,EAAE,GAAG;AACjB,UAAU,EAAE,GAAG;AACf,QAAQ,EAAE,MAAM,CAAC,GAAG;AACpB,MAAM,EAAE,GAAG,CAAC;AAEV,CAAC,EACD,MAAM,IACR,CAAC;AAEDL,MAAM,CAACW,WAAW,GAAG,QAAQ;AAC7B,eAAeX,MAAM",
+        "ignoreList": []
+      }
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "result": "/**\n * Copyright 2025 GDG on Campus Farmingdale State College\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\n// NOTE: Choose between . and ./loading-screen.tsx or redesign\n\n'use client';\n\nimport { Loader2 } from 'lucide-react';\nimport { motion } from 'motion/react';\nimport React from 'react';\n\n/**\n * A loading spinner component with animated background and fade-in effects.\n *\n * @component\n * @description\n * Displays a centered loading spinner with multiple animated elements:\n * - An animated gradient background\n * - A fading-in container with vertical transition\n * - A circular border with scaling animation\n * - A continuously rotating Loader2 icon\n *\n * Uses Framer Motion for animations and React.memo for performance optimization.\n *\n * @example\n * ```jsx\n * // Basic usage\n * <Loader />\n * ```\n *\n * @remarks\n * - Uses 'use client' directive for Next.js client-side rendering\n * - Implements full-screen responsive layout\n * - Includes fallback memoization to prevent unnecessary re-renders\n *\n * @returns {React.JSX.Element} A memoized loading spinner component with animations\n */\nexport const Loader = React.memo(() => {\n  return <div className=\"relative flex flex-col items-center justify-center min-h-screen overflow-hidden\">\n        <motion.div className=\"flex flex-col items-center\" initial={{\n      opacity: 0,\n      y: 20\n    }} animate={{\n      opacity: 1,\n      y: 0\n    }} transition={{\n      duration: 0.8,\n      ease: [0.4, 0, 0.2, 1]\n    }}>\n          <div className=\"relative\">\n            <motion.div className=\"w-24 h-24 border-4 rounded-full border-primary-foreground/20\" initial={{\n          opacity: 0,\n          scale: 0.8\n        }} animate={{\n          opacity: 1,\n          scale: 1\n        }} transition={{\n          duration: 0.5\n        }} />\n            <div className=\"absolute inset-0 flex items-center justify-center\">\n              <motion.div animate={{\n            rotate: 360\n          }} transition={{\n            duration: 2,\n            repeat: Number.POSITIVE_INFINITY,\n            ease: 'linear'\n          }}>\n                <Loader2 className=\"w-12 h-12 text-primary-foreground\" />\n              </motion.div>\n            </div>\n          </div>\n        </motion.div>\n      </div>;\n}, () => true);\nLoader.displayName = 'Loader';\nexport default Loader;",
+      "start": 1768772628280,
+      "end": 1768772628323,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "Loader2",
+          "motion",
+          "React",
+          "Loader",
+          "memo",
+          "opacity",
+          "y",
+          "duration",
+          "ease",
+          "scale",
+          "rotate",
+          "repeat",
+          "Number",
+          "POSITIVE_INFINITY",
+          "displayName"
+        ],
+        "sources": [
+          "/home/wombocombo/github/wrk/gdg-fsc-website/apps/frontend/src/components/loader.tsx"
+        ],
+        "sourcesContent": [
+          "/**\n * Copyright 2025 GDG on Campus Farmingdale State College\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\n// NOTE: Choose between . and ./loading-screen.tsx or redesign\n\n'use client';\n\nimport { Loader2 } from 'lucide-react';\nimport { motion } from 'motion/react';\nimport React from 'react';\n\n/**\n * A loading spinner component with animated background and fade-in effects.\n *\n * @component\n * @description\n * Displays a centered loading spinner with multiple animated elements:\n * - An animated gradient background\n * - A fading-in container with vertical transition\n * - A circular border with scaling animation\n * - A continuously rotating Loader2 icon\n *\n * Uses Framer Motion for animations and React.memo for performance optimization.\n *\n * @example\n * ```jsx\n * // Basic usage\n * <Loader />\n * ```\n *\n * @remarks\n * - Uses 'use client' directive for Next.js client-side rendering\n * - Implements full-screen responsive layout\n * - Includes fallback memoization to prevent unnecessary re-renders\n *\n * @returns {React.JSX.Element} A memoized loading spinner component with animations\n */\nexport const Loader = React.memo(\n  () => {\n    return (\n      <div className=\"relative flex flex-col items-center justify-center min-h-screen overflow-hidden\">\n        <motion.div\n          className=\"flex flex-col items-center\"\n          initial={{ opacity: 0, y: 20 }}\n          animate={{ opacity: 1, y: 0 }}\n          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}\n        >\n          <div className=\"relative\">\n            <motion.div\n              className=\"w-24 h-24 border-4 rounded-full border-primary-foreground/20\"\n              initial={{ opacity: 0, scale: 0.8 }}\n              animate={{ opacity: 1, scale: 1 }}\n              transition={{ duration: 0.5 }}\n            />\n            <div className=\"absolute inset-0 flex items-center justify-center\">\n              <motion.div\n                animate={{ rotate: 360 }}\n                transition={{\n                  duration: 2,\n                  repeat: Number.POSITIVE_INFINITY,\n                  ease: 'linear',\n                }}\n              >\n                <Loader2 className=\"w-12 h-12 text-primary-foreground\" />\n              </motion.div>\n            </div>\n          </div>\n        </motion.div>\n      </div>\n    );\n  },\n  () => true,\n);\n\nLoader.displayName = 'Loader';\nexport default Loader;\n"
+        ],
+        "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;;AAEA,YAAY;;AAEZ,SAASA,OAAO,QAAQ,cAAc;AACtC,SAASC,MAAM,QAAQ,cAAc;AACrC,OAAOC,KAAK,MAAM,OAAO;;AAEzB;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,OAAO,MAAMC,MAAM,GAAGD,KAAK,CAACE,IAAI,CAC9B,MAAM;EACJ,OACE,CAAC,GAAG,CAAC,SAAS,CAAC,iFAAiF;AACtG,QAAQ,CAAC,MAAM,CAAC,GAAG,CACT,SAAS,CAAC,4BAA4B,CACtC,OAAO,CAAC,CAAC;MAAEC,OAAO,EAAE,CAAC;MAAEC,CAAC,EAAE;IAAG,CAAC,CAAC,CAC/B,OAAO,CAAC,CAAC;MAAED,OAAO,EAAE,CAAC;MAAEC,CAAC,EAAE;IAAE,CAAC,CAAC,CAC9B,UAAU,CAAC,CAAC;MAAEC,QAAQ,EAAE,GAAG;MAAEC,IAAI,EAAE,CAAC,GAAG,EAAE,CAAC,EAAE,GAAG,EAAE,CAAC;IAAE,CAAC,CAAC;AAEhE,UAAU,CAAC,GAAG,CAAC,SAAS,CAAC,UAAU;AACnC,YAAY,CAAC,MAAM,CAAC,GAAG,CACT,SAAS,CAAC,8DAA8D,CACxE,OAAO,CAAC,CAAC;UAAEH,OAAO,EAAE,CAAC;UAAEI,KAAK,EAAE;QAAI,CAAC,CAAC,CACpC,OAAO,CAAC,CAAC;UAAEJ,OAAO,EAAE,CAAC;UAAEI,KAAK,EAAE;QAAE,CAAC,CAAC,CAClC,UAAU,CAAC,CAAC;UAAEF,QAAQ,EAAE;QAAI,CAAC,CAAC;AAE5C,YAAY,CAAC,GAAG,CAAC,SAAS,CAAC,mDAAmD;AAC9E,cAAc,CAAC,MAAM,CAAC,GAAG,CACT,OAAO,CAAC,CAAC;YAAEG,MAAM,EAAE;UAAI,CAAC,CAAC,CACzB,UAAU,CAAC,CAAC;YACVH,QAAQ,EAAE,CAAC;YACXI,MAAM,EAAEC,MAAM,CAACC,iBAAiB;YAChCL,IAAI,EAAE;UACR,CAAC,CAAC;AAElB,gBAAgB,CAAC,OAAO,CAAC,SAAS,CAAC,mCAAmC;AACtE,cAAc,EAAE,MAAM,CAAC,GAAG;AAC1B,YAAY,EAAE,GAAG;AACjB,UAAU,EAAE,GAAG;AACf,QAAQ,EAAE,MAAM,CAAC,GAAG;AACpB,MAAM,EAAE,GAAG,CAAC;AAEV,CAAC,EACD,MAAM,IACR,CAAC;AAEDL,MAAM,CAACW,WAAW,GAAG,QAAQ;AAC7B,eAAeX,MAAM",
+        "ignoreList": []
+      }
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628324,
+      "end": 1768772628324,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628324,
+      "end": 1768772628325,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628325,
+      "end": 1768772628325,
+      "order": "post-post"
+    }
+  ]
+}

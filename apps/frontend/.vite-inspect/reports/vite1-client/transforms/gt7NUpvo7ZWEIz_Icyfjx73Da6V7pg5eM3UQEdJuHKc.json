@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/utils/use-composed-ref.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as React from 'react';\n\n/**\n * Taken from https://github.com/radix-ui/primitives/blob/main/packages/react/compose-refs/src/compose-refs.tsx\n */\n/**\n * Set a given ref to a given value\n * This utility takes care of different types of refs: callback refs and RefObject(s)\n */\nfunction setRef(ref, value) {\n    if (typeof ref === \"function\") {\n        return ref(value);\n    }\n    else if (ref !== null && ref !== undefined) {\n        ref.current = value;\n    }\n}\n/**\n * A utility to compose multiple refs together\n * Accepts callback refs and RefObject(s)\n */\nfunction composeRefs(...refs) {\n    return (node) => {\n        let hasCleanup = false;\n        const cleanups = refs.map((ref) => {\n            const cleanup = setRef(ref, node);\n            if (!hasCleanup && typeof cleanup === \"function\") {\n                hasCleanup = true;\n            }\n            return cleanup;\n        });\n        // React <19 will log an error to the console if a callback ref returns a\n        // value. We don't use ref cleanups internally so this will only happen if a\n        // user's ref callback returns a value, which we only expect if they are\n        // using the cleanup functionality added in React 19.\n        if (hasCleanup) {\n            return () => {\n                for (let i = 0; i < cleanups.length; i++) {\n                    const cleanup = cleanups[i];\n                    if (typeof cleanup === \"function\") {\n                        cleanup();\n                    }\n                    else {\n                        setRef(refs[i], null);\n                    }\n                }\n            };\n        }\n    };\n}\n/**\n * A custom hook that composes multiple refs\n * Accepts callback refs and RefObject(s)\n */\nfunction useComposedRefs(...refs) {\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n    return React.useCallback(composeRefs(...refs), refs);\n}\n\nexport { useComposedRefs };\n//# sourceMappingURL=use-composed-ref.mjs.map\n",
+      "start": 1768772628587,
+      "end": 1768772628587
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628587,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628620,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628649,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

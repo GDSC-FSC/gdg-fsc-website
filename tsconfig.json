@@ -13,7 +13,12 @@
     "typeRoots": ["./node_modules/@types"],
     "types": ["vitest/globals"],
     "paths": {
-      "@/*": ["apps/frontend/src/*"]
+      "@/*": ["apps/frontend/src/*"],
+      "@gdg-fsc/utils": ["packages/shared/dist/utils/src/lib/index.d.ts"],
+      "@gdg-fsc/classes": ["packages/shared/dist/classes/src/lib/index.d.ts"],
+      "@gdg-fsc/decorators": ["packages/shared/dist/decorators/src/lib/index.d.ts"],
+      "@gdg-fsc/interface": ["packages/interface/dist/index.d.ts"],
+      "@gdg-fsc/shared": ["packages/shared/dist/index.d.ts"]
     }
-  }
+  },
 }

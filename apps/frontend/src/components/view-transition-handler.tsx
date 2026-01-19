@@ -17,10 +17,10 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { flushSync } from 'react-dom';
 import { useLocation } from 'react-router-dom';
-import { logger } from '../../../../packages/interface';
+import { logger } from '../../../../packages/shared/utils/src';
 
 export const ViewTransitionHandler = () => {
-  const location = useLocation();
+  useLocation();
   const initialLoadRef = useRef(true);
 
   const handleViewTransition = useCallback(() => {
@@ -52,7 +52,7 @@ export const ViewTransitionHandler = () => {
     // For now, it will trigger on initial load too if you don't add extra logic.
     // console.log("Route changed to:", location.pathname); // For debugging
     handleViewTransition();
-  }, [location.pathname, handleViewTransition]);
+  }, [handleViewTransition]);
 
   return null; // This component doesn't render anything visible
 };

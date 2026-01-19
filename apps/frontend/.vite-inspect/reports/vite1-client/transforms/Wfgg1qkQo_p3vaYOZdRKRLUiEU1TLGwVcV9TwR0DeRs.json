@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/components/AnimatePresence/PresenceChild.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "\"use client\";\nimport { jsx } from 'react/jsx-runtime';\nimport * as React from 'react';\nimport { useId, useMemo } from 'react';\nimport { PresenceContext } from '../../context/PresenceContext.mjs';\nimport { useConstant } from '../../utils/use-constant.mjs';\nimport { PopChild } from './PopChild.mjs';\n\nconst PresenceChild = ({ children, initial, isPresent, onExitComplete, custom, presenceAffectsLayout, mode, anchorX, root }) => {\n    const presenceChildren = useConstant(newChildrenMap);\n    const id = useId();\n    let isReusedContext = true;\n    let context = useMemo(() => {\n        isReusedContext = false;\n        return {\n            id,\n            initial,\n            isPresent,\n            custom,\n            onExitComplete: (childId) => {\n                presenceChildren.set(childId, true);\n                for (const isComplete of presenceChildren.values()) {\n                    if (!isComplete)\n                        return; // can stop searching when any is incomplete\n                }\n                onExitComplete && onExitComplete();\n            },\n            register: (childId) => {\n                presenceChildren.set(childId, false);\n                return () => presenceChildren.delete(childId);\n            },\n        };\n    }, [isPresent, presenceChildren, onExitComplete]);\n    /**\n     * If the presence of a child affects the layout of the components around it,\n     * we want to make a new context value to ensure they get re-rendered\n     * so they can detect that layout change.\n     */\n    if (presenceAffectsLayout && isReusedContext) {\n        context = { ...context };\n    }\n    useMemo(() => {\n        presenceChildren.forEach((_, key) => presenceChildren.set(key, false));\n    }, [isPresent]);\n    /**\n     * If there's no `motion` components to fire exit animations, we want to remove this\n     * component immediately.\n     */\n    React.useEffect(() => {\n        !isPresent &&\n            !presenceChildren.size &&\n            onExitComplete &&\n            onExitComplete();\n    }, [isPresent]);\n    if (mode === \"popLayout\") {\n        children = (jsx(PopChild, { isPresent: isPresent, anchorX: anchorX, root: root, children: children }));\n    }\n    return (jsx(PresenceContext.Provider, { value: context, children: children }));\n};\nfunction newChildrenMap() {\n    return new Map();\n}\n\nexport { PresenceChild };\n//# sourceMappingURL=PresenceChild.mjs.map\n",
+      "start": 1768772628584,
+      "end": 1768772628584
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628584,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628618,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628646,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628703,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

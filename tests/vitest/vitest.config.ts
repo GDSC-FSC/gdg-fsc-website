@@ -18,18 +18,42 @@
  * @see https://www.douglasgoulart.com/writings/creating-a-complete-nodejs-test-environment-with-vitest-postgresql-and-prisma
  * @see https://github.com/doougui/node-test-env
  */
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { defineConfig } from 'vitest/config';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   test: {
     globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./src/setup.ts'],
     clearMocks: true,
+    server: {
+      deps: {
+        inline: ['@gdg-fsc/interface'],
+      },
+    },
     coverage: {
       provider: 'v8',
-      all: true,
       exclude: ['dist'],
       include: ['src'],
       reporter: ['html', 'lcov'],
+    },
+  },
+  resolve: {
+    dedupe: ['react', 'react-dom'],
+    alias: {
+      '@gdg-fsc/interface': path.resolve(__dirname, '../../packages/interface/index.ts'),
+      '@gdg-fsc/utils': path.resolve(__dirname, '../../packages/shared/utils/src/lib/index.ts'),
+      '@gdg-fsc/classes': path.resolve(__dirname, '../../packages/shared/classes/src/lib/index.ts'),
+      '@gdg-fsc/decorators': path.resolve(__dirname, '../../packages/shared/decorators/src/lib/index.ts'),
+      '@': path.resolve(__dirname, '../../apps/frontend/src'),
+      'react': path.resolve(__dirname, '../../node_modules/react'),
+      'react-dom': path.resolve(__dirname, '../../node_modules/react-dom'),
+      'react/jsx-runtime': path.resolve(__dirname, '../../node_modules/react/jsx-runtime.js'),
+      'react/jsx-dev-runtime': path.resolve(__dirname, '../../node_modules/react/jsx-dev-runtime.js'),
     },
   },
 });

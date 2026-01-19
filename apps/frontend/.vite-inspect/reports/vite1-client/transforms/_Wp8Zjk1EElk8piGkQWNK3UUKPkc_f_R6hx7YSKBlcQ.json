@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@tanstack/react-query/build/modern/index.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "// src/index.ts\nexport * from \"@tanstack/query-core\";\nexport * from \"./types.js\";\nimport { useQueries } from \"./useQueries.js\";\nimport { useQuery } from \"./useQuery.js\";\nimport { useSuspenseQuery } from \"./useSuspenseQuery.js\";\nimport { useSuspenseInfiniteQuery } from \"./useSuspenseInfiniteQuery.js\";\nimport { useSuspenseQueries } from \"./useSuspenseQueries.js\";\nimport { usePrefetchQuery } from \"./usePrefetchQuery.js\";\nimport { usePrefetchInfiniteQuery } from \"./usePrefetchInfiniteQuery.js\";\nimport { queryOptions } from \"./queryOptions.js\";\nimport { infiniteQueryOptions } from \"./infiniteQueryOptions.js\";\nimport {\n  QueryClientContext,\n  QueryClientProvider,\n  useQueryClient\n} from \"./QueryClientProvider.js\";\nimport { HydrationBoundary } from \"./HydrationBoundary.js\";\nimport {\n  QueryErrorResetBoundary,\n  useQueryErrorResetBoundary\n} from \"./QueryErrorResetBoundary.js\";\nimport { useIsFetching } from \"./useIsFetching.js\";\nimport { useIsMutating, useMutationState } from \"./useMutationState.js\";\nimport { useMutation } from \"./useMutation.js\";\nimport { mutationOptions } from \"./mutationOptions.js\";\nimport { useInfiniteQuery } from \"./useInfiniteQuery.js\";\nimport { useIsRestoring, IsRestoringProvider } from \"./IsRestoringProvider.js\";\nexport {\n  HydrationBoundary,\n  IsRestoringProvider,\n  QueryClientContext,\n  QueryClientProvider,\n  QueryErrorResetBoundary,\n  infiniteQueryOptions,\n  mutationOptions,\n  queryOptions,\n  useInfiniteQuery,\n  useIsFetching,\n  useIsMutating,\n  useIsRestoring,\n  useMutation,\n  useMutationState,\n  usePrefetchInfiniteQuery,\n  usePrefetchQuery,\n  useQueries,\n  useQuery,\n  useQueryClient,\n  useQueryErrorResetBoundary,\n  useSuspenseInfiniteQuery,\n  useSuspenseQueries,\n  useSuspenseQuery\n};\n//# sourceMappingURL=index.js.map",
+      "start": 1768772628265,
+      "end": 1768772628265
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628265,
+      "end": 1768772628265,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628323,
+      "end": 1768772628324,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628324,
+      "end": 1768772628325,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628325,
+      "end": 1768772628325,
+      "order": "post-post"
+    }
+  ]
+}

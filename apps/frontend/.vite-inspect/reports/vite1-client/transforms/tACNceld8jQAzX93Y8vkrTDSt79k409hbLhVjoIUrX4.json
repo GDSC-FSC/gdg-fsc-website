@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/bed.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M2 4v16\", key: \"vw9hq8\" }],\n  [\"path\", { d: \"M2 8h18a2 2 0 0 1 2 2v10\", key: \"1dgv2r\" }],\n  [\"path\", { d: \"M2 17h20\", key: \"18nfp3\" }],\n  [\"path\", { d: \"M6 8v9\", key: \"1yriud\" }]\n];\nconst Bed = createLucideIcon(\"bed\", __iconNode);\n\nexport { __iconNode, Bed as default };\n//# sourceMappingURL=bed.js.map\n",
+      "start": 1768772628535,
+      "end": 1768772628535
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628535,
+      "end": 1768772628552,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628563,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628591,
+      "end": 1768772628611,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628624,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

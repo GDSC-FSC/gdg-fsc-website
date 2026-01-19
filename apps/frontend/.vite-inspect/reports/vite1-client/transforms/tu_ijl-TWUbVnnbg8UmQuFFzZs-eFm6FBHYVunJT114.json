@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@effect/platform/dist/esm/HttpServerRequest.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Effect from \"effect/Effect\";\nimport * as Either from \"effect/Either\";\nimport * as Option from \"effect/Option\";\nimport * as Runtime from \"effect/Runtime\";\nimport * as Stream from \"effect/Stream\";\nimport { hasBody } from \"./HttpMethod.js\";\nimport * as Error from \"./HttpServerError.js\";\nimport * as internal from \"./internal/httpServerRequest.js\";\nexport {\n/**\n * @since 1.0.0\n * @category fiber refs\n */\nMaxBodySize,\n/**\n * @since 1.0.0\n * @category fiber refs\n */\nwithMaxBodySize } from \"./HttpIncomingMessage.js\";\n/**\n * @since 1.0.0\n * @category type ids\n */\nexport const TypeId = internal.TypeId;\n/**\n * @since 1.0.0\n * @category context\n */\nexport const HttpServerRequest = internal.serverRequestTag;\n/**\n * @since 1.0.0\n * @category search params\n */\nexport const ParsedSearchParams = internal.parsedSearchParamsTag;\n/**\n * @since 1.0.0\n * @category search params\n */\nexport const searchParamsFromURL = internal.searchParamsFromURL;\n/**\n * @since 1.0.0\n * @category accessors\n */\nexport const persistedMultipart = internal.multipartPersisted;\n/**\n * @since 1.0.0\n * @category accessors\n */\nexport const upgrade = internal.upgrade;\n/**\n * @since 1.0.0\n * @category accessors\n */\nexport const upgradeChannel = internal.upgradeChannel;\n/**\n * @since 1.0.0\n * @category schema\n */\nexport const schemaCookies = internal.schemaCookies;\n/**\n * @since 1.0.0\n * @category schema\n */\nexport const schemaHeaders = internal.schemaHeaders;\n/**\n * @since 1.0.0\n * @category schema\n */\nexport const schemaSearchParams = internal.schemaSearchParams;\n/**\n * @since 1.0.0\n * @category schema\n */\nexport const schemaBodyJson = internal.schemaBodyJson;\n/**\n * @since 1.0.0\n * @category schema\n */\nexport const schemaBodyForm = internal.schemaBodyForm;\n/**\n * @since 1.0.0\n * @category schema\n */\nexport const schemaBodyUrlParams = internal.schemaBodyUrlParams;\n/**\n * @since 1.0.0\n * @category schema\n */\nexport const schemaBodyMultipart = internal.schemaBodyMultipart;\n/**\n * @since 1.0.0\n * @category schema\n */\nexport const schemaBodyFormJson = internal.schemaBodyFormJson;\n/**\n * @since 1.0.0\n * @category conversions\n */\nexport const fromWeb = internal.fromWeb;\n/**\n * @since 1.0.0\n * @category conversions\n */\nexport const toWebEither = (self, options) => {\n  if (self.source instanceof Request) {\n    return Either.right(self.source);\n  }\n  const ourl = toURL(self);\n  if (Option.isNone(ourl)) {\n    return Either.left(new Error.RequestError({\n      request: self,\n      reason: \"Decode\",\n      description: \"Invalid URL\"\n    }));\n  }\n  const requestInit = {\n    method: self.method,\n    headers: self.headers,\n    signal: options?.signal\n  };\n  if (hasBody(self.method)) {\n    requestInit.body = Stream.toReadableStreamRuntime(self.stream, options?.runtime ?? Runtime.defaultRuntime);\n    requestInit.duplex = \"half\";\n  }\n  return Either.right(new Request(ourl.value, requestInit));\n};\n/**\n * @since 1.0.0\n * @category conversions\n */\nexport const toWeb = (self, options) => Effect.flatMap(Effect.runtime(), runtime => toWebEither(self, {\n  signal: options?.signal,\n  runtime\n}));\n/**\n * @since 1.0.0\n * @category conversions\n */\nexport const toURL = internal.toURL;\n//# sourceMappingURL=HttpServerRequest.js.map",
+      "start": 1768772628586,
+      "end": 1768772628586
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628586,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628620,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628651,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628706,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

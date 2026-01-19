@@ -1,0 +1,88 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/apps/frontend/src/components/view-transition-handler.tsx",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * Copyright 2025 GDG on Campus Farmingdale State College\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\nimport { useCallback, useEffect, useRef } from 'react';\nimport { flushSync } from 'react-dom';\nimport { useLocation } from 'react-router-dom';\nimport { logger } from '../../../../packages/shared/utils/src';\n\nexport const ViewTransitionHandler = () => {\n  useLocation();\n  const initialLoadRef = useRef(true);\n\n  const handleViewTransition = useCallback(() => {\n    if (!document.startViewTransition) {\n      logger.warn('View Transitions API not supported by this browser.');\n      return;\n    }\n\n    // Capture the old state of the DOM\n    document.startViewTransition(() => {\n      // Update the DOM to the new state (React Router handles this by rendering the new route)\n      // flushSync ensures that all DOM updates are applied synchronously before the transition starts.\n      // This is crucial for View Transitions to correctly capture the \"before\" and \"after\" states.\n      flushSync(() => {\n        // You might still want to apply classes for global view transition styling if needed\n        // document.body.classList.add(\"view-transition-group\");\n      });\n    });\n  }, []);\n\n  // Trigger the view transition whenever the location changes\n  useEffect(() => {\n    if (initialLoadRef.current) {\n      initialLoadRef.current = false;\n    }\n    // This effect runs on initial render and whenever location.pathname changes\n    // To ensure it only runs on actual route changes (not initial load if you don't want a transition then),\n    // you might want to track if it's the very first render.\n    // For now, it will trigger on initial load too if you don't add extra logic.\n    // console.log(\"Route changed to:\", location.pathname); // For debugging\n    handleViewTransition();\n  }, [handleViewTransition]);\n\n  return null; // This component doesn't render anything visible\n};\n",
+      "start": 1768772628265,
+      "end": 1768772628265,
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "useCallback",
+          "useEffect",
+          "useRef",
+          "flushSync",
+          "useLocation",
+          "logger",
+          "ViewTransitionHandler",
+          "initialLoadRef",
+          "handleViewTransition",
+          "document",
+          "startViewTransition",
+          "warn",
+          "current"
+        ],
+        "sources": [
+          "/home/wombocombo/github/wrk/gdg-fsc-website/apps/frontend/src/components/view-transition-handler.tsx"
+        ],
+        "sourcesContent": [
+          "/**\n * Copyright 2025 GDG on Campus Farmingdale State College\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\nimport { useCallback, useEffect, useRef } from 'react';\nimport { flushSync } from 'react-dom';\nimport { useLocation } from 'react-router-dom';\nimport { logger } from '../../../../packages/shared/utils/src';\n\nexport const ViewTransitionHandler = () => {\n  useLocation();\n  const initialLoadRef = useRef(true);\n\n  const handleViewTransition = useCallback(() => {\n    if (!document.startViewTransition) {\n      logger.warn('View Transitions API not supported by this browser.');\n      return;\n    }\n\n    // Capture the old state of the DOM\n    document.startViewTransition(() => {\n      // Update the DOM to the new state (React Router handles this by rendering the new route)\n      // flushSync ensures that all DOM updates are applied synchronously before the transition starts.\n      // This is crucial for View Transitions to correctly capture the \"before\" and \"after\" states.\n      flushSync(() => {\n        // You might still want to apply classes for global view transition styling if needed\n        // document.body.classList.add(\"view-transition-group\");\n      });\n    });\n  }, []);\n\n  // Trigger the view transition whenever the location changes\n  useEffect(() => {\n    if (initialLoadRef.current) {\n      initialLoadRef.current = false;\n    }\n    // This effect runs on initial render and whenever location.pathname changes\n    // To ensure it only runs on actual route changes (not initial load if you don't want a transition then),\n    // you might want to track if it's the very first render.\n    // For now, it will trigger on initial load too if you don't add extra logic.\n    // console.log(\"Route changed to:\", location.pathname); // For debugging\n    handleViewTransition();\n  }, [handleViewTransition]);\n\n  return null; // This component doesn't render anything visible\n};\n"
+        ],
+        "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA,SAASA,WAAW,EAAEC,SAAS,EAAEC,MAAM,QAAQ,OAAO;AACtD,SAASC,SAAS,QAAQ,WAAW;AACrC,SAASC,WAAW,QAAQ,kBAAkB;AAC9C,SAASC,MAAM,QAAQ,uCAAuC;AAE9D,OAAO,MAAMC,qBAAqB,GAAGA,CAAA,KAAM;EACzCF,WAAW,CAAC,CAAC;EACb,MAAMG,cAAc,GAAGL,MAAM,CAAC,IAAI,CAAC;EAEnC,MAAMM,oBAAoB,GAAGR,WAAW,CAAC,MAAM;IAC7C,IAAI,CAACS,QAAQ,CAACC,mBAAmB,EAAE;MACjCL,MAAM,CAACM,IAAI,CAAC,qDAAqD,CAAC;MAClE;IACF;;IAEA;IACAF,QAAQ,CAACC,mBAAmB,CAAC,MAAM;MACjC;MACA;MACA;MACAP,SAAS,CAAC,MAAM;QACd;QACA;MAAA,CACD,CAAC;IACJ,CAAC,CAAC;EACJ,CAAC,EAAE,EAAE,CAAC;;EAEN;EACAF,SAAS,CAAC,MAAM;IACd,IAAIM,cAAc,CAACK,OAAO,EAAE;MAC1BL,cAAc,CAACK,OAAO,GAAG,KAAK;IAChC;IACA;IACA;IACA;IACA;IACA;IACAJ,oBAAoB,CAAC,CAAC;EACxB,CAAC,EAAE,CAACA,oBAAoB,CAAC,CAAC;EAE1B,OAAO,IAAI,CAAC,CAAC;AACf,CAAC",
+        "ignoreList": []
+      }
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "result": "/**\n * Copyright 2025 GDG on Campus Farmingdale State College\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\nimport { useCallback, useEffect, useRef } from 'react';\nimport { flushSync } from 'react-dom';\nimport { useLocation } from 'react-router-dom';\nimport { logger } from '../../../../packages/shared/utils/src';\nexport const ViewTransitionHandler = () => {\n  useLocation();\n  const initialLoadRef = useRef(true);\n  const handleViewTransition = useCallback(() => {\n    if (!document.startViewTransition) {\n      logger.warn('View Transitions API not supported by this browser.');\n      return;\n    }\n\n    // Capture the old state of the DOM\n    document.startViewTransition(() => {\n      // Update the DOM to the new state (React Router handles this by rendering the new route)\n      // flushSync ensures that all DOM updates are applied synchronously before the transition starts.\n      // This is crucial for View Transitions to correctly capture the \"before\" and \"after\" states.\n      flushSync(() => {\n        // You might still want to apply classes for global view transition styling if needed\n        // document.body.classList.add(\"view-transition-group\");\n      });\n    });\n  }, []);\n\n  // Trigger the view transition whenever the location changes\n  useEffect(() => {\n    if (initialLoadRef.current) {\n      initialLoadRef.current = false;\n    }\n    // This effect runs on initial render and whenever location.pathname changes\n    // To ensure it only runs on actual route changes (not initial load if you don't want a transition then),\n    // you might want to track if it's the very first render.\n    // For now, it will trigger on initial load too if you don't add extra logic.\n    // console.log(\"Route changed to:\", location.pathname); // For debugging\n    handleViewTransition();\n  }, [handleViewTransition]);\n  return null; // This component doesn't render anything visible\n};",
+      "start": 1768772628265,
+      "end": 1768772628277,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "useCallback",
+          "useEffect",
+          "useRef",
+          "flushSync",
+          "useLocation",
+          "logger",
+          "ViewTransitionHandler",
+          "initialLoadRef",
+          "handleViewTransition",
+          "document",
+          "startViewTransition",
+          "warn",
+          "current"
+        ],
+        "sources": [
+          "/home/wombocombo/github/wrk/gdg-fsc-website/apps/frontend/src/components/view-transition-handler.tsx"
+        ],
+        "sourcesContent": [
+          "/**\n * Copyright 2025 GDG on Campus Farmingdale State College\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\nimport { useCallback, useEffect, useRef } from 'react';\nimport { flushSync } from 'react-dom';\nimport { useLocation } from 'react-router-dom';\nimport { logger } from '../../../../packages/shared/utils/src';\n\nexport const ViewTransitionHandler = () => {\n  useLocation();\n  const initialLoadRef = useRef(true);\n\n  const handleViewTransition = useCallback(() => {\n    if (!document.startViewTransition) {\n      logger.warn('View Transitions API not supported by this browser.');\n      return;\n    }\n\n    // Capture the old state of the DOM\n    document.startViewTransition(() => {\n      // Update the DOM to the new state (React Router handles this by rendering the new route)\n      // flushSync ensures that all DOM updates are applied synchronously before the transition starts.\n      // This is crucial for View Transitions to correctly capture the \"before\" and \"after\" states.\n      flushSync(() => {\n        // You might still want to apply classes for global view transition styling if needed\n        // document.body.classList.add(\"view-transition-group\");\n      });\n    });\n  }, []);\n\n  // Trigger the view transition whenever the location changes\n  useEffect(() => {\n    if (initialLoadRef.current) {\n      initialLoadRef.current = false;\n    }\n    // This effect runs on initial render and whenever location.pathname changes\n    // To ensure it only runs on actual route changes (not initial load if you don't want a transition then),\n    // you might want to track if it's the very first render.\n    // For now, it will trigger on initial load too if you don't add extra logic.\n    // console.log(\"Route changed to:\", location.pathname); // For debugging\n    handleViewTransition();\n  }, [handleViewTransition]);\n\n  return null; // This component doesn't render anything visible\n};\n"
+        ],
+        "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA,SAASA,WAAW,EAAEC,SAAS,EAAEC,MAAM,QAAQ,OAAO;AACtD,SAASC,SAAS,QAAQ,WAAW;AACrC,SAASC,WAAW,QAAQ,kBAAkB;AAC9C,SAASC,MAAM,QAAQ,uCAAuC;AAE9D,OAAO,MAAMC,qBAAqB,GAAGA,CAAA,KAAM;EACzCF,WAAW,CAAC,CAAC;EACb,MAAMG,cAAc,GAAGL,MAAM,CAAC,IAAI,CAAC;EAEnC,MAAMM,oBAAoB,GAAGR,WAAW,CAAC,MAAM;IAC7C,IAAI,CAACS,QAAQ,CAACC,mBAAmB,EAAE;MACjCL,MAAM,CAACM,IAAI,CAAC,qDAAqD,CAAC;MAClE;IACF;;IAEA;IACAF,QAAQ,CAACC,mBAAmB,CAAC,MAAM;MACjC;MACA;MACA;MACAP,SAAS,CAAC,MAAM;QACd;QACA;MAAA,CACD,CAAC;IACJ,CAAC,CAAC;EACJ,CAAC,EAAE,EAAE,CAAC;;EAEN;EACAF,SAAS,CAAC,MAAM;IACd,IAAIM,cAAc,CAACK,OAAO,EAAE;MAC1BL,cAAc,CAACK,OAAO,GAAG,KAAK;IAChC;IACA;IACA;IACA;IACA;IACA;IACAJ,oBAAoB,CAAC,CAAC;EACxB,CAAC,EAAE,CAACA,oBAAoB,CAAC,CAAC;EAE1B,OAAO,IAAI,CAAC,CAAC;AACf,CAAC",
+        "ignoreList": []
+      }
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628323,
+      "end": 1768772628324,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628324,
+      "end": 1768772628325,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628325,
+      "end": 1768772628325,
+      "order": "post-post"
+    }
+  ]
+}

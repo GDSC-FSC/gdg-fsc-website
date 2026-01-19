@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/between-vertical-end.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"rect\", { width: \"7\", height: \"13\", x: \"3\", y: \"3\", rx: \"1\", key: \"1fdu0f\" }],\n  [\"path\", { d: \"m9 22 3-3 3 3\", key: \"17z65a\" }],\n  [\"rect\", { width: \"7\", height: \"13\", x: \"14\", y: \"3\", rx: \"1\", key: \"1squn4\" }]\n];\nconst BetweenVerticalEnd = createLucideIcon(\"between-vertical-end\", __iconNode);\n\nexport { __iconNode, BetweenVerticalEnd as default };\n//# sourceMappingURL=between-vertical-end.js.map\n",
+      "start": 1768772628547,
+      "end": 1768772628547
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628547,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628575,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628605,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628633,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

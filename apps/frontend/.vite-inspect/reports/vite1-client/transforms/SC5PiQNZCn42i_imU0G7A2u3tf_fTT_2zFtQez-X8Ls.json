@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/object.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { dictionary } from './dictionary.js';\nimport { anyArbitraryBuilder } from './_internals/builders/AnyArbitraryBuilder.js';\nimport { toQualifiedObjectConstraints } from './_internals/helpers/QualifiedObjectConstraints.js';\nfunction objectInternal(constraints) {\n    return dictionary(constraints.key, anyArbitraryBuilder(constraints), {\n        maxKeys: constraints.maxKeys,\n        noNullPrototype: !constraints.withNullPrototype,\n        size: constraints.size,\n    });\n}\nfunction object(constraints) {\n    return objectInternal(toQualifiedObjectConstraints(constraints));\n}\nexport { object };\n",
+      "start": 1768772628849,
+      "end": 1768772628849
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628849,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628852,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628855,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628858,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

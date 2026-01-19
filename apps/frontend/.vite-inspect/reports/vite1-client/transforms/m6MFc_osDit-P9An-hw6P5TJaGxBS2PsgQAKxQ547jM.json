@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/message-square-quote.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M14 14a2 2 0 0 0 2-2V8h-2\", key: \"1r06pg\" }],\n  [\n    \"path\",\n    {\n      d: \"M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z\",\n      key: \"18887p\"\n    }\n  ],\n  [\"path\", { d: \"M8 14a2 2 0 0 0 2-2V8H8\", key: \"1jzu5j\" }]\n];\nconst MessageSquareQuote = createLucideIcon(\"message-square-quote\", __iconNode);\n\nexport { __iconNode, MessageSquareQuote as default };\n//# sourceMappingURL=message-square-quote.js.map\n",
+      "start": 1768772628551,
+      "end": 1768772628551
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628551,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628578,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628610,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628635,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

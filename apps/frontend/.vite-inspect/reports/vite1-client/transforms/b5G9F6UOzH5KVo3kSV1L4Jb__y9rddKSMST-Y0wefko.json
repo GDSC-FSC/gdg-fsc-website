@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/internal/opCodes/config.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/** @internal */\nexport const OP_CONSTANT = \"Constant\";\n/** @internal */\nexport const OP_FAIL = \"Fail\";\n/** @internal */\nexport const OP_FALLBACK = \"Fallback\";\n/** @internal */\nexport const OP_DESCRIBED = \"Described\";\n/** @internal */\nexport const OP_LAZY = \"Lazy\";\n/** @internal */\nexport const OP_MAP_OR_FAIL = \"MapOrFail\";\n/** @internal */\nexport const OP_NESTED = \"Nested\";\n/** @internal */\nexport const OP_PRIMITIVE = \"Primitive\";\n/** @internal */\nexport const OP_SEQUENCE = \"Sequence\";\n/** @internal */\nexport const OP_HASHMAP = \"HashMap\";\n/** @internal */\nexport const OP_ZIP_WITH = \"ZipWith\";\n//# sourceMappingURL=config.js.map",
+      "start": 1768772628755,
+      "end": 1768772628755
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628755,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628772,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628791,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628808,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

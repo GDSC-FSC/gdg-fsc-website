@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/grip.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"circle\", { cx: \"12\", cy: \"5\", r: \"1\", key: \"gxeob9\" }],\n  [\"circle\", { cx: \"19\", cy: \"5\", r: \"1\", key: \"w8mnmm\" }],\n  [\"circle\", { cx: \"5\", cy: \"5\", r: \"1\", key: \"lttvr7\" }],\n  [\"circle\", { cx: \"12\", cy: \"12\", r: \"1\", key: \"41hilf\" }],\n  [\"circle\", { cx: \"19\", cy: \"12\", r: \"1\", key: \"1wjl8i\" }],\n  [\"circle\", { cx: \"5\", cy: \"12\", r: \"1\", key: \"1pcz8c\" }],\n  [\"circle\", { cx: \"12\", cy: \"19\", r: \"1\", key: \"lyex9k\" }],\n  [\"circle\", { cx: \"19\", cy: \"19\", r: \"1\", key: \"shf9b7\" }],\n  [\"circle\", { cx: \"5\", cy: \"19\", r: \"1\", key: \"bfqh0e\" }]\n];\nconst Grip = createLucideIcon(\"grip\", __iconNode);\n\nexport { __iconNode, Grip as default };\n//# sourceMappingURL=grip.js.map\n",
+      "start": 1768772628546,
+      "end": 1768772628546
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628546,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628579,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628610,
+      "end": 1768772628613,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628636,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/music-4.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M9 18V5l12-2v13\", key: \"1jmyc2\" }],\n  [\"path\", { d: \"m9 9 12-2\", key: \"1e64n2\" }],\n  [\"circle\", { cx: \"6\", cy: \"18\", r: \"3\", key: \"fqmcym\" }],\n  [\"circle\", { cx: \"18\", cy: \"16\", r: \"3\", key: \"1hluhg\" }]\n];\nconst Music4 = createLucideIcon(\"music-4\", __iconNode);\n\nexport { __iconNode, Music4 as default };\n//# sourceMappingURL=music-4.js.map\n",
+      "start": 1768772628544,
+      "end": 1768772628544
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628544,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628574,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628602,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628630,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

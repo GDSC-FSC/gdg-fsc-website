@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/Supervisor.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as core from \"./internal/core.js\";\nimport * as circular from \"./internal/layer/circular.js\";\nimport * as internal from \"./internal/supervisor.js\";\n/**\n * @since 2.0.0\n * @category symbols\n */\nexport const SupervisorTypeId = internal.SupervisorTypeId;\n/**\n * @since 2.0.0\n * @category context\n */\nexport const addSupervisor = circular.addSupervisor;\n/**\n * Creates a new supervisor that tracks children in a set.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const fibersIn = internal.fibersIn;\n/**\n * Creates a new supervisor that constantly yields effect when polled\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const fromEffect = internal.fromEffect;\n/**\n * A supervisor that doesn't do anything in response to supervision events.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const none = internal.none;\n/**\n * Creates a new supervisor that tracks children in a set.\n *\n * @since 2.0.0\n * @category constructors\n */\nexport const track = internal.track;\n/**\n * Unsafely creates a new supervisor that tracks children in a set.\n *\n * @since 2.0.0\n * @category unsafe\n */\nexport const unsafeTrack = internal.unsafeTrack;\n/**\n * @since 2.0.0\n * @category constructors\n */\nexport class AbstractSupervisor {\n  /**\n   * @since 2.0.0\n   */\n  onStart(_context, _effect, _parent, _fiber) {\n    //\n  }\n  /**\n   * @since 2.0.0\n   */\n  onEnd(_value, _fiber) {\n    //\n  }\n  /**\n   * @since 2.0.0\n   */\n  onEffect(_fiber, _effect) {\n    //\n  }\n  /**\n   * @since 2.0.0\n   */\n  onSuspend(_fiber) {\n    //\n  }\n  /**\n   * @since 2.0.0\n   */\n  onResume(_fiber) {\n    //\n  }\n  /**\n   * @since 2.0.0\n   */\n  map(f) {\n    return new internal.ProxySupervisor(this, core.map(this.value, f));\n  }\n  /**\n   * @since 2.0.0\n   */\n  zip(right) {\n    return new internal.Zip(this, right);\n  }\n  /**\n   * @since 2.0.0\n   */\n  onRun(execution, _fiber) {\n    return execution();\n  }\n  /**\n   * @since 2.0.0\n   */\n  [SupervisorTypeId] = internal.supervisorVariance;\n}\n//# sourceMappingURL=Supervisor.js.map",
+      "start": 1768772628414,
+      "end": 1768772628414
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628414,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628418,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628433,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628476,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

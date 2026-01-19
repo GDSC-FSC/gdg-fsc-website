@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@tanstack/react-query-devtools/build/modern/ReactQueryDevtools.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "\"use client\";\n\n// src/ReactQueryDevtools.tsx\nimport * as React from \"react\";\nimport { onlineManager, useQueryClient } from \"@tanstack/react-query\";\nimport { TanstackQueryDevtools } from \"@tanstack/query-devtools\";\nimport { jsx } from \"react/jsx-runtime\";\nfunction ReactQueryDevtools(props) {\n  const queryClient = useQueryClient(props.client);\n  const ref = React.useRef(null);\n  const {\n    buttonPosition,\n    position,\n    initialIsOpen,\n    errorTypes,\n    styleNonce,\n    shadowDOMTarget,\n    hideDisabledQueries,\n    theme\n  } = props;\n  const [devtools] = React.useState(\n    new TanstackQueryDevtools({\n      client: queryClient,\n      queryFlavor: \"React Query\",\n      version: \"5\",\n      onlineManager,\n      buttonPosition,\n      position,\n      initialIsOpen,\n      errorTypes,\n      styleNonce,\n      shadowDOMTarget,\n      hideDisabledQueries,\n      theme\n    })\n  );\n  React.useEffect(() => {\n    devtools.setClient(queryClient);\n  }, [queryClient, devtools]);\n  React.useEffect(() => {\n    if (buttonPosition) {\n      devtools.setButtonPosition(buttonPosition);\n    }\n  }, [buttonPosition, devtools]);\n  React.useEffect(() => {\n    if (position) {\n      devtools.setPosition(position);\n    }\n  }, [position, devtools]);\n  React.useEffect(() => {\n    devtools.setInitialIsOpen(initialIsOpen || false);\n  }, [initialIsOpen, devtools]);\n  React.useEffect(() => {\n    devtools.setErrorTypes(errorTypes || []);\n  }, [errorTypes, devtools]);\n  React.useEffect(() => {\n    devtools.setTheme(theme);\n  }, [theme, devtools]);\n  React.useEffect(() => {\n    if (ref.current) {\n      devtools.mount(ref.current);\n    }\n    return () => {\n      devtools.unmount();\n    };\n  }, [devtools]);\n  return /* @__PURE__ */ jsx(\"div\", { dir: \"ltr\", className: \"tsqd-parent-container\", ref });\n}\nexport {\n  ReactQueryDevtools\n};\n//# sourceMappingURL=ReactQueryDevtools.js.map",
+      "start": 1768772628552,
+      "end": 1768772628552
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628552,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628579,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628610,
+      "end": 1768772628613,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628635,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

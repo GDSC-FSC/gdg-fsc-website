@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
+import { logger } from '@gdg-fsc/utils';
 import { useCallback, useEffect, useRef } from 'react';
-import { flushSync } from 'react-dom';
 import { app } from '../constants';
 import { Stringify } from '../utils';
 import { generateSchema } from './schema';
@@ -34,18 +34,6 @@ type PreloadConfig = {
 };
 
 export const Scripts = () => {
-  const schemaOrg = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: app.name,
-    url: app.url,
-    image: app.logo,
-    logo: app.logo,
-    sameAs: [
-      'https://www.linkedin.com/groups/12917927/',
-      'https://www.instagram.com/gdsc.farmingdale/',
-    ],
-  } as const;
   /**
    * Configuration object defining paths for preloading behavior
    */
@@ -72,21 +60,6 @@ export const Scripts = () => {
   const handleContextMenu = useCallback((event: MouseEvent) => {
     event.preventDefault();
   }, []);
-
-  /**
-   * Handles view transitions between pages using the View Transitions API
-   * Adds and removes transition classes for animation
-   */
-  // const handleViewTransition = useCallback(() => {
-  // 	if (!document.startViewTransition) return;
-
-  // 	document.startViewTransition(() => {
-  // 		flushSync(() => {
-  // 			document.body.classList.add("view-transition-group");
-  // 			document.body.classList.remove("view-transition-group");
-  // 		});
-  // 	});
-  // }, []);
 
   /**
    * Creates a speculation rules script element
@@ -156,22 +129,23 @@ export const Scripts = () => {
     });
 
     const links = document.querySelectorAll('a[href^="/"]');
-    links.forEach((link) => observerRef.current?.observe(link));
+    links.forEach((link) => {
+      observerRef.current?.observe(link);
+      addDynamicSpeculation(link.getAttribute('href') || '');
+    });
 
     document.addEventListener('contextmenu', handleContextMenu);
-    // window.addEventListener("navigate", handleViewTransition);
 
     return () => {
       observerRef.current?.disconnect();
       document.removeEventListener('contextmenu', handleContextMenu);
-      // window.removeEventListener("navigate", handleViewTransition);
 
       speculationScriptsRef.current.forEach((link) => {
         const script = document.querySelector(`script[data-speculation="${link}"]`);
         script?.remove();
       });
     };
-  }, [handleContextMenu, handleIntersection /* handleViewTransition */]);
+  }, [handleContextMenu, handleIntersection, addDynamicSpeculation]);
 
   /**
    * Base speculation rules configuration for prerendering and prefetching
@@ -231,39 +205,23 @@ export const Scripts = () => {
     <>
       <script
         id="speculation-rules"
-        strategy="beforeInteractive"
         type="speculationrules"
-        dangerouslySetInnerHTML={{
-          __html: Stringify(baseSpeculationRules),
-        }}
         onError={(event) => {
-          console.error('Error loading speculation rules script:', event);
+          logger.error('Error loading speculation rules script:', event);
         }}
-      />
+      >
+        {`${Stringify(baseSpeculationRules)}`}
+      </script>
 
       <script
         type="application/ld+json"
         id="schema-org"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: Stringify(schemaOrg),
-        }}
         onError={(event) => {
-          console.error('Error loading Schema.org script:', event);
+          logger.error('Error loading Schema.org script:', event);
         }}
-      />
-
-      <script
-        type="application/ld+json"
-        id="schema-org-extended"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: Stringify(organizationSchema),
-        }}
-        onError={(event) => {
-          console.error('Error loading Schema.org extended script:', event);
-        }}
-      />
+      >
+        {`${Stringify(organizationSchema)}`}
+      </script>
     </>
   );
 };

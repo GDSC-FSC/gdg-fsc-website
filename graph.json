@@ -1,0 +1,690 @@
+{
+  "graph": {
+    "nodes": {
+      "interface": {
+        "name": "interface",
+        "type": "lib",
+        "data": {
+          "root": "packages/interface",
+          "name": "interface",
+          "projectType": "library",
+          "tags": [
+            "npm:public",
+            "npm:react",
+            "npm:components",
+            "npm:ui",
+            "npm:gdg-fsc",
+            "type:lib",
+            "scope:ui"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "dev",
+                "chromatic"
+              ]
+            },
+            "description": "Shared UI component library for GDG FSC projects",
+            "js": {
+              "packageName": "@gdg-fsc/interface",
+              "packageVersion": "1.0.0",
+              "packageExports": {
+                ".": {
+                  "types": "./dist/index.d.ts",
+                  "import": "./dist/index.js",
+                  "default": "./dist/index.js"
+                },
+                "./ui": {
+                  "types": "./dist/ui/index.d.ts",
+                  "import": "./dist/ui/index.js",
+                  "default": "./dist/ui/index.js"
+                }
+              },
+              "packageMain": "./dist/index.js",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "metadata": {
+                "scriptContent": "tsc --watch",
+                "runCommand": "bun run dev -- undefined"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "chromatic": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "chromatic"
+              },
+              "metadata": {
+                "scriptContent": "bun run build:storybook && bunx chromatic --storybook-build-dir=storybook-static --exit-zero-on-chromatic-error --auto-accept-changes",
+                "runCommand": "bun run chromatic -- undefined"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "build": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "tsc",
+                "cwd": "packages/interface"
+              },
+              "outputs": [
+                "{projectRoot}/dist"
+              ],
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true
+            },
+            "lint": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "bunx biome check --write ./ || true",
+                "cwd": "packages/interface"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            },
+            "test": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "echo 'No tests configured'",
+                "cwd": "packages/interface"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default",
+                "^production"
+              ],
+              "cache": true
+            },
+            "storybook": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "storybook dev -p 6007",
+                "cwd": "packages/interface"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "build:storybook": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "storybook build",
+                "cwd": "packages/interface"
+              },
+              "outputs": [
+                "{projectRoot}/storybook-static"
+              ],
+              "configurations": {},
+              "parallelism": true
+            }
+          },
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "packages/interface",
+          "implicitDependencies": []
+        }
+      },
+      "docs-client": {
+        "name": "docs-client",
+        "type": "app",
+        "data": {
+          "root": "apps/docs/client",
+          "name": "docs-client",
+          "projectType": "application",
+          "tags": [
+            "npm:private",
+            "type:app",
+            "scope:docs"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "check"
+              ]
+            },
+            "js": {
+              "packageName": "docs",
+              "packageVersion": "1.0.0",
+              "isInPackageManagerWorkspaces": false
+            }
+          },
+          "targets": {
+            "check": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "check"
+              },
+              "metadata": {
+                "scriptContent": "biome check --write",
+                "runCommand": "bun run check -- undefined"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "build": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "rspress build",
+                "cwd": "apps/docs/client"
+              },
+              "outputs": [
+                "{projectRoot}/dist"
+              ],
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true
+            },
+            "dev": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "rspress dev",
+                "cwd": "apps/docs/client"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "preview": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "rspress preview",
+                "cwd": "apps/docs/client"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "lint": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "biome check --write",
+                "cwd": "apps/docs/client"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            },
+            "format": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "biome format --write",
+                "cwd": "apps/docs/client"
+              },
+              "configurations": {},
+              "parallelism": true
+            }
+          },
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "apps/docs/client",
+          "implicitDependencies": []
+        }
+      },
+      "shared": {
+        "name": "shared",
+        "type": "lib",
+        "data": {
+          "root": "packages/shared",
+          "name": "shared",
+          "projectType": "library",
+          "tags": [
+            "npm:public",
+            "npm:gdg-fsc",
+            "npm:shared",
+            "npm:utilities",
+            "type:lib",
+            "scope:shared"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "dev"
+              ]
+            },
+            "description": "Shared utilities for GDG FSC projects",
+            "js": {
+              "packageName": "@gdg-fsc/shared",
+              "packageVersion": "1.0.0",
+              "packageExports": {
+                ".": {
+                  "types": "./dist/index.d.ts",
+                  "import": "./dist/index.js",
+                  "default": "./dist/index.js"
+                }
+              },
+              "packageMain": "./dist/index.js",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "metadata": {
+                "scriptContent": "tsc --watch",
+                "runCommand": "bun run dev -- undefined"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "build": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "tsc",
+                "cwd": "packages/shared"
+              },
+              "outputs": [
+                "{projectRoot}/dist"
+              ],
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true
+            },
+            "lint": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "bunx biome check --write ./ || true",
+                "cwd": "packages/shared"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            },
+            "test": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "echo 'No tests configured'",
+                "cwd": "packages/shared"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default",
+                "^production"
+              ],
+              "cache": true
+            }
+          },
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "packages/shared",
+          "implicitDependencies": []
+        }
+      },
+      "frontend": {
+        "name": "frontend",
+        "type": "app",
+        "data": {
+          "root": "apps/frontend",
+          "name": "frontend",
+          "projectType": "application",
+          "tags": [
+            "npm:private",
+            "npm:javascript",
+            "npm:typescript",
+            "npm:vite",
+            "npm:pwa",
+            "npm:elysia",
+            "npm:react",
+            "npm:tailwindcss",
+            "npm:css",
+            "npm:cypress",
+            "npm:playwright",
+            "npm:vitest",
+            "type:app"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "analyze",
+                "analyze:browser",
+                "audit",
+                "audit:high",
+                "audit:moderate",
+                "predev",
+                "preinstall",
+                "postinstall",
+                "lint:md",
+                "lint:packages",
+                "prepare:audit",
+                "release"
+              ]
+            },
+            "description": "",
+            "js": {
+              "packageName": "gdg-fsc-website",
+              "packageVersion": "0.0.0",
+              "packageMain": "./dist/assets/index-*.js",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "analyze": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "analyze"
+              },
+              "metadata": {
+                "scriptContent": "cross-env analyze=true next build && bun report-bundle-size.js",
+                "runCommand": "bun run analyze -- undefined"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "analyze:browser": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "analyze:browser"
+              },
+              "metadata": {
+                "scriptContent": "cross-env bundle_analyze=browser next build",
+                "runCommand": "bun run analyze:browser -- undefined"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "audit": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "audit"
+              },
+              "metadata": {
+                "scriptContent": "bun run prepare:audit && bunx audit-ci@^7.1.0 --critical --report-type important",
+                "runCommand": "bun run audit -- undefined"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "audit:high": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "audit:high"
+              },
+              "metadata": {
+                "scriptContent": "bun run prepare:audit && bunx audit-ci@^7.1.0 --high --report-type full",
+                "runCommand": "bun run audit:high -- undefined"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "audit:moderate": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "audit:moderate"
+              },
+              "metadata": {
+                "scriptContent": "bun run prepare:audit && bunx audit-ci@^7.1.0 --moderate --report-type summary",
+                "runCommand": "bun run audit:moderate -- undefined"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "predev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "predev"
+              },
+              "metadata": {
+                "scriptContent": "rm -rf bun.lock bun.lockb && bun install",
+                "runCommand": "bun run predev -- undefined"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "preinstall": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "preinstall"
+              },
+              "metadata": {
+                "scriptContent": "",
+                "runCommand": "bun run preinstall -- undefined"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "postinstall": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "postinstall"
+              },
+              "metadata": {
+                "scriptContent": "",
+                "runCommand": "bun run postinstall -- undefined"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "lint:md": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "lint:md"
+              },
+              "metadata": {
+                "scriptContent": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
+                "runCommand": "bun run lint:md -- undefined"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "lint:packages": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "lint:packages"
+              },
+              "metadata": {
+                "scriptContent": "pnpm dedupe --check",
+                "runCommand": "bun run lint:packages -- undefined"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "prepare:audit": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "prepare:audit"
+              },
+              "metadata": {
+                "scriptContent": "bun install --yarn > yarn.lock",
+                "runCommand": "bun run prepare:audit -- undefined"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "release": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "release"
+              },
+              "metadata": {
+                "scriptContent": "standard-version",
+                "runCommand": "bun run release -- undefined"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "build": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "tsc -b && vite build",
+                "cwd": "apps/frontend"
+              },
+              "outputs": [
+                "{projectRoot}/dist"
+              ],
+              "dependsOn": [
+                "^build"
+              ],
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true
+            },
+            "build:client": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "tsc -b && vite build --outdir dist/app/client",
+                "cwd": "apps/frontend"
+              },
+              "outputs": [
+                "{projectRoot}/dist/app/client"
+              ],
+              "configurations": {},
+              "parallelism": true
+            },
+            "dev": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "vite",
+                "cwd": "apps/frontend"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "preview": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "vite preview",
+                "cwd": "apps/frontend"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "lint": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "bunx biome check --write ./ || true",
+                "cwd": "apps/frontend"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            },
+            "test": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "bunx vitest run",
+                "cwd": "apps/frontend"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default",
+                "^production"
+              ],
+              "cache": true
+            },
+            "test:cypress": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "cypress run",
+                "cwd": "apps/frontend"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "test:playwright": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "playwright test",
+                "cwd": "apps/frontend"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "storybook": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "storybook dev -p 6006",
+                "cwd": "apps/frontend"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "build:storybook": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "storybook build",
+                "cwd": "apps/frontend"
+              },
+              "outputs": [
+                "{workspaceRoot}/storybook-static"
+              ],
+              "configurations": {},
+              "parallelism": true
+            }
+          },
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "apps/frontend/src",
+          "implicitDependencies": []
+        }
+      }
+    },
+    "dependencies": {
+      "interface": [
+        {
+          "source": "interface",
+          "target": "shared",
+          "type": "static"
+        }
+      ],
+      "docs-client": [],
+      "shared": [],
+      "frontend": [
+        {
+          "source": "frontend",
+          "target": "interface",
+          "type": "static"
+        },
+        {
+          "source": "frontend",
+          "target": "shared",
+          "type": "static"
+        }
+      ]
+    }
+  }
+}

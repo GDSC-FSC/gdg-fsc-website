@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/ManagedRuntime.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as internal from \"./internal/managedRuntime.js\";\nimport * as circular from \"./internal/managedRuntime/circular.js\";\n/**\n * @since 3.9.0\n * @category symbol\n */\nexport const TypeId = circular.TypeId;\n/**\n * Checks if the provided argument is a `ManagedRuntime`.\n *\n * @since 3.9.0\n * @category guards\n */\nexport const isManagedRuntime = internal.isManagedRuntime;\n/**\n * Convert a Layer into an ManagedRuntime, that can be used to run Effect's using\n * your services.\n *\n * @since 2.0.0\n * @category runtime class\n * @example\n * ```ts\n * import { Console, Effect, Layer, ManagedRuntime } from \"effect\"\n *\n * class Notifications extends Effect.Tag(\"Notifications\")<\n *   Notifications,\n *   { readonly notify: (message: string) => Effect.Effect<void> }\n * >() {\n *   static Live = Layer.succeed(this, { notify: (message) => Console.log(message) })\n * }\n *\n * async function main() {\n *   const runtime = ManagedRuntime.make(Notifications.Live)\n *   await runtime.runPromise(Notifications.notify(\"Hello, world!\"))\n *   await runtime.dispose()\n * }\n *\n * main()\n * ```\n */\nexport const make = internal.make;\n//# sourceMappingURL=ManagedRuntime.js.map",
+      "start": 1768772628413,
+      "end": 1768772628413
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628413,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628417,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628432,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628476,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

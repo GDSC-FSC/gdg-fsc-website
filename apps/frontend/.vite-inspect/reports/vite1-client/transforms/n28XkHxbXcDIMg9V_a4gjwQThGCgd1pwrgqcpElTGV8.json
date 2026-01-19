@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/projection/node/group.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "const notify = (node) => !node.isLayoutDirty && node.willUpdate(false);\nfunction nodeGroup() {\n    const nodes = new Set();\n    const subscriptions = new WeakMap();\n    const dirtyAll = () => nodes.forEach(notify);\n    return {\n        add: (node) => {\n            nodes.add(node);\n            subscriptions.set(node, node.addEventListener(\"willUpdate\", dirtyAll));\n        },\n        remove: (node) => {\n            nodes.delete(node);\n            const unsubscribe = subscriptions.get(node);\n            if (unsubscribe) {\n                unsubscribe();\n                subscriptions.delete(node);\n            }\n            dirtyAll();\n        },\n        dirty: dirtyAll,\n    };\n}\n\nexport { nodeGroup };\n",
+      "start": 1768772628756,
+      "end": 1768772628756
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628756,
+      "end": 1768772628769,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628772,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628792,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628808,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

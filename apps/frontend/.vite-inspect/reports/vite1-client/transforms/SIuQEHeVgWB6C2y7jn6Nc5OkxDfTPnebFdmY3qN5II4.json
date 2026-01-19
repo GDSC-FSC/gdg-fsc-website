@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@effect/platform/dist/esm/HttpApiError.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @since 1.0.0\n */\nimport * as Effect from \"effect/Effect\";\nimport * as ParseResult from \"effect/ParseResult\";\nimport * as Schema from \"effect/Schema\";\nimport * as HttpApiSchema from \"./HttpApiSchema.js\";\n/**\n * @since 1.0.0\n * @category type ids\n */\nexport const TypeId = /*#__PURE__*/Symbol.for(\"@effect/platform/HttpApiError\");\n/**\n * @since 1.0.0\n * @category schemas\n */\nexport class Issue extends /*#__PURE__*/Schema.ArrayFormatterIssue.annotations({\n  identifier: \"Issue\",\n  description: \"Represents an error encountered while parsing a value to match the schema\"\n}) {}\n/**\n * @since 1.0.0\n * @category errors\n */\nexport class HttpApiDecodeError extends /*#__PURE__*/Schema.TaggedError()(\"HttpApiDecodeError\", {\n  issues: /*#__PURE__*/Schema.Array(Issue),\n  message: Schema.String\n}, /*#__PURE__*/HttpApiSchema.annotations({\n  status: 400,\n  description: \"The request did not match the expected schema\"\n})) {\n  /**\n   * @since 1.0.0\n   */\n  static fromParseError(error) {\n    return ParseResult.ArrayFormatter.formatError(error).pipe(Effect.zip(ParseResult.TreeFormatter.formatError(error)), Effect.map(([issues, message]) => new HttpApiDecodeError({\n      issues,\n      message\n    })));\n  }\n  /**\n   * @since 1.0.0\n   */\n  static refailParseError(error) {\n    return Effect.flatMap(HttpApiDecodeError.fromParseError(error), Effect.fail);\n  }\n}\n/**\n * @since 1.0.0\n * @category empty errors\n */\nexport class BadRequest extends /*#__PURE__*/HttpApiSchema.EmptyError()({\n  tag: \"BadRequest\",\n  status: 400\n}) {}\n/**\n * @since 1.0.0\n * @category empty errors\n */\nexport class Unauthorized extends /*#__PURE__*/HttpApiSchema.EmptyError()({\n  tag: \"Unauthorized\",\n  status: 401\n}) {}\n/**\n * @since 1.0.0\n * @category empty errors\n */\nexport class Forbidden extends /*#__PURE__*/HttpApiSchema.EmptyError()({\n  tag: \"Forbidden\",\n  status: 403\n}) {}\n/**\n * @since 1.0.0\n * @category empty errors\n */\nexport class NotFound extends /*#__PURE__*/HttpApiSchema.EmptyError()({\n  tag: \"NotFound\",\n  status: 404\n}) {}\n/**\n * @since 1.0.0\n * @category empty errors\n */\nexport class MethodNotAllowed extends /*#__PURE__*/HttpApiSchema.EmptyError()({\n  tag: \"MethodNotAllowed\",\n  status: 405\n}) {}\n/**\n * @since 1.0.0\n * @category empty errors\n */\nexport class NotAcceptable extends /*#__PURE__*/HttpApiSchema.EmptyError()({\n  tag: \"NotAcceptable\",\n  status: 406\n}) {}\n/**\n * @since 1.0.0\n * @category empty errors\n */\nexport class RequestTimeout extends /*#__PURE__*/HttpApiSchema.EmptyError()({\n  tag: \"RequestTimeout\",\n  status: 408\n}) {}\n/**\n * @since 1.0.0\n * @category empty errors\n */\nexport class Conflict extends /*#__PURE__*/HttpApiSchema.EmptyError()({\n  tag: \"Conflict\",\n  status: 409\n}) {}\n/**\n * @since 1.0.0\n * @category empty errors\n */\nexport class Gone extends /*#__PURE__*/HttpApiSchema.EmptyError()({\n  tag: \"Gone\",\n  status: 410\n}) {}\n/**\n * @since 1.0.0\n * @category empty errors\n */\nexport class InternalServerError extends /*#__PURE__*/HttpApiSchema.EmptyError()({\n  tag: \"InternalServerError\",\n  status: 500\n}) {}\n/**\n * @since 1.0.0\n * @category empty errors\n */\nexport class NotImplemented extends /*#__PURE__*/HttpApiSchema.EmptyError()({\n  tag: \"NotImplemented\",\n  status: 501\n}) {}\n/**\n * @since 1.0.0\n * @category empty errors\n */\nexport class ServiceUnavailable extends /*#__PURE__*/HttpApiSchema.EmptyError()({\n  tag: \"ServiceUnavailable\",\n  status: 503\n}) {}\n//# sourceMappingURL=HttpApiError.js.map",
+      "start": 1768772628587,
+      "end": 1768772628587
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628587,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628620,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628649,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/shopping-basket.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"m15 11-1 9\", key: \"5wnq3a\" }],\n  [\"path\", { d: \"m19 11-4-7\", key: \"cnml18\" }],\n  [\"path\", { d: \"M2 11h20\", key: \"3eubbj\" }],\n  [\"path\", { d: \"m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4\", key: \"yiazzp\" }],\n  [\"path\", { d: \"M4.5 15.5h15\", key: \"13mye1\" }],\n  [\"path\", { d: \"m5 11 4-7\", key: \"116ra9\" }],\n  [\"path\", { d: \"m9 11 1 9\", key: \"1ojof7\" }]\n];\nconst ShoppingBasket = createLucideIcon(\"shopping-basket\", __iconNode);\n\nexport { __iconNode, ShoppingBasket as default };\n//# sourceMappingURL=shopping-basket.js.map\n",
+      "start": 1768772628546,
+      "end": 1768772628546
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628546,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628575,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628606,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628633,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

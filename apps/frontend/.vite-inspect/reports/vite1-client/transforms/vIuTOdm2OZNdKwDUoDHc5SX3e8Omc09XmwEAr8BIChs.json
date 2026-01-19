@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/effect/dist/esm/PartitionedSemaphore.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @since 3.19.4\n * @experimental\n */\nimport * as Effect from \"./Effect.js\";\nimport * as Iterable from \"./Iterable.js\";\nimport * as MutableHashMap from \"./MutableHashMap.js\";\nimport * as Option from \"./Option.js\";\n/**\n * @since 3.19.4\n * @category Models\n * @experimental\n */\nexport const TypeId = \"~effect/PartitionedSemaphore\";\n/**\n * A `PartitionedSemaphore` is a concurrency primitive that can be used to\n * control concurrent access to a resource across multiple partitions identified\n * by keys.\n *\n * The total number of permits is shared across all partitions, with waiting\n * permits equally distributed among partitions using a round-robin strategy.\n *\n * This is useful when you want to limit the total number of concurrent accesses\n * to a resource, while still allowing for fair distribution of access across\n * different partitions.\n *\n * @since 3.19.4\n * @category Constructors\n * @experimental\n */\nexport const makeUnsafe = options => {\n  const maxPermits = Math.max(0, options.permits);\n  if (!Number.isFinite(maxPermits)) {\n    return {\n      [TypeId]: TypeId,\n      withPermits: () => effect => effect\n    };\n  }\n  let totalPermits = maxPermits;\n  let waitingPermits = 0;\n  const partitions = MutableHashMap.empty();\n  const take = (key, permits) => Effect.async(resume => {\n    if (maxPermits < permits) {\n      return resume(Effect.never);\n    } else if (totalPermits >= permits) {\n      totalPermits -= permits;\n      return resume(Effect.void);\n    }\n    const needed = permits - totalPermits;\n    const taken = permits - needed;\n    if (totalPermits > 0) {\n      totalPermits = 0;\n    }\n    waitingPermits += needed;\n    const waiters = Option.getOrElse(MutableHashMap.get(partitions, key), () => {\n      const set = new Set();\n      MutableHashMap.set(partitions, key, set);\n      return set;\n    });\n    const entry = {\n      permits: needed,\n      resume() {\n        cleanup();\n        resume(Effect.void);\n      }\n    };\n    function cleanup() {\n      waiters.delete(entry);\n      if (waiters.size === 0) {\n        MutableHashMap.remove(partitions, key);\n      }\n    }\n    waiters.add(entry);\n    return Effect.sync(() => {\n      cleanup();\n      waitingPermits -= entry.permits;\n      if (taken > 0) {\n        releaseUnsafe(taken);\n      }\n    });\n  });\n  let iterator = partitions[Symbol.iterator]();\n  const releaseUnsafe = permits => {\n    while (permits > 0) {\n      if (waitingPermits === 0) {\n        totalPermits += permits;\n        return;\n      }\n      let state = iterator.next();\n      if (state.done) {\n        iterator = partitions[Symbol.iterator]();\n        state = iterator.next();\n        if (state.done) return;\n      }\n      const entry = Iterable.unsafeHead(state.value[1]);\n      entry.permits--;\n      waitingPermits--;\n      if (entry.permits === 0) entry.resume();\n      permits--;\n    }\n  };\n  return {\n    [TypeId]: TypeId,\n    withPermits: (key, permits) => {\n      const takePermits = take(key, permits);\n      const release = Effect.matchCauseEffect({\n        onFailure(cause) {\n          releaseUnsafe(permits);\n          return Effect.failCause(cause);\n        },\n        onSuccess(value) {\n          releaseUnsafe(permits);\n          return Effect.succeed(value);\n        }\n      });\n      return effect => Effect.uninterruptibleMask(restore => Effect.flatMap(restore(takePermits), () => release(restore(effect))));\n    }\n  };\n};\n/**\n * A `PartitionedSemaphore` is a concurrency primitive that can be used to\n * control concurrent access to a resource across multiple partitions identified\n * by keys.\n *\n * The total number of permits is shared across all partitions, with waiting\n * permits equally distributed among partitions using a round-robin strategy.\n *\n * This is useful when you want to limit the total number of concurrent accesses\n * to a resource, while still allowing for fair distribution of access across\n * different partitions.\n *\n * @since 3.19.4\n * @category Constructors\n * @experimental\n */\nexport const make = options => Effect.sync(() => makeUnsafe(options));\n//# sourceMappingURL=PartitionedSemaphore.js.map",
+      "start": 1768772628413,
+      "end": 1768772628413
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628413,
+      "end": 1768772628416,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628418,
+      "end": 1768772628421,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628434,
+      "end": 1768772628437,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628477,
+      "end": 1768772628479,
+      "order": "post-post"
+    }
+  ]
+}

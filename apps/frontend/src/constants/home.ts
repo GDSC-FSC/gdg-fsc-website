@@ -35,6 +35,7 @@ export const home = {
       href: '/projects',
       external: false,
       color: 'red',
+      icon: undefined,
     },
   ],
   quickNav: [

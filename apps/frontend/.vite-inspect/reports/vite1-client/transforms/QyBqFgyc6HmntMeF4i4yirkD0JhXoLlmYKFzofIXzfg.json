@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/framer-motion/dist/es/utils/use-force-update.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "\"use client\";\nimport { frame } from 'motion-dom';\nimport { useState, useCallback } from 'react';\nimport { useIsMounted } from './use-is-mounted.mjs';\n\nfunction useForceUpdate() {\n    const isMounted = useIsMounted();\n    const [forcedRenderCount, setForcedRenderCount] = useState(0);\n    const forceRender = useCallback(() => {\n        isMounted.current && setForcedRenderCount(forcedRenderCount + 1);\n    }, [forcedRenderCount]);\n    /**\n     * Defer this to the end of the next animation frame in case there are multiple\n     * synchronous calls.\n     */\n    const deferredForceRender = useCallback(() => frame.postRender(forceRender), [forceRender]);\n    return [deferredForceRender, forcedRenderCount];\n}\n\nexport { useForceUpdate };\n//# sourceMappingURL=use-force-update.mjs.map\n",
+      "start": 1768772628586,
+      "end": 1768772628586
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628586,
+      "end": 1768772628588,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628620,
+      "end": 1768772628621,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628649,
+      "end": 1768772628651,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628705,
+      "end": 1768772628706,
+      "order": "post-post"
+    }
+  ]
+}

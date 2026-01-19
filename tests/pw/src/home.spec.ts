@@ -14,6 +14,33 @@
  * limitations under the License.
  */
 
-import { test } from '../../../test-fixtures';
+import { expect, test } from '@playwright/test';
 
-test.describe('', () => {});
+test.describe('Home Page', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
+
+  test('should render hero section', async ({ page }) => {
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Farmingdale State College' })).toBeVisible();
+  });
+
+  test('should navigate to team page', async ({ page }) => {
+    await page.getByRole('link', { name: /meet the team/i }).click();
+    await expect(page).toHaveURL(/.*\/team/);
+  });
+
+  test('should toggle theme', async ({ page }) => {
+    const html = page.locator('html');
+    await expect(html).toHaveClass(/light|dark/);
+    
+    // Assuming there is a theme toggle button
+    const toggleBtn = page.getByRole('button', { name: /toggle theme/i });
+    if (await toggleBtn.isVisible()) {
+        const initialClass = await html.getAttribute('class');
+        await toggleBtn.click();
+        await expect(html).not.toHaveClass(initialClass!);
+    }
+  });
+});

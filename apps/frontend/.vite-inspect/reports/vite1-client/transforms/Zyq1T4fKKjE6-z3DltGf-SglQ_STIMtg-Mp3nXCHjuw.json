@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/baggage-claim.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M22 18H6a2 2 0 0 1-2-2V7a2 2 0 0 0-2-2\", key: \"4irg2o\" }],\n  [\"path\", { d: \"M17 14V4a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v10\", key: \"14fcyx\" }],\n  [\"rect\", { width: \"13\", height: \"8\", x: \"8\", y: \"6\", rx: \"1\", key: \"o6oiis\" }],\n  [\"circle\", { cx: \"18\", cy: \"20\", r: \"2\", key: \"t9985n\" }],\n  [\"circle\", { cx: \"9\", cy: \"20\", r: \"2\", key: \"e5v82j\" }]\n];\nconst BaggageClaim = createLucideIcon(\"baggage-claim\", __iconNode);\n\nexport { __iconNode, BaggageClaim as default };\n//# sourceMappingURL=baggage-claim.js.map\n",
+      "start": 1768772628549,
+      "end": 1768772628549
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628549,
+      "end": 1768772628554,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628577,
+      "end": 1768772628581,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628605,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628631,
+      "end": 1768772628638,
+      "order": "post-post"
+    }
+  ]
+}

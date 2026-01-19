@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/lucide-react/dist/esm/icons/package-check.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * @license lucide-react v0.562.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"m16 16 2 2 4-4\", key: \"gfu2re\" }],\n  [\n    \"path\",\n    {\n      d: \"M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14\",\n      key: \"e7tb2h\"\n    }\n  ],\n  [\"path\", { d: \"m7.5 4.27 9 5.15\", key: \"1c824w\" }],\n  [\"polyline\", { points: \"3.29 7 12 12 20.71 7\", key: \"ousv84\" }],\n  [\"line\", { x1: \"12\", x2: \"12\", y1: \"22\", y2: \"12\", key: \"a4e8g8\" }]\n];\nconst PackageCheck = createLucideIcon(\"package-check\", __iconNode);\n\nexport { __iconNode, PackageCheck as default };\n//# sourceMappingURL=package-check.js.map\n",
+      "start": 1768772628545,
+      "end": 1768772628545
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628545,
+      "end": 1768772628553,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628573,
+      "end": 1768772628580,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628601,
+      "end": 1768772628612,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628630,
+      "end": 1768772628637,
+      "order": "post-post"
+    }
+  ]
+}

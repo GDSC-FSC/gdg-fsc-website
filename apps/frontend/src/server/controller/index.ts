@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export * from './events-controller.ts';
+export * from './events-controller';

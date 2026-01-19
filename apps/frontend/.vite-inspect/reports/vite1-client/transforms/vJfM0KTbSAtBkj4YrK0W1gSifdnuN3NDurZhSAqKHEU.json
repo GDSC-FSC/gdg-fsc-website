@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/fast-check/lib/esm/arbitrary/emailAddress.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { array } from './array.js';\nimport { getOrCreateLowerAlphaNumericArbitrary } from './_internals/builders/CharacterRangeArbitraryBuilder.js';\nimport { domain } from './domain.js';\nimport { string } from './string.js';\nimport { tuple } from './tuple.js';\nimport { adapter } from './_internals/AdapterArbitrary.js';\nimport { safeJoin, safeSlice, safeSplit } from '../utils/globals.js';\nfunction dotAdapter(a) {\n    let currentLength = a[0].length;\n    for (let index = 1; index !== a.length; ++index) {\n        currentLength += 1 + a[index].length;\n        if (currentLength > 64) {\n            return { adapted: true, value: safeSlice(a, 0, index) };\n        }\n    }\n    return { adapted: false, value: a };\n}\nfunction dotMapper(a) {\n    return safeJoin(a, '.');\n}\nfunction dotUnmapper(value) {\n    if (typeof value !== 'string') {\n        throw new Error('Unsupported');\n    }\n    return safeSplit(value, '.');\n}\nfunction atMapper(data) {\n    return `${data[0]}@${data[1]}`;\n}\nfunction atUnmapper(value) {\n    if (typeof value !== 'string') {\n        throw new Error('Unsupported');\n    }\n    return safeSplit(value, '@', 2);\n}\nexport function emailAddress(constraints = {}) {\n    const atextArb = getOrCreateLowerAlphaNumericArbitrary(\"!#$%&'*+-/=?^_`{|}~\");\n    const localPartArb = adapter(array(string({\n        unit: atextArb,\n        minLength: 1,\n        maxLength: 64,\n        size: constraints.size,\n    }), { minLength: 1, maxLength: 32, size: constraints.size }), dotAdapter).map(dotMapper, dotUnmapper);\n    return tuple(localPartArb, domain({ size: constraints.size })).map(atMapper, atUnmapper);\n}\n",
+      "start": 1768772628848,
+      "end": 1768772628848
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628848,
+      "end": 1768772628849,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628851,
+      "end": 1768772628852,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628854,
+      "end": 1768772628856,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628857,
+      "end": 1768772628859,
+      "order": "post-post"
+    }
+  ]
+}

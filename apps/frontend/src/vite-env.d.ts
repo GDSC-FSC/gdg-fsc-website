@@ -24,6 +24,7 @@ interface ImportMetaEnv {
   VITE_SENTRY_ORG: string;
   VITE_SENTRY_PROJECT: string;
   GEMINI_API_KEY: string;
+  VITE_AXIOM_TOKEN: string;
   PORT: 5173;
 }
 

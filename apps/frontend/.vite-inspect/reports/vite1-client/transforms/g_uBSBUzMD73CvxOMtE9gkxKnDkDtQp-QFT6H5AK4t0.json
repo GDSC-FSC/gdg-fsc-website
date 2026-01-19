@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/@effect/platform/dist/esm/internal/workerRunner.js",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import * as Cause from \"effect/Cause\";\nimport * as Chunk from \"effect/Chunk\";\nimport * as Context from \"effect/Context\";\nimport * as Deferred from \"effect/Deferred\";\nimport * as Effect from \"effect/Effect\";\nimport * as Either from \"effect/Either\";\nimport * as Fiber from \"effect/Fiber\";\nimport * as FiberId from \"effect/FiberId\";\nimport { pipe } from \"effect/Function\";\nimport * as Layer from \"effect/Layer\";\nimport * as Schema from \"effect/Schema\";\nimport * as Stream from \"effect/Stream\";\nimport * as Transferable from \"../Transferable.js\";\nimport { isWorkerError, WorkerError } from \"../WorkerError.js\";\n/** @internal */\nexport const PlatformRunnerTypeId = /*#__PURE__*/Symbol.for(\"@effect/platform/Runner/PlatformRunner\");\n/** @internal */\nexport const PlatformRunner = /*#__PURE__*/Context.GenericTag(\"@effect/platform/Runner/PlatformRunner\");\n/** @internal */\nexport const CloseLatch = /*#__PURE__*/Context.Reference()(\"@effect/platform/WorkerRunner/CloseLatch\", {\n  defaultValue: () => Deferred.unsafeMake(FiberId.none)\n});\n/** @internal */\nexport const layerCloseLatch = /*#__PURE__*/Layer.effect(CloseLatch, /*#__PURE__*/Deferred.make());\n/** @internal */\nexport const make = /*#__PURE__*/Effect.fnUntraced(function* (process, options) {\n  const fiber = yield* Effect.withFiberRuntime(Effect.succeed);\n  const platform = yield* PlatformRunner;\n  const closeLatch = yield* CloseLatch;\n  const backing = yield* platform.start(closeLatch);\n  const fiberMap = new Map();\n  yield* Deferred.await(closeLatch).pipe(Effect.onExit(() => {\n    fiber.currentScheduler.scheduleTask(() => {\n      fiber.unsafeInterruptAsFork(fiber.id());\n    }, 0);\n    return Effect.void;\n  }), Effect.forkScoped);\n  yield* backing.run((portId, [id, kind, data, span]) => {\n    if (kind === 1) {\n      const fiber = fiberMap.get(id);\n      if (!fiber) return Effect.void;\n      return Fiber.interrupt(fiber);\n    }\n    return Effect.withFiberRuntime(fiber => {\n      fiberMap.set(id, fiber);\n      return options?.decode ? options.decode(data) : Effect.succeed(data);\n    }).pipe(Effect.flatMap(input => {\n      const collector = Transferable.unsafeMakeCollector();\n      const stream = process(input);\n      let effect = Effect.isEffect(stream) ? Effect.flatMap(stream, out => pipe(options?.encodeOutput ? Effect.provideService(options.encodeOutput(input, out), Transferable.Collector, collector) : Effect.succeed(out), Effect.flatMap(payload => backing.send(portId, [id, 0, [payload]], collector.unsafeRead())))) : pipe(stream, Stream.runForEachChunk(chunk => {\n        if (options?.encodeOutput === undefined) {\n          const payload = Chunk.toReadonlyArray(chunk);\n          return backing.send(portId, [id, 0, payload]);\n        }\n        collector.unsafeClear();\n        return pipe(Effect.forEach(chunk, data => options.encodeOutput(input, data)), Effect.provideService(Transferable.Collector, collector), Effect.flatMap(payload => backing.send(portId, [id, 0, payload], collector.unsafeRead())));\n      }), Effect.andThen(backing.send(portId, [id, 1])));\n      if (span) {\n        effect = Effect.withParentSpan(effect, {\n          _tag: \"ExternalSpan\",\n          traceId: span[0],\n          spanId: span[1],\n          sampled: span[2],\n          context: Context.empty()\n        });\n      }\n      return Effect.uninterruptibleMask(restore => restore(effect).pipe(Effect.catchIf(isWorkerError, error => backing.send(portId, [id, 3, WorkerError.encodeCause(Cause.fail(error))])), Effect.catchAllCause(cause => Either.match(Cause.failureOrCause(cause), {\n        onLeft: error => {\n          collector.unsafeClear();\n          return pipe(options?.encodeError ? Effect.provideService(options.encodeError(input, error), Transferable.Collector, collector) : Effect.succeed(error), Effect.flatMap(payload => backing.send(portId, [id, 2, payload], collector.unsafeRead())), Effect.catchAllCause(cause => backing.send(portId, [id, 3, WorkerError.encodeCause(cause)])));\n        },\n        onRight: cause => backing.send(portId, [id, 3, WorkerError.encodeCause(cause)])\n      }))));\n    }), Effect.ensuring(Effect.sync(() => fiberMap.delete(id))));\n  });\n});\n/** @internal */\nexport const layer = (process, options) => Layer.scopedDiscard(make(process, options)).pipe(Layer.provide(layerCloseLatch));\n/** @internal */\nexport const makeSerialized = (schema, handlers) => Effect.gen(function* () {\n  const scope = yield* Effect.scope;\n  let context = Context.empty();\n  const parseRequest = Schema.decodeUnknown(schema);\n  return yield* make(request => {\n    const result = handlers[request._tag](request);\n    if (Layer.isLayer(result)) {\n      return Effect.flatMap(Layer.buildWithScope(result, scope), _ => Effect.sync(() => {\n        context = Context.merge(context, _);\n      }));\n    } else if (Effect.isEffect(result)) {\n      return Effect.provide(result, context);\n    }\n    return Stream.provideContext(result, context);\n  }, {\n    decode(message) {\n      return Effect.mapError(parseRequest(message), cause => new WorkerError({\n        reason: \"decode\",\n        cause\n      }));\n    },\n    encodeError(request, message) {\n      return Effect.mapError(Schema.serializeFailure(request, message), cause => new WorkerError({\n        reason: \"encode\",\n        cause\n      }));\n    },\n    encodeOutput(request, message) {\n      return Effect.catchAllCause(Schema.serializeSuccess(request, message), cause => new WorkerError({\n        reason: \"encode\",\n        cause\n      }));\n    }\n  });\n});\n/** @internal */\nexport const layerSerialized = (schema, handlers) => Layer.scopedDiscard(makeSerialized(schema, handlers)).pipe(Layer.provide(layerCloseLatch));\n/** @internal */\nexport const launch = layer => Effect.scopedWith(Effect.fnUntraced(function* (scope) {\n  const context = yield* Layer.buildWithScope(Layer.provideMerge(layer, layerCloseLatch), scope);\n  const closeLatch = Context.get(context, CloseLatch);\n  return yield* Deferred.await(closeLatch);\n}));\n//# sourceMappingURL=workerRunner.js.map",
+      "start": 1768772628753,
+      "end": 1768772628753
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628753,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628770,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628789,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628807,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

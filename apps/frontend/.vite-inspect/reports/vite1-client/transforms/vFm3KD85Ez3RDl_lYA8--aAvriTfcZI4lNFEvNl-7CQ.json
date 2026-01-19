@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-dom/dist/es/gestures/utils/is-primary-pointer.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "const isPrimaryPointer = (event) => {\n    if (event.pointerType === \"mouse\") {\n        return typeof event.button !== \"number\" || event.button <= 0;\n    }\n    else {\n        /**\n         * isPrimary is true for all mice buttons, whereas every touch point\n         * is regarded as its own input. So subsequent concurrent touch points\n         * will be false.\n         *\n         * Specifically match against false here as incomplete versions of\n         * PointerEvents in very old browser might have it set as undefined.\n         */\n        return event.isPrimary !== false;\n    }\n};\n\nexport { isPrimaryPointer };\n",
+      "start": 1768772628755,
+      "end": 1768772628755
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628755,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628771,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628790,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628807,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}

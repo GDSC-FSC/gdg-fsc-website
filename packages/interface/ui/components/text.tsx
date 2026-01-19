@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
+import { cn } from '@gdg-fsc/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
-import clsx from 'clsx';
 import { type ComponentProps, type ElementType, type ReactNode, useMemo } from 'react';
 import type { DistributiveOmit, Overwrite } from './types';
 
@@ -24,34 +24,40 @@ const defaultRootElement = 'p' as const;
 const textVariants = cva('', {
   variants: {
     variant: {
-      heading: 'text-heading',
-      body: 'text-body',
-      caption: 'text-caption',
-      small: 'text-small',
+      heading: 'font-bold tracking-tight',
+      body: 'leading-relaxed',
+      caption: 'text-sm text-muted-foreground',
+      small: 'text-xs',
     },
     size: {
       xs: 'text-xs',
       sm: 'text-sm',
-      md: 'text-md',
+      md: 'text-base',
       lg: 'text-lg',
       xl: 'text-xl',
       '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
     },
     weight: {
-      normal: 'text-normal',
-      medium: 'text-medium',
-      semibold: 'text-semibold',
-      bold: 'text-bold',
+      normal: 'font-normal',
+      medium: 'font-medium',
+      semibold: 'font-semibold',
+      bold: 'font-bold',
     },
     color: {
       primary: 'text-primary',
-      secondary: 'text-secondary',
-      muted: 'text-muted',
-      accent: 'text-accent',
+      secondary: 'text-secondary-foreground',
+      muted: 'text-muted-foreground',
+      accent: 'text-accent-foreground',
+      foreground: 'text-foreground',
+      destructive: 'text-destructive',
     },
   },
   defaultVariants: {
     variant: 'body',
+    size: 'md',
+    color: 'foreground',
   },
 });
 
@@ -59,7 +65,7 @@ type TextVariants = VariantProps<typeof textVariants>;
 
 namespace Text {
   export interface BaseRootElementProps {
-    className?: undefined | string;
+    className?: string;
     children?: ReactNode;
   }
 
@@ -96,12 +102,12 @@ export const TextInternal = <
     () => ({
       // Calculate default props here.
     }),
-    [variant, size, weight, color],
+    [],
   );
 
   const textClassName = textVariants({ variant, size, weight, color });
 
-  return <Component {...defaultProps} {...props} className={clsx(textClassName, className)} />;
+  return <Component {...defaultProps} {...props} className={cn(textClassName, className)} />;
 };
 
 export const Text = TextInternal as Text.Type;

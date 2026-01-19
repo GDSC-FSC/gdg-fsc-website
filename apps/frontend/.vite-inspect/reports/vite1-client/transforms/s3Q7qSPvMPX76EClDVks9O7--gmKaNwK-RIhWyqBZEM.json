@@ -1,0 +1,35 @@
+{
+  "resolvedId": "/home/wombocombo/github/wrk/gdg-fsc-website/node_modules/motion-utils/dist/es/pipe.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "/**\n * Pipe\n * Compose other transformers to run linearily\n * pipe(min(20), max(40))\n * @param  {...functions} transformers\n * @return {function}\n */\nconst combineFunctions = (a, b) => (v) => b(a(v));\nconst pipe = (...transformers) => transformers.reduce(combineFunctions);\n\nexport { pipe };\n",
+      "start": 1768772628755,
+      "end": 1768772628755
+    },
+    {
+      "name": "sentry-vite-component-name-annotate-plugin",
+      "start": 1768772628755,
+      "end": 1768772628768,
+      "order": "pre"
+    },
+    {
+      "name": "comlink",
+      "start": 1768772628772,
+      "end": 1768772628785,
+      "order": "normal"
+    },
+    {
+      "name": "sentry-vite-bundle-size-optimizations-plugin",
+      "start": 1768772628791,
+      "end": 1768772628803,
+      "order": "normal"
+    },
+    {
+      "name": "vite-plugin-csp-guard",
+      "start": 1768772628807,
+      "end": 1768772628811,
+      "order": "post-post"
+    }
+  ]
+}
