@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-import path from 'node:path';
 import { vCache } from '@raegen/vite-plugin-vitest-cache';
 import { sentryVitePlugin } from '@sentry/vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react-swc';
+import path from 'node:path';
 import sharp from 'sharp';
 import { defineConfig, loadEnv } from 'vite';
 import { imagetools } from 'vite-imagetools';
 import { comlink } from 'vite-plugin-comlink';
-import { compression } from 'vite-plugin-compression2';
 import csp from 'vite-plugin-csp-guard';
 import Inspect from 'vite-plugin-inspect';
 import lqip from 'vite-plugin-lqip';
@@ -160,14 +159,14 @@ export default defineConfig(({ mode }) => {
       /**
        * @see https://www.npmjs.com/package/vite-plugin-compression2
        */
-      compression({
-        algorithms: ['brotliCompress', 'gzip'],
-        exclude: ['**/*.map', '**/*.gz', '**/*.br'],
-        threshold: 10240, // 10KB, adjust as needed
-        deleteOriginalAssets: false,
-        skipIfLargerOrEqual: true,
-        // filename: '[path][base].gz', // Optional: customize output filename
-      }),
+      // compression({
+      //   algorithms: ['brotliCompress', 'gzip'],
+      //   exclude: ['**/*.map', '**/*.gz', '**/*.br'],
+      //   threshold: 10240, // 10KB, adjust as needed
+      //   deleteOriginalAssets: false,
+      //   skipIfLargerOrEqual: true,
+      //   // filename: '[path][base].gz', // Optional: customize output filename
+      // }),
       /**
        * @see https://www.npmjs.com/package/vite-bundle-analyzer
        */
@@ -226,6 +225,7 @@ export default defineConfig(({ mode }) => {
         workbox: {
           cleanupOutdatedCaches: true,
           globPatterns: ['**/*'],
+          globIgnores: ['**/OFL.txt', '**/*.map'],
           maximumFileSizeToCacheInBytes: (1_024 * 2) ** 2, //
         },
         registerType: 'autoUpdate',
@@ -256,25 +256,26 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
+      target: 'es2022',
       minify: true,
       sourcemap: true,
       chunkSizeWarningLimit: (1024 * 2) ** 2, // Increased from default 500kb to 1000kb
-      rollupOptions: {
-        output: {
-          advancedChunks: {
-            // groups: [{ name: 'vendor', test: /\/react(?:-dom)?// }]
+      // rollupOptions: {
+      //   output: {
+      //     advancedChunks: {
+      //       // groups: [{ name: 'vendor', test: /\/react(?:-dom)?// }]
 
-            groups: [
-              {
-                name: 'vendor',
-                test: /[\\/]node_modules[\\/]/,
-                minSize: 100_000,
-                maxSize: 250_000,
-              },
-            ],
-          },
-        },
-      },
+      //       groups: [
+      //         {
+      //           name: 'vendor',
+      //           test: /[\\/]node_modules[\\/]/,
+      //           minSize: 100_000,
+      //           maxSize: 250_000,
+      //         },
+      //       ],
+      //     },
+      //   },
+      // },
     },
     ssr: {
       resolve: {
