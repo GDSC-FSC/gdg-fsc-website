@@ -17,4 +17,6 @@
 export * from './about.ts';
 export * from './app.ts';
 export * from './home.ts';
+export * from './stats.ts';
 export * from './team.ts';
+

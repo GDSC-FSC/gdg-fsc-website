@@ -21,7 +21,7 @@ import type { FC } from 'react';
 import { memo, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Text } from '../../../../packages/interface';
-import { home } from '../constants';
+import { home, stats } from '../constants';
 import { ThemeToggle } from '../providers';
 
 const iconMap = {
@@ -312,7 +312,7 @@ export const Home: FC = memo(() => {
         <div className="absolute inset-0 bg-linear-to-r from-blue-500/5 via-yellow-500/5 to-green-500/5" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {home.stats.map((stat, index) => {
+            {stats.map((stat, index) => {
               const colors: Record<string, string> = {
                 blue: 'text-blue-500',
                 red: 'text-red-500',

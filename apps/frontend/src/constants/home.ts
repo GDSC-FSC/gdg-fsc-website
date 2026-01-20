@@ -64,28 +64,6 @@ export const home = {
       label: 'Team',
     },
   ],
-  stats: [
-    {
-      value: '150+',
-      color: 'blue',
-      label: 'Active Members',
-    },
-    {
-      value: '30+',
-      color: 'red',
-      label: 'Projects Built',
-    },
-    {
-      value: '40+',
-      color: 'yellow',
-      label: 'Workshops',
-    },
-    {
-      value: '3+',
-      color: 'green',
-      label: 'Years Active',
-    },
-  ],
   footer: {
     org: 'GDG on Campus FSC',
     description: 'Empowering students to learn, grow, and connect through technology.',

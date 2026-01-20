@@ -86,7 +86,7 @@
     "elysia": "1.4.21",
     "firebase": "^12.7.0",
     "lodash": "^4.17.21",
-    "motion": "^12.26.2",
+    "motion": "^12.27.1",
     "playwright": "^1.57.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",

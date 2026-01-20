@@ -16,11 +16,11 @@
 
 'use client';
 
-import { Compass, Heart, Rocket, Sparkles, Target, Users } from 'lucide-react';
+import { Compass, Heart, Sparkles, Target, Users } from 'lucide-react';
 import type { FC } from 'react';
 import { memo } from 'react';
 import { Text } from '../../../../packages/interface';
-import { about } from '../constants';
+import { about, stats } from '../constants';
 import { PageLayout } from '../layouts';
 
 const iconMap = {
@@ -141,21 +141,20 @@ export const About: FC = memo(() => {
           {/* Stats or additional info */}
           <div className="mt-20 text-center">
             <div className="inline-flex flex-wrap justify-center gap-8 p-8 rounded-3xl bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/20">
-              {[
-                { icon: Rocket, label: 'Projects Launched', value: '10+' },
-                { icon: Users, label: 'Active Members', value: '50+' },
-                { icon: Target, label: 'Events Hosted', value: '20+' },
-              ].map((stat, index) => (
-                <div key={stat.label} className="text-center px-6">
-                  <stat.icon
-                    className={`w-8 h-8 mx-auto mb-3 ${
-                      ['text-blue-500', 'text-red-500', 'text-green-500'][index]
-                    }`}
-                  />
-                  <div className="text-3xl font-bold text-foreground mb-1">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
-                </div>
-              ))}
+              {stats.map((stat, index) => {
+                const Icon = iconMap[stat.icon.toLowerCase() as keyof typeof iconMap] || iconMap.default;
+                return (
+                  <div key={stat.label} className="text-center px-6">
+                    <Icon
+                      className={`w-8 h-8 mx-auto mb-3 ${
+                        ['text-blue-500', 'text-red-500', 'text-green-500', 'text-yellow-500'][index % 4]
+                      }`}
+                    />
+                    <div className="text-3xl font-bold text-foreground mb-1">{stat.value}</div>
+                    <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

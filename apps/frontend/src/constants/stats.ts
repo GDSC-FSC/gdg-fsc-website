@@ -14,11 +14,29 @@
  * limitations under the License.
  */
 
-export const team = [
+export const stats = [
   {
-    name: 'Mke Odnis',
-    position: 'Lead',
-    role: 'Organizer & Fullstack Developer',
-    image: '/assets/images/team/mike.webp',
+    value: '150+',
+    color: 'blue',
+    label: 'Active Members',
+    icon: 'Users',
+  },
+  {
+    value: '30+',
+    color: 'red',
+    label: 'Projects Built',
+    icon: 'Rocket',
+  },
+  {
+    value: '40+',
+    color: 'yellow',
+    label: 'Events Hosted',
+    icon: 'Target',
+  },
+  {
+    value: '3+',
+    color: 'green',
+    label: 'Years Active',
+    icon: 'Sparkles',
   },
 ] as const;
