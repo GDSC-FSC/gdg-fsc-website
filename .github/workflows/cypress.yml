@@ -97,7 +97,7 @@ jobs:
           path: .output
 
       - name: Cypress run
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           browser: ${{ matrix.browser }}
           start: bun run start
@@ -148,7 +148,7 @@ jobs:
         run: bun install
 
       - name: Cypress component tests
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           component: true
           browser: chrome
